@@ -1,0 +1,1406 @@
+[
+  {
+    "id": 1,
+    "multi": false,
+    "question": {
+      "ko": "여러 Amazon EC2 인스턴스가 Linux 기반 콘텐츠 관리 시스템에서 동시에 같은 파일을 읽고 써야 합니다. 확장 가능한 공유 파일 스토리지로 가장 적절한 것은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon EBS 볼륨 하나를 여러 인스턴스에 연결한다"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon EFS 파일 시스템을 사용한다"
+      },
+      {
+        "key": "C",
+        "ko": "인스턴스 store 볼륨을 사용한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon S3를 블록 디바이스로 마운트한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Amazon EFS는 NFS 프로토콜로 여러 Linux EC2 인스턴스가 동시에 마운트하고 공유할 수 있으며 자동 확장됩니다. 일반 EBS(A)는 기본적으로 단일 인스턴스 전용이고, instance store(C)는 일시적이며, S3(D)는 블록 파일 시스템이 아닙니다."
+    }
+  },
+  {
+    "id": 2,
+    "multi": false,
+    "question": {
+      "ko": "데이터 분석 팀이 매시간 대량의 트랜잭션 로그를 처리합니다. 로그는 S3에 저장되며 분석 후 90일 뒤에는 거의 접근하지 않습니다. 스토리지 비용을 최소화하면서 필요할 때 데이터를 복구할 수 있어야 합니다. 어떤 S3 스토리지 클래스 조합이 가장 적절합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모든 데이터를 S3 Standard에 보관한다"
+      },
+      {
+        "key": "B",
+        "ko": "S3 Standard-IA로 30일 후 자동 이전하고 90일 후 S3 Glacier로 이전한다"
+      },
+      {
+        "key": "C",
+        "ko": "모든 데이터를 S3 Glacier에 저장한다"
+      },
+      {
+        "key": "D",
+        "ko": "S3 Intelligent-Tiering을 사용해 자동 최적화한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "S3 lifecycle 정책으로 Standard-IA(30일~90일) → Glacier(90일+)로 이전하면 비용 효율적입니다. 처음부터 Glacier(C)를 사용하면 조기 검색 비용이 발생하고, Standard(A)는 비싸며, Intelligent-Tiering(D)은 이 시나리오에서 lifecycle 정책이 더 효율적입니다."
+    }
+  },
+  {
+    "id": 3,
+    "multi": false,
+    "question": {
+      "ko": "온라인 게임 서버가 실시간으로 플레이어 상태를 저장해야 합니다. 요청마다 지연시간이 10ms 이내여야 하고 매초 수천 개의 쓰기 요청이 발생합니다. 가장 적절한 Amazon EBS 볼륨 유형은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "gp3 볼륨 (General Purpose)"
+      },
+      {
+        "key": "B",
+        "ko": "io2 블록 익스프레스 (Provisioned IOPS)"
+      },
+      {
+        "key": "C",
+        "ko": "st1 처리량 최적화 (Throughput Optimized)"
+      },
+      {
+        "key": "D",
+        "ko": "sc1 콜드 스토리지 (Cold HDD)"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "io2 블록 익스프레스는 최대 64,000 IOPS와 매우 낮은 지연시간(sub-millisecond)을 제공해 실시간 게임 서버에 이상적입니다. gp3(A)는 좋지만 io2보다 IOPS가 낮고, st1(C)은 처리량용, sc1(D)은 콜드 데이터용입니다."
+    }
+  },
+  {
+    "id": 4,
+    "multi": false,
+    "question": {
+      "ko": "Windows 기반 엔터프라이즈 애플리케이션이 고성능 공유 파일 스토리지가 필요합니다. 수백 개 EC2 인스턴스가 SMB/CIFS 프로토콜로 접근해야 하며, Active Directory 통합이 필수입니다. 가장 적절한 솔루션은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon FSx for Windows File Server를 배포한다"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon EFS를 Windows 인스턴스에 마운트한다"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Storage Gateway(File Gateway)를 사용한다"
+      },
+      {
+        "key": "D",
+        "ko": "EC2 인스턴스를 NAS 서버로 구성한다"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Amazon FSx for Windows File Server는 SMB/CIFS, Active Directory 통합, 고성능 공유 스토리지를 네이티브로 지원합니다. EFS(B)는 Linux 전용이고, Storage Gateway(C)는 온프레미스 통합용이며, 자체 NAS(D)는 관리 부담이 큽니다."
+    }
+  },
+  {
+    "id": 5,
+    "multi": true,
+    "question": {
+      "ko": "온프레미스 데이터 센터와 AWS 간에 매일 대용량 파일을 동기화해야 합니다. 네트워크 대역폭 최소화, 증분 전송, 자동 스케줄링이 모두 필요합니다. 다음 중 이 요구사항을 모두 충족하는 솔루션은? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS DataSync를 사용해 증분 동기화를 자동 스케줄링한다"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Storage Gateway(File Gateway)로 온프레미스 캐시를 유지한다"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon S3 Transfer Acceleration으로 업로드 속도를 높인다"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Datasync와 함께 VPC 엔드포인트를 구성해 비용을 절감한다"
+      },
+      {
+        "key": "E",
+        "ko": "AWS Snowball을 정기적으로 배송받아 데이터를 전송한다"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": {
+      "ko": "DataSync(A)는 증분 동기화와 자동 스케줄링을 기본 지원하고, Storage Gateway(B)는 온프레미스 캐시로 대역폭을 절감합니다. Transfer Acceleration(C)은 일반 성능 최적화용이고, VPC 엔드포인트(D)는 DataSync 내에 이미 내재되어 있으며, Snowball(E)은 일회성 대량 전송용입니다."
+    }
+  },
+  {
+    "id": 6,
+    "multi": false,
+    "question": {
+      "ko": "과학 연구팀이 고성능 병렬 파일 시스템으로 수백 GB의 데이터를 머신러닝 모델 학습에 사용합니다. Linux 클러스터는 매우 높은 처리량이 필요하고 데이터는 학습 후 삭제됩니다. 가장 적절한 파일 시스템은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon EFS를 사용한다"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon FSx for Lustre를 사용한다"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon FSx for NetApp ONTAP을 사용한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon EBS gp3 RAID 0 구성으로 처리량을 높인다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Amazon FSx for Lustre는 높은 병렬 처리량과 저지연시간이 특징으로 HPC, 머신러닝 학습에 이상적입니다. EFS(A)는 일반 범용이고, NetApp ONTAP(C)은 스냅샷/복제 기능이 필요한 엔터프라이즈용이며, RAID(D)는 관리 복잡도가 높습니다."
+    }
+  },
+  {
+    "id": 7,
+    "multi": false,
+    "question": {
+      "ko": "회사의 S3 버킷에 매시간 수천 개의 객체가 업로드되고 즉시 분석됩니다. 분석 완료 후 객체는 아카이브 스토리지로 이전되어야 합니다. 지연시간을 최소화하면서 운영을 자동화할 수 있는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "S3 Event Notifications로 Lambda를 트리거해 즉시 분석하고 S3 lifecycle으로 아카이브한다"
+      },
+      {
+        "key": "B",
+        "ko": "CloudWatch Logs로 객체 업로드를 모니터링해 수동으로 처리한다"
+      },
+      {
+        "key": "C",
+        "ko": "S3 Select를 사용해 분석하고 수동으로 아카이브한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Athena로 정기적으로 배치 분석하고 Glacier로 옮긴다"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "S3 Event Notifications + Lambda는 객체 업로드 즉시 분석을 트리거하고, S3 lifecycle 정책은 자동 아카이빙을 처리합니다. 수동 모니터링(B), S3 Select 수동 처리(C), 배치 분석(D)은 자동화 수준이 낮습니다."
+    }
+  },
+  {
+    "id": 8,
+    "multi": false,
+    "question": {
+      "ko": "금융 회사가 매우 높은 안정성이 필요한 데이터베이스 스토리지에 Amazon EBS를 사용합니다. 디스크 장애 시 즉시 복구되어야 하고 성능 예측이 가능해야 합니다. 가장 적절한 EBS 구성은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "gp3 볼륨 다중 연결(Multi-Attach) 설정"
+      },
+      {
+        "key": "B",
+        "ko": "io2 Block Express 높은 내구성과 Provisioned IOPS 설정"
+      },
+      {
+        "key": "C",
+        "ko": "st1 처리량 최적화 볼륨"
+      },
+      {
+        "key": "D",
+        "ko": "sc1 콜드 스토리지 높은 중복성"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "io2 Block Express는 99.999% 내구성, 서브밀리초 지연시간, Provisioned IOPS로 성능 예측이 가능합니다. gp3 다중 연결(A)은 특수 사용 사례용이고, st1(C)과 sc1(D)은 처리량/콜드 데이터용입니다."
+    }
+  },
+  {
+    "id": 9,
+    "multi": false,
+    "question": {
+      "ko": "개발팀이 높은 계산량이 필요한 데이터 처리 작업을 수행합니다. CPU 사용률이 99% 이상이고 메모리 요구사항은 적습니다. 비용 효율적인 EC2 인스턴스 유형은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "메모리 최적화 인스턴스(r5, r6i)"
+      },
+      {
+        "key": "B",
+        "ko": "컴퓨팅 최적화 인스턴스(c5, c6i)"
+      },
+      {
+        "key": "C",
+        "ko": "스토리지 최적화 인스턴스(i3, i4i)"
+      },
+      {
+        "key": "D",
+        "ko": "범용 인스턴스(m5, m6i)"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "컴퓨팅 최적화 인스턴스(B)는 높은 vCPU 대 메모리 비율과 강력한 CPU를 제공해 계산 집약적 작업에 최적입니다. 메모리 최적화(A)는 메모리가 필요하지 않으므로 낭비이고, 스토리지(C)와 범용(D)도 이 시나리오에 부적절합니다."
+    }
+  },
+  {
+    "id": 10,
+    "multi": false,
+    "question": {
+      "ko": "애플리케이션이 요청당 메모리 사용량이 적지만 서로 다른 런타임 환경이 필요하고 콜드 스타트 시간이 중요합니다. 모든 요청에 대해 일관된 응답이 필요합니다. 가장 적절한 컴퓨팅 솔루션은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Lambda 함수를 사용한다"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Fargate에 컨테이너를 배포한다"
+      },
+      {
+        "key": "C",
+        "ko": "EC2 Auto Scaling 그룹을 구성한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon ECS에 EC2 런칭 타입으로 배포한다"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "AWS Lambda는 콜드 스타트가 빠르고 서버를 관리하지 않으며 다양한 런타임을 지원합니다. Fargate(B)는 콜드 스타트가 길고, EC2(C, D)는 인스턴스 관리 부담이 있습니다."
+    }
+  },
+  {
+    "id": 11,
+    "multi": false,
+    "question": {
+      "ko": "마이크로서비스 아키텍처에서 일부 서비스는 높은 메모리가 필요하고 완전한 서버 제어가 필요합니다. 다른 서비스는 경량이고 자동 스케일링만 필요합니다. 두 가지 요구사항을 모두 충족하는 솔루션은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모두 AWS Lambda로 구현한다"
+      },
+      {
+        "key": "B",
+        "ko": "모두 EC2를 사용한다"
+      },
+      {
+        "key": "C",
+        "ko": "메모리 집약적 서비스는 EC2, 경량 서비스는 Lambda를 사용한다"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Fargate을 모든 서비스에 사용한다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "서로 다른 요구사항은 서로 다른 솔루션이 최적입니다. 메모리 집약적/제어 필요 → EC2, 경량/자동 스케일링 → Lambda. Lambda만(A)은 메모리/제어 한계가 있고, EC2만(B)은 경량 서비스에 낭비이며, Fargate(D)은 비용이 높을 수 있습니다."
+    }
+  },
+  {
+    "id": 12,
+    "multi": true,
+    "question": {
+      "ko": "AutoScaling Group으로 웹 애플리케이션을 운영합니다. 트래픽 패턴은 매일 오전 9시 급증, 오후 6시 감소합니다. CPU 기반 스케일링은 반응이 느립니다. 다음 중 이 시나리오에서 효과적인 스케일링 전략은? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "예측 스케일링(Predictive Scaling)을 활성화해 머신러닝으로 자동 조정한다"
+      },
+      {
+        "key": "B",
+        "ko": "예약된 작업(Scheduled Action)으로 오전 9시와 오후 6시에 수동 조정한다"
+      },
+      {
+        "key": "C",
+        "ko": "Target Tracking Scaling Policy로 CPU 타겟을 70%로 설정한다"
+      },
+      {
+        "key": "D",
+        "ko": "Step Scaling으로 CloudWatch 경보 기반 다단계 조정을 한다"
+      },
+      {
+        "key": "E",
+        "ko": "Network 인터페이스 대역폭을 스케일링 메트릭으로 사용한다"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": {
+      "ko": "예측 스케일링(A)은 패턴을 학습해 사전에 스케일링하고, 예약된 작업(B)도 정확한 시간에 조정합니다. CPU 타겟 추적(C)은 반응형이고 사후대응이며, Step Scaling(D)도 경보 기반으로 느리고, 네트워크 대역폭(E)은 웹 트래픽 예측에 부적절합니다."
+    }
+  },
+  {
+    "id": 13,
+    "multi": false,
+    "question": {
+      "ko": "주문 처리 시스템에서 여러 마이크로서비스가 각각의 속도로 독립적으로 작동해야 합니다. 한 서비스가 느려지면 다른 서비스를 차단하면 안 됩니다. 이를 구현하는 데 가장 적절한 패턴은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "동기 REST API로 직접 서비스 간 호출한다"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon SQS 큐로 메시지를 디커플링하고 각 서비스가 독립적으로 처리한다"
+      },
+      {
+        "key": "C",
+        "ko": "공유 데이터베이스에서 모든 서비스가 폴링한다"
+      },
+      {
+        "key": "D",
+        "ko": "한 인스턴스에서 모든 서비스를 순차 실행한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Amazon SQS는 비동기 메시지 큐로 서비스 간 디커플링을 제공해 각 서비스가 독립적으로 처리할 수 있습니다. 동기 호출(A)은 한 서비스의 지연이 전체 시스템에 영향을 주고, 공유 DB(C)는 복잡하며, 순차 실행(D)은 성능이 나쁩니다."
+    }
+  },
+  {
+    "id": 14,
+    "multi": false,
+    "question": {
+      "ko": "데이터 분석 팀이 Apache Spark 클러스터로 매일 수 TB의 로그를 처리합니다. 클러스터는 일정 시간만 필요하고 비용 효율성이 중요합니다. 가장 적절한 AWS 서비스는 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "EC2 Auto Scaling 그룹으로 Spark 클러스터를 구성한다"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon EMR로 클러스터를 생성해 작업 완료 후 종료한다"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Lambda로 로그 처리를 구현한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Redshift로 쿼리한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Amazon EMR은 Apache Spark 같은 빅 데이터 엔진을 관리형으로 제공하고 작업별로 클러스터를 생성/종료해 비용 효율적입니다. 수동 Auto Scaling(A)은 관리 복잡도가 높고, Lambda(C)는 대규모 병렬 처리에 부적절하며, Redshift(D)는 데이터 웨어하우스용입니다."
+    }
+  },
+  {
+    "id": 15,
+    "multi": false,
+    "question": {
+      "ko": "주문 처리, 결제, 배송 통지 등의 작업이 비동기로 처리되어야 합니다. 각 작업은 수 초에서 수 분이 걸리고 실패 시 재시도해야 합니다. 가장 적절한 솔루션은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Lambda를 동기로 직렬 호출한다"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Batch로 작업 큐를 관리하고 자동 재시도를 구성한다"
+      },
+      {
+        "key": "C",
+        "ko": "EC2 인스턴스에서 크론 잡으로 주기적으로 실행한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon SQS + Lambda로 비동기 처리한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "AWS Batch는 작업 큐, 자동 재시도, 실패 처리를 기본 지원하는 관리형 배치 컴퓨팅 서비스입니다. Lambda 동기 호출(A)은 장시간 작업에 부적절하고, 크론 잡(C)은 실패 재처리가 어려우며, SQS+Lambda(D)는 장시간 작업에 부적절합니다."
+    }
+  },
+  {
+    "id": 16,
+    "multi": false,
+    "question": {
+      "ko": "마이크로서비스들이 Docker 컨테이너로 패키징되고 AWS에 배포되어야 합니다. 완전히 관리되는 Kubernetes 환경이 필요하고 높은 가용성을 원합니다. 가장 적절한 솔루션은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "EC2 인스턴스 그룹에 Kubernetes를 수동 설치한다"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon ECS를 EC2 론칭 타입으로 사용한다"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon EKS를 사용한다"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Fargate를 사용한다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "Amazon EKS는 AWS에서 완전 관리되는 Kubernetes 서비스로 높은 가용성과 자동 업데이트를 제공합니다. 수동 설치(A)는 관리 부담이 크고, ECS(B)는 Kubernetes 표준이 아니며, Fargate(D)는 컨테이너 런타임만 지원합니다."
+    }
+  },
+  {
+    "id": 17,
+    "multi": true,
+    "question": {
+      "ko": "미션 크리티컬 데이터베이스가 초당 수천 개의 쿼리를 처리해야 합니다. 쓰기는 상대적으로 적고 읽기 집약적입니다. 다음 중 읽기 성능을 최적화하는 방법은? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon RDS Read Replica를 여러 개 생성하고 읽기 요청을 분산한다"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Aurora로 마이그레이션하고 Read Replica를 활용한다"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon ElastiCache(Redis)를 추가해 자주 읽는 데이터를 캐싱한다"
+      },
+      {
+        "key": "D",
+        "ko": "데이터베이스 인스턴스 크기를 계속 늘린다"
+      },
+      {
+        "key": "E",
+        "ko": "모든 데이터를 메모리에 로드해 처리한다"
+      }
+    ],
+    "answer": [
+      "A",
+      "C"
+    ],
+    "explanation": {
+      "ko": "RDS Read Replica(A)는 읽기를 다른 인스턴스로 오프로드하고, ElastiCache(C)는 자주 접근하는 데이터를 메모리에 캐싱합니다. Aurora(B)는 좋지만 단독 답이 아니고, 수직 확장(D)은 한계가 있으며, 모든 데이터를 메모리에(E)는 비용이 높습니다."
+    }
+  },
+  {
+    "id": 18,
+    "multi": false,
+    "question": {
+      "ko": "NoSQL 애플리케이션이 초당 수만 건의 쓰기와 읽기를 처리해야 합니다. 데이터는 지리적으로 여러 리전에서 접근해야 하고 일관성은 최종 일관성으로 충분합니다. 가장 적절한 데이터베이스는 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon RDS 멀티 마스터 설정"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon DynamoDB 글로벌 테이블"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Aurora 글로벌 데이터베이스"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Neptune 그래프 데이터베이스"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Amazon DynamoDB 글로벌 테이블은 여러 리전에 걸친 낮은 지연시간 액세스, 최종 일관성, 높은 처리량을 지원합니다. RDS 멀티 마스터(A)는 복잡하고, Aurora 글로벌 DB(C)는 강한 일관성을 제공하며, Neptune(D)은 그래프용입니다."
+    }
+  },
+  {
+    "id": 19,
+    "multi": false,
+    "question": {
+      "ko": "전자상거래 플랫폼의 장바구니 기능이 빠르게 변하는 데이터를 저장합니다. 응답 시간이 5ms 이하여야 하고 동일한 데이터를 빠르게 여러 번 조회합니다. 가장 효율적인 캐싱 전략은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon DynamoDB에 모든 데이터를 저장한다"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon RDS에 저장하고 애플리케이션 메모리 캐시를 사용한다"
+      },
+      {
+        "key": "C",
+        "ko": "DynamoDB를 기본 스토리지로 사용하고 Amazon DAX(캐시)로 가속한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon ElastiCache Memcached만 사용한다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "Amazon DAX는 DynamoDB 전용 인메모리 캐시로 밀리초 응답을 제공하면서 DynamoDB의 내구성을 유지합니다. DynamoDB만(A)은 캐싱이 없고, RDS + 애플리케이션 캐시(B)는 응답 시간이 느리며, Memcached만(D)은 휘발성입니다."
+    }
+  },
+  {
+    "id": 20,
+    "multi": false,
+    "question": {
+      "ko": "데이터 분석 팀이 매달 1TB 이상의 로그 데이터를 SQL로 분석해야 합니다. 데이터는 S3에 저장되고 주기적으로 쿼리됩니다. 인프라 관리 오버헤드를 최소화하려면 어떤 솔루션을 사용해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Redshift 클러스터를 프로비저닝한다"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Athena로 S3 데이터를 직접 쿼리한다"
+      },
+      {
+        "key": "C",
+        "ko": "EC2에 PostgreSQL을 설치해 S3 데이터를 로드한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon EMR + Spark SQL로 분석한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Amazon Athena는 S3 데이터를 서버리스로 SQL 쿼리할 수 있으므로 인프라 관리가 불필요합니다. Redshift(A)는 전용 클러스터 관리가 필요하고, EC2 PostgreSQL(C)은 데이터 로드 복잡도가 높으며, EMR(D)은 클러스터 관리가 필요합니다."
+    }
+  },
+  {
+    "id": 21,
+    "multi": false,
+    "question": {
+      "ko": "금융 애플리케이션의 핵심 거래 데이터베이스가 높은 동시성과 즉시 일관성을 요구합니다. 읽기와 쓰기가 모두 높고 다중 리전 장애 복구가 필요합니다. 가장 적절한 데이터베이스는 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon DynamoDB 글로벌 테이블"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Aurora 글로벌 데이터베이스"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon RDS 다중 AZ와 Read Replica"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Redshift 자동 스냅샷"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Amazon Aurora 글로벌 데이터베이스는 강한 일관성, 높은 동시성, 다중 리전 자동 장애 복구를 제공합니다. DynamoDB(A)는 최종 일관성이고, RDS Multi-AZ + Replica(C)는 다중 리전 자동 장애 복구가 없으며, Redshift(D)는 OLTP용이 아닙니다."
+    }
+  },
+  {
+    "id": 22,
+    "multi": false,
+    "question": {
+      "ko": "실시간 사용자 세션 데이터(토큰, 선호도 등)를 저장해야 합니다. 1초 이내 접근, 자동 만료, 높은 처리량이 필요하고 데이터 손실은 허용됩니다. 가장 효율적인 솔루션은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon RDS에 TTL 칼럼을 추가한다"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon DynamoDB TTL 기능으로 관리한다"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon ElastiCache Redis로 자동 만료를 설정한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon S3에 메타데이터를 저장한다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "Amazon ElastiCache Redis는 인메모리로 1ms 응답, 자동 TTL 만료, 높은 처리량을 제공하며 데이터 손실이 허용되는 세션 저장소에 이상적입니다. RDS(A)는 느리고, DynamoDB(B)도 가능하지만 Redis가 더 빠르며, S3(D)는 부적절합니다."
+    }
+  },
+  {
+    "id": 23,
+    "multi": true,
+    "question": {
+      "ko": "데이터 웨어하우스 쿼리가 매우 복잡하고 자주 같은 중간 결과를 다시 쿼리합니다. 쿼리 성능을 최적화하고 싶습니다. 다음 중 적절한 방법은? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Redshift Spectrum으로 S3 데이터 직접 쿼리"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Redshift 구체화된 뷰(Materialized View)로 중간 결과 캐싱"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon ElastiCache를 쿼리 결과 캐시로 사용"
+      },
+      {
+        "key": "D",
+        "ko": "데이터를 더 작은 테이블로 수동 분산"
+      },
+      {
+        "key": "E",
+        "ko": "Redshift 노드 수를 계속 증가"
+      }
+    ],
+    "answer": [
+      "B",
+      "C"
+    ],
+    "explanation": {
+      "ko": "Redshift 구체화된 뷰(B)는 중간 결과를 저장해 반복 쿼리를 빠르게 처리하고, ElastiCache(C)도 쿼리 결과를 캐싱할 수 있습니다. Spectrum(A)은 외부 데이터용이고, 수동 분산(D)은 복잡하며, 노드 증가(E)는 비용 증가만 초래합니다."
+    }
+  },
+  {
+    "id": 24,
+    "multi": false,
+    "question": {
+      "ko": "소규모 팀이 프로토타입 데이터베이스를 AWS에 배포합니다. 초기엔 용량이 미미하지만 나중에 급격히 증가할 수 있습니다. 초기 비용을 최소화하면서 확장 가능해야 합니다. 가장 적절한 선택은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon RDS로 시작해 필요시 수직 확장한다"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Aurora Serverless로 시작해 자동 확장한다"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon DynamoDB 온디맨드 모드로 시작한다"
+      },
+      {
+        "key": "D",
+        "ko": "전용 Redshift 클러스터로 시작한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Amazon Aurora Serverless는 초기 비용 최소화, 자동 용량 조정, SQL 호환성을 모두 제공합니다. RDS(A)는 수동 확장이 필요하고, DynamoDB 온디맨드(C)는 비용이 높을 수 있으며, Redshift(D)는 초기 비용이 많이 듭니다."
+    }
+  },
+  {
+    "id": 25,
+    "multi": false,
+    "question": {
+      "ko": "대규모 엔터프라이즈 데이터베이스가 여러 가용 영역(AZ)에서 높은 가용성을 유지해야 합니다. 계획된 유지보수 중에도 중단이 없어야 합니다. 가장 적절한 배포 옵션은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "단일 AZ Amazon RDS 인스턴스"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon RDS 다중 AZ 배포"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Aurora 클러스터(자동 장애 조치)"
+      },
+      {
+        "key": "D",
+        "ko": "수동 스탠바이 인스턴스 관리"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "Amazon Aurora 클러스터는 자동 장애 조치, 계획된 유지보수 중 자동 페일오버, 여러 AZ 고가용성을 제공합니다. 단일 AZ(A)는 위험하고, RDS 다중 AZ(B)도 가능하지만 Aurora가 더 자동화되며, 수동 관리(D)는 복잡합니다."
+    }
+  },
+  {
+    "id": 26,
+    "multi": false,
+    "question": {
+      "ko": "SaaS 애플리케이션이 테넌트별로 격리된 데이터베이스가 필요합니다. 비용 효율성을 위해 기본 테넌트와 프리미엄 테넌트를 다르게 구성할 수 있어야 합니다. 가장 적절한 아키텍처는 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모든 테넌트를 하나의 Amazon RDS 인스턴스 스키마로 분리"
+      },
+      {
+        "key": "B",
+        "ko": "기본 테넌트는 DynamoDB 온디맨드, 프리미엄은 프로비저닝된 Aurora"
+      },
+      {
+        "key": "C",
+        "ko": "모든 테넌트에 전용 EC2 데이터베이스 서버 배포"
+      },
+      {
+        "key": "D",
+        "ko": "모든 테넌트를 DynamoDB 단일 테이블로 관리"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "기본 테넌트에 DynamoDB 온디맨드(유연한 비용), 프리미엄에 Aurora 프로비저닝(성능 보장)은 각 세그먼트 요구사항에 맞춥니다. 단일 RDS(A)는 테넌트 격리가 약하고, EC2 전용(C)은 비용이 높으며, 단일 DynamoDB 테이블(D)은 관리가 복잡합니다."
+    }
+  },
+  {
+    "id": 27,
+    "multi": false,
+    "question": {
+      "ko": "한 금융 회사가 전 세계 고객들에게 실시간 거래 데이터 대시보드를 제공합니다. 현재 단일 리전의 Application Load Balancer 뒤에 있는 EC2 인스턴스에서 호스팅되고 있으며, 높은 지연 시간과 패킷 손실로 인해 고객 불만이 발생하고 있습니다. 글로벌 사용자에게 일관되게 낮은 지연 시간의 성능을 제공하려면 어떤 서비스를 도입해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Global Accelerator를 사용하여 트래픽을 가장 가까운 edge location으로 라우팅"
+      },
+      {
+        "key": "B",
+        "ko": "모든 대륙의 리전에 Application Load Balancer를 복제 및 Route 53 지연 시간 기반 라우팅 사용"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon CloudFront를 추가하여 모든 콘텐츠를 캐시"
+      },
+      {
+        "key": "D",
+        "ko": "더 큰 EC2 인스턴스 타입으로 확장하고 네트워크 성능 최적화 속성 활성화"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "AWS Global Accelerator는 Anycast IP를 사용하여 트래픽을 AWS 글로벌 네트워크의 edge location으로 라우팅한 뒤, 최적 경로를 통해 애플리케이션으로 전달하므로 실시간 거래 같은 동적 콘텐츠에 이상적입니다. CloudFront(C)는 정적 콘텐츠 캐싱용이고, Route 53(B)은 DNS 레벨 라우팅만 하며, EC2 인스턴스 스케일링(D)은 글로벌 지연 시간 문제를 해결하지 못합니다."
+    }
+  },
+  {
+    "id": 28,
+    "multi": false,
+    "question": {
+      "ko": "한 미디어 회사가 전 세계 사용자에게 비디오, 이미지, 스타일시트 등 정적 캐시 가능 콘텐츠를 빠르게 전달하려고 합니다. origin은 Amazon S3 버킷이고, 특정 사용자만 비공개 콘텐츠에 액세스할 수 있어야 합니다. 어떤 솔루션이 가장 적합합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Global Accelerator와 VPC endpoint"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon CloudFront with signed URL 또는 signed cookie 사용"
+      },
+      {
+        "key": "C",
+        "ko": "S3 presigned URL만 사용하고 public 배포"
+      },
+      {
+        "key": "D",
+        "ko": "Application Load Balancer와 AWS WAF"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Amazon CloudFront는 정적 콘텐츠를 전 세계 edge location에서 캐시하여 빠른 전달을 가능하게 하며, signed URL/cookie를 통해 비공개 콘텐츠 접근을 제어합니다. Global Accelerator(A)는 동적 콘텐츠용이고, S3 presigned URL(C)만 사용하면 캐싱 이점을 잃으며, ALB+WAF(D)는 지연 시간 개선과 관계없습니다."
+    }
+  },
+  {
+    "id": 29,
+    "multi": true,
+    "question": {
+      "ko": "한 전자상거래 플랫폼이 북미, 유럽, 아시아 태평양 지역의 고객들에게 API 및 동적 웹 콘텐츠를 제공합니다. 리전별 인스턴스 장애에 대비한 고가용성과 낮은 지연 시간이 필요합니다. 다음 중 이 요구사항을 충족하는 솔루션은? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "각 리전에서 Application Load Balancer와 Auto Scaling group을 배포하고 AWS Global Accelerator로 라우팅"
+      },
+      {
+        "key": "B",
+        "ko": "모든 리전에 Network Load Balancer를 배포하고 Route 53 지연 시간 기반 라우팅 사용"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon CloudFront로 모든 API 응답 캐시"
+      },
+      {
+        "key": "D",
+        "ko": "단일 리전의 Application Load Balancer 뒤에 여러 가용 영역의 EC2 인스턴스 배포"
+      },
+      {
+        "key": "E",
+        "ko": "각 리전의 Application Load Balancer에서 AWS Direct Connect로 온프레미스 데이터센터에 연결"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": {
+      "ko": "A와 B는 모두 다중 리전 고가용성과 지연 시간 최적화를 제공합니다. ALB+Global Accelerator(A)는 동적 콘텐츠용이고, NLB+Route 53(B)은 UDP/비HTTP 트래픽이나 높은 처리량이 필요할 때도 유연합니다. CloudFront(C)는 API 동적 응답을 효율적으로 캐시하지 못하고, 단일 리전(D)은 글로벌 지연 시간을 해결하지 못하며, Direct Connect(E)는 온프레미스 연결용이지 글로벌 고객 성능과 무관합니다."
+    }
+  },
+  {
+    "id": 30,
+    "multi": false,
+    "question": {
+      "ko": "한 IoT 제조 회사가 수천 개의 센서에서 초당 대량의 이벤트를 수집하고, 실시간으로 처리하여 이상 감지 알림을 보냅니다. 낮은 지연 시간과 고처리량이 필수적입니다. 네트워크 계층에서 어떤 로드 밸런서를 사용해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Application Load Balancer (ALB) with 연결 드레이닝 활성화"
+      },
+      {
+        "key": "B",
+        "ko": "Network Load Balancer (NLB) with UDP 지원"
+      },
+      {
+        "key": "C",
+        "ko": "Classic Load Balancer with TCP 연결 재사용"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Global Accelerator with Standard 가속기"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Network Load Balancer는 극도로 높은 성능, 낮은 지연 시간(마이크로초 수준)의 비HTTP(UDP, TCP) 트래픽을 위해 설계되었으므로 센서 데이터 수집에 이상적입니다. ALB(A)는 HTTP/HTTPS 트래픽 최적화용이고, Classic LB(C)는 구식이며, Global Accelerator(D)는 로드 밸런서가 아니라 트래픽 가속 서비스입니다."
+    }
+  },
+  {
+    "id": 31,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 온프레미스 데이터센터와 AWS 간에 지속적이고 안정적인 네트워크 연결을 필요로 합니다. 공공 인터넷 VPN은 불안정하고, 높은 대역폭이 필요합니다. AWS에서 권장하는 최적 솔루션은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "여러 AWS Site-to-Site VPN 연결 구성"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Direct Connect로 전용 네트워크 연결 설정"
+      },
+      {
+        "key": "C",
+        "ko": "공공 인터넷을 통한 단일 IPsec VPN 터널"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Global Accelerator를 사용한 VPN 가속"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "AWS Direct Connect는 데이터센터에서 AWS로의 전용, 높은 대역폭, 저지연 연결을 제공합니다. Site-to-Site VPN(A)은 공공 인터넷에 의존하므로 불안정하고, 단순 IPsec VPN(C)도 같은 문제가 있으며, Global Accelerator(D)는 이 용도가 아닙니다."
+    }
+  },
+  {
+    "id": 32,
+    "multi": false,
+    "question": {
+      "ko": "한 의료 기관이 VPC 내 여러 마이크로서비스 간의 안전하고 격리된 통신이 필요합니다. 서비스는 다른 AWS 계정의 리소스와도 안전하게 통신해야 합니다. 공개 인터넷 노출 없이 이를 달성하는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS PrivateLink를 사용하여 VPC endpoint 생성"
+      },
+      {
+        "key": "B",
+        "ko": "VPC peering과 security group 규칙만 사용"
+      },
+      {
+        "key": "C",
+        "ko": "Application Load Balancer와 NAT gateway를 통한 라우팅"
+      },
+      {
+        "key": "D",
+        "ko": "AWS VPN과 route table 수정"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "AWS PrivateLink는 VPC 내부 또는 다른 AWS 계정의 리소스와 AWS 네트워크를 통해 안전하고 비공개적으로 통신할 수 있는 메커니즘을 제공합니다. VPC peering(B)은 VPC 간 연결이지만 다른 계정 리소스에 대한 세분화된 접근 제어를 제공하지 않습니다. ALB+NAT(C)와 VPN(D)은 공개 노출 가능성이 있습니다."
+    }
+  },
+  {
+    "id": 33,
+    "multi": true,
+    "question": {
+      "ko": "한 금융 서비스 회사가 VPC 네트워크 아키텍처를 설계합니다. 웹 티어, 애플리케이션 티어, 데이터베이스 티어의 고가용성과 보안이 필요하며, 각 리전 내 여러 가용 영역에 걸쳐 배포됩니다. 다음 중 이 아키텍처 설계 모범 사례는? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "각 가용 영역의 public subnet에 웹 티어 배포, private subnet에 애플리케이션/DB 티어 배포"
+      },
+      {
+        "key": "B",
+        "ko": "모든 인스턴스를 단일 가용 영역의 public subnet에 배포하여 관리 단순화"
+      },
+      {
+        "key": "C",
+        "ko": "Application Load Balancer를 여러 가용 영역에 배포하고 traffic 분산"
+      },
+      {
+        "key": "D",
+        "ko": "보안을 위해 모든 서브넷을 private으로 설정하고 NAT gateway 없이 아웃바운드 접근만 제한"
+      },
+      {
+        "key": "E",
+        "ko": "각 가용 영역에서 Network ACL을 설정하여 stateless 필터링 구성"
+      }
+    ],
+    "answer": [
+      "A",
+      "C"
+    ],
+    "explanation": {
+      "ko": "A는 웹 티어의 공개 노출 필요성과 애플리케이션/DB 티어의 보안 요구사항의 모범 사례입니다. C는 여러 가용 영역에 걸친 ALB 배포로 고가용성을 보장합니다. B는 단일 AZ 의존으로 고가용성을 해칩니다. D는 아웃바운드 접근 제한이 필요한 경우도 있지만 완벽한 설명이 아니며, E는 Network ACL이 필요하지만 필수 설계 패턴은 아닙니다."
+    }
+  },
+  {
+    "id": 34,
+    "multi": false,
+    "question": {
+      "ko": "한 고성능 컴퓨팅(HPC) 회사가 동일 가용 영역 내 수백 개의 EC2 인스턴스 간에 매우 낮은 지연 시간의 네트워크 통신이 필요합니다. 인스턴스 간 네트워크 성능을 최적화하는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Elastic IP를 각 인스턴스에 할당하고 보안 그룹 규칙을 완화"
+      },
+      {
+        "key": "B",
+        "ko": "EC2 Placement Group(cluster 타입)을 사용하여 인스턴스를 배포"
+      },
+      {
+        "key": "C",
+        "ko": "Enhanced networking(SR-IOV)를 비활성화하여 CPU 리소스 절약"
+      },
+      {
+        "key": "D",
+        "ko": "VPC 간 peering을 사용하여 여러 VPC에 분산 배포"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "EC2 Cluster Placement Group은 동일 가용 영역 내 인스턴스들을 물리적으로 가까이 배치하여 극도로 낮은 지연 시간과 높은 네트워크 처리량을 제공합니다. Elastic IP(A)는 네트워크 성능과 무관하고, Enhanced networking 비활성화(C)는 성능을 해치며, VPC peering(D)은 지연 시간을 증가시킵니다."
+    }
+  },
+  {
+    "id": 35,
+    "multi": false,
+    "question": {
+      "ko": "한 회사의 VPC가 CIDR 블록 10.0.0.0/16을 사용하고 있으며, 빠르게 성장하면서 IP 주소 공간이 부족해지고 있습니다. 가용 영역별로 여러 서브넷을 운영 중입니다. 추가 IP 주소 공간을 얻는 가장 효율적인 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "기존 VPC를 삭제하고 더 큰 CIDR 블록으로 새 VPC 생성"
+      },
+      {
+        "key": "B",
+        "ko": "VPC에 보조 CIDR 블록 추가 (예: 10.1.0.0/16)"
+      },
+      {
+        "key": "C",
+        "ko": "모든 인스턴스에 Elastic IP를 할당하여 주소 공간 절약"
+      },
+      {
+        "key": "D",
+        "ko": "NAT instance를 사용하여 모든 private 인스턴스를 IP 주소 풀 뒤에 숨김"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "VPC에 보조 CIDR 블록을 추가하여 기존 리소스를 유지하면서 IP 주소 공간을 확장할 수 있습니다. VPC 삭제(A)는 기존 리소스를 손실시키고, Elastic IP(C)는 공개 IP 공간만 제공하며, NAT instance(D)는 주소 공간 부족 문제를 해결하지 못합니다."
+    }
+  },
+  {
+    "id": 36,
+    "multi": false,
+    "question": {
+      "ko": "한 기업이 AWS의 여러 VPC와 리전에 걸쳐 애플리케이션을 배포하고 있으며, 모든 VPC 간의 라우팅을 중앙화하고 보안 정책을 일관되게 적용하려고 합니다. VPC peering 대신 더 확장성 있는 hub-and-spoke 네트워크 토폴로지를 구성해야 합니다. 가장 적합한 AWS 서비스는 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "여러 VPC에서 직접 VPC peering 설정"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Direct Connect로 모든 VPC 연결"
+      },
+      {
+        "key": "C",
+        "ko": "각 VPC에 Application Load Balancer 배포 후 Route 53으로 라우팅"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Transit Gateway로 hub-and-spoke 네트워크 토폴로지 구성"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "AWS Transit Gateway는 중앙 hub로서 여러 VPC와 리전 간의 라우팅을 중앙화하고 보안 정책을 일관되게 적용할 수 있는 서비스입니다. VPC peering(A)은 many-to-many 구조로 확장이 어렵고, Direct Connect(B)는 온프레미스 연결용이며, ALB+Route 53(C)은 L4/L3 라우팅이 아닙니다."
+    }
+  },
+  {
+    "id": 37,
+    "multi": false,
+    "question": {
+      "ko": "한 온라인 게임 회사가 플레이어의 실시간 게임 이벤트(점수, 죽음, 아이템 획득 등)를 수집하고 분석하여 실시간 리더보드를 업데이트합니다. 초당 수천 개 이벤트를 처리해야 하며, 최소 지연 시간이 필수입니다. 어떤 서비스가 가장 적합합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Kinesis Data Streams로 이벤트 수집 및 실시간 처리"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon SQS로 이벤트를 큐에 저장 후 배치 처리"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Glue로 이벤트 데이터를 정기적으로 변환"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon S3로 이벤트를 CSV 파일로 저장 후 Athena로 쿼리"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Amazon Kinesis Data Streams는 대규모 실시간 데이터 수집 및 처리를 위해 설계되었으며, 초당 수천 이벤트의 낮은 지연 시간 처리를 지원합니다. SQS(B)는 배치 처리 지향적이고, Glue(C)는 데이터 변환 도구이며, S3+Athena(D)는 분석 지향적이지 실시간 처리가 아닙니다."
+    }
+  },
+  {
+    "id": 38,
+    "multi": true,
+    "question": {
+      "ko": "한 통신 회사가 고객의 로그 데이터를 실시간으로 수집하고, 분석을 위해 데이터 레이크로 저장하며, 데이터를 정제 및 포맷 변환하여 분석 도구로 전달합니다. 이 파이프라인을 구축하는 데 사용할 AWS 서비스는? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Kinesis Data Firehose로 로그 수집 및 S3 저장"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Glue로 데이터 정제 및 Parquet 포맷으로 변환"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Athena로 실시간 로그 수집"
+      },
+      {
+        "key": "D",
+        "ko": "AWS DataSync로 온프레미스 로그를 S3로 자동 전송"
+      },
+      {
+        "key": "E",
+        "ko": "AWS Lambda로 모든 로그를 개별 처리"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": {
+      "ko": "Kinesis Firehose(A)는 로그를 자동으로 S3에 전달하고, Glue(B)는 데이터를 정제하여 Parquet 등으로 변환합니다. Athena(C)는 쿼리 도구이지 수집 도구가 아니고, DataSync(D)는 온프레미스 일괄 전송용이며, Lambda(E)는 높은 로그 볼륨에서 비효율적입니다."
+    }
+  },
+  {
+    "id": 39,
+    "multi": false,
+    "question": {
+      "ko": "한 데이터 분석 팀이 S3에 저장된 대규모 CSV 데이터셋(수백 GB)을 Parquet 포맷으로 변환하고, 변환된 데이터를 분석을 위해 S3의 다른 버킷에 저장하려고 합니다. 가장 비용 효율적이고 관리하기 쉬운 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "EC2 인스턴스에서 Python 스크립트를 실행하여 변환"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Glue job을 사용하여 CSV를 Parquet로 변환"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon EMR 클러스터에서 Spark를 실행하여 변환"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Lambda 함수에서 데이터 변환"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "AWS Glue는 정확히 이런 ETL(Extract, Transform, Load) 작업을 위해 설계되었으며, 서버리스로 관리 오버헤드가 적고 비용 효율적입니다. EC2(A)는 운영 부담이 크고, EMR(C)은 대규모 클러스터가 필요한 복잡한 분석에 더 적합하며, Lambda(D)는 메모리 제한이 있어 대규모 파일 처리에 부적합합니다."
+    }
+  },
+  {
+    "id": 40,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 S3에 저장된 비정형 데이터(로그, 이미지, 문서)에 대해 임시 SQL 분석을 수행하려고 합니다. 데이터 웨어하우스 구성이나 복잡한 설정 없이 빠르게 시작하고 싶습니다. 어떤 서비스를 사용해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Athena로 S3 데이터에 대해 직접 SQL 쿼리 실행"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Redshift로 데이터를 로드하고 쿼리"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Glue로 데이터를 카탈로그한 후 RDS에 로드"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon QuickSight로 데이터를 시각화하고 분석"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Amazon Athena는 S3 데이터에 대해 서버리스로 직접 SQL 쿼리를 실행할 수 있으므로 빠른 설정과 분석이 가능합니다. Redshift(B)는 데이터 로드가 필요하고 더 복잡하며, Glue(C)는 변환 도구이지 분석 도구가 아니고, QuickSight(D)는 시각화 도구이지 임시 SQL 분석 도구가 아닙니다."
+    }
+  },
+  {
+    "id": 41,
+    "multi": false,
+    "question": {
+      "ko": "한 기업의 온프레미스 데이터센터에 수십 테라바이트의 데이터가 있으며, 이를 AWS로 마이그레이션하려고 합니다. 초기 일괄 마이그레이션 후 지속적으로 변경된 데이터만 동기화해야 합니다. 가장 효율적인 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS DataSync로 초기 일괄 전송 후 지속적 증분 동기화"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Snowball로 초기 데이터 전송 후 Site-to-Site VPN으로 증분 동기화"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Storage Gateway를 온프레미스에 설치하여 모든 데이터 캐시"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon EC2에 NFS 볼륨을 마운트하여 수동 파일 복사"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "AWS DataSync는 정확히 이런 대규모 데이터 마이그레이션과 지속적인 증분 동기화를 위해 설계되었으며, 자동화와 성능 최적화를 제공합니다. Snowball(B)은 초기 전송에는 좋지만 증분 동기화에 비효율적이고, Storage Gateway(C)는 캐싱용이지 마이그레이션 도구가 아니며, 수동 복사(D)는 비효율적입니다."
+    }
+  },
+  {
+    "id": 42,
+    "multi": true,
+    "question": {
+      "ko": "한 조직이 다중 리전의 다양한 데이터 소스(온프레미스 데이터베이스, 클라우드 애플리케이션, IoT 센서)에서 데이터를 수집하여 중앙 집중식 데이터 레이크를 구축하고, 이를 기반으로 데이터 거버넌스와 보안을 적용하려고 합니다. 다음 중 필요한 서비스는? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Lake Formation로 데이터 레이크 중앙화, 보안, 거버넌스 관리"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon S3를 data lake storage로 사용"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Redshift로 모든 데이터를 ETL 처리"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Glue Catalog로 메타데이터 관리"
+      },
+      {
+        "key": "E",
+        "ko": "Amazon QuickSight로만 데이터 분석"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": {
+      "ko": "Lake Formation(A)은 데이터 레이크의 보안, 거버넌스, 액세스 제어를 중앙에서 관리하는 핵심 서비스이고, S3(B)는 확장 가능한 데이터 레이크 저장소입니다. Redshift(C)는 데이터 레이크가 아닌 데이터 웨어하우스이고, Glue Catalog(D)는 메타데이터만 관리하며, QuickSight(E)는 시각화 도구일 뿐입니다."
+    }
+  },
+  {
+    "id": 43,
+    "multi": false,
+    "question": {
+      "ko": "한 제조 회사가 머신러닝 모델 학습을 위해 대규모 데이터셋에서 특정 패턴을 찾아야 합니다. 복잡한 데이터 처리, 특성 엔지니어링, 대규모 병렬 처리가 필요합니다. 가장 적합한 서비스는 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Athena로 SQL 쿼리로 데이터 분석"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon EMR로 Spark/Hadoop을 사용한 대규모 데이터 처리"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Glue로 간단한 ETL 변환"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Kinesis로 실시간 스트리밍 분석"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Amazon EMR은 Spark, Hadoop, Hive 등을 사용하여 대규모 병렬 데이터 처리, 복잡한 변환, 머신러닝 특성 엔지니어링을 지원합니다. Athena(A)는 간단한 SQL 분석용이고, Glue(C)는 간단한 ETL 도구이며, Kinesis(D)는 스트리밍 처리용입니다."
+    }
+  },
+  {
+    "id": 44,
+    "multi": false,
+    "question": {
+      "ko": "한 소매 회사가 고객 구매 데이터를 실시간으로 분석하여 대시보드에 시각화하고, 임원들이 의사결정을 위해 조회할 수 있게 하려고 합니다. 데이터는 다양한 소스에서 수집되며 계속 변합니다. 어떤 서비스 조합이 가장 적합합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Kinesis Data Streams로 수집, Athena로 분석, QuickSight로 시각화"
+      },
+      {
+        "key": "B",
+        "ko": "S3로 저장, Redshift로 로드, QuickSight로 시각화"
+      },
+      {
+        "key": "C",
+        "ko": "Kinesis Firehose로 수집, S3 저장, Athena로 분석, QuickSight로 시각화"
+      },
+      {
+        "key": "D",
+        "ko": "SQS로 메시지 수집, Lambda로 처리, DynamoDB로 저장"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "이 조합이 실시간 데이터 수집(Firehose), 저장(S3), 분석(Athena), 시각화(QuickSight)의 완벽한 파이프라인을 제공합니다. A는 Kinesis Streams가 비용이 더 들고, B는 실시간 수집이 아니며, D는 분석 및 시각화 기능이 없습니다."
+    }
+  }
+]

@@ -1,0 +1,1014 @@
+[
+  {
+    "id": 1,
+    "multi": false,
+    "question": {
+      "ko": "한 금융회사가 고객 거래 데이터를 S3에 저장합니다. 데이터는 처음 30일간 자주 접근되지만, 그 이후로는 월 1~2회 규정 감사 목적으로만 조회됩니다. 스토리지 비용을 최소화하려면 어떤 아키텍처를 추천합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모든 데이터를 S3 Standard에 유지"
+      },
+      {
+        "key": "B",
+        "ko": "S3 Lifecycle 정책으로 30일 후 S3 Glacier로 이동"
+      },
+      {
+        "key": "C",
+        "ko": "모든 데이터를 처음부터 S3 Glacier Deep Archive에 저장"
+      },
+      {
+        "key": "D",
+        "ko": "모든 데이터를 Amazon EBS에 저장하고 정기적으로 S3로 백업"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "S3 Lifecycle 정책으로 핫(hot) 데이터는 Standard에서 고속 조회하고, 30일 후 콜드(cold) 데이터는 Glacier로 자동 이동하면 비용을 크게 절감합니다. 초기부터 Deep Archive(C)를 사용하면 규정 감사 시 검색 비용이 높고, EBS(D)는 온디맨드 서버 비용이 지속적으로 발생합니다."
+    }
+  },
+  {
+    "id": 2,
+    "multi": false,
+    "question": {
+      "ko": "스트리밍 서비스 회사가 사용자 활동 로그를 S3에 저장합니다. 최근 90일 로그는 분석 팀이 자주 쿼리하고, 그 이상 오래된 데이터는 거의 접근하지 않습니다. S3 Intelligent-Tiering을 사용할 때의 주요 이점은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "접근 패턴을 자동으로 모니터링하여 자주 접근하는 데이터는 Frequent 계층에, 드물게 접근하는 데이터는 Infrequent 계층으로 자동 이동"
+      },
+      {
+        "key": "B",
+        "ko": "모든 데이터를 자동으로 Glacier로 이동하여 최저 가격 보장"
+      },
+      {
+        "key": "C",
+        "ko": "S3 요청 비용을 완전히 제거"
+      },
+      {
+        "key": "D",
+        "ko": "수동 Lifecycle 정책 관리가 필요 없지만 검색 비용은 Standard와 동일"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "S3 Intelligent-Tiering은 접근 빈도를 자동으로 분석하여 hot 데이터와 cold 데이터를 계층 간 이동시킵니다. Glacier(B)로만 이동하지는 않으며, 요청 비용(C)이 완전히 제거되지 않고, 검색 비용(D)은 Infrequent 계층으로 이동 후 발생합니다."
+    }
+  },
+  {
+    "id": 3,
+    "multi": false,
+    "question": {
+      "ko": "전자상거래 회사가 EBS 볼륨을 선택해야 합니다. 데이터베이스 서버는 높은 IOPS가 필요하고, 백업 스토리지는 처리량 위주의 순차 읽기/쓰기만 수행합니다. 비용 대비 성능을 최적화하려면 어떤 조합을 권장합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "데이터베이스는 gp3, 백업은 st1"
+      },
+      {
+        "key": "B",
+        "ko": "데이터베이스는 io2, 백업은 sc1"
+      },
+      {
+        "key": "C",
+        "ko": "데이터베이스는 gp2, 백업은 gp2"
+      },
+      {
+        "key": "D",
+        "ko": "데이터베이스는 io1, 백업은 st1"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "데이터베이스 서버는 gp3 SSD로 높은 IOPS를 비용 효율적으로 제공받고, 백업 스토리지는 st1(Throughput-Optimized HDD)으로 순차 읽기에 최적화되며 저비용입니다. io2/io1(B, D)은 필요 이상의 고비용이고, sc1은 매우 낮은 처리량만 지원합니다."
+    }
+  },
+  {
+    "id": 4,
+    "multi": false,
+    "question": {
+      "ko": "미디어 렌더링 회사가 작업자(worker) 노드들 간에 고성능 공유 스토리지가 필요합니다. 데이터는 자주 변경되며, 수천 개의 동시 연결을 처리해야 합니다. Amazon EBS와 Amazon EFS 중 비용 효율적인 선택은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "EBS io2 볼륨을 모든 인스턴스에 연결"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon EFS를 사용하고 프로비저닝된 처리량으로 성능 보장"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon EBS gp3 RAID 0"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon EFS Performance Mode 설정"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "다중 인스턴스의 동시 공유 스토리지는 EFS가 설계되었으며, 프로비저닝된 처리량으로 성능을 보장하면서 비용 예측이 가능합니다. EBS(A, C)는 단일 인스턴스 스토리지용이고, Performance Mode(D)는 성능 특성이지 비용 효율성을 제공하지 않습니다."
+    }
+  },
+  {
+    "id": 5,
+    "multi": false,
+    "question": {
+      "ko": "제조업체가 온프레미스 데이터센터에서 AWS로 500GB의 고객 데이터베이스를 이관해야 합니다. 한 번의 이관이며, 네트워크 대역폭이 제한적입니다. 비용과 속도를 고려할 때 가장 적절한 이관 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS DataSync를 이용한 온라인 전송"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Snowball을 이용한 오프라인 전송"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Storage Gateway를 설치하여 장기간 동기화"
+      },
+      {
+        "key": "D",
+        "ko": "VPN을 통한 직접 네트워크 업로드"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "일회성 대용량 데이터 이관에는 AWS Snowball이 가장 비용 효율적이며 빠릅니다. DataSync(A)는 대역폭 제한 시 느리고, Storage Gateway(C)는 장기 하이브리드 스토리지용이며, VPN(D)은 느리고 비용이 많이 듭니다."
+    }
+  },
+  {
+    "id": 6,
+    "multi": false,
+    "question": {
+      "ko": "보험사가 지난 7년간의 클레임 데이터를 아카이브해야 하며, 검색 시간은 24시간 이내로 충분합니다. 스토리지 비용을 최소화하려면 어떤 S3 storage class를 선택해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "S3 Glacier Flexible Retrieval"
+      },
+      {
+        "key": "B",
+        "ko": "S3 Glacier Deep Archive"
+      },
+      {
+        "key": "C",
+        "ko": "S3 Standard-IA"
+      },
+      {
+        "key": "D",
+        "ko": "S3 Intelligent-Tiering"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "장기 아카이브(7년) 데이터로 검색 시간이 길어도 괜찮으면 Deep Archive가 최저 스토리지 비용입니다. Glacier Flexible Retrieval(A)은 더 비싸고, Standard-IA(C)는 접근할 가능성이 매우 낮을 때, Intelligent-Tiering(D)은 접근 패턴이 불확실할 때 사용합니다."
+    }
+  },
+  {
+    "id": 7,
+    "multi": false,
+    "question": {
+      "ko": "글로벌 이커머스 회사가 사용자 프로필 사진을 전 세계 고객에게 빠르게 제공해야 합니다. 원본 이미지는 S3에 저장되어 있고, 월 수억 건의 요청을 받습니다. 데이터 전송 비용을 최소화하는 아키텍처는 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "S3에서 직접 제공하고 요청이 많은 리전별 S3 bucket 복제"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon CloudFront distribution으로 캐싱 및 엣지 로케이션에서 제공"
+      },
+      {
+        "key": "C",
+        "ko": "모든 사용자를 단일 리전으로 라우팅하고 S3 Transfer Acceleration 사용"
+      },
+      {
+        "key": "D",
+        "ko": "매월 DVD로 오프라인 배포"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "CloudFront는 전 세계 엣지 로케이션에 콘텐츠를 캐싱하여 데이터 전송 비용을 획기적으로 줄이면서 지연 시간도 감소시킵니다. S3 직접 제공(A)은 비용이 높고, Transfer Acceleration(C)은 상향 링크용이며, 오프라인 배포(D)는 현실적이지 않습니다."
+    }
+  },
+  {
+    "id": 8,
+    "multi": false,
+    "question": {
+      "ko": "금융 서비스 회사가 고객 거래 트랜잭션 로그의 snapshot을 주 1회 백업합니다. 4년 보존이 규정입니다. 장기 스토리지 비용을 절감하려면 어떤 전략을 권장합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모든 snapshot을 EBS에 유지하고 자동 복제"
+      },
+      {
+        "key": "B",
+        "ko": "최근 52개 snapshot(1년)은 EBS Snapshot storage에 유지하고, 이전 snapshot은 S3 Glacier Deep Archive로 export"
+      },
+      {
+        "key": "C",
+        "ko": "모든 snapshot을 S3 Standard에 저장"
+      },
+      {
+        "key": "D",
+        "ko": "snapshot 백업을 중단하고 AWS Backup으로만 관리"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "4년 보존은 EBS Snapshot storage(월단위 비용)로는 비싸므로, 최근 데이터는 쉽게 접근 가능하게 유지하고 오래된 snapshot은 S3 Deep Archive로 export하면 비용을 획기적으로 절감합니다. 모두 EBS(A)는 고비용이고, Standard(C)는 필요 이상 비싸며, 백업 중단(D)은 규정 위반입니다."
+    }
+  },
+  {
+    "id": 9,
+    "multi": false,
+    "question": {
+      "ko": "대학이 학생 제출 과제(평균 10MB, 월 10만 개)를 S3에 저장합니다. 강사 피드백 후 과제는 즉시 삭제되지만, 규정상 최소 3개월 보관이 필요합니다. S3 스토리지 비용을 최소화하려면?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "S3 Lifecycle으로 업로드 후 91일 경과 시 자동 삭제"
+      },
+      {
+        "key": "B",
+        "ko": "수동으로 매월 구 과제 삭제"
+      },
+      {
+        "key": "C",
+        "ko": "S3 Intelligent-Tiering 사용"
+      },
+      {
+        "key": "D",
+        "ko": "모든 과제를 S3 One Zone-IA에 저장 후 3개월 후 Glacier로 이동"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "접근 후 삭제되는 단기 데이터는 Lifecycle 정책으로 91일 후 자동 삭제하면 규정을 만족하면서 불필요한 비용을 절감합니다. 수동 삭제(B)는 운영 오버헤드가 있고, Intelligent-Tiering(C)은 접근이 거의 없어 불필요하며, Glacier 이동(D)은 3개월 후 삭제가 요구되므로 비효율적입니다."
+    }
+  },
+  {
+    "id": 10,
+    "multi": true,
+    "question": {
+      "ko": "스타트업이 로그 파일 저장소를 구축하고 있습니다. 비용 최적화를 위해 고려해야 할 S3 관련 전략으로 올바른 것은 무엇입니까? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "S3 Lifecycle 정책으로 접근 패턴에 따라 storage class 자동 이동"
+      },
+      {
+        "key": "B",
+        "ko": "모든 로그를 S3 Standard에만 저장하여 수동으로 삭제"
+      },
+      {
+        "key": "C",
+        "ko": "S3 Block Public Access 설정으로 의도하지 않은 접근 방지 및 비용 절감"
+      },
+      {
+        "key": "D",
+        "ko": "로그 압축 및 Parquet 형식으로 저장하여 스토리지 크기 감소"
+      },
+      {
+        "key": "E",
+        "ko": "오래된 로그는 자동으로 S3 Glacier로 전이하는 정책 설정"
+      }
+    ],
+    "answer": [
+      "A",
+      "D"
+    ],
+    "explanation": {
+      "ko": "비용 최적화는 Lifecycle 정책(A)으로 자동 계층 이동과 데이터 압축(D)으로 스토리지 용량을 줄이는 것입니다. 수동 삭제(B)는 운영 오버헤드가 크고, Block Public Access(C)는 보안이지 비용 절감이 아니며, 모든 오래된 로그를 Glacier(E)로 이동하는 것은 상황에 따라 불필요할 수 있습니다."
+    }
+  },
+  {
+    "id": 11,
+    "multi": false,
+    "question": {
+      "ko": "배치 처리 워크로드가 하루 중 5시간만 실행되고, 중단되었을 때 자동으로 재시도할 수 있습니다. EC2 컴퓨트 비용을 최소화하는 가장 적절한 구매 옵션은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "On-Demand Instances"
+      },
+      {
+        "key": "B",
+        "ko": "EC2 Spot Instances"
+      },
+      {
+        "key": "C",
+        "ko": "1년 약정 Compute Savings Plan"
+      },
+      {
+        "key": "D",
+        "ko": "Dedicated Hosts"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "중단 가능한 배치 워크로드는 Spot Instances가 최대 90% 저렴하므로 최적입니다. On-Demand(A)는 비싸고, 1년 Savings Plan(C)은 상시 예측 부하에 적합하며, Dedicated Hosts(D)는 규정/라이선스 목적의 고비용 옵션입니다."
+    }
+  },
+  {
+    "id": 12,
+    "multi": false,
+    "question": {
+      "ko": "금융 회사가 미션 크리티컬 온라인 뱅킹 서비스를 운영합니다. 예측 가능한 높은 트래픽이 24/7 발생하고, 중단이 허용되지 않습니다. 연간 컴퓨트 비용을 최소화하려면 어떤 구매 전략을 권장합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "On-Demand Instances"
+      },
+      {
+        "key": "B",
+        "ko": "EC2 Spot Instances"
+      },
+      {
+        "key": "C",
+        "ko": "3년 약정 Reserved Instances"
+      },
+      {
+        "key": "D",
+        "ko": "자동으로 확장/축소하는 Spot Instances + On-Demand 조합"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "24/7 예측 가능한 부하는 3년 Reserved Instances가 약 70% 할인으로 가장 비용 효율적입니다. On-Demand(A)는 비싸고, Spot(B)은 중단 위험이 있으며, 혼합(D)은 복잡하고 예측 가능한 부하에 최적이 아닙니다."
+    }
+  },
+  {
+    "id": 13,
+    "multi": false,
+    "question": {
+      "ko": "미디어 스트리밍 회사가 트랜스코딩 작업을 주로 비업무 시간(21시~9시)에 처리합니다. 작업이 중단되어도 나중에 재시작할 수 있습니다. 비용을 최소화하면서 적절한 성능을 유지하려면 어떤 옵션을 조합하시겠습니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Spot Instances만 사용"
+      },
+      {
+        "key": "B",
+        "ko": "비업무 시간에만 Spot Instances, 업무 시간 예비로 On-Demand 1~2개"
+      },
+      {
+        "key": "C",
+        "ko": "Compute Savings Plan 100% 커버"
+      },
+      {
+        "key": "D",
+        "ko": "Reserved Instances로 기본 용량, Spot으로 버스트 용량"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "비업무 시간의 배치 작업은 Spot(B 구성)으로 저가에 운영하되, 긴급 작업용 On-Demand 소량 예약으로 안정성을 확보합니다. Spot만(A)은 비업무 시간 외 작업 불가이고, Savings Plan(C)은 시간대별 유연성이 없으며, Reserved만(D)은 비용 효율이 낮습니다."
+    }
+  },
+  {
+    "id": 14,
+    "multi": false,
+    "question": {
+      "ko": "웹 애플리케이션이 평상시 4개 웹 서버를 실행하지만, 선물 시즌에 최대 20개까지 필요합니다. 연간 비용을 절감하려면 어떤 right-sizing 전략을 권장합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "평상시와 피크 시즌 모두 on-demand로 20개 인스턴스 구매"
+      },
+      {
+        "key": "B",
+        "ko": "4개는 3년 Reserved Instances, 추가 16개는 Savings Plan, 수요 초과분은 Spot"
+      },
+      {
+        "key": "C",
+        "ko": "모든 인스턴스를 t3 대신 t4g로 변경"
+      },
+      {
+        "key": "D",
+        "ko": "Auto Scaling 그룹으로 2~20개 범위 설정하고 모두 Spot으로 운영"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "기본 부하 4개는 Reserved(저가 보장), 추가 변동 분은 Savings Plan + Spot 조합(B)으로 비용 최적화합니다. On-Demand 20개(A)는 매우 비싸고, 인스턴스 유형 변경(C)만으로는 불충분하며, Spot만(D)은 선물 시즌의 안정성이 부족합니다."
+    }
+  },
+  {
+    "id": 15,
+    "multi": false,
+    "question": {
+      "ko": "마이크로서비스 아키텍처에서 이벤트 처리 작업이 비정기적으로 발생하며 지연이 수분 정도 허용됩니다. 서버리스 옵션 대비 지속적인 EC2 인스턴스를 운영하는 비용은 어떻게 비교됩니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "EC2가 항상 더 저렴"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Lambda가 지연을 허용하는 비정기적 작업에서 일반적으로 더 저렴"
+      },
+      {
+        "key": "C",
+        "ko": "둘 다 동일한 비용"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Fargate만 비용 효율적"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "비정기적 이벤트는 Lambda가 사용량만큼 과금되므로 유휴 EC2 인스턴스 비용을 피할 수 있습니다. EC2는 항상 요금(A)이 발생하고, Fargate(D)는 지연 처리에 EC2보다 비싼 편입니다."
+    }
+  },
+  {
+    "id": 16,
+    "multi": false,
+    "question": {
+      "ko": "전자상거래 회사가 장바구니 API(평균 응답 시간 50ms, 초당 10만 건 요청)와 이미지 최적화 배치(평균 처리 5초, 월 100만 건)를 운영합니다. 비용 최적화를 위해 AWS Lambda와 EC2 중 어느 것을 선택하시겠습니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "두 워크로드 모두 EC2"
+      },
+      {
+        "key": "B",
+        "ko": "장바구니 API는 EC2, 이미지 배치는 Lambda"
+      },
+      {
+        "key": "C",
+        "ko": "두 워크로드 모두 Lambda"
+      },
+      {
+        "key": "D",
+        "ko": "장바구니 API는 Lambda, 이미지 배치는 EC2"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "장바구니 API는 지속적 높은 처리량으로 EC2가 비용 효율적이고, 이미지 배치는 비정기적 오래 실행되므로 Lambda의 낮은 유휴 비용이 유리합니다(B). 모두 Lambda(C)는 초당 높은 동시성으로 비용이 높습니다."
+    }
+  },
+  {
+    "id": 17,
+    "multi": true,
+    "question": {
+      "ko": "조직이 수백 개의 마이크로서비스를 컨테이너로 운영하고 있습니다. 비용을 최소화하면서 성능을 유지하려면 다음 중 어떤 전략을 함께 적용해야 합니까? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Fargate Spot으로 비용 절감"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon ECS Auto Scaling을 메트릭 기반으로 구성하여 유휴 리소스 제거"
+      },
+      {
+        "key": "C",
+        "ko": "모든 서비스를 t3.nano로 right-sizing하여 하드웨어 비용 절감"
+      },
+      {
+        "key": "D",
+        "ko": "Fargate on-demand만 사용하여 안정성 보장"
+      },
+      {
+        "key": "E",
+        "ko": "EC2 기반 ECS 클러스터를 Spot Instances로 구성하여 가격 대비 성능 최적화"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": {
+      "ko": "Fargate Spot(A)은 낮은 비용과 유연성을 제공하고, Auto Scaling(B)으로 유휴 리소스를 제거합니다. 과도한 right-sizing(C)은 성능을 해치고, on-demand만(D)은 비용 효율이 낮으며, EC2 기반(E)은 관리 오버헤드가 높습니다."
+    }
+  },
+  {
+    "id": 18,
+    "multi": false,
+    "question": {
+      "ko": "고객 지원 팀이 AWS 애플리케이션 로드 밸런서(ALB, L7)를 사용하여 요청을 라우팅합니다. 시간당 백만 건의 간단한 TCP/UDP 게임 패킷이 들어옵니다. 네트워크 비용을 절감하려면 어떤 로드 밸런서로 변경하시겠습니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "ALB 유지(현재 선택)"
+      },
+      {
+        "key": "B",
+        "ko": "Network Load Balancer(NLB)"
+      },
+      {
+        "key": "C",
+        "ko": "Classic Load Balancer(CLB)"
+      },
+      {
+        "key": "D",
+        "ko": "로드 밸런서 제거하고 Route 53 weighted routing"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "단순 TCP/UDP 기반 고처리량 패킷은 NLB(L4)가 낮은 지연과 낮은 비용으로 최적화되어 있습니다. ALB(A)는 L7 분석 오버헤드 비용이 높고, CLB(C)는 구식이며, Route 53(D)은 로드 밸런싱이 아닙니다."
+    }
+  },
+  {
+    "id": 19,
+    "multi": false,
+    "question": {
+      "ko": "비프로덕션 개발/테스트 환경에서 데이터베이스를 여러 개 실행 중이며, 고가용성이 필수가 아닙니다. 데이터베이스 비용을 낮추려면 어떤 가용성 구성을 권장합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Multi-AZ RDS와 자동 장애 조치"
+      },
+      {
+        "key": "B",
+        "ko": "단일 AZ RDS 인스턴스, 수동 백업"
+      },
+      {
+        "key": "C",
+        "ko": "Aurora with Multi-AZ"
+      },
+      {
+        "key": "D",
+        "ko": "DynamoDB Global Tables"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "비프로덕션 환경은 고가용성 불필요하므로 단일 AZ 인스턴스(B)로 Multi-AZ(A) 비용을 절감합니다. Aurora(C)와 Global Tables(D)는 멀티 리전/고가용성이므로 불필요합니다."
+    }
+  },
+  {
+    "id": 20,
+    "multi": false,
+    "question": {
+      "ko": "스타트업이 예측 불가능한 트래픽 패턴의 웹 API를 호스팅합니다. 트래픽이 10배 변동할 수 있으며, 인스턴스 관리 오버헤드를 최소화하고 싶습니다. 어떤 컴퓨트 옵션을 권장합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "고정 크기의 Reserved Instances"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Lambda with API Gateway"
+      },
+      {
+        "key": "C",
+        "ko": "고정 크기의 EC2 Auto Scaling"
+      },
+      {
+        "key": "D",
+        "ko": "Dedicated Hosts"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "예측 불가능한 변동 트래픽과 운영 오버헤드 최소화는 Lambda(B)가 자동 스케일링하고 사용량만 청구됩니다. Fixed capacity(A, C)는 변동에 대응하기 어렵고, Dedicated Hosts(D)는 고비용입니다."
+    }
+  },
+  {
+    "id": 21,
+    "multi": false,
+    "question": {
+      "ko": "관광청이 성수기(여름 4개월) 트래픽이 12배 높고, 비수기(8개월)는 매우 낮습니다. 비용을 최소화하려면 어떤 구매 전략을 권장합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "성수기 피크 트래픽 수준의 Reserved Instances 연중 보유"
+      },
+      {
+        "key": "B",
+        "ko": "비수기는 온디맨드 소량, 성수기는 Spot + On-Demand 조합"
+      },
+      {
+        "key": "C",
+        "ko": "비수기는 예약 인스턴스, 성수기는 추가 Spot 추가"
+      },
+      {
+        "key": "D",
+        "ko": "연중 Spot Instances만 사용"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "예측 가능한 계절 변동은 기본 비수기 부하를 Reserved(C)로 커버하고, 성수기 추가분은 Spot으로 저가에 확장합니다. Peak 수준 Reserved(A)는 비수기 낭비이고, 비수기 on-demand(B)는 비효율적이며, Spot만(D)은 성수기 불안정성 위험이 있습니다."
+    }
+  },
+  {
+    "id": 22,
+    "multi": true,
+    "question": {
+      "ko": "CFO가 EC2 인스턴스 구매 전략을 최적화하도록 지시했습니다. 다음 중 비용 최적화에 도움이 되는 방법은 무엇입니까? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Compute Savings Plans(모든 인스턴스 패밀리에 적용)로 유연성 확보"
+      },
+      {
+        "key": "B",
+        "ko": "작은 인스턴스 여러 개 대신 큰 인스턴스 하나로 통합하여 운영 비용 절감"
+      },
+      {
+        "key": "C",
+        "ko": "비프로덕션 환경의 인스턴스를 1.5배 큰 프로덕션 사양으로 right-sizing"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Compute Optimizer 리포트로 over-provisioned 인스턴스 식별 및 다운사이징"
+      },
+      {
+        "key": "E",
+        "ko": "모든 인스턴스를 Spot으로 변경하여 최대 90% 절감"
+      }
+    ],
+    "answer": [
+      "A",
+      "D"
+    ],
+    "explanation": {
+      "ko": "Savings Plans(A)와 Compute Optimizer(D)로 실제 사용량에 맞게 최적화합니다. 통합(B)은 유연성 손실, 비프로덕션 과다 사양(C)은 낭비이며, Spot만(E)은 안정성이 부족합니다."
+    }
+  },
+  {
+    "id": 23,
+    "multi": false,
+    "question": {
+      "ko": "프로덕션 관계형 데이터베이스가 매일 1시간 높은 쓰기 부하를 받습니다. 나머지 시간은 가볍습니다. 비용을 절감하면서 성능을 보장하려면 어떤 전략을 권장합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "피크 부하 기준의 db.r6i.2xlarge를 항상 실행"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Aurora MySQL Serverless v2로 자동 스케일링"
+      },
+      {
+        "key": "C",
+        "ko": "읽기 전용 replica를 5개 추가"
+      },
+      {
+        "key": "D",
+        "ko": "멀티 마스터 DynamoDB로 전환"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "변동하는 부하는 Aurora Serverless(B)가 자동으로 ACU(Aurora Capacity Units)를 조정하여 비용을 절감합니다. Fixed size(A)는 낭비이고, 읽기 replica(C)는 비용 증가이며, DynamoDB(D)는 스키마 변경이 큽니다."
+    }
+  },
+  {
+    "id": 24,
+    "multi": false,
+    "question": {
+      "ko": "SaaS 회사가 고객 데이터 격리를 위해 고객별 RDS 인스턴스를 100개 운영합니다. 대부분 작고, 관리 오버헤드가 큽니다. 비용과 운영을 개선하려면?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "인스턴스 크기를 더 크게 늘려 개수 감소"
+      },
+      {
+        "key": "B",
+        "ko": "각 고객을 별도 DynamoDB 테이블로 분리"
+      },
+      {
+        "key": "C",
+        "ko": "다중 고객을 단일 RDS 인스턴스 내 스키마/데이터베이스로 통합 (테넌트 격리 유지)"
+      },
+      {
+        "key": "D",
+        "ko": "모든 인스턴스를 온프레미스로 이관"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "테넌트 격리를 유지하면서 다중 고객을 단일 RDS 인스턴스(C)에 통합하면 관리 오버헤드와 비용을 크게 줄입니다. 크기 증가(A)는 해결이 아니고, DynamoDB(B)는 스키마 변경이 크며, 온프레미스(D)는 비용 절감이 아닙니다."
+    }
+  },
+  {
+    "id": 25,
+    "multi": false,
+    "question": {
+      "ko": "분석 팀이 매주 petabyte급 로그를 Amazon RDS에 로드하여 SQL 쿼리를 실행합니다. 데이터는 쿼리 후 삭제됩니다. 비용을 절감하려면 어떤 서비스 조합을 권장합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "RDS 인스턴스 크기를 증가하여 더 빠르게 처리"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon S3에서 Amazon Athena로 직접 쿼리 (ETL 없음)"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Redshift로 데이터 로드 및 쿼리"
+      },
+      {
+        "key": "D",
+        "ko": "NoSQL 데이터베이스 (DynamoDB)로 전환"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "일시적 petabyte 로그 쿼리는 Athena(B)가 S3 데이터를 직접 스캔하므로 로드/저장 오버헤드가 없습니다. RDS 크기 증가(A)는 고비용이고, Redshift(C)는 영구 웨어하우스용이며, DynamoDB(D)는 SQL 분석에 부적합합니다."
+    }
+  },
+  {
+    "id": 26,
+    "multi": false,
+    "question": {
+      "ko": "AWS DMS(Database Migration Service)로 온프레미스 Oracle DB를 AWS로 마이그레이션합니다. 마이그레이션 후 원본 데이터베이스는 폐기됩니다. 비용 최적화 관점에서 DMS 구성으로 올바른 것은?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "마이그레이션 후에도 변경 데이터 캡처(CDC)를 계속 실행"
+      },
+      {
+        "key": "B",
+        "ko": "마이그레이션 완료 후 DMS 복제 인스턴스 즉시 삭제"
+      },
+      {
+        "key": "C",
+        "ko": "마이그레이션 중 과도하게 큰 인스턴스 크기(dms.r5.4xlarge) 사용"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Snowball로 데이터 이관 후 DMS 사용"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "일회성 마이그레이션은 완료 후 DMS 복제 인스턴스(B)를 즉시 삭제하여 불필요한 비용을 제거합니다. CDC 계속(A)은 원본 폐기 시 불필요하고, 과도한 크기(C)는 낭비이며, Snowball(D)은 마이그레이션 중심이 아닌 사전 대용량 이관용입니다."
+    }
+  },
+  {
+    "id": 27,
+    "multi": false,
+    "question": {
+      "ko": "NAT Gateway를 사용하여 프라이빗 서브넷의 수백 개 인스턴스가 인터넷을 경유합니다. 월 데이터 전송 비용이 높습니다. 비용을 낮추려면?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "각 AZ마다 NAT Gateway 추가로 중복성 강화"
+      },
+      {
+        "key": "B",
+        "ko": "NAT Instance(EC2)로 교체"
+      },
+      {
+        "key": "C",
+        "ko": "VPC Endpoint(Gateway type for S3, DynamoDB)로 인터넷 게이트웨이 우회"
+      },
+      {
+        "key": "D",
+        "ko": "모든 트래픽을 퍼블릭 서브넷으로 이동"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "AWS 서비스(S3, DynamoDB)로의 트래픽은 VPC Endpoint(C)로 라우팅하여 NAT Gateway 비용을 제거합니다. 추가 NAT Gateway(A)는 비용 증가이고, NAT Instance(B)는 관리 오버헤드가 크며, 퍼블릭 이동(D)은 보안 위험입니다."
+    }
+  },
+  {
+    "id": 28,
+    "multi": false,
+    "question": {
+      "ko": "글로벌 회사가 미국, 유럽, 아시아에 데이터 센터를 가지고 있습니다. 리전 간 복제 트래픽(월 100GB)이 높은 비용입니다. 데이터 전송 비용을 낮추려면?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Global Accelerator로 경로 최적화"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Direct Connect 비공개 연결로 NAT 오버헤드 제거"
+      },
+      {
+        "key": "C",
+        "ko": "모든 데이터를 단일 리전에 저장"
+      },
+      {
+        "key": "D",
+        "ko": "온프레미스 네트워크만 사용하여 AWS 우회"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "정기적인 리전 간 복제는 AWS Direct Connect(B)의 비공개 연결이 데이터 전송 요금을 낮춥니다. Global Accelerator(A)는 지연 최적화이지 비용 절감이 아니고, 단일 리전(C)은 재해 복구 불가이며, 온프레미스(D)는 비용 증가입니다."
+    }
+  },
+  {
+    "id": 29,
+    "multi": true,
+    "question": {
+      "ko": "네트워크 비용을 절감하기 위해 고려해야 할 올바른 전략은 무엇입니까? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Transit Gateway로 VPC 간 라우팅 중앙화하여 VPC Peering 개수 감소"
+      },
+      {
+        "key": "B",
+        "ko": "AZ 간 트래픽을 최소화하기 위해 모든 서비스를 단일 AZ에 배포"
+      },
+      {
+        "key": "C",
+        "ko": "NAT Gateway 대신 인터넷 게이트웨이 사용(포트 포워딩으로 프라이빗 서브넷 접근)"
+      },
+      {
+        "key": "D",
+        "ko": "VPC Endpoint를 사용하여 AWS 서비스 접근 시 인터넷 경유 우회"
+      },
+      {
+        "key": "E",
+        "ko": "모든 EC2 인스턴스에 Elastic IP를 할당하여 데이터 전송 비용 감소"
+      }
+    ],
+    "answer": [
+      "A",
+      "D"
+    ],
+    "explanation": {
+      "ko": "Transit Gateway(A)로 VPC 연결 효율화하고, VPC Endpoint(D)로 AWS 서비스 트래픽 비용 절감합니다. 단일 AZ(B)는 고가용성 손실, 인터넷 게이트웨이(C)는 보안 위험, Elastic IP(E)는 요금이 없어 비용과 무관합니다."
+    }
+  },
+  {
+    "id": 30,
+    "multi": false,
+    "question": {
+      "ko": "회사가 AWS 비용을 추적하고 관리하려고 합니다. 부서별 비용 배분, 월별 예산 모니터링, 비용 이상 감지가 필요합니다. 어떤 도구 조합을 권장합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Cost Explorer와 AWS Budgets"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Trusted Advisor만 사용"
+      },
+      {
+        "key": "C",
+        "ko": "월별 AWS 청구서 수동 분석"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Config로 비용 추적"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Cost Explorer(A)는 비용 분석과 부서별 배분(cost allocation tag)을, Budgets는 예산 모니터링과 알림을 제공합니다. Trusted Advisor(B)는 권장사항 도구이고, 수동 분석(C)은 비효율적이며, Config(D)는 비용이 아닌 규정 준수 도구입니다."
+    }
+  },
+  {
+    "id": 31,
+    "multi": false,
+    "question": {
+      "ko": "중소 회사가 매월 AWS 청구서의 상세 비용 데이터(각 서비스별, 시간별, 태그별)가 필요하며, 이를 자체 BI 도구에 로드하려 합니다. 가장 효율적인 방법은?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Cost Explorer에서 매월 수동으로 CSV 다운로드"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Cost and Usage Report를 S3에 출력하고 Athena로 쿼리"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Budgets 리포트 이메일 구독"
+      },
+      {
+        "key": "D",
+        "ko": "월별 청구서 PDF를 수동으로 파싱"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Cost and Usage Report(B)를 S3에 저장하고 Athena로 쿼리하면 상세 데이터를 자동 및 반복적으로 분석할 수 있습니다. 수동 CSV(A)는 비효율이고, Budgets(C)는 알림용이며, PDF 파싱(D)은 오류가 많습니다."
+    }
+  },
+  {
+    "id": 32,
+    "multi": false,
+    "question": {
+      "ko": "회사가 AWS 리소스에 대한 지출 트렌드를 분석하려고 합니다. 작년과 올해 같은 기간의 비용 비교, 부서별 추이, 서비스 다운사이징 권장사항이 필요합니다. 어떤 도구가 가장 적합합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Budgets (예산 대비 실제 비용 모니터링)"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Cost Explorer (시계열 분석, 필터링, 커스텀 리포트)"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Trusted Advisor (비용 최적화 권장사항)"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Systems Manager (인스턴스 관리)"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Cost Explorer(B)는 시계열 트렌드, 서비스별/태그별 필터링, 커스텀 시각화를 제공합니다. Budgets(A)는 임계값 알림만 제공하고, Trusted Advisor(C)는 권장사항이지 트렌드 분석이 아니며, Systems Manager(D)는 인스턴스 관리 도구입니다."
+    }
+  }
+]
