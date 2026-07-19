@@ -1,0 +1,52 @@
+name: Deploy to GitHub Pages
+
+# 리팩터링 이후 index.html은 Vite 빌드가 필요한 셸입니다. Pages가 소스
+# 그대로를 서빙하면 CSS·스크립트가 없어 "맨 HTML"만 보이므로, 빌드 산출물
+# (dist/)을 GitHub Actions로 배포합니다. 재배포는 사용자 브라우저의
+# localStorage(학습 기록·오답노트)에 영향을 주지 않습니다.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 배포는 한 번에 하나만. 진행 중 배포는 취소하지 않고 마치도록 둡니다.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/configure-pages@v5
+        # Pages가 꺼져 있거나 "브랜치 배포"로 설정돼 있어도 Actions 배포로
+        # 자동 전환/활성화합니다. (실패 시 Settings→Pages→Source를 수동으로
+        # "GitHub Actions"로 바꾸면 됩니다.)
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
