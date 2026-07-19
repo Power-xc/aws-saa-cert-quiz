@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AWS SAA Cert Quiz</title>
+    <meta
+      name="description"
+      content="AWS Certified Solutions Architect – Associate(SAA-C03) 대비 문제은행 웹앱"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <button class="theme-toggle" id="theme-toggle" type="button">
+        화이트 모드
+      </button>
+
+      <!-- 설정 -->
+      <section class="card" id="setup-view">
+        <h1 class="setup-title">AWS SAA Cert Quiz</h1>
+        <p class="setup-sub">
+          Solutions Architect – Associate(SAA-C03) 4개 도메인을 학습·시험 모드로
+          풀어 보세요.
+        </p>
+
+        <div class="field-group">
+          <div class="field-label">도메인 선택</div>
+          <div class="btn-group btn-group-col" id="exam-group">
+            <button class="seg-btn active" type="button" data-value="secure">
+              Secure
+              <span class="btn-label"
+                >Design Secure Architectures · 보안 30% · 42문제</span
+              >
+            </button>
+            <button class="seg-btn" type="button" data-value="resilient">
+              Resilient
+              <span class="btn-label"
+                >Design Resilient Architectures · 복원력 26% · 36문제</span
+              >
+            </button>
+            <button class="seg-btn" type="button" data-value="performant">
+              Performant
+              <span class="btn-label"
+                >Design High-Performing Architectures · 고성능 24% ·
+                44문제</span
+              >
+            </button>
+            <button class="seg-btn" type="button" data-value="cost">
+              Cost
+              <span class="btn-label"
+                >Design Cost-Optimized Architectures · 비용 20% · 32문제</span
+              >
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">문제 순서</div>
+          <div class="btn-group" id="order-group">
+            <button class="seg-btn active" type="button" data-value="order">
+              순서대로
+            </button>
+            <button class="seg-btn" type="button" data-value="random">
+              랜덤
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">학습 방식</div>
+          <div class="btn-group" id="mode-group">
+            <button class="seg-btn active" type="button" data-value="study">
+              학습 모드<span class="btn-label"
+                >한 문제씩 바로 채점하고 해설</span
+              >
+            </button>
+            <button class="seg-btn" type="button" data-value="exam">
+              시험 모드<span class="btn-label"
+                >전체를 풀고 마지막에 일괄 채점</span
+              >
+            </button>
+          </div>
+        </div>
+
+        <div class="study-panel">
+          <div class="study-panel-title">
+            학습 기록 · 이 브라우저에 자동 저장
+          </div>
+          <div class="study-grid">
+            <div class="study-item">
+              <span class="study-value" id="history-attempts">0</span>
+              <span class="study-label">누적 풀이</span>
+            </div>
+            <div class="study-item">
+              <span class="study-value" id="history-rate">-</span>
+              <span class="study-label">누적 정답률</span>
+            </div>
+            <div class="study-item">
+              <span class="study-value" id="history-wrong">0</span>
+              <span class="study-label">현재 오답 문항</span>
+            </div>
+            <div class="study-item">
+              <span class="study-value" id="history-last">-</span>
+              <span class="study-label">최근 학습</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="setup-actions">
+          <button class="start-btn" id="start-btn" type="button">
+            새로 시작
+          </button>
+          <button
+            class="start-btn continue-btn hidden"
+            id="continue-btn"
+            type="button"
+          >
+            이어 풀기
+          </button>
+          <button
+            class="start-btn review-btn hidden"
+            id="review-btn"
+            type="button"
+          >
+            오답노트
+          </button>
+          <button class="start-btn notes-btn" id="notes-btn" type="button">
+            핵심 서비스 암기 노트
+          </button>
+          <button class="start-btn sync-btn" id="sync-btn" type="button">
+            기기 동기화
+          </button>
+        </div>
+      </section>
+
+      <!-- 핵심 서비스 암기 노트 -->
+      <section class="card notes-card hidden" id="notes-view">
+        <div class="notes-header">
+          <div>
+            <h1 class="notes-title">핵심 서비스 암기 노트</h1>
+            <p class="notes-sub">
+              문제의 신호를 보고 가장 알맞은 AWS 서비스의 방향을 빠르게 잡는 표
+            </p>
+          </div>
+          <button class="home-btn" id="notes-home-btn" type="button">홈</button>
+        </div>
+        <p class="notes-alert">
+          이 표는 1차 분류용입니다. 문제에 비용, 지연 시간, 가용성
+          목표(RTO/RPO), 권한, 데이터 수명 주기 같은 추가 조건이 있으면 그
+          조건을 우선하세요.
+        </p>
+        <div class="memory-grid">
+          <section class="memory-section">
+            <h2>저장소 선택</h2>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >객체 저장, 정적 파일, 사실상 무제한 확장, 높은 내구성</span
+              >
+              <strong class="memory-answer">Amazon S3</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >단일 EC2에 붙는 블록 스토리지(부팅·DB 볼륨)</span
+              >
+              <strong class="memory-answer">Amazon EBS</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >여러 Linux EC2·컨테이너가 공유하는 파일(NFS)</span
+              >
+              <strong class="memory-answer">Amazon EFS</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >Windows 파일 공유(SMB), Active Directory 통합</span
+              >
+              <strong class="memory-answer">Amazon FSx for Windows</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">고성능 HPC·ML 파일 시스템</span>
+              <strong class="memory-answer">Amazon FSx for Lustre</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >접근 패턴을 모를 때 자동으로 계층 이동</span
+              >
+              <strong class="memory-answer">S3 Intelligent-Tiering</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >거의 안 쓰는 장기 보관, 최저가 아카이브</span
+              >
+              <strong class="memory-answer">S3 Glacier Deep Archive</strong>
+            </div>
+          </section>
+
+          <section class="memory-section">
+            <h2>컴퓨트 선택</h2>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >이벤트 기반, 짧은 실행, 서버 관리 없음</span
+              >
+              <strong class="memory-answer">AWS Lambda</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >서버 없이 컨테이너 실행(ECS·EKS 데이터 플레인)</span
+              >
+              <strong class="memory-answer">AWS Fargate</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">대량 장기 배치 작업 관리</span>
+              <strong class="memory-answer">AWS Batch</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >상시 예측 가능한 부하, 1~3년 약정으로 절감</span
+              >
+              <strong class="memory-answer">Savings Plans / RI</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">중단 허용 가능한 내결함성 배치</span>
+              <strong class="memory-answer">Spot Instances</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">트래픽 급증에 맞춰 용량 자동 조절</span>
+              <strong class="memory-answer">EC2 Auto Scaling + ELB</strong>
+            </div>
+          </section>
+
+          <section class="memory-section">
+            <h2>데이터베이스 선택</h2>
+            <div class="memory-rule">
+              <span class="memory-cue">관리형 관계형(OLTP), 표준 엔진</span>
+              <strong class="memory-answer">Amazon RDS</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >고성능 클라우드 네이티브 MySQL·PostgreSQL 호환</span
+              >
+              <strong class="memory-answer">Amazon Aurora</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >키-값·문서, 밀리초 미만 지연, 서버리스 확장</span
+              >
+              <strong class="memory-answer">Amazon DynamoDB</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">인메모리 캐시(세션·읽기 부하 완화)</span>
+              <strong class="memory-answer">Amazon ElastiCache</strong>
+              <span class="memory-note">DynamoDB 캐시는 DAX</span>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >데이터 웨어하우스, 대규모 분석(OLAP)</span
+              >
+              <strong class="memory-answer">Amazon Redshift</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >관계형 읽기 확장은 read replica, 고가용성은 Multi-AZ</span
+              >
+              <strong class="memory-answer">복제본 목적 구분</strong>
+            </div>
+          </section>
+
+          <section class="memory-section">
+            <h2>네트워킹과 콘텐츠 전송</h2>
+            <div class="memory-rule">
+              <span class="memory-cue">정적·동적 콘텐츠 글로벌 캐시(CDN)</span>
+              <strong class="memory-answer">Amazon CloudFront</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >비HTTP·고정 IP, 글로벌 네트워크로 지연 단축</span
+              >
+              <strong class="memory-answer">AWS Global Accelerator</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >온프레미스 전용선, 일관된 대역폭·낮은 지연</span
+              >
+              <strong class="memory-answer">AWS Direct Connect</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">인터넷 위 암호화 연결, 빠른 구축</span>
+              <strong class="memory-answer">Site-to-Site VPN</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >VPC에서 S3·DynamoDB로 프라이빗 접근(무료)</span
+              >
+              <strong class="memory-answer">Gateway VPC Endpoint</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">DNS, 라우팅 정책, 상태 확인</span>
+              <strong class="memory-answer">Amazon Route 53</strong>
+            </div>
+          </section>
+
+          <section class="memory-section">
+            <h2>로드 밸런싱</h2>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >HTTP/HTTPS, 경로·호스트 기반 라우팅(L7)</span
+              >
+              <strong class="memory-answer">Application Load Balancer</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >TCP/UDP, 초고성능, 고정 IP, 극저지연(L4)</span
+              >
+              <strong class="memory-answer">Network Load Balancer</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">서드파티 방화벽·보안 어플라이언스</span>
+              <strong class="memory-answer">Gateway Load Balancer</strong>
+            </div>
+          </section>
+
+          <section class="memory-section">
+            <h2>보안과 자격 증명</h2>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >EC2·Lambda가 다른 서비스 접근(액세스 키 금지)</span
+              >
+              <strong class="memory-answer">IAM Role</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">DB 비밀번호 등 비밀 저장·자동 교체</span>
+              <strong class="memory-answer">AWS Secrets Manager</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">저장 데이터 암호화 키 관리</span>
+              <strong class="memory-answer">AWS KMS</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >L7 웹 공격(SQL injection·XSS) 필터링</span
+              >
+              <strong class="memory-answer">AWS WAF</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">DDoS 방어</span>
+              <strong class="memory-answer">AWS Shield</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >위협 탐지는 GuardDuty, S3 민감정보 탐지는 Macie</span
+              >
+              <strong class="memory-answer">탐지 서비스 구분</strong>
+            </div>
+          </section>
+
+          <section class="memory-section">
+            <h2>복원력과 재해 복구(DR)</h2>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >동기 복제 대기본으로 고가용성 확보(읽기 확장 아님)</span
+              >
+              <strong class="memory-answer">RDS Multi-AZ</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">비동기 복제로 읽기 부하 분산·확장</span>
+              <strong class="memory-answer">Read Replica</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >가장 저렴·긴 복구 시간, 백업만 보관</span
+              >
+              <strong class="memory-answer">Backup &amp; Restore</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">핵심 코어만 상시, 나머지는 확장</span>
+              <strong class="memory-answer">Pilot Light</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">축소판을 상시 가동해 대기</span>
+              <strong class="memory-answer">Warm Standby</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >최소 RTO/RPO, 다중 리전 상시 이중화</span
+              >
+              <strong class="memory-answer">Active-Active</strong>
+            </div>
+          </section>
+
+          <section class="memory-section">
+            <h2>디커플링과 통합</h2>
+            <div class="memory-rule">
+              <span class="memory-cue">비동기 작업 큐로 컴포넌트 분리</span>
+              <strong class="memory-answer">Amazon SQS</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">발행/구독 팬아웃 알림</span>
+              <strong class="memory-answer">Amazon SNS</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >서버리스 이벤트 버스, SaaS·서비스 이벤트 연결</span
+              >
+              <strong class="memory-answer">Amazon EventBridge</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">실시간 스트리밍 데이터 수집·처리</span>
+              <strong class="memory-answer">Amazon Kinesis</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >여러 단계를 조율하는 워크플로(상태 머신)</span
+              >
+              <strong class="memory-answer">AWS Step Functions</strong>
+            </div>
+          </section>
+
+          <section class="memory-section">
+            <h2>비용 최적화</h2>
+            <div class="memory-rule">
+              <span class="memory-cue">상시 예측 부하의 최대 절감</span>
+              <strong class="memory-answer">Savings Plans / RI</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue"
+                >S3 객체를 규칙에 따라 저비용 계층으로</span
+              >
+              <strong class="memory-answer">S3 Lifecycle 정책</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">NAT Gateway 데이터 처리 비용 회피</span>
+              <strong class="memory-answer">Gateway VPC Endpoint 사용</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">예산 초과 알림</span>
+              <strong class="memory-answer">AWS Budgets</strong>
+            </div>
+            <div class="memory-rule">
+              <span class="memory-cue">비용 추세 분석·리포트</span>
+              <strong class="memory-answer">Cost Explorer / CUR</strong>
+            </div>
+          </section>
+        </div>
+        <p class="term-update">
+          <strong>공부 방향:</strong> SAA-C03은 서비스 하나를 외우기보다 "요구
+          사항의 신호(비용·지연·가용성·보안·운영 부담)"에 가장 맞는 서비스를
+          고르는 시험입니다. 오답 선택지도 왜 틀렸는지 해설에서 함께 짚어
+          두었으니 비교하며 익히세요.
+        </p>
+      </section>
+
+      <!-- 기기 간 동기화 -->
+      <section class="card notes-card hidden" id="sync-view">
+        <div class="notes-header">
+          <div>
+            <h1 class="notes-title">기기 간 동기화</h1>
+            <p class="notes-sub">
+              한 기기에서 내보낸 코드를 다른 기기에서 가져오면 오답노트·학습
+              기록이 합쳐집니다. 로그인 없이 동작합니다.
+            </p>
+          </div>
+          <button class="home-btn" id="sync-home-btn" type="button">홈</button>
+        </div>
+
+        <section class="sync-section">
+          <h2>이 기기 기록 내보내기</h2>
+          <p>
+            이 브라우저의 학습 기록을 코드/링크로 만들어 다른 기기에 전달하세요.
+          </p>
+          <button class="start-btn sync-btn" id="sync-export-btn" type="button">
+            내 기록 코드 만들기
+          </button>
+          <div id="sync-export-result" class="hidden">
+            <textarea
+              class="sync-area"
+              id="sync-code-out"
+              readonly
+              style="margin-top: 14px"
+            ></textarea>
+            <div class="sync-actions">
+              <button
+                class="start-btn sync-btn"
+                id="sync-copy-code-btn"
+                type="button"
+              >
+                코드 복사
+              </button>
+              <button
+                class="start-btn sync-btn"
+                id="sync-copy-link-btn"
+                type="button"
+              >
+                공유 링크 복사
+              </button>
+            </div>
+            <div class="sync-msg" id="sync-export-msg"></div>
+          </div>
+        </section>
+
+        <section class="sync-section">
+          <h2>다른 기기 기록 가져오기</h2>
+          <p>
+            전달받은 코드나 공유 링크를 붙여넣고 가져오면 현재 기기 기록과
+            합쳐집니다. 같은 문항은 더 최근에 푼 결과를 따릅니다.
+          </p>
+          <textarea
+            class="sync-area"
+            id="sync-code-in"
+            placeholder="여기에 코드나 링크를 붙여넣으세요"
+          ></textarea>
+          <div class="sync-actions">
+            <button class="start-btn" id="sync-import-btn" type="button">
+              가져와서 합치기
+            </button>
+          </div>
+          <div class="sync-msg" id="sync-import-msg"></div>
+        </section>
+      </section>
+
+      <!-- 퀴즈 -->
+      <section class="card hidden" id="quiz-view">
+        <div id="loading-state" class="loading">
+          <div class="spinner"></div>
+          <div>문제 불러오는 중…</div>
+        </div>
+
+        <div id="quiz-content" class="hidden">
+          <div class="quiz-topbar">
+            <div class="pos-label" id="pos-text">1 / 0</div>
+            <div class="topbar-actions">
+              <button
+                class="home-btn hidden"
+                id="back-to-sheet-btn"
+                type="button"
+              >
+                채점표
+              </button>
+              <button class="home-btn" id="home-btn" type="button">홈</button>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="prog-fill" style="width: 0%"></div>
+          </div>
+          <div class="stats-row" id="stats-row"></div>
+          <hr class="sep" />
+
+          <div id="q-type-badge" class="q-type-badge">단일 정답</div>
+          <div id="q-text" class="q-text"></div>
+          <details id="english-original" class="english-original hidden">
+            <summary>영문 원문 보기</summary>
+            <div class="english-original-content">
+              <div
+                class="english-original-question"
+                id="english-question"
+              ></div>
+              <ol class="english-original-choices" id="english-choices"></ol>
+            </div>
+          </details>
+          <div class="choices" id="choices-container"></div>
+
+          <button class="check-btn" id="check-btn" type="button">
+            정답 확인
+          </button>
+          <div class="result-msg" id="result-msg"></div>
+
+          <div class="explain-box hidden" id="explain-box">
+            <div class="explain-title">해설</div>
+            <div class="explain-text" id="explain-text"></div>
+          </div>
+
+          <div class="nav-row">
+            <button class="nav-btn" id="prev-btn" type="button" disabled>
+              이전
+            </button>
+            <div class="jump-wrap">
+              <input type="number" id="jump-input" min="1" placeholder="번호" />
+              <button class="jump-btn" id="jump-btn" type="button">이동</button>
+            </div>
+            <button class="nav-btn nav-next" id="next-btn" type="button">
+              다음
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 결과 요약 -->
+      <section class="card hidden" id="summary-view">
+        <h1 class="summary-title">퀴즈 완료</h1>
+        <p class="summary-exam" id="summary-exam-label"></p>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="summary-num c-blue" id="sum-total">0</div>
+            <div class="summary-lbl">전체 문제</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-num c-green" id="sum-correct">0</div>
+            <div class="summary-lbl">정답</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-num c-red" id="sum-wrong">0</div>
+            <div class="summary-lbl">오답</div>
+          </div>
+        </div>
+        <div class="summary-actions">
+          <button class="start-btn sync-btn" id="sheet-btn" type="button">
+            채점표 보기
+          </button>
+          <button
+            class="start-btn review-btn hidden"
+            id="review-wrong-btn"
+            type="button"
+          >
+            틀린 문제만 풀기
+          </button>
+          <button class="start-btn" id="retry-btn" type="button">
+            다시 풀기
+          </button>
+          <button class="nav-btn" id="summary-home-btn" type="button">
+            홈으로
+          </button>
+        </div>
+      </section>
+
+      <!-- 채점표 -->
+      <section class="card hidden" id="sheet-view">
+        <div class="quiz-topbar">
+          <div class="pos-label">채점표</div>
+          <button class="home-btn" id="sheet-home-btn" type="button">
+            결과 요약
+          </button>
+        </div>
+        <div class="sheet-head">
+          <div class="sheet-score" id="sheet-score"></div>
+        </div>
+        <div class="sheet-legend">
+          <span><i class="dot ok"></i> 정답</span>
+          <span><i class="dot ng"></i> 오답</span>
+          <span><i class="dot na"></i> 미응답·채점 제외</span>
+        </div>
+        <div class="sheet-grid" id="sheet-grid"></div>
+        <p class="sheet-hint">
+          번호를 누르면 그 문제의 내 답·정답·해설을 볼 수 있습니다.
+        </p>
+      </section>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
