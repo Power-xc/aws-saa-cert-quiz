@@ -8,7 +8,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "모든 데이터를 S3 Standard에 유지"
+        "ko": "모든 데이터를 S3 Standard에 유지하고 30일 후에도 이동하지 않음"
       },
       {
         "key": "B",
@@ -16,7 +16,7 @@
       },
       {
         "key": "C",
-        "ko": "S3 Lifecycle 정책으로 30일 후 S3 Glacier로 이동"
+        "ko": "S3 Lifecycle 정책으로 30일 후 S3 Standard-IA로 이동"
       },
       {
         "key": "D",
@@ -27,7 +27,7 @@
       "C"
     ],
     "explanation": {
-      "ko": "S3 Lifecycle 정책으로 핫(hot) 데이터는 Standard에서 고속 조회하고, 30일 후 콜드(cold) 데이터는 Glacier로 자동 이동하면 비용을 크게 절감합니다. 초기부터 Deep Archive(B)를 사용하면 규정 감사 시 검색 비용이 높고, EBS(D)는 온디맨드 서버 비용이 지속적으로 발생합니다."
+      "ko": "처음 30일은 Standard에서 빠르게 조회하고, 이후 월 1~2회 즉시 조회가 필요한 데이터는 Lifecycle로 S3 Standard-IA(C)로 옮기면 저장 비용을 줄이면서 밀리초 단위 접근과 낮은 GB당 검색 요금을 유지합니다. Glacier Flexible Retrieval이나 Deep Archive는 최소 보관 기간(각 90일·180일)과 검색 지연·요금 때문에 월 단위 조회에는 불리합니다. 초기부터 Deep Archive(B)를 쓰면 처음 30일의 빈번한 조회가 불가능하고, EBS(D)는 S3보다 GB당 비용이 높습니다."
     }
   },
   {
@@ -39,15 +39,15 @@
     "choices": [
       {
         "key": "A",
-        "ko": "모든 데이터를 자동으로 Glacier로 이동하여 최저 가격 보장"
+        "ko": "모든 객체를 자동으로 S3 Glacier Deep Archive로 이동시켜 최저 요금을 보장"
       },
       {
         "key": "B",
-        "ko": "S3 요청 비용을 완전히 제거"
+        "ko": "S3 요청 비용과 데이터 전송 요금을 완전히 제거"
       },
       {
         "key": "C",
-        "ko": "접근 패턴을 자동으로 모니터링하여 자주 접근하는 데이터는 Frequent 계층에, 드물게 접근하는 데이터는 Infrequent 계층으로 자동 이동"
+        "ko": "접근 패턴을 모니터링해 객체를 Frequent·Infrequent 계층으로 자동 이동"
       },
       {
         "key": "D",
@@ -101,26 +101,26 @@
     "choices": [
       {
         "key": "A",
-        "ko": "EBS io2 볼륨을 모든 인스턴스에 연결"
+        "ko": "EBS io2 Block Express 볼륨을 모든 작업자 노드에 Multi-Attach로 연결"
       },
       {
         "key": "B",
-        "ko": "Amazon EBS gp3 RAID 0"
+        "ko": "EBS gp3 볼륨을 RAID 0으로 묶고 NFS 서버를 직접 구성해 공유"
       },
       {
         "key": "C",
-        "ko": "Amazon EFS를 사용하고 프로비저닝된 처리량으로 성능 보장"
+        "ko": "Amazon EFS를 사용하고 워크로드에 맞는 처리량 모드로 성능 확보"
       },
       {
         "key": "D",
-        "ko": "Amazon EFS Performance Mode 설정"
+        "ko": "Amazon EFS를 Max I/O Performance Mode로 설정하면 비용이 줄어든다"
       }
     ],
     "answer": [
       "C"
     ],
     "explanation": {
-      "ko": "다중 인스턴스의 동시 공유 스토리지는 EFS가 설계되었으며, 프로비저닝된 처리량으로 성능을 보장하면서 비용 예측이 가능합니다. EBS(A, B)는 단일 인스턴스 스토리지용이고, Performance Mode(D)는 성능 특성이지 비용 효율성을 제공하지 않습니다."
+      "ko": "다중 인스턴스의 동시 공유 스토리지는 EFS가 설계 목적이며, 워크로드에 맞는 처리량 모드(Elastic·Provisioned)로 성능과 비용을 조절할 수 있습니다(C). EBS(A, B)는 기본적으로 단일 AZ 안에서 소수 인스턴스용이어서 수천 개 동시 연결을 처리할 수 없고, Performance Mode(D)는 성능 특성을 정할 뿐 비용 절감 수단이 아닙니다."
     }
   },
   {
@@ -151,7 +151,7 @@
       "B"
     ],
     "explanation": {
-      "ko": "일회성 대용량 데이터 이관에는 AWS Snowball이 가장 비용 효율적이며 빠릅니다. DataSync(A)는 대역폭 제한 시 느리고, Storage Gateway(C)는 장기 하이브리드 스토리지용이며, VPN(D)은 느리고 비용이 많이 듭니다."
+      "ko": "일회성 대용량 이관에는 AWS Snowball이 가장 비용 효율적이며 빠릅니다. DataSync(A)는 대역폭이 제한되면 전송이 오래 걸리고, Storage Gateway(C)는 장기 하이브리드 스토리지용이며, VPN(D)은 대역폭 제약을 그대로 받습니다."
     }
   },
   {
@@ -182,7 +182,7 @@
       "B"
     ],
     "explanation": {
-      "ko": "장기 아카이브(7년) 데이터로 검색 시간이 길어도 괜찮으면 Deep Archive가 최저 스토리지 비용입니다. Glacier Flexible Retrieval(A)은 더 비싸고, Standard-IA(C)는 접근할 가능성이 매우 낮을 때, Intelligent-Tiering(D)은 접근 패턴이 불확실할 때 사용합니다."
+      "ko": "장기 아카이브(7년) 데이터로 검색 시간이 길어도 괜찮으면 Deep Archive가 최저 스토리지 비용입니다. Glacier Flexible Retrieval(A)은 GB당 저장 요금이 더 비싸고, Standard-IA(C)는 월 단위로 즉시 접근이 필요한 데이터에, Intelligent-Tiering(D)은 접근 패턴이 불확실할 때 적합합니다."
     }
   },
   {
@@ -194,11 +194,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "S3에서 직접 제공하고 요청이 많은 리전별 S3 bucket 복제"
+        "ko": "S3에서 직접 제공하되 요청이 많은 리전마다 별도 S3 bucket을 복제해 운영"
       },
       {
         "key": "B",
-        "ko": "Amazon CloudFront distribution으로 캐싱 및 엣지 로케이션에서 제공"
+        "ko": "CloudFront로 캐싱하고 엣지 로케이션에서 제공"
       },
       {
         "key": "C",
@@ -206,14 +206,14 @@
       },
       {
         "key": "D",
-        "ko": "매월 DVD로 오프라인 배포"
+        "ko": "매월 고객에게 이미지를 DVD로 제작해 오프라인으로 배포"
       }
     ],
     "answer": [
       "B"
     ],
     "explanation": {
-      "ko": "CloudFront는 전 세계 엣지 로케이션에 콘텐츠를 캐싱하여 데이터 전송 비용을 획기적으로 줄이면서 지연 시간도 감소시킵니다. S3 직접 제공(A)은 비용이 높고, Transfer Acceleration(C)은 상향 링크용이며, 오프라인 배포(D)는 현실적이지 않습니다."
+      "ko": "CloudFront는 전 세계 엣지 로케이션에 콘텐츠를 캐싱해 S3 오리진에서 인터넷으로 나가는 전송량과 요청 수를 줄이고 지연 시간도 감소시킵니다(B). S3 직접 제공(A)은 인터넷 전송 요금이 그대로 발생하고 복제 비용이 추가되며, Transfer Acceleration(C)은 가속 요금이 추가되는 업로드·원거리 전송 최적화 기능이고, 오프라인 배포(D)는 현실적이지 않습니다."
     }
   },
   {
@@ -225,42 +225,42 @@
     "choices": [
       {
         "key": "A",
-        "ko": "최근 52개 snapshot(1년)은 EBS Snapshot storage에 유지하고, 이전 snapshot은 S3 Glacier Deep Archive로 export"
+        "ko": "최근 snapshot은 Standard 티어에 두고 오래된 것은 Snapshots Archive 티어로 이동"
       },
       {
         "key": "B",
-        "ko": "모든 snapshot을 EBS에 유지하고 자동 복제"
+        "ko": "모든 snapshot을 Standard 티어에 유지하고 다른 리전으로 자동 복사해 보관"
       },
       {
         "key": "C",
-        "ko": "모든 snapshot을 S3 Standard에 저장"
+        "ko": "모든 snapshot을 AMI로 등록해 Standard 티어에서 4년간 보관하고 정기 점검"
       },
       {
         "key": "D",
-        "ko": "snapshot 백업을 중단하고 AWS Backup으로만 관리"
+        "ko": "snapshot 백업을 중단하고 AWS Backup 콘솔에 백업 계획만 등록해 둠"
       }
     ],
     "answer": [
       "A"
     ],
     "explanation": {
-      "ko": "4년 보존은 EBS Snapshot storage(월단위 비용)로는 비싸므로, 최근 데이터는 쉽게 접근 가능하게 유지하고 오래된 snapshot은 S3 Deep Archive로 export하면 비용을 획기적으로 절감합니다. 모두 EBS(B)는 고비용이고, Standard(C)는 필요 이상 비싸며, 백업 중단(D)은 규정 위반입니다."
+      "ko": "4년 보존은 snapshot Standard 티어로는 비싸므로, 오래 보관하고 거의 조회하지 않는 snapshot은 EBS Snapshots Archive 티어(A)로 옮겨 최대 75% 저장 비용을 줄입니다(최소 보관 90일, 복원에 24~72시간). 모두 Standard에 두는 것(B, C)은 고비용이고, 백업 중단(D)은 규정 위반입니다."
     }
   },
   {
     "id": 9,
     "multi": false,
     "question": {
-      "ko": "대학이 학생 제출 과제(평균 10MB, 월 10만 개)를 S3에 저장합니다. 강사 피드백 후 과제는 즉시 삭제되지만, 규정상 최소 3개월 보관이 필요합니다. S3 스토리지 비용을 최소화하려면?"
+      "ko": "대학이 학생 제출 과제(평균 10MB, 월 10만 개)를 S3에 저장합니다. 과제는 업로드 직후 몇 번만 조회되고, 규정상 최소 3개월 보관한 뒤에는 삭제해도 됩니다. S3 스토리지 비용을 최소화하려면?"
     },
     "choices": [
       {
         "key": "A",
-        "ko": "수동으로 매월 구 과제 삭제"
+        "ko": "관리자가 매월 수동으로 3개월 지난 과제를 찾아 삭제"
       },
       {
         "key": "B",
-        "ko": "S3 Intelligent-Tiering 사용"
+        "ko": "모든 과제를 S3 Intelligent-Tiering에 저장하고 영구 보관"
       },
       {
         "key": "C",
@@ -275,7 +275,7 @@
       "D"
     ],
     "explanation": {
-      "ko": "접근 후 삭제되는 단기 데이터는 Lifecycle 정책으로 91일 후 자동 삭제하면 규정을 만족하면서 불필요한 비용을 절감합니다. 수동 삭제(A)는 운영 오버헤드가 있고, Intelligent-Tiering(B)은 접근이 거의 없어 불필요하며, Glacier 이동(C)은 3개월 후 삭제가 요구되므로 비효율적입니다."
+      "ko": "3개월 보관 후 삭제해도 되는 단기 데이터는 Lifecycle 만료 규칙으로 91일 후 자동 삭제(D)하면 규정을 만족하면서 불필요한 저장 비용을 없앱니다. 수동 삭제(A)는 운영 오버헤드가 있고, Intelligent-Tiering 영구 보관(B)은 삭제하지 않아 비용이 계속 쌓이며, Glacier 이동(C)은 삭제해도 되는 데이터에 불필요한 전환 비용을 만듭니다."
     }
   },
   {
@@ -380,31 +380,31 @@
     "id": 13,
     "multi": false,
     "question": {
-      "ko": "미디어 스트리밍 회사가 트랜스코딩 작업을 주로 비업무 시간(21시~9시)에 처리합니다. 작업이 중단되어도 나중에 재시작할 수 있습니다. 비용을 최소화하면서 적절한 성능을 유지하려면 어떤 옵션을 조합하시겠습니까?"
+      "ko": "미디어 스트리밍 회사가 트랜스코딩 작업을 주로 비업무 시간(21시~9시)에 처리하며, 대부분 작업은 중단되어도 나중에 재시작할 수 있습니다. 다만 일부 긴급 작업은 마감 시간 안에 반드시 끝나야 합니다. 비용을 최소화하면서 마감을 지키려면 어떤 옵션을 조합하시겠습니까?"
     },
     "choices": [
       {
         "key": "A",
-        "ko": "Spot Instances만 사용"
+        "ko": "단일 인스턴스 유형의 Spot Instances만 사용"
       },
       {
         "key": "B",
-        "ko": "Compute Savings Plan 100% 커버"
+        "ko": "Compute Savings Plan으로 야간 사용량의 100%를 커버"
       },
       {
         "key": "C",
-        "ko": "Reserved Instances로 기본 용량, Spot으로 버스트 용량"
+        "ko": "24시간 Reserved Instances로 기본 용량을 확보하고 Spot으로 버스트"
       },
       {
         "key": "D",
-        "ko": "비업무 시간에만 Spot Instances, 업무 시간 예비로 On-Demand 1~2개"
+        "ko": "비업무 시간에 여러 유형의 Spot, 마감이 중요한 최소 용량은 On-Demand"
       }
     ],
     "answer": [
       "D"
     ],
     "explanation": {
-      "ko": "비업무 시간의 배치 작업은 Spot(D 구성)으로 저가에 운영하되, 긴급 작업용 On-Demand 소량 예약으로 안정성을 확보합니다. Spot만(A)은 비업무 시간 외 작업 불가이고, Savings Plan(B)은 시간대별 유연성이 없으며, Reserved만(C)은 비용 효율이 낮습니다."
+      "ko": "재시작 가능한 작업은 여러 인스턴스 유형에 걸친 Spot(D)으로 저렴하게 처리하고, 마감이 중요한 최소 용량만 On-Demand로 확보하면 비용과 안정성을 모두 잡습니다. Spot만(A)은 용량 회수 시 긴급 작업의 마감을 보장할 수 없고, Savings Plan(B)과 24시간 Reserved(C)는 야간에만 쓰는 용량에도 약정 비용이 24시간 발생해 낭비입니다."
     }
   },
   {
@@ -416,19 +416,19 @@
     "choices": [
       {
         "key": "A",
-        "ko": "평상시와 피크 시즌 모두 on-demand로 20개 인스턴스 구매"
+        "ko": "평상시와 피크 시즌 모두 On-Demand 인스턴스 20개를 연중 상시 실행하여 가용성 확보"
       },
       {
         "key": "B",
-        "ko": "기본 부하 4개는 3년 Reserved Instances로 커버하고, 피크 시즌 추가분은 Auto Scaling으로 Spot과 On-Demand를 혼합해 운영"
+        "ko": "기본 4대는 3년 Reserved Instances로, 피크 추가분은 Spot·On-Demand 혼합 Auto Scaling으로 운영"
       },
       {
         "key": "C",
-        "ko": "모든 인스턴스를 t3 대신 t4g로 변경"
+        "ko": "모든 인스턴스를 t3에서 Graviton 기반 t4g로 바꾸고 대수는 그대로 유지"
       },
       {
         "key": "D",
-        "ko": "Auto Scaling 그룹으로 2~20개 범위 설정하고 모두 Spot으로 운영"
+        "ko": "Auto Scaling 그룹으로 2~20개 범위를 설정하고 모든 인스턴스를 Spot으로만 운영"
       }
     ],
     "answer": [
@@ -447,11 +447,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "EC2가 항상 더 저렴"
+        "ko": "EC2 인스턴스를 항상 실행하는 방식이 Lambda보다 언제나 저렴하다"
       },
       {
         "key": "B",
-        "ko": "둘 다 동일한 비용"
+        "ko": "유휴 시간과 관계없이 두 방식의 비용이 동일하다"
       },
       {
         "key": "C",
@@ -459,14 +459,14 @@
       },
       {
         "key": "D",
-        "ko": "AWS Fargate만 비용 효율적"
+        "ko": "AWS Fargate 상시 실행 태스크만 비용 효율적이다"
       }
     ],
     "answer": [
       "C"
     ],
     "explanation": {
-      "ko": "비정기적 이벤트는 Lambda가 사용량만큼 과금되므로 유휴 EC2 인스턴스 비용을 피할 수 있습니다. EC2는 항상 요금(A)이 발생하고, Fargate(D)는 지연 처리에 EC2보다 비싼 편입니다."
+      "ko": "비정기적 이벤트는 Lambda가 실행한 만큼만 과금되므로 유휴 EC2 인스턴스 비용을 피할 수 있습니다(C). EC2는 사용하지 않는 시간에도 요금이 발생하고(A), Fargate 상시 태스크(D)도 유휴 시간에 vCPU·메모리 요금이 계속 나갑니다."
     }
   },
   {
@@ -497,7 +497,7 @@
       "C"
     ],
     "explanation": {
-      "ko": "장바구니 API는 지속적 높은 처리량으로 EC2가 비용 효율적이고, 이미지 배치는 비정기적 오래 실행되므로 Lambda의 낮은 유휴 비용이 유리합니다(C). 모두 Lambda(B)는 초당 높은 동시성으로 비용이 높습니다."
+      "ko": "장바구니 API는 지속적인 높은 처리량이므로 EC2가 비용 효율적이고, 이미지 배치는 비정기적·단발성이므로 Lambda의 유휴 비용 없는 과금이 유리합니다(C). 모두 Lambda(B)는 초당 높은 동시성에서 비용이 커지고, 반대 조합(D)은 지속 부하에 Lambda를 쓰는 셈입니다."
     }
   },
   {
@@ -564,7 +564,7 @@
       "D"
     ],
     "explanation": {
-      "ko": "단순 TCP/UDP 기반 고처리량 패킷은 NLB(L4)가 낮은 지연과 낮은 비용으로 최적화되어 있습니다. ALB(A)는 L7 분석 오버헤드 비용이 높고, CLB(B)는 구식이며, Route 53(C)은 로드 밸런싱이 아닙니다."
+      "ko": "단순 TCP/UDP 기반 고처리량 패킷은 NLB(L4)가 낮은 지연과 낮은 비용에 적합합니다(D). ALB(A)는 HTTP(S) L7 라우팅용이어서 TCP/UDP 게임 패킷에 맞지 않고, CLB(B)는 UDP를 지원하지 않는 이전 세대이며, Route 53(C)은 DNS 기반 라우팅이지 로드 밸런서가 아닙니다."
     }
   },
   {
@@ -607,19 +607,19 @@
     "choices": [
       {
         "key": "A",
-        "ko": "AWS Lambda with API Gateway"
+        "ko": "AWS Lambda와 Amazon API Gateway 조합"
       },
       {
         "key": "B",
-        "ko": "고정 크기의 Reserved Instances"
+        "ko": "트래픽 최대치에 맞춘 고정 크기의 Reserved Instances"
       },
       {
         "key": "C",
-        "ko": "고정 크기의 EC2 Auto Scaling"
+        "ko": "트래픽 최대치에 맞춘 고정 크기의 EC2 Auto Scaling 그룹"
       },
       {
         "key": "D",
-        "ko": "Dedicated Hosts"
+        "ko": "피크에 맞춰 구매한 Dedicated Hosts 위의 EC2"
       }
     ],
     "answer": [
@@ -638,7 +638,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "비수기는 예약 인스턴스, 성수기는 추가 Spot 추가"
+        "ko": "상시 필요한 기본 용량은 Reserved Instances로 커버하고 성수기 추가분은 Spot으로 확장"
       },
       {
         "key": "B",
@@ -646,18 +646,18 @@
       },
       {
         "key": "C",
-        "ko": "비수기는 온디맨드 소량, 성수기는 Spot + On-Demand 조합"
+        "ko": "약정 없이 연중 On-Demand 소량을 유지하고 성수기에는 Spot과 On-Demand를 조합"
       },
       {
         "key": "D",
-        "ko": "연중 Spot Instances만 사용"
+        "ko": "연중 모든 용량을 Spot Instances만 사용하고 중단 시 자동으로 재시작"
       }
     ],
     "answer": [
       "A"
     ],
     "explanation": {
-      "ko": "예측 가능한 계절 변동은 기본 비수기 부하를 Reserved(A)로 커버하고, 성수기 추가분은 Spot으로 저가에 확장합니다. Peak 수준 Reserved(B)는 비수기 낭비이고, 비수기 on-demand(C)는 비효율적이며, Spot만(D)은 성수기 불안정성 위험이 있습니다."
+      "ko": "비수기에도 상시 필요한 기본 부하는 Reserved(A)로 할인받고, 예측 가능한 성수기 추가분은 Spot으로 저가에 확장합니다. Peak 수준 Reserved(B)는 비수기 8개월 낭비이고, 약정 없는 구성(C)은 상시 기본 용량의 할인을 놓치며, Spot만(D)은 성수기 안정성 위험이 있습니다."
     }
   },
   {
@@ -705,15 +705,15 @@
     "choices": [
       {
         "key": "A",
-        "ko": "피크 부하 기준의 db.r6i.2xlarge를 항상 실행"
+        "ko": "피크 부하 기준의 db.r6i.2xlarge 인스턴스를 24시간 항상 실행"
       },
       {
         "key": "B",
-        "ko": "읽기 전용 replica를 5개 추가"
+        "ko": "읽기 전용 replica를 5개 추가해 쓰기 부하를 분산"
       },
       {
         "key": "C",
-        "ko": "멀티 마스터 DynamoDB로 전환"
+        "ko": "멀티 리전 DynamoDB Global Tables로 전환"
       },
       {
         "key": "D",
@@ -736,7 +736,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "인스턴스 크기를 더 크게 늘려 개수 감소"
+        "ko": "인스턴스 크기를 더 크게 늘려 인스턴스 개수를 줄이되 고객별 인스턴스는 유지"
       },
       {
         "key": "B",
@@ -744,11 +744,11 @@
       },
       {
         "key": "C",
-        "ko": "각 고객을 별도 DynamoDB 테이블로 분리"
+        "ko": "각 고객을 별도 DynamoDB 테이블로 분리하고 애플리케이션을 재작성"
       },
       {
         "key": "D",
-        "ko": "모든 인스턴스를 온프레미스로 이관"
+        "ko": "모든 인스턴스를 온프레미스 서버로 이관하고 직접 운영"
       }
     ],
     "answer": [
@@ -767,19 +767,19 @@
     "choices": [
       {
         "key": "A",
-        "ko": "RDS 인스턴스 크기를 증가하여 더 빠르게 처리"
+        "ko": "RDS 인스턴스 크기를 증가시켜 더 빠르게 처리"
       },
       {
         "key": "B",
-        "ko": "Amazon Redshift로 데이터 로드 및 쿼리"
+        "ko": "Amazon Redshift 클러스터에 데이터를 로드한 뒤 쿼리"
       },
       {
         "key": "C",
-        "ko": "NoSQL 데이터베이스 (DynamoDB)로 전환"
+        "ko": "NoSQL 데이터베이스인 DynamoDB로 전환해 쿼리"
       },
       {
         "key": "D",
-        "ko": "Amazon S3에서 Amazon Athena로 직접 쿼리 (ETL 없음)"
+        "ko": "S3의 로그를 Amazon Athena로 직접 쿼리 (ETL 없음)"
       }
     ],
     "answer": [
@@ -824,31 +824,31 @@
     "id": 27,
     "multi": false,
     "question": {
-      "ko": "NAT Gateway를 사용하여 프라이빗 서브넷의 수백 개 인스턴스가 인터넷을 경유합니다. 월 데이터 전송 비용이 높습니다. 비용을 낮추려면?"
+      "ko": "NAT Gateway를 사용하여 프라이빗 서브넷의 수백 개 인스턴스가 AWS 서비스에 접근합니다. 트래픽 대부분이 같은 리전의 S3와 DynamoDB로 향하며, NAT Gateway 데이터 처리 요금이 높습니다. 비용을 낮추려면?"
     },
     "choices": [
       {
         "key": "A",
-        "ko": "각 AZ마다 NAT Gateway 추가로 중복성 강화"
+        "ko": "각 AZ마다 NAT Gateway를 추가해 중복성을 강화하고 AZ 간 전송을 줄임"
       },
       {
         "key": "B",
-        "ko": "NAT Instance(EC2)로 교체"
+        "ko": "NAT Gateway를 EC2 기반 NAT Instance로 교체"
       },
       {
         "key": "C",
-        "ko": "모든 트래픽을 퍼블릭 서브넷으로 이동"
+        "ko": "모든 인스턴스를 퍼블릭 서브넷으로 이동하고 공인 IP를 할당해 직접 통신"
       },
       {
         "key": "D",
-        "ko": "VPC Endpoint(Gateway type for S3, DynamoDB)로 인터넷 게이트웨이 우회"
+        "ko": "S3·DynamoDB용 Gateway VPC endpoint를 라우팅 테이블에 추가"
       }
     ],
     "answer": [
       "D"
     ],
     "explanation": {
-      "ko": "AWS 서비스(S3, DynamoDB)로의 트래픽은 VPC Endpoint(D)로 라우팅하여 NAT Gateway 비용을 제거합니다. 추가 NAT Gateway(A)는 비용 증가이고, NAT Instance(B)는 관리 오버헤드가 크며, 퍼블릭 이동(C)은 보안 위험입니다."
+      "ko": "S3와 DynamoDB로 가는 트래픽은 Gateway VPC endpoint(D)로 보내면 NAT Gateway를 거치지 않고, Gateway endpoint 자체는 시간당·데이터 처리 요금이 없어 NAT 처리 요금을 제거합니다. 추가 NAT Gateway(A)는 시간당 요금만 늘고, NAT Instance(B)는 관리 오버헤드가 크며, 퍼블릭 이동(C)은 보안 위험이 큽니다."
     }
   },
   {
@@ -864,15 +864,15 @@
       },
       {
         "key": "B",
-        "ko": "AWS Global Accelerator로 경로 최적화"
+        "ko": "AWS Global Accelerator로 인터넷 경로 최적화"
       },
       {
         "key": "C",
-        "ko": "모든 데이터를 단일 리전에 저장"
+        "ko": "모든 처리 결과를 단일 리전에 저장하도록 구조 변경"
       },
       {
         "key": "D",
-        "ko": "온프레미스 네트워크만 사용하여 AWS 우회"
+        "ko": "온프레미스 네트워크만 사용하여 AWS를 우회하도록 구성"
       }
     ],
     "answer": [
@@ -886,12 +886,12 @@
     "id": 29,
     "multi": true,
     "question": {
-      "ko": "네트워크 비용을 절감하기 위해 고려해야 할 올바른 전략은 무엇입니까? (2개 선택)"
+      "ko": "조직이 AWS 데이터 전송 및 네트워크 비용을 줄이려고 합니다. 인터넷으로 서비스되는 콘텐츠와 프라이빗 서브넷의 AWS 서비스 호출 비용이 큰 부분을 차지합니다. 비용 절감에 효과적인 전략은 무엇입니까? (2개 선택)"
     },
     "choices": [
       {
         "key": "A",
-        "ko": "AWS Transit Gateway로 VPC 간 라우팅 중앙화하여 VPC Peering 개수 감소"
+        "ko": "CloudFront를 앞단에 두어 캐싱으로 오리진의 인터넷 전송량을 줄임"
       },
       {
         "key": "B",
@@ -915,38 +915,38 @@
       "D"
     ],
     "explanation": {
-      "ko": "Transit Gateway(A)로 VPC 연결을 중앙화해 관리를 단순화하고, VPC Endpoint(D)로 AWS 서비스 트래픽을 인터넷·NAT 경유 없이 처리해 비용을 절감합니다. 단일 AZ(B)는 고가용성을 잃고, 인터넷 게이트웨이(C)는 프라이빗 서브넷 구조에 맞지 않으며, Elastic IP(E)는 전송 비용을 줄이지 못하고 퍼블릭 IPv4 주소 요금만 추가됩니다."
+      "ko": "CloudFront(A)는 캐싱으로 오리진에서 인터넷으로 나가는 전송량을 줄이고 오리진→CloudFront 전송은 무료입니다. VPC Endpoint(D)는 AWS 서비스 트래픽이 NAT를 거치지 않게 해 처리 요금을 줄입니다. 단일 AZ(B)는 가용성을 잃고, 인터넷 게이트웨이(C)는 프라이빗 서브넷 구조에 맞지 않으며, Elastic IP(E)는 전송 비용을 줄이지 못하고 퍼블릭 IPv4 주소 요금만 추가됩니다."
     }
   },
   {
     "id": 30,
     "multi": false,
     "question": {
-      "ko": "회사가 AWS 비용을 추적하고 관리하려고 합니다. 부서별 비용 배분, 월별 예산 모니터링, 비용 이상 감지가 필요합니다. 어떤 도구 조합을 권장합니까?"
+      "ko": "회사가 AWS 비용을 추적하고 관리하려고 합니다. 부서별 비용 배분, 월별 예산 모니터링, 머신러닝 기반의 비용 이상 감지가 모두 필요합니다. 어떤 도구 조합을 권장합니까?"
     },
     "choices": [
       {
         "key": "A",
-        "ko": "AWS Cost Explorer와 AWS Budgets"
+        "ko": "Cost Allocation Tags, AWS Budgets, Cost Anomaly Detection 조합"
       },
       {
         "key": "B",
-        "ko": "AWS Trusted Advisor만 사용"
+        "ko": "AWS Trusted Advisor의 비용 최적화 검사 결과만 정기적으로 확인"
       },
       {
         "key": "C",
-        "ko": "월별 AWS 청구서 수동 분석"
+        "ko": "매월 AWS 청구서 PDF를 내려받아 재무팀이 수동으로 분석"
       },
       {
         "key": "D",
-        "ko": "AWS Config로 비용 추적"
+        "ko": "AWS Config 규칙으로 리소스별 비용을 추적하고 알림 발송"
       }
     ],
     "answer": [
       "A"
     ],
     "explanation": {
-      "ko": "Cost Explorer(A)는 비용 분석과 부서별 배분(cost allocation tag)을, Budgets는 예산 모니터링과 알림을 제공합니다. Trusted Advisor(B)는 권장사항 도구이고, 수동 분석(C)은 비효율적이며, Config(D)는 비용이 아닌 규정 준수 도구입니다."
+      "ko": "Cost Allocation Tags로 부서별 비용을 배분하고(Cost Explorer에서 태그별 조회), Budgets로 예산 알림을, Cost Anomaly Detection으로 ML 기반 이상 지출 감지를 구성합니다(A). Trusted Advisor(B)는 권장사항 도구이고, 수동 분석(C)은 비효율적이며, Config(D)는 구성 준수 도구입니다."
     }
   },
   {
@@ -958,11 +958,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "AWS Cost Explorer에서 매월 수동으로 CSV 다운로드"
+        "ko": "AWS Cost Explorer에서 매월 수동으로 CSV를 내려받아 BI 도구에 업로드"
       },
       {
         "key": "B",
-        "ko": "AWS Budgets 리포트 이메일 구독"
+        "ko": "AWS Budgets 리포트를 이메일로 구독해 BI 도구에 입력"
       },
       {
         "key": "C",
@@ -970,7 +970,7 @@
       },
       {
         "key": "D",
-        "ko": "월별 청구서 PDF를 수동으로 파싱"
+        "ko": "월별 청구서 PDF를 직접 내려받아 수동으로 파싱"
       }
     ],
     "answer": [
@@ -993,15 +993,15 @@
       },
       {
         "key": "B",
-        "ko": "AWS Budgets (예산 대비 실제 비용 모니터링)"
+        "ko": "AWS Budgets (예산 대비 실제 비용 모니터링과 임계값 알림)"
       },
       {
         "key": "C",
-        "ko": "AWS Trusted Advisor (비용 최적화 권장사항)"
+        "ko": "AWS Trusted Advisor (현재 시점의 비용 최적화 권장사항)"
       },
       {
         "key": "D",
-        "ko": "AWS Systems Manager (인스턴스 관리)"
+        "ko": "AWS Systems Manager (인스턴스 패치 및 구성 관리)"
       }
     ],
     "answer": [
@@ -1561,11 +1561,11 @@
       },
       {
         "key": "B",
-        "ko": "EFS Lifecycle management로 미접근 파일을 IA 클래스로 이동하도록 설정한다"
+        "ko": "EFS Lifecycle management로 미접근 파일을 IA 클래스로 이동한다"
       },
       {
         "key": "C",
-        "ko": "EBS gp3 볼륨에 NFS 서버를 직접 구성해 EC2로 공유한다"
+        "ko": "EBS gp3 볼륨에 NFS 서버를 직접 구성해 EC2로 파일을 공유한다"
       },
       {
         "key": "D",
@@ -1655,19 +1655,19 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Object Lock compliance mode 10년 보존 설정 후 S3 Glacier Deep Archive에 저장한다"
+        "ko": "Object Lock compliance mode로 10년 보존을 설정하고 S3 Glacier Deep Archive에 저장한다"
       },
       {
         "key": "B",
-        "ko": "S3 Standard에 저장하고 버킷 정책으로 s3:DeleteObject를 deny한다"
+        "ko": "S3 Standard에 저장하고 버킷 정책으로 s3:DeleteObject를 Deny하도록 설정해 삭제를 막는다"
       },
       {
         "key": "C",
-        "ko": "S3 Glacier Instant Retrieval에 저장하고 MFA Delete만 활성화한다"
+        "ko": "S3 Glacier Instant Retrieval에 저장하고 MFA Delete를 활성화해 삭제를 막고 접근을 통제한다"
       },
       {
         "key": "D",
-        "ko": "S3 Glacier Flexible Retrieval에 저장하고 객체에 legal hold만 적용한다"
+        "ko": "S3 Glacier Flexible Retrieval에 저장하고 모든 객체에 legal hold를 적용해 삭제를 막는다"
       }
     ],
     "answer": [
@@ -1686,7 +1686,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "모든 인스턴스를 단일 인스턴스 유형의 Spot으로만 구성한다"
+        "ko": "모든 인스턴스를 단일 인스턴스 유형의 Spot으로만 구성하고 중단 시 재시작한다"
       },
       {
         "key": "B",
@@ -1717,7 +1717,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Spot 대신 On-Demand 인스턴스로 전체 작업을 이전한다"
+        "ko": "Spot 대신 On-Demand 인스턴스로 6시간 렌더링 작업 전체를 이전한다"
       },
       {
         "key": "B",
@@ -1729,7 +1729,7 @@
       },
       {
         "key": "D",
-        "ko": "중단 알림을 EventBridge로 받아 S3에 체크포인트를 저장하고 재시작 시 이어서 처리한다"
+        "ko": "EventBridge로 중단 알림을 받아 S3에 체크포인트 저장 후 재시작 시 이어서 처리한다"
       }
     ],
     "answer": [
@@ -1881,7 +1881,7 @@
       },
       {
         "key": "B",
-        "ko": "Compute Optimizer의 Lambda 메모리 권장을 참고해 조정 후 비용을 비교한다"
+        "ko": "Compute Optimizer의 Lambda 메모리 권장을 참고해 조정하고 비용을 비교한다"
       },
       {
         "key": "C",
@@ -1939,11 +1939,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "scheduled scaling으로 07:45에 미리 증설하고 이후 축소하며 target tracking은 유지한다"
+        "ko": "scheduled scaling으로 07:45에 미리 증설 후 축소, target tracking 유지"
       },
       {
         "key": "B",
-        "ko": "피크 용량만큼 3년 Standard Reserved Instances를 구매하고 최소 용량을 고정한다"
+        "ko": "피크 용량만큼 3년 Standard Reserved Instances를 구매하고 최소 용량을 고정해 둔다"
       },
       {
         "key": "C",
@@ -1951,7 +1951,7 @@
       },
       {
         "key": "D",
-        "ko": "모든 인스턴스를 Spot으로 변경하고 최소 용량을 0으로 설정한다"
+        "ko": "모든 인스턴스를 Spot으로 변경하고 최소 용량을 0으로 설정해 비용을 줄인다"
       }
     ],
     "answer": [
@@ -2001,15 +2001,15 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Provisioned 모드와 Auto Scaling, reserved capacity로 전환한다"
+        "ko": "Provisioned 모드와 Auto Scaling, reserved capacity로 전환"
       },
       {
         "key": "B",
-        "ko": "테이블에 Global Tables 복제를 추가해 읽기 요청을 분산한다"
+        "ko": "테이블에 Global Tables 복제본을 추가해 읽기 요청을 다른 리전으로 분산한다"
       },
       {
         "key": "C",
-        "ko": "테이블 클래스를 Standard-IA로 변경해 요청 단가를 낮춘다"
+        "ko": "테이블 클래스를 Standard-IA로 변경해 읽기·쓰기 요청 단가를 낮춘다"
       },
       {
         "key": "D",
@@ -2325,7 +2325,7 @@
       },
       {
         "key": "B",
-        "ko": "버킷에 Requester Pays를 활성화하고 파트너가 requester-pays 헤더를 지정하게 한다"
+        "ko": "버킷에 Requester Pays를 활성화하고 요청 시 헤더를 지정하게 한다"
       },
       {
         "key": "C",
@@ -2371,7 +2371,7 @@
       "D"
     ],
     "explanation": {
-      "ko": "VPC peering은 시간당 연결 요금이 없고 GB당 처리 요금도 없어 대용량 단순 연결에 가장 저렴합니다(D). A은 attachment 시간당 요금과 GB당 처리 요금이 있고, B는 퍼블릭 IP 전송 요금이 발생하며, C은 엔드포인트 시간당 요금과 GB 처리 요금이 있습니다."
+      "ko": "VPC peering은 시간당 연결 요금과 GB당 처리 요금이 없고 AZ 간·리전 간 데이터 전송 요금만 부과되어 대용량 단순 연결에 가장 저렴합니다(D). Transit Gateway(A)는 attachment 시간당 요금과 GB당 처리 요금이 있고, 인터넷 경유(B)는 퍼블릭 IP 전송 요금이 발생하며, PrivateLink(C)는 엔드포인트 시간당 요금과 GB 처리 요금이 있습니다."
     }
   },
   {
@@ -2383,7 +2383,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Trusted Advisor 비용 최적화 점수를 확인한다"
+        "ko": "Trusted Advisor의 비용 최적화 점수와 권장 사항 목록을 확인한다"
       },
       {
         "key": "B",
@@ -2391,11 +2391,11 @@
       },
       {
         "key": "C",
-        "ko": "AWS Config 규칙으로 약정 준수 상태를 평가한다"
+        "ko": "AWS Config 규칙으로 약정 구매 및 준수 상태를 평가한다"
       },
       {
         "key": "D",
-        "ko": "Cost Explorer의 Savings Plans 활용률·적용 범위 보고서를 확인한다"
+        "ko": "Cost Explorer의 Savings Plans 활용률·적용 범위 보고서 확인"
       }
     ],
     "answer": [
@@ -2512,7 +2512,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "노드 그룹의 인스턴스 크기를 모두 최대 크기로 고정해 파드 배치를 단순화한다"
+        "ko": "노드 그룹의 인스턴스를 모두 최대 크기로 고정해 파드 배치를 단순화한다"
       },
       {
         "key": "B",
@@ -2524,7 +2524,7 @@
       },
       {
         "key": "D",
-        "ko": "각 파드 앞에 NLB를 추가해 노드 사용률을 높인다"
+        "ko": "각 파드마다 Network Load Balancer를 추가해 노드 사용률을 높인다"
       }
     ],
     "answer": [
