@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import indexHtml from '../index.html?raw';
 import { parseQuestion } from '../src/exam';
 import type { ExamKey } from '../src/types';
 import secure from '../public/data/secure.json';
@@ -8,15 +9,22 @@ import cost from '../public/data/cost.json';
 
 // Exact per-bank counts, kept in sync with the shipped data files.
 const BANKS: Record<ExamKey, { count: number; rows: unknown[] }> = {
-  secure: { count: 120, rows: secure },
-  resilient: { count: 104, rows: resilient },
-  performant: { count: 96, rows: performant },
-  cost: { count: 80, rows: cost },
+  secure: { count: 180, rows: secure },
+  resilient: { count: 156, rows: resilient },
+  performant: { count: 144, rows: performant },
+  cost: { count: 120, rows: cost },
 };
 
 describe.each(Object.entries(BANKS))('%s question bank', (_key, bank) => {
   it('ships the expected number of questions', () => {
     expect(bank.rows.length).toBe(bank.count);
+  });
+
+  it('matches the question count shown on the home screen', () => {
+    const label = new RegExp(
+      `data-value="${_key}"[\\s\\S]*?(\\d+)\\s*문제`,
+    ).exec(indexHtml);
+    expect(Number(label?.[1])).toBe(bank.count);
   });
 
   it('parses cleanly and satisfies referential invariants', () => {
