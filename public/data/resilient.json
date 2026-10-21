@@ -8,11 +8,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "프런트엔드가 백엔드를 직접 동기 호출한다"
+        "ko": "Amazon SQS 큐를 두어 요청을 버퍼링하고 백엔드가 큐에서 메시지를 가져와 처리한다"
       },
       {
         "key": "B",
-        "ko": "Amazon SQS 큐를 두어 요청을 버퍼링하고 백엔드가 큐에서 메시지를 가져와 처리한다"
+        "ko": "프런트엔드가 백엔드를 직접 동기 호출한다"
       },
       {
         "key": "C",
@@ -24,10 +24,10 @@
       }
     ],
     "answer": [
-      "B"
+      "A"
     ],
     "explanation": {
-      "ko": "Amazon SQS 큐가 요청을 버퍼로 흡수하고 백엔드는 자신의 속도로 메시지를 소비하므로 트래픽 급증에도 독립적으로 확장·복원됩니다. 직접 호출(A)은 강결합이고, 수직 확장(C)은 한계와 단일 장애점이 있으며 로컬 파일(D)은 확장성·내구성·신뢰성이 없습니다."
+      "ko": "Amazon SQS 큐가 요청을 버퍼로 흡수하고 백엔드는 자신의 속도로 메시지를 소비하므로 트래픽 급증에도 독립적으로 확장·복원됩니다. 직접 호출(B)은 강결합이고, 수직 확장(C)은 한계와 단일 장애점이 있으며 로컬 파일(D)은 확장성·내구성·신뢰성이 없습니다."
     }
   },
   {
@@ -39,11 +39,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Amazon SQS Standard 큐로 발행자가 모든 메시지를 보낸다"
+        "ko": "Amazon SNS 주제에 발행자가 이벤트를 발행하고 각 구독자는 구독한다"
       },
       {
         "key": "B",
-        "ko": "Amazon SNS 주제에 발행자가 이벤트를 발행하고 각 구독자는 구독한다"
+        "ko": "Amazon SQS Standard 큐로 발행자가 모든 메시지를 보낸다"
       },
       {
         "key": "C",
@@ -55,10 +55,10 @@
       }
     ],
     "answer": [
-      "B"
+      "A"
     ],
     "explanation": {
-      "ko": "Amazon SNS의 pub/sub 모델은 발행자가 여러 구독자에게 자동으로 이벤트를 팬아웃하며, 발행자는 구독자를 알 필요가 없습니다. SQS(A)는 일대일 또는 순차 처리용이고, Kinesis(C)는 스트림 분석/순서 보장용이며, DynamoDB(D)는 폴링 방식으로 느리고 확장성이 떨어집니다."
+      "ko": "Amazon SNS의 pub/sub 모델은 발행자가 여러 구독자에게 자동으로 이벤트를 팬아웃하며, 발행자는 구독자를 알 필요가 없습니다. SQS(B)는 일대일 또는 순차 처리용이고, Kinesis(C)는 스트림 분석/순서 보장용이며, DynamoDB(D)는 폴링 방식으로 느리고 확장성이 떨어집니다."
     }
   },
   {
@@ -74,11 +74,11 @@
       },
       {
         "key": "B",
-        "ko": "AWS Lambda와 API Gateway를 사용하여 자동으로 확장하도록 한다"
+        "ko": "온프레미스 데이터센터에 추가 서버를 배포한다"
       },
       {
         "key": "C",
-        "ko": "온프레미스 데이터센터에 추가 서버를 배포한다"
+        "ko": "AWS Lambda와 API Gateway를 사용하여 자동으로 확장하도록 한다"
       },
       {
         "key": "D",
@@ -86,10 +86,10 @@
       }
     ],
     "answer": [
-      "B"
+      "C"
     ],
     "explanation": {
-      "ko": "AWS Lambda와 API Gateway는 완전 관리형 서비스로 자동으로 트래픽 변화에 대응하므로, 필요한 만큼만 비용을 지불합니다. 고정 EC2(A)는 낭비이고, 온프레미스(C)는 유연성이 없으며, 요청 제한(D)은 비즈니스 손실입니다."
+      "ko": "AWS Lambda와 API Gateway는 완전 관리형 서비스로 자동으로 트래픽 변화에 대응하므로, 필요한 만큼만 비용을 지불합니다. 고정 EC2(A)는 낭비이고, 온프레미스(B)는 유연성이 없으며, 요청 제한(D)은 비즈니스 손실입니다."
     }
   },
   {
@@ -141,11 +141,11 @@
       },
       {
         "key": "B",
-        "ko": "Amazon SNS"
+        "ko": "Amazon Kinesis Data Streams"
       },
       {
         "key": "C",
-        "ko": "Amazon Kinesis Data Streams"
+        "ko": "Amazon SNS"
       },
       {
         "key": "D",
@@ -153,10 +153,10 @@
       }
     ],
     "answer": [
-      "C"
+      "B"
     ],
     "explanation": {
-      "ko": "Amazon Kinesis Data Streams는 순서 보장(파티션 키 기반), 높은 처리량, 리플레이/재처리 기능을 모두 제공합니다. SQS Standard(A)는 순서를 보장하지 않고(FIFO는 느림), SNS(B)는 pub/sub용이며, EventBridge(D)는 규칙 기반 라우팅용입니다."
+      "ko": "Amazon Kinesis Data Streams는 순서 보장(파티션 키 기반), 높은 처리량, 리플레이/재처리 기능을 모두 제공합니다. SQS Standard(A)는 순서를 보장하지 않고(FIFO는 느림), SNS(C)는 pub/sub용이며, EventBridge(D)는 규칙 기반 라우팅용입니다."
     }
   },
   {
@@ -172,22 +172,22 @@
       },
       {
         "key": "B",
-        "ko": "Amazon SQS FIFO"
-      },
-      {
-        "key": "C",
         "ko": "Amazon SNS"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "Amazon EventBridge with Standard bus"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon SQS FIFO"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "Amazon SQS FIFO는 FIFO(선입선출) 순서와 정확히 한 번 처리(중복 제거)를 보장합니다. SQS Standard(A)는 순서를 보장하지 않고, SNS(C)와 EventBridge Standard(D)도 순서 보장이 없습니다."
+      "ko": "Amazon SQS FIFO는 FIFO(선입선출) 순서와 정확히 한 번 처리(중복 제거)를 보장합니다. SQS Standard(A)는 순서를 보장하지 않고, SNS(B)와 EventBridge Standard(C)도 순서 보장이 없습니다."
     }
   },
   {
@@ -199,11 +199,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "모든 레이어를 동일한 EC2 인스턴스에 배치한다"
+        "ko": "레이어 간 통신을 느슨하게 결합하고 각 레이어의 상태를 stateless로 유지한다"
       },
       {
         "key": "B",
-        "ko": "레이어 간 통신을 느슨하게 결합하고 각 레이어의 상태를 stateless로 유지한다"
+        "ko": "모든 레이어를 동일한 EC2 인스턴스에 배치한다"
       },
       {
         "key": "C",
@@ -215,10 +215,10 @@
       }
     ],
     "answer": [
-      "B"
+      "A"
     ],
     "explanation": {
-      "ko": "Stateless 설계와 느슨한 결합은 각 레이어가 필요에 따라 독립적으로 수평 확장할 수 있게 합니다. 같은 인스턴스(A)는 확장성을 제한하고, 저장 프로시저 집중(C)은 데이터베이스의 부하를 증가시키며, 프런트엔드만 확장(D)은 병목을 해결하지 못합니다."
+      "ko": "Stateless 설계와 느슨한 결합은 각 레이어가 필요에 따라 독립적으로 수평 확장할 수 있게 합니다. 같은 인스턴스(B)는 확장성을 제한하고, 저장 프로시저 집중(C)은 데이터베이스의 부하를 증가시키며, 프런트엔드만 확장(D)은 병목을 해결하지 못합니다."
     }
   },
   {
@@ -234,22 +234,22 @@
       },
       {
         "key": "B",
-        "ko": "AWS CloudFront 콘텐츠 전송 네트워크를 사용한다"
-      },
-      {
-        "key": "C",
         "ko": "단일 리전의 EC2 인스턴스에서 서빙한다"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "Amazon DynamoDB에 모든 콘텐츠를 저장한다"
+      },
+      {
+        "key": "D",
+        "ko": "AWS CloudFront 콘텐츠 전송 네트워크를 사용한다"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "AWS CloudFront는 엣지 로케이션의 캐시를 통해 전 세계 사용자에게 최저 지연시간으로 콘텐츠를 전달합니다. S3 직접 서빙(A)은 지연시간이 높고, 단일 리전 EC2(C)는 지역별 지연이 크며, DynamoDB(D)는 정적 콘텐츠용이 아닙니다."
+      "ko": "AWS CloudFront는 엣지 로케이션의 캐시를 통해 전 세계 사용자에게 최저 지연시간으로 콘텐츠를 전달합니다. S3 직접 서빙(A)은 지연시간이 높고, 단일 리전 EC2(B)는 지역별 지연이 크며, DynamoDB(C)는 정적 콘텐츠용이 아닙니다."
     }
   },
   {
@@ -332,11 +332,11 @@
       },
       {
         "key": "B",
-        "ko": "Amazon ECS with Fargate 실행 환경을 사용한다"
+        "ko": "Amazon EKS를 처음부터 설정하고 운영한다"
       },
       {
         "key": "C",
-        "ko": "Amazon EKS를 처음부터 설정하고 운영한다"
+        "ko": "Amazon ECS with Fargate 실행 환경을 사용한다"
       },
       {
         "key": "D",
@@ -344,10 +344,10 @@
       }
     ],
     "answer": [
-      "B"
+      "C"
     ],
     "explanation": {
-      "ko": "Amazon ECS with Fargate는 AWS 관리형 완전 서비스로 서버 관리가 필요 없고, 기본 오케스트레이션과 확장을 제공합니다. EC2 수동 관리(A)는 운영 부담이 크고, EKS(C)는 학습 곡선이 크며 오버스펙이고, Lambda(D)는 장시간 실행 작업에 부적합합니다."
+      "ko": "Amazon ECS with Fargate는 AWS 관리형 완전 서비스로 서버 관리가 필요 없고, 기본 오케스트레이션과 확장을 제공합니다. EC2 수동 관리(A)는 운영 부담이 크고, EKS(B)는 학습 곡선이 크며 오버스펙이고, Lambda(D)는 장시간 실행 작업에 부적합합니다."
     }
   },
   {
@@ -359,11 +359,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Amazon EC2 보안 그룹만 사용한다"
+        "ko": "Amazon API Gateway에서 throttling, 인증, CORS를 설정한다"
       },
       {
         "key": "B",
-        "ko": "Amazon API Gateway에서 throttling, 인증, CORS를 설정한다"
+        "ko": "Amazon EC2 보안 그룹만 사용한다"
       },
       {
         "key": "C",
@@ -375,10 +375,10 @@
       }
     ],
     "answer": [
-      "B"
+      "A"
     ],
     "explanation": {
-      "ko": "Amazon API Gateway는 스로틀링(rate limiting), 인증(API 키/OAuth), 요청 검증, CORS 설정을 통해 API를 효과적으로 보호합니다. 보안 그룹(A)은 네트워크 수준일 뿐이고, 로깅(C)은 보호가 아니며, 하드코딩(D)은 보안 위협입니다."
+      "ko": "Amazon API Gateway는 스로틀링(rate limiting), 인증(API 키/OAuth), 요청 검증, CORS 설정을 통해 API를 효과적으로 보호합니다. 보안 그룹(B)은 네트워크 수준일 뿐이고, 로깅(C)은 보호가 아니며, 하드코딩(D)은 보안 위협입니다."
     }
   },
   {
@@ -430,11 +430,11 @@
       },
       {
         "key": "B",
-        "ko": "상태(세션, 사용자 데이터)를 외부 저장소(ElastiCache, DynamoDB, RDS)로 이동하고 애플리케이션을 stateless로 만든다"
+        "ko": "모든 데이터를 로컬 디스크에 저장한다"
       },
       {
         "key": "C",
-        "ko": "모든 데이터를 로컬 디스크에 저장한다"
+        "ko": "상태(세션, 사용자 데이터)를 외부 저장소(ElastiCache, DynamoDB, RDS)로 이동하고 애플리케이션을 stateless로 만든다"
       },
       {
         "key": "D",
@@ -442,10 +442,10 @@
       }
     ],
     "answer": [
-      "B"
+      "C"
     ],
     "explanation": {
-      "ko": "상태를 외부 저장소로 이동하면 애플리케이션을 stateless로 만들 수 있고, 이는 수평 확장(로드 밸런싱)을 가능하게 합니다. 수직 확장(A)은 한계가 있고 단일 장애점이 생기며, 로컬 디스크(C)는 공유가 불가능하고, 수동 복사(D)는 일관성 보장이 없습니다."
+      "ko": "상태를 외부 저장소로 이동하면 애플리케이션을 stateless로 만들 수 있고, 이는 수평 확장(로드 밸런싱)을 가능하게 합니다. 수직 확장(A)은 한계가 있고 단일 장애점이 생기며, 로컬 디스크(B)는 공유가 불가능하고, 수동 복사(D)는 일관성 보장이 없습니다."
     }
   },
   {
@@ -559,11 +559,11 @@
       },
       {
         "key": "B",
-        "ko": "AWS Secrets Manager 또는 AWS Systems Manager Parameter Store에서 환경별 설정을 관리한다"
+        "ko": "모든 설정을 환경 변수로 하드코딩한다"
       },
       {
         "key": "C",
-        "ko": "모든 설정을 환경 변수로 하드코딩한다"
+        "ko": "AWS Secrets Manager 또는 AWS Systems Manager Parameter Store에서 환경별 설정을 관리한다"
       },
       {
         "key": "D",
@@ -571,10 +571,10 @@
       }
     ],
     "answer": [
-      "B"
+      "C"
     ],
     "explanation": {
-      "ko": "AWS Secrets Manager 또는 Parameter Store는 환경별 설정을 중앙에서 안전하게 관리하고 애플리케이션이 필요시 조회할 수 있게 합니다. 별도 코드베이스(A)는 중복이고, 하드코딩(C)은 보안 위험이며, 수동 S3(D)는 오류 가능성이 높습니다."
+      "ko": "AWS Secrets Manager 또는 Parameter Store는 환경별 설정을 중앙에서 안전하게 관리하고 애플리케이션이 필요시 조회할 수 있게 합니다. 별도 코드베이스(A)는 중복이고, 하드코딩(B)은 보안 위험이며, 수동 S3(D)는 오류 가능성이 높습니다."
     }
   },
   {
@@ -590,22 +590,22 @@
       },
       {
         "key": "B",
-        "ko": "Amazon SNS 주제에 이벤트를 발행하고 각 채널을 구독자로 등록한다"
-      },
-      {
-        "key": "C",
         "ko": "모든 알림을 Amazon SQS에 단일 큐로 보낸다"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "수동으로 각 대상 서비스를 순회하며 호출한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon SNS 주제에 이벤트를 발행하고 각 채널을 구독자로 등록한다"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "Amazon SNS의 pub/sub 팬아웃 패턴은 발행자가 SNS 주제에만 발행하고 여러 구독자에게 자동 전달합니다. 직접 호출(A)은 강결합이고 추가 대상 통합이 어렵고, SQS(C)는 순차 처리용이며, 수동 순회(D)는 확장성이 없습니다."
+      "ko": "Amazon SNS의 pub/sub 팬아웃 패턴은 발행자가 SNS 주제에만 발행하고 여러 구독자에게 자동 전달합니다. 직접 호출(A)은 강결합이고 추가 대상 통합이 어렵고, SQS(B)는 순차 처리용이며, 수동 순회(C)는 확장성이 없습니다."
     }
   },
   {
@@ -621,11 +621,11 @@
       },
       {
         "key": "B",
-        "ko": "복잡한 규칙 기반 이벤트 라우팅과 AWS 서비스 통합이 필요할 때"
+        "ko": "FIFO 순서 보장이 중요할 때"
       },
       {
         "key": "C",
-        "ko": "FIFO 순서 보장이 중요할 때"
+        "ko": "복잡한 규칙 기반 이벤트 라우팅과 AWS 서비스 통합이 필요할 때"
       },
       {
         "key": "D",
@@ -633,10 +633,10 @@
       }
     ],
     "answer": [
-      "B"
+      "C"
     ],
     "explanation": {
-      "ko": "Amazon EventBridge는 규칙 기반 이벤트 필터링, AWS 서비스 간 통합, 복잡한 라우팅에 최적화되어 있습니다. FIFO와 정확히 한 번 처리(A, C)는 SQS FIFO의 강점이고, 타임아웃 제어(D)는 SQS의 세부 기능입니다."
+      "ko": "Amazon EventBridge는 규칙 기반 이벤트 필터링, AWS 서비스 간 통합, 복잡한 라우팅에 최적화되어 있습니다. FIFO와 정확히 한 번 처리(A, B)는 SQS FIFO의 강점이고, 타임아웃 제어(D)는 SQS의 세부 기능입니다."
     }
   },
   {
@@ -648,11 +648,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "단순히 백업 용량을 계획하기 위해"
+        "ko": "비즈니스 요구사항에 맞는 재해 복구 전략(백업 빈도, 복제, 장애 조치)을 선택하기 위해"
       },
       {
         "key": "B",
-        "ko": "비즈니스 요구사항에 맞는 재해 복구 전략(백업 빈도, 복제, 장애 조치)을 선택하기 위해"
+        "ko": "단순히 백업 용량을 계획하기 위해"
       },
       {
         "key": "C",
@@ -664,10 +664,10 @@
       }
     ],
     "answer": [
-      "B"
+      "A"
     ],
     "explanation": {
-      "ko": "RPO(최대 허용 데이터 손실 시간)와 RTO(최대 허용 복구 시간)는 비즈니스 요구사항에 맞는 재해 복구 전략을 결정합니다. 예를 들어 RPO가 1시간이면 최소 1시간마다 백업해야 하고, RTO가 30분이면 30분 내에 복구 가능한 구조가 필요합니다. 백업 용량(A), 쿼리 성능(C), 인스턴스 타입(D)은 직접 관련이 없습니다."
+      "ko": "RPO(최대 허용 데이터 손실 시간)와 RTO(최대 허용 복구 시간)는 비즈니스 요구사항에 맞는 재해 복구 전략을 결정합니다. 예를 들어 RPO가 1시간이면 최소 1시간마다 백업해야 하고, RTO가 30분이면 30분 내에 복구 가능한 구조가 필요합니다. 백업 용량(B), 쿼리 성능(C), 인스턴스 타입(D)은 직접 관련이 없습니다."
     }
   },
   {
@@ -679,26 +679,26 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Backup and Restore (정기 백업 복원)"
+        "ko": "Active-Active Multi-Region (두 리전 동시 운영)"
       },
       {
         "key": "B",
-        "ko": "Pilot Light (최소한의 스탠바이 구성)"
+        "ko": "Backup and Restore (정기 백업 복원)"
       },
       {
         "key": "C",
-        "ko": "Warm Standby (준비된 예비 환경)"
+        "ko": "Pilot Light (최소한의 스탠바이 구성)"
       },
       {
         "key": "D",
-        "ko": "Active-Active Multi-Region (두 리전 동시 운영)"
+        "ko": "Warm Standby (준비된 예비 환경)"
       }
     ],
     "answer": [
-      "D"
+      "A"
     ],
     "explanation": {
-      "ko": "Active-Active Multi-Region은 두 리전이 동시에 트래픽을 처리하므로 장애 시 즉시 전환되어 가장 빠른 복구(RTO ~ 0)가 가능합니다. Backup and Restore(A)는 RTO가 가장 길고, Pilot Light(B)와 Warm Standby(C)는 중간 수준의 RTO를 제공합니다."
+      "ko": "Active-Active Multi-Region은 두 리전이 동시에 트래픽을 처리하므로 장애 시 즉시 전환되어 가장 빠른 복구(RTO ~ 0)가 가능합니다. Backup and Restore(B)는 RTO가 가장 길고, Pilot Light(C)와 Warm Standby(D)는 중간 수준의 RTO를 제공합니다."
     }
   },
   {
@@ -746,15 +746,15 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Multi-AZ는 고가용성을 위해 동기식 스탠바이를 유지하고, read replica는 읽기 확장을 위해 비동기식 복제본이다"
-      },
-      {
-        "key": "B",
         "ko": "Multi-AZ는 읽기 확장용이고 read replica는 고가용성용이다"
       },
       {
-        "key": "C",
+        "key": "B",
         "ko": "둘 다 동일한 목적이고 상호 교환 가능하다"
+      },
+      {
+        "key": "C",
+        "ko": "Multi-AZ는 고가용성을 위해 동기식 스탠바이를 유지하고, read replica는 읽기 확장을 위해 비동기식 복제본이다"
       },
       {
         "key": "D",
@@ -762,10 +762,10 @@
       }
     ],
     "answer": [
-      "A"
+      "C"
     ],
     "explanation": {
-      "ko": "Multi-AZ(인스턴스 배포)는 동기식 복제로 고가용성과 자동 failover를 제공하고, read replica는 비동기 복제로 읽기 확장에 쓰입니다. B는 역할이 반대이고, C는 목적이 달라 교환할 수 없으며, D는 복제 방식이 반대입니다."
+      "ko": "Multi-AZ(인스턴스 배포)는 동기식 복제로 고가용성과 자동 failover를 제공하고, read replica는 비동기 복제로 읽기 확장에 쓰입니다. A는 역할이 반대이고, B는 목적이 달라 교환할 수 없으며, D는 복제 방식이 반대입니다."
     }
   },
   {
@@ -777,11 +777,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Amazon Route 53의 failover 라우팅 정책"
+        "ko": "Amazon S3 cross-region replication"
       },
       {
         "key": "B",
-        "ko": "Amazon S3 cross-region replication"
+        "ko": "Amazon Route 53의 failover 라우팅 정책"
       },
       {
         "key": "C",
@@ -793,10 +793,10 @@
       }
     ],
     "answer": [
-      "A"
+      "B"
     ],
     "explanation": {
-      "ko": "Amazon Route 53의 failover 라우팅 정책은 헬스 체크를 통해 주 리전 장애를 감지하고 자동으로 트래픽을 보조 리전으로 전환합니다. S3 cross-region replication(B)은 데이터 복제용이고, AWS Backup(C)은 복원용이며, CloudWatch(D)는 모니터링용입니다."
+      "ko": "Amazon Route 53의 failover 라우팅 정책은 헬스 체크를 통해 주 리전 장애를 감지하고 자동으로 트래픽을 보조 리전으로 전환합니다. S3 cross-region replication(A)은 데이터 복제용이고, AWS Backup(C)은 복원용이며, CloudWatch(D)는 모니터링용입니다."
     }
   },
   {
@@ -812,22 +812,22 @@
       },
       {
         "key": "B",
-        "ko": "엔드포인트의 건강 상태를 주기적으로 확인하고, 장애 엔드포인트로의 트래픽 라우팅을 방지한다"
-      },
-      {
-        "key": "C",
         "ko": "데이터베이스 쿼리 성능 모니터링"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "DNS 레코드 암호화"
+      },
+      {
+        "key": "D",
+        "ko": "엔드포인트의 건강 상태를 주기적으로 확인하고, 장애 엔드포인트로의 트래픽 라우팅을 방지한다"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "Amazon Route 53 헬스 체크는 엔드포인트(HTTP, TCP, CloudWatch 메트릭)를 주기적으로 모니터링하여 장애 엔드포인트를 탐지하고, failover 또는 weighted 라우팅에서 건강한 엔드포인트만 선택합니다. 비용 최적화(A), 데이터베이스 성능(C), DNS 암호화(D)는 다른 기능입니다."
+      "ko": "Amazon Route 53 헬스 체크는 엔드포인트(HTTP, TCP, CloudWatch 메트릭)를 주기적으로 모니터링하여 장애 엔드포인트를 탐지하고, failover 또는 weighted 라우팅에서 건강한 엔드포인트만 선택합니다. 비용 최적화(A), 데이터베이스 성능(B), DNS 암호화(C)는 다른 기능입니다."
     }
   },
   {
@@ -875,11 +875,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "정기 백업만으로는 그 사이 손상된 데이터를 복구할 수 없기 때문"
+        "ko": "백업 스토리지 비용을 절감하기 위해"
       },
       {
         "key": "B",
-        "ko": "백업 스토리지 비용을 절감하기 위해"
+        "ko": "정기 백업만으로는 그 사이 손상된 데이터를 복구할 수 없기 때문"
       },
       {
         "key": "C",
@@ -891,10 +891,10 @@
       }
     ],
     "answer": [
-      "A"
+      "B"
     ],
     "explanation": {
-      "ko": "PITR은 정기 백업 사이의 데이터 손상(예: 실수로 삭제)을 특정 시점으로 복구합니다. 정기 백업만으로는 복구 불가능하던 상황을 해결합니다. 비용 절감(B), 쿼리 성능(C), 인증(D)은 무관합니다."
+      "ko": "PITR은 정기 백업 사이의 데이터 손상(예: 실수로 삭제)을 특정 시점으로 복구합니다. 정기 백업만으로는 복구 불가능하던 상황을 해결합니다. 비용 절감(A), 쿼리 성능(C), 인증(D)은 무관합니다."
     }
   },
   {
@@ -910,11 +910,11 @@
       },
       {
         "key": "B",
-        "ko": "Read replica를 다른 AZ나 다른 리전에도 만들 수 있지만, 다른 리전으로 확장할 때 데이터 전송 비용이 발생한다"
+        "ko": "Read replica는 자동으로 모든 리전에 복제된다"
       },
       {
         "key": "C",
-        "ko": "Read replica는 자동으로 모든 리전에 복제된다"
+        "ko": "Read replica를 다른 AZ나 다른 리전에도 만들 수 있지만, 다른 리전으로 확장할 때 데이터 전송 비용이 발생한다"
       },
       {
         "key": "D",
@@ -922,10 +922,10 @@
       }
     ],
     "answer": [
-      "B"
+      "C"
     ],
     "explanation": {
-      "ko": "Read replica는 같은 리전 또는 다른 리전에 만들 수 있지만, cross-region read replica는 데이터 전송 비용이 발생합니다. 규정 준수 요구사항이 있으면 복제 대상 리전을 제한해야 합니다. A는 거짓(다른 AZ 가능), C는 거짓(수동 생성), D는 거짓입니다."
+      "ko": "Read replica는 같은 리전 또는 다른 리전에 만들 수 있지만, cross-region read replica는 데이터 전송 비용이 발생합니다. 규정 준수 요구사항이 있으면 복제 대상 리전을 제한해야 합니다. A는 거짓(다른 AZ 가능), B는 거짓(수동 생성), D는 거짓입니다."
     }
   },
   {
@@ -977,22 +977,22 @@
       },
       {
         "key": "B",
-        "ko": "Amazon API Gateway에서 throttling(율 제한)을 설정하고, 과부하 시 요청을 거부하거나 큐에 담는다"
-      },
-      {
-        "key": "C",
         "ko": "에러를 로깅하고 사용자에게 무시한다"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "데이터베이스 연결을 모두 열어둔다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon API Gateway에서 throttling(율 제한)을 설정하고, 과부하 시 요청을 거부하거나 큐에 담는다"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "API Gateway의 throttling은 초당 요청 수(RPS)를 제한하여 백엔드 과부하를 방지하고, 서킷 브레이커 패턴으로 연쇄 장애를 차단합니다. 무제한 리소스(A)는 비현실적이고, 에러 무시(C)는 문제를 악화시키며, 무제한 연결(D)은 메모리 고갈을 초래합니다."
+      "ko": "API Gateway의 throttling은 초당 요청 수(RPS)를 제한하여 백엔드 과부하를 방지하고, 서킷 브레이커 패턴으로 연쇄 장애를 차단합니다. 무제한 리소스(A)는 비현실적이고, 에러 무시(B)는 문제를 악화시키며, 무제한 연결(C)은 메모리 고갈을 초래합니다."
     }
   },
   {
@@ -1004,11 +1004,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "RPO = 0(데이터 손실 없음), RTO = 0(즉시 복구)"
+        "ko": "RPO = 1시간, RTO = 15분"
       },
       {
         "key": "B",
-        "ko": "RPO = 1시간, RTO = 15분"
+        "ko": "RPO = 0(데이터 손실 없음), RTO = 0(즉시 복구)"
       },
       {
         "key": "C",
@@ -1020,10 +1020,10 @@
       }
     ],
     "answer": [
-      "B"
+      "A"
     ],
     "explanation": {
-      "ko": "RPO = 1시간, RTO = 15분은 대부분의 엔터프라이즈 애플리케이션에 현실적입니다. A(RPO/RTO = 0)는 비용이 매우 높고, C(RPO/RTO = 24시간/4시간)는 허용 불가능할 수 있으며, D는 규정 준수 위반 가능성이 있습니다."
+      "ko": "RPO = 1시간, RTO = 15분은 대부분의 엔터프라이즈 애플리케이션에 현실적입니다. B(RPO/RTO = 0)는 비용이 매우 높고, C(RPO/RTO = 24시간/4시간)는 허용 불가능할 수 있으며, D는 규정 준수 위반 가능성이 있습니다."
     }
   },
   {
@@ -1106,22 +1106,22 @@
       },
       {
         "key": "B",
-        "ko": "AWS PrivateLink를 사용하여 프라이빗한 VPC 간 통신을 구성한다"
-      },
-      {
-        "key": "C",
         "ko": "모든 서비스를 하나의 VPC에 배치한다"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "VPC 피어링 없이 라우팅만 수동으로 설정한다"
+      },
+      {
+        "key": "D",
+        "ko": "AWS PrivateLink를 사용하여 프라이빗한 VPC 간 통신을 구성한다"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "AWS PrivateLink는 VPC 간 안전한 프라이빗 통신을 제공하며, 인터넷 노출 없이 서비스 간 통신을 가능하게 합니다. 공개 인터넷(A)은 보안 위험이고, 단일 VPC(C)는 격리를 손상하며, 수동 라우팅(D)은 관리가 복잡합니다."
+      "ko": "AWS PrivateLink는 VPC 간 안전한 프라이빗 통신을 제공하며, 인터넷 노출 없이 서비스 간 통신을 가능하게 합니다. 공개 인터넷(A)은 보안 위험이고, 단일 VPC(B)는 격리를 손상하며, 수동 라우팅(C)은 관리가 복잡합니다."
     }
   },
   {

@@ -8,10 +8,10 @@ import cost from '../public/data/cost.json';
 
 // Exact per-bank counts, kept in sync with the shipped data files.
 const BANKS: Record<ExamKey, { count: number; rows: unknown[] }> = {
-  secure: { count: 42, rows: secure },
-  resilient: { count: 36, rows: resilient },
-  performant: { count: 44, rows: performant },
-  cost: { count: 32, rows: cost },
+  secure: { count: 120, rows: secure },
+  resilient: { count: 104, rows: resilient },
+  performant: { count: 96, rows: performant },
+  cost: { count: 80, rows: cost },
 };
 
 describe.each(Object.entries(BANKS))('%s question bank', (_key, bank) => {

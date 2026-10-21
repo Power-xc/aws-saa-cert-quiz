@@ -12,11 +12,11 @@
       },
       {
         "key": "B",
-        "ko": "Amazon EFS 파일 시스템을 사용한다"
+        "ko": "인스턴스 store 볼륨을 사용한다"
       },
       {
         "key": "C",
-        "ko": "인스턴스 store 볼륨을 사용한다"
+        "ko": "Amazon EFS 파일 시스템을 사용한다"
       },
       {
         "key": "D",
@@ -24,10 +24,10 @@
       }
     ],
     "answer": [
-      "B"
+      "C"
     ],
     "explanation": {
-      "ko": "Amazon EFS는 NFS 프로토콜로 여러 Linux EC2 인스턴스가 동시에 마운트하고 공유할 수 있으며 자동 확장됩니다. 일반 EBS(A)는 기본적으로 단일 인스턴스 전용이고, instance store(C)는 일시적이며, S3(D)는 블록 파일 시스템이 아닙니다."
+      "ko": "Amazon EFS는 NFS 프로토콜로 여러 Linux EC2 인스턴스가 동시에 마운트하고 공유할 수 있으며 자동 확장됩니다. 일반 EBS(A)는 기본적으로 단일 인스턴스 전용이고, instance store(B)는 일시적이며, S3(D)는 블록 파일 시스템이 아닙니다."
     }
   },
   {
@@ -43,22 +43,22 @@
       },
       {
         "key": "B",
-        "ko": "S3 Standard-IA로 30일 후 자동 이전하고 90일 후 S3 Glacier로 이전한다"
-      },
-      {
-        "key": "C",
         "ko": "모든 데이터를 S3 Glacier에 저장한다"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "S3 Intelligent-Tiering을 사용해 자동 최적화한다"
+      },
+      {
+        "key": "D",
+        "ko": "S3 Standard-IA로 30일 후 자동 이전하고 90일 후 S3 Glacier로 이전한다"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "S3 lifecycle 정책으로 Standard-IA(30일~90일) → Glacier(90일+)로 이전하면 비용 효율적입니다. 처음부터 Glacier(C)를 사용하면 조기 검색 비용이 발생하고, Standard(A)는 비싸며, Intelligent-Tiering(D)은 이 시나리오에서 lifecycle 정책이 더 효율적입니다."
+      "ko": "S3 lifecycle 정책으로 Standard-IA(30일~90일) → Glacier(90일+)로 이전하면 비용 효율적입니다. 처음부터 Glacier(B)를 사용하면 조기 검색 비용이 발생하고, Standard(A)는 비싸며, Intelligent-Tiering(C)은 이 시나리오에서 lifecycle 정책이 더 효율적입니다."
     }
   },
   {
@@ -70,11 +70,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "gp3 볼륨 (General Purpose)"
+        "ko": "io2 블록 익스프레스 (Provisioned IOPS)"
       },
       {
         "key": "B",
-        "ko": "io2 블록 익스프레스 (Provisioned IOPS)"
+        "ko": "gp3 볼륨 (General Purpose)"
       },
       {
         "key": "C",
@@ -86,10 +86,10 @@
       }
     ],
     "answer": [
-      "B"
+      "A"
     ],
     "explanation": {
-      "ko": "io2 Block Express는 최대 256,000 IOPS와 서브밀리초 지연시간을 제공해 이런 요구에 적합합니다. gp3(A)는 최대 16,000 IOPS라 부족하고, st1(C)은 처리량용, sc1(D)은 콜드 데이터용입니다."
+      "ko": "io2 Block Express는 최대 256,000 IOPS와 서브밀리초 지연시간을 제공해 이런 요구에 적합합니다. gp3(B)는 수십만 IOPS에는 미치지 못해 부족하고, st1(C)은 처리량용, sc1(D)은 콜드 데이터용입니다."
     }
   },
   {
@@ -167,11 +167,11 @@
       },
       {
         "key": "B",
-        "ko": "Amazon FSx for Lustre를 사용한다"
+        "ko": "Amazon FSx for NetApp ONTAP을 사용한다"
       },
       {
         "key": "C",
-        "ko": "Amazon FSx for NetApp ONTAP을 사용한다"
+        "ko": "Amazon FSx for Lustre를 사용한다"
       },
       {
         "key": "D",
@@ -179,10 +179,10 @@
       }
     ],
     "answer": [
-      "B"
+      "C"
     ],
     "explanation": {
-      "ko": "Amazon FSx for Lustre는 높은 병렬 처리량과 저지연시간이 특징으로 HPC, 머신러닝 학습에 이상적입니다. EFS(A)는 일반 범용이고, NetApp ONTAP(C)은 스냅샷/복제 기능이 필요한 엔터프라이즈용이며, RAID(D)는 관리 복잡도가 높습니다."
+      "ko": "Amazon FSx for Lustre는 높은 병렬 처리량과 저지연시간이 특징으로 HPC, 머신러닝 학습에 이상적입니다. EFS(A)는 일반 범용이고, NetApp ONTAP(B)은 스냅샷/복제 기능이 필요한 엔터프라이즈용이며, RAID(D)는 관리 복잡도가 높습니다."
     }
   },
   {
@@ -194,15 +194,15 @@
     "choices": [
       {
         "key": "A",
-        "ko": "S3 Event Notifications로 Lambda를 트리거해 즉시 분석하고 S3 lifecycle으로 아카이브한다"
-      },
-      {
-        "key": "B",
         "ko": "CloudWatch Logs로 객체 업로드를 모니터링해 수동으로 처리한다"
       },
       {
-        "key": "C",
+        "key": "B",
         "ko": "S3 Select를 사용해 분석하고 수동으로 아카이브한다"
+      },
+      {
+        "key": "C",
+        "ko": "S3 Event Notifications로 Lambda를 트리거해 즉시 분석하고 S3 lifecycle으로 아카이브한다"
       },
       {
         "key": "D",
@@ -210,10 +210,10 @@
       }
     ],
     "answer": [
-      "A"
+      "C"
     ],
     "explanation": {
-      "ko": "S3 Event Notifications + Lambda는 객체 업로드 즉시 분석을 트리거하고, S3 lifecycle 정책은 자동 아카이빙을 처리합니다. 수동 모니터링(B), S3 Select 수동 처리(C), 배치 분석(D)은 자동화 수준이 낮습니다."
+      "ko": "S3 Event Notifications + Lambda는 객체 업로드 즉시 분석을 트리거하고, S3 lifecycle 정책은 자동 아카이빙을 처리합니다. 수동 모니터링(A), S3 Select 수동 처리(B), 배치 분석(D)은 자동화 수준이 낮습니다."
     }
   },
   {
@@ -229,22 +229,22 @@
       },
       {
         "key": "B",
-        "ko": "io2 Block Express 높은 내구성과 Provisioned IOPS 설정"
-      },
-      {
-        "key": "C",
         "ko": "st1 처리량 최적화 볼륨"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "sc1 콜드 스토리지 높은 중복성"
+      },
+      {
+        "key": "D",
+        "ko": "io2 Block Express 높은 내구성과 Provisioned IOPS 설정"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "io2 Block Express는 99.999% 내구성, 서브밀리초 지연시간, Provisioned IOPS로 성능 예측이 가능합니다. gp3 다중 연결(A)은 특수 사용 사례용이고, st1(C)과 sc1(D)은 처리량/콜드 데이터용입니다."
+      "ko": "io2 Block Express는 99.999% 내구성, 서브밀리초 지연시간, Provisioned IOPS로 성능 예측이 가능합니다. gp3 다중 연결(A)은 특수 사용 사례용이고, st1(B)과 sc1(C)은 처리량/콜드 데이터용입니다."
     }
   },
   {
@@ -260,22 +260,22 @@
       },
       {
         "key": "B",
-        "ko": "컴퓨팅 최적화 인스턴스(c5, c6i)"
-      },
-      {
-        "key": "C",
         "ko": "스토리지 최적화 인스턴스(i3, i4i)"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "범용 인스턴스(m5, m6i)"
+      },
+      {
+        "key": "D",
+        "ko": "컴퓨팅 최적화 인스턴스(c5, c6i)"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "컴퓨팅 최적화 인스턴스(B)는 높은 vCPU 대 메모리 비율과 강력한 CPU를 제공해 계산 집약적 작업에 최적입니다. 메모리 최적화(A)는 메모리가 필요하지 않으므로 낭비이고, 스토리지(C)와 범용(D)도 이 시나리오에 부적절합니다."
+      "ko": "컴퓨팅 최적화 인스턴스(D)는 높은 vCPU 대 메모리 비율과 강력한 CPU를 제공해 계산 집약적 작업에 최적입니다. 메모리 최적화(A)는 메모리가 필요하지 않으므로 낭비이고, 스토리지(B)와 범용(C)도 이 시나리오에 부적절합니다."
     }
   },
   {
@@ -287,15 +287,15 @@
     "choices": [
       {
         "key": "A",
-        "ko": "AWS Lambda 함수를 사용한다"
-      },
-      {
-        "key": "B",
         "ko": "AWS Fargate에 컨테이너를 배포한다"
       },
       {
-        "key": "C",
+        "key": "B",
         "ko": "EC2 Auto Scaling 그룹을 구성한다"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Lambda 함수를 사용한다"
       },
       {
         "key": "D",
@@ -303,10 +303,10 @@
       }
     ],
     "answer": [
-      "A"
+      "C"
     ],
     "explanation": {
-      "ko": "AWS Lambda는 콜드 스타트가 빠르고 서버를 관리하지 않으며 다양한 런타임을 지원합니다. Fargate(B)는 콜드 스타트가 길고, EC2(C, D)는 인스턴스 관리 부담이 있습니다."
+      "ko": "AWS Lambda는 콜드 스타트가 빠르고 서버를 관리하지 않으며 다양한 런타임을 지원합니다. Fargate(A)는 콜드 스타트가 길고, EC2(B, D)는 인스턴스 관리 부담이 있습니다."
     }
   },
   {
@@ -326,18 +326,18 @@
       },
       {
         "key": "C",
-        "ko": "메모리 집약적 서비스는 EC2, 경량 서비스는 Lambda를 사용한다"
+        "ko": "AWS Fargate을 모든 서비스에 사용한다"
       },
       {
         "key": "D",
-        "ko": "AWS Fargate을 모든 서비스에 사용한다"
+        "ko": "메모리 집약적 서비스는 EC2, 경량 서비스는 Lambda를 사용한다"
       }
     ],
     "answer": [
-      "C"
+      "D"
     ],
     "explanation": {
-      "ko": "서로 다른 요구사항은 서로 다른 솔루션이 최적입니다. 메모리 집약적/제어 필요 → EC2, 경량/자동 스케일링 → Lambda. Lambda만(A)은 메모리/제어 한계가 있고, EC2만(B)은 경량 서비스에 낭비이며, Fargate(D)은 비용이 높을 수 있습니다."
+      "ko": "서로 다른 요구사항은 서로 다른 솔루션이 최적입니다. 메모리 집약적/제어 필요 → EC2, 경량/자동 스케일링 → Lambda. Lambda만(A)은 메모리/제어 한계가 있고, EC2만(B)은 경량 서비스에 낭비이며, Fargate(C)은 비용이 높을 수 있습니다."
     }
   },
   {
@@ -385,11 +385,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "동기 REST API로 직접 서비스 간 호출한다"
+        "ko": "Amazon SQS 큐로 메시지를 디커플링하고 각 서비스가 독립적으로 처리한다"
       },
       {
         "key": "B",
-        "ko": "Amazon SQS 큐로 메시지를 디커플링하고 각 서비스가 독립적으로 처리한다"
+        "ko": "동기 REST API로 직접 서비스 간 호출한다"
       },
       {
         "key": "C",
@@ -401,10 +401,10 @@
       }
     ],
     "answer": [
-      "B"
+      "A"
     ],
     "explanation": {
-      "ko": "Amazon SQS는 비동기 메시지 큐로 서비스 간 디커플링을 제공해 각 서비스가 독립적으로 처리할 수 있습니다. 동기 호출(A)은 한 서비스의 지연이 전체 시스템에 영향을 주고, 공유 DB(C)는 복잡하며, 순차 실행(D)은 성능이 나쁩니다."
+      "ko": "Amazon SQS는 비동기 메시지 큐로 서비스 간 디커플링을 제공해 각 서비스가 독립적으로 처리할 수 있습니다. 동기 호출(B)은 한 서비스의 지연이 전체 시스템에 영향을 주고, 공유 DB(C)는 복잡하며, 순차 실행(D)은 성능이 나쁩니다."
     }
   },
   {
@@ -451,22 +451,22 @@
       },
       {
         "key": "B",
-        "ko": "AWS Batch로 작업 큐를 관리하고 자동 재시도를 구성한다"
-      },
-      {
-        "key": "C",
         "ko": "EC2 인스턴스에서 크론 잡으로 주기적으로 실행한다"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "Amazon SQS + Lambda로 비동기 처리한다"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Batch로 작업 큐를 관리하고 자동 재시도를 구성한다"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "AWS Batch는 작업 큐, 자동 재시도, 실패 처리를 기본 지원하며 수 시간짜리 작업도 실행합니다. Lambda 동기 호출(A)과 SQS+Lambda(D)는 15분 실행 제한에 걸리고, 크론 잡(C)은 실패 재처리가 어렵습니다."
+      "ko": "AWS Batch는 작업 큐, 자동 재시도, 실패 처리를 기본 지원하며 수 시간짜리 작업도 실행합니다. Lambda 동기 호출(A)과 SQS+Lambda(C)는 15분 실행 제한에 걸리고, 크론 잡(B)은 실패 재처리가 어렵습니다."
     }
   },
   {
@@ -482,11 +482,11 @@
       },
       {
         "key": "B",
-        "ko": "Amazon ECS를 EC2 론칭 타입으로 사용한다"
+        "ko": "Amazon EKS를 사용한다"
       },
       {
         "key": "C",
-        "ko": "Amazon EKS를 사용한다"
+        "ko": "Amazon ECS를 EC2 론칭 타입으로 사용한다"
       },
       {
         "key": "D",
@@ -494,10 +494,10 @@
       }
     ],
     "answer": [
-      "C"
+      "B"
     ],
     "explanation": {
-      "ko": "Amazon EKS는 AWS에서 완전 관리되는 Kubernetes 서비스로 높은 가용성과 자동 업데이트를 제공합니다. 수동 설치(A)는 관리 부담이 크고, ECS(B)는 Kubernetes 표준이 아니며, Fargate(D)는 컨테이너 런타임만 지원합니다."
+      "ko": "Amazon EKS는 AWS에서 완전 관리되는 Kubernetes 서비스로 높은 가용성과 자동 업데이트를 제공합니다. 수동 설치(A)는 관리 부담이 크고, ECS(C)는 Kubernetes 표준이 아니며, Fargate(D)는 컨테이너 런타임만 지원합니다."
     }
   },
   {
@@ -549,22 +549,22 @@
       },
       {
         "key": "B",
-        "ko": "Amazon DynamoDB 글로벌 테이블"
-      },
-      {
-        "key": "C",
         "ko": "Amazon Aurora 글로벌 데이터베이스"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "Amazon Neptune 그래프 데이터베이스"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon DynamoDB 글로벌 테이블"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "Amazon DynamoDB 글로벌 테이블은 여러 리전에서 쓰기가 가능한 multi-active 복제를 제공하며 최종 일관성과 높은 처리량을 지원합니다. RDS는 멀티 리전 멀티 마스터(A)를 제공하지 않고, Aurora 글로벌 DB(C)는 단일 쓰기 리전 구조의 관계형 DB이며, Neptune(D)은 그래프용입니다."
+      "ko": "Amazon DynamoDB 글로벌 테이블은 여러 리전에서 쓰기가 가능한 multi-active 복제를 제공하며 최종 일관성과 높은 처리량을 지원합니다. RDS는 멀티 리전 멀티 마스터(A)를 제공하지 않고, Aurora 글로벌 DB(B)는 단일 쓰기 리전 구조의 관계형 DB이며, Neptune(C)은 그래프용입니다."
     }
   },
   {
@@ -576,15 +576,15 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Amazon DynamoDB에 모든 데이터를 저장한다"
+        "ko": "DynamoDB를 기본 스토리지로 사용하고 Amazon DAX(캐시)로 가속한다"
       },
       {
         "key": "B",
-        "ko": "Amazon RDS에 저장하고 애플리케이션 메모리 캐시를 사용한다"
+        "ko": "Amazon DynamoDB에 모든 데이터를 저장한다"
       },
       {
         "key": "C",
-        "ko": "DynamoDB를 기본 스토리지로 사용하고 Amazon DAX(캐시)로 가속한다"
+        "ko": "Amazon RDS에 저장하고 애플리케이션 메모리 캐시를 사용한다"
       },
       {
         "key": "D",
@@ -592,10 +592,10 @@
       }
     ],
     "answer": [
-      "C"
+      "A"
     ],
     "explanation": {
-      "ko": "Amazon DAX는 DynamoDB 전용 인메모리 캐시로 밀리초 응답을 제공하면서 DynamoDB의 내구성을 유지합니다. DynamoDB만(A)은 캐싱이 없고, RDS + 애플리케이션 캐시(B)는 응답 시간이 느리며, Memcached만(D)은 휘발성입니다."
+      "ko": "Amazon DAX는 DynamoDB 전용 인메모리 캐시로 밀리초 응답을 제공하면서 DynamoDB의 내구성을 유지합니다. DynamoDB만(B)은 캐싱이 없고, RDS + 애플리케이션 캐시(C)는 응답 시간이 느리며, Memcached만(D)은 휘발성입니다."
     }
   },
   {
@@ -611,22 +611,22 @@
       },
       {
         "key": "B",
-        "ko": "Amazon Athena로 S3 데이터를 직접 쿼리한다"
-      },
-      {
-        "key": "C",
         "ko": "EC2에 PostgreSQL을 설치해 S3 데이터를 로드한다"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "Amazon EMR + Spark SQL로 분석한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Athena로 S3 데이터를 직접 쿼리한다"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "Amazon Athena는 S3 데이터를 서버리스로 SQL 쿼리할 수 있으므로 인프라 관리가 불필요합니다. Redshift(A)는 전용 클러스터 관리가 필요하고, EC2 PostgreSQL(C)은 데이터 로드 복잡도가 높으며, EMR(D)은 클러스터 관리가 필요합니다."
+      "ko": "Amazon Athena는 S3 데이터를 서버리스로 SQL 쿼리할 수 있으므로 인프라 관리가 불필요합니다. Redshift(A)는 전용 클러스터 관리가 필요하고, EC2 PostgreSQL(B)은 데이터 로드 복잡도가 높으며, EMR(C)은 클러스터 관리가 필요합니다."
     }
   },
   {
@@ -669,15 +669,15 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Amazon RDS에 TTL 칼럼을 추가한다"
+        "ko": "Amazon ElastiCache Redis로 자동 만료를 설정한다"
       },
       {
         "key": "B",
-        "ko": "Amazon DynamoDB TTL 기능으로 관리한다"
+        "ko": "Amazon RDS에 TTL 칼럼을 추가한다"
       },
       {
         "key": "C",
-        "ko": "Amazon ElastiCache Redis로 자동 만료를 설정한다"
+        "ko": "Amazon DynamoDB TTL 기능으로 관리한다"
       },
       {
         "key": "D",
@@ -685,10 +685,10 @@
       }
     ],
     "answer": [
-      "C"
+      "A"
     ],
     "explanation": {
-      "ko": "Amazon ElastiCache Redis는 인메모리로 서브밀리초 응답, 자동 TTL 만료, 높은 처리량을 제공하며 데이터 손실이 허용되는 세션 저장소에 이상적입니다. RDS(A)는 느리고, DynamoDB(B)는 한 자릿수 ms 지연이라 서브밀리초 요건을 충족하지 못하며, S3(D)는 부적절합니다."
+      "ko": "Amazon ElastiCache Redis는 인메모리로 서브밀리초 응답, 자동 TTL 만료, 높은 처리량을 제공하며 데이터 손실이 허용되는 세션 저장소에 이상적입니다. RDS(B)는 느리고, DynamoDB(C)는 한 자릿수 ms 지연이라 서브밀리초 요건을 충족하지 못하며, S3(D)는 부적절합니다."
     }
   },
   {
@@ -740,11 +740,11 @@
       },
       {
         "key": "B",
-        "ko": "Amazon Aurora Serverless v2로 시작해 자동 확장한다"
+        "ko": "Amazon DynamoDB 온디맨드 모드로 시작한다"
       },
       {
         "key": "C",
-        "ko": "Amazon DynamoDB 온디맨드 모드로 시작한다"
+        "ko": "Amazon Aurora Serverless v2로 시작해 자동 확장한다"
       },
       {
         "key": "D",
@@ -752,10 +752,10 @@
       }
     ],
     "answer": [
-      "B"
+      "C"
     ],
     "explanation": {
-      "ko": "Aurora Serverless v2는 ACU 단위로 용량을 자동 조정하고 MySQL 호환 관계형 모델을 제공해 초기 비용이 낮습니다. RDS(A)는 수동 확장이 필요하고, DynamoDB 온디맨드(C)는 NoSQL이라 관계형 요건을 충족하지 못하며, Redshift(D)는 초기 비용이 큽니다."
+      "ko": "Aurora Serverless v2는 ACU 단위로 용량을 자동 조정하고 MySQL 호환 관계형 모델을 제공해 초기 비용이 낮습니다. RDS(A)는 수동 확장이 필요하고, DynamoDB 온디맨드(B)는 NoSQL이라 관계형 요건을 충족하지 못하며, Redshift(D)는 초기 비용이 큽니다."
     }
   },
   {
@@ -771,11 +771,11 @@
       },
       {
         "key": "B",
-        "ko": "Amazon RDS 다중 AZ 배포"
+        "ko": "Amazon Aurora 클러스터(자동 장애 조치)"
       },
       {
         "key": "C",
-        "ko": "Amazon Aurora 클러스터(자동 장애 조치)"
+        "ko": "Amazon RDS 다중 AZ 배포"
       },
       {
         "key": "D",
@@ -783,10 +783,10 @@
       }
     ],
     "answer": [
-      "C"
+      "B"
     ],
     "explanation": {
-      "ko": "Amazon Aurora 클러스터는 여러 AZ에 걸쳐 공유 스토리지를 사용하고 reader가 장애 조치 대상이 되어 읽기 확장과 고가용성을 함께 제공합니다. 단일 AZ(A)는 위험하고, RDS Multi-AZ(B)의 standby는 읽기를 받지 못하며, 수동 관리(D)는 복잡합니다."
+      "ko": "Amazon Aurora 클러스터는 여러 AZ에 걸쳐 공유 스토리지를 사용하고 reader가 장애 조치 대상이 되어 읽기 확장과 고가용성을 함께 제공합니다. 단일 AZ(A)는 위험하고, RDS Multi-AZ(C)의 standby는 읽기를 받지 못하며, 수동 관리(D)는 복잡합니다."
     }
   },
   {
@@ -802,11 +802,11 @@
       },
       {
         "key": "B",
-        "ko": "기본 테넌트는 DynamoDB 온디맨드, 프리미엄은 프로비저닝된 Aurora"
+        "ko": "모든 테넌트에 전용 EC2 데이터베이스 서버 배포"
       },
       {
         "key": "C",
-        "ko": "모든 테넌트에 전용 EC2 데이터베이스 서버 배포"
+        "ko": "기본 테넌트는 DynamoDB 온디맨드, 프리미엄은 프로비저닝된 Aurora"
       },
       {
         "key": "D",
@@ -814,10 +814,10 @@
       }
     ],
     "answer": [
-      "B"
+      "C"
     ],
     "explanation": {
-      "ko": "기본 테넌트에 DynamoDB 온디맨드(유연한 비용), 프리미엄에 Aurora 프로비저닝(성능 보장)은 각 세그먼트 요구사항에 맞춥니다. 단일 RDS(A)는 테넌트 격리가 약하고, EC2 전용(C)은 비용이 높으며, 단일 DynamoDB 테이블(D)은 관리가 복잡합니다."
+      "ko": "기본 테넌트에 DynamoDB 온디맨드(유연한 비용), 프리미엄에 Aurora 프로비저닝(성능 보장)은 각 세그먼트 요구사항에 맞춥니다. 단일 RDS(A)는 테넌트 격리가 약하고, EC2 전용(B)은 비용이 높으며, 단일 DynamoDB 테이블(D)은 관리가 복잡합니다."
     }
   },
   {
@@ -829,15 +829,15 @@
     "choices": [
       {
         "key": "A",
-        "ko": "AWS Global Accelerator를 사용하여 트래픽을 가장 가까운 edge location으로 라우팅"
-      },
-      {
-        "key": "B",
         "ko": "모든 대륙의 리전에 Application Load Balancer를 복제 및 Route 53 지연 시간 기반 라우팅 사용"
       },
       {
-        "key": "C",
+        "key": "B",
         "ko": "Amazon CloudFront를 추가하여 모든 콘텐츠를 캐시"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Global Accelerator를 사용하여 트래픽을 가장 가까운 edge location으로 라우팅"
       },
       {
         "key": "D",
@@ -845,10 +845,10 @@
       }
     ],
     "answer": [
-      "A"
+      "C"
     ],
     "explanation": {
-      "ko": "AWS Global Accelerator는 Anycast IP를 사용하여 트래픽을 AWS 글로벌 네트워크의 edge location으로 라우팅한 뒤, 최적 경로를 통해 애플리케이션으로 전달하므로 실시간 거래 같은 동적 콘텐츠에 이상적입니다. CloudFront(C)는 정적 콘텐츠 캐싱용이고, Route 53(B)은 DNS 레벨 라우팅만 하며, EC2 인스턴스 스케일링(D)은 글로벌 지연 시간 문제를 해결하지 못합니다."
+      "ko": "AWS Global Accelerator는 Anycast IP를 사용하여 트래픽을 AWS 글로벌 네트워크의 edge location으로 라우팅한 뒤, 최적 경로를 통해 애플리케이션으로 전달하므로 실시간 거래 같은 동적 콘텐츠에 이상적입니다. CloudFront(B)는 정적 콘텐츠 캐싱용이고, Route 53(A)은 DNS 레벨 라우팅만 하며, EC2 인스턴스 스케일링(D)은 글로벌 지연 시간 문제를 해결하지 못합니다."
     }
   },
   {
@@ -1056,11 +1056,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Elastic IP를 각 인스턴스에 할당하고 보안 그룹 규칙을 완화"
+        "ko": "EC2 Placement Group(cluster 타입)을 사용하여 인스턴스를 배포"
       },
       {
         "key": "B",
-        "ko": "EC2 Placement Group(cluster 타입)을 사용하여 인스턴스를 배포"
+        "ko": "Elastic IP를 각 인스턴스에 할당하고 보안 그룹 규칙을 완화"
       },
       {
         "key": "C",
@@ -1072,10 +1072,10 @@
       }
     ],
     "answer": [
-      "B"
+      "A"
     ],
     "explanation": {
-      "ko": "EC2 Cluster Placement Group은 동일 가용 영역 내 인스턴스들을 물리적으로 가까이 배치하여 극도로 낮은 지연 시간과 높은 네트워크 처리량을 제공합니다. Elastic IP(A)는 네트워크 성능과 무관하고, Enhanced networking 비활성화(C)는 성능을 해치며, VPC peering(D)은 지연 시간을 증가시킵니다."
+      "ko": "EC2 Cluster Placement Group은 동일 가용 영역 내 인스턴스들을 물리적으로 가까이 배치하여 극도로 낮은 지연 시간과 높은 네트워크 처리량을 제공합니다. Elastic IP(B)는 네트워크 성능과 무관하고, Enhanced networking 비활성화(C)는 성능을 해치며, VPC peering(D)은 지연 시간을 증가시킵니다."
     }
   },
   {
@@ -1087,11 +1087,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "기존 VPC를 삭제하고 더 큰 CIDR 블록으로 새 VPC 생성"
+        "ko": "VPC에 보조 CIDR 블록 추가 (예: 10.1.0.0/16)"
       },
       {
         "key": "B",
-        "ko": "VPC에 보조 CIDR 블록 추가 (예: 10.1.0.0/16)"
+        "ko": "기존 VPC를 삭제하고 더 큰 CIDR 블록으로 새 VPC 생성"
       },
       {
         "key": "C",
@@ -1103,10 +1103,10 @@
       }
     ],
     "answer": [
-      "B"
+      "A"
     ],
     "explanation": {
-      "ko": "VPC에 보조 CIDR 블록을 추가하여 기존 리소스를 유지하면서 IP 주소 공간을 확장할 수 있습니다. VPC 삭제(A)는 기존 리소스를 손실시키고, Elastic IP(C)는 공개 IP 공간만 제공하며, NAT instance(D)는 주소 공간 부족 문제를 해결하지 못합니다."
+      "ko": "VPC에 보조 CIDR 블록을 추가하여 기존 리소스를 유지하면서 IP 주소 공간을 확장할 수 있습니다. VPC 삭제(B)는 기존 리소스를 손실시키고, Elastic IP(C)는 공개 IP 공간만 제공하며, NAT instance(D)는 주소 공간 부족 문제를 해결하지 못합니다."
     }
   },
   {
@@ -1126,18 +1126,18 @@
       },
       {
         "key": "C",
-        "ko": "각 VPC에 Application Load Balancer 배포 후 Route 53으로 라우팅"
+        "ko": "AWS Transit Gateway로 hub-and-spoke 네트워크 토폴로지 구성"
       },
       {
         "key": "D",
-        "ko": "AWS Transit Gateway로 hub-and-spoke 네트워크 토폴로지 구성"
+        "ko": "각 VPC에 Application Load Balancer 배포 후 Route 53으로 라우팅"
       }
     ],
     "answer": [
-      "D"
+      "C"
     ],
     "explanation": {
-      "ko": "AWS Transit Gateway는 중앙 hub로서 여러 VPC와 리전 간의 라우팅을 중앙화하고 보안 정책을 일관되게 적용할 수 있는 서비스입니다. VPC peering(A)은 many-to-many 구조로 확장이 어렵고, Direct Connect(B)는 온프레미스 연결용이며, ALB+Route 53(C)은 L4/L3 라우팅이 아닙니다."
+      "ko": "AWS Transit Gateway는 중앙 hub로서 여러 VPC와 리전 간의 라우팅을 중앙화하고 보안 정책을 일관되게 적용할 수 있는 서비스입니다. VPC peering(A)은 many-to-many 구조로 확장이 어렵고, Direct Connect(B)는 온프레미스 연결용이며, ALB+Route 53(D)은 L4/L3 라우팅이 아닙니다."
     }
   },
   {
@@ -1220,22 +1220,22 @@
       },
       {
         "key": "B",
-        "ko": "AWS Glue job을 사용하여 CSV를 Parquet로 변환"
-      },
-      {
-        "key": "C",
         "ko": "Amazon EMR 클러스터에서 Spark를 실행하여 변환"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "AWS Lambda 함수에서 데이터 변환"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Glue job을 사용하여 CSV를 Parquet로 변환"
       }
     ],
     "answer": [
-      "B"
+      "D"
     ],
     "explanation": {
-      "ko": "AWS Glue는 정확히 이런 ETL(Extract, Transform, Load) 작업을 위해 설계되었으며, 서버리스로 관리 오버헤드가 적고 비용 효율적입니다. EC2(A)는 운영 부담이 크고, EMR(C)은 대규모 클러스터가 필요한 복잡한 분석에 더 적합하며, Lambda(D)는 메모리 제한이 있어 대규모 파일 처리에 부적합합니다."
+      "ko": "AWS Glue는 정확히 이런 ETL(Extract, Transform, Load) 작업을 위해 설계되었으며, 서버리스로 관리 오버헤드가 적고 비용 효율적입니다. EC2(A)는 운영 부담이 크고, EMR(B)은 대규모 클러스터가 필요한 복잡한 분석에 더 적합하며, Lambda(C)는 메모리 제한이 있어 대규모 파일 처리에 부적합합니다."
     }
   },
   {
@@ -1247,26 +1247,26 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Amazon Athena로 S3 데이터에 대해 직접 SQL 쿼리 실행"
-      },
-      {
-        "key": "B",
         "ko": "Amazon Redshift로 데이터를 로드하고 쿼리"
       },
       {
-        "key": "C",
+        "key": "B",
         "ko": "AWS Glue로 데이터를 카탈로그한 후 RDS에 로드"
       },
       {
-        "key": "D",
+        "key": "C",
         "ko": "Amazon QuickSight로 데이터를 시각화하고 분석"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Athena로 S3 데이터에 대해 직접 SQL 쿼리 실행"
       }
     ],
     "answer": [
-      "A"
+      "D"
     ],
     "explanation": {
-      "ko": "Amazon Athena는 S3 데이터에 대해 서버리스로 직접 SQL 쿼리를 실행할 수 있으므로 빠른 설정과 분석이 가능합니다. Redshift(B)는 데이터 로드가 필요하고 더 복잡하며, Glue(C)는 변환 도구이지 분석 도구가 아니고, QuickSight(D)는 시각화 도구이지 임시 SQL 분석 도구가 아닙니다."
+      "ko": "Amazon Athena는 S3 데이터에 대해 서버리스로 직접 SQL 쿼리를 실행할 수 있으므로 빠른 설정과 분석이 가능합니다. Redshift(A)는 데이터 로드가 필요하고 더 복잡하며, Glue(B)는 변환 도구이지 분석 도구가 아니고, QuickSight(C)는 시각화 도구이지 임시 SQL 분석 도구가 아닙니다."
     }
   },
   {
@@ -1278,11 +1278,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "AWS DataSync로 초기 일괄 전송 후 지속적 증분 동기화"
+        "ko": "AWS Snowball로 초기 데이터 전송 후 Site-to-Site VPN으로 증분 동기화"
       },
       {
         "key": "B",
-        "ko": "AWS Snowball로 초기 데이터 전송 후 Site-to-Site VPN으로 증분 동기화"
+        "ko": "AWS DataSync로 초기 일괄 전송 후 지속적 증분 동기화"
       },
       {
         "key": "C",
@@ -1294,10 +1294,10 @@
       }
     ],
     "answer": [
-      "A"
+      "B"
     ],
     "explanation": {
-      "ko": "AWS DataSync는 정확히 이런 대규모 데이터 마이그레이션과 지속적인 증분 동기화를 위해 설계되었으며, 자동화와 성능 최적화를 제공합니다. Snowball(B)은 초기 전송에는 좋지만 증분 동기화에 비효율적이고, Storage Gateway(C)는 캐싱용이지 마이그레이션 도구가 아니며, 수동 복사(D)는 비효율적입니다."
+      "ko": "AWS DataSync는 정확히 이런 대규모 데이터 마이그레이션과 지속적인 증분 동기화를 위해 설계되었으며, 자동화와 성능 최적화를 제공합니다. Snowball(A)은 초기 전송에는 좋지만 증분 동기화에 비효율적이고, Storage Gateway(C)는 캐싱용이지 마이그레이션 도구가 아니며, 수동 복사(D)는 비효율적입니다."
     }
   },
   {
@@ -1349,11 +1349,11 @@
       },
       {
         "key": "B",
-        "ko": "Amazon EMR로 Spark/Hadoop을 사용한 대규모 데이터 처리"
+        "ko": "AWS Glue로 간단한 ETL 변환"
       },
       {
         "key": "C",
-        "ko": "AWS Glue로 간단한 ETL 변환"
+        "ko": "Amazon EMR로 Spark/Hadoop을 사용한 대규모 데이터 처리"
       },
       {
         "key": "D",
@@ -1361,10 +1361,10 @@
       }
     ],
     "answer": [
-      "B"
+      "C"
     ],
     "explanation": {
-      "ko": "Amazon EMR은 Spark, Hadoop, Hive 등을 사용하여 대규모 병렬 데이터 처리, 복잡한 변환, 머신러닝 특성 엔지니어링을 지원합니다. Athena(A)는 간단한 SQL 분석용이고, Glue(C)는 간단한 ETL 도구이며, Kinesis(D)는 스트리밍 처리용입니다."
+      "ko": "Amazon EMR은 Spark, Hadoop, Hive 등을 사용하여 대규모 병렬 데이터 처리, 복잡한 변환, 머신러닝 특성 엔지니어링을 지원합니다. Athena(A)는 간단한 SQL 분석용이고, Glue(B)는 간단한 ETL 도구이며, Kinesis(D)는 스트리밍 처리용입니다."
     }
   },
   {
@@ -1380,11 +1380,11 @@
       },
       {
         "key": "B",
-        "ko": "S3로 저장, Redshift로 로드, QuickSight로 시각화"
+        "ko": "Kinesis Firehose로 수집, S3 저장, Athena로 분석, QuickSight로 시각화"
       },
       {
         "key": "C",
-        "ko": "Kinesis Firehose로 수집, S3 저장, Athena로 분석, QuickSight로 시각화"
+        "ko": "S3로 저장, Redshift로 로드, QuickSight로 시각화"
       },
       {
         "key": "D",
@@ -1392,10 +1392,10 @@
       }
     ],
     "answer": [
-      "C"
+      "B"
     ],
     "explanation": {
-      "ko": "이 조합이 실시간 데이터 수집(Firehose), 저장(S3), 분석(Athena), 시각화(QuickSight)의 완벽한 파이프라인을 제공합니다. A는 Kinesis Streams가 비용이 더 들고, B는 실시간 수집이 아니며, D는 분석 및 시각화 기능이 없습니다."
+      "ko": "이 조합이 실시간 데이터 수집(Firehose), 저장(S3), 분석(Athena), 시각화(QuickSight)의 완벽한 파이프라인을 제공합니다. A는 Kinesis Streams가 비용이 더 들고, C는 실시간 수집이 아니며, D는 분석 및 시각화 기능이 없습니다."
     }
   },
   {
