@@ -1,8 +1,9 @@
 import { byId, hide, show, toggle } from './dom';
-import { isExamKey } from './exam';
+import { isSessionKey, MOCK_KEY } from './exam';
 import { migrateProgress, summarize, wrongQuestionIds } from './history';
 import {
   readHistory,
+  readMockResults,
   readProgressMap,
   readTheme,
   writeHistory,
@@ -17,9 +18,9 @@ import {
 import { QuizSession } from './quiz-session';
 import { describeError } from './util';
 import type {
-  ExamKey,
   QuestionOrder,
   SessionConfig,
+  SessionKey,
   StudyMode,
   Theme,
 } from './types';
@@ -30,7 +31,7 @@ import type {
  * {@link QuizSession}. It owns no quiz-playing state itself.
  */
 export class QuizApp {
-  private exam: ExamKey = 'secure';
+  private exam: SessionKey = 'secure';
   private order: QuestionOrder = 'order';
   private studyMode: StudyMode = 'study';
 
@@ -47,6 +48,9 @@ export class QuizApp {
   private readonly historyRate = byId('history-rate');
   private readonly historyWrong = byId('history-wrong');
   private readonly historyLast = byId('history-last');
+  private readonly studyPanel = byId('study-panel');
+  private readonly mockPanel = byId('mock-panel');
+  private readonly startBtn = byId<HTMLButtonElement>('start-btn');
   private readonly continueBtn = byId<HTMLButtonElement>('continue-btn');
   private readonly reviewBtn = byId<HTMLButtonElement>('review-btn');
   private readonly themeToggle = byId<HTMLButtonElement>('theme-toggle');
@@ -63,15 +67,18 @@ export class QuizApp {
   }
 
   private config(): SessionConfig {
+    // The mock exam is always a shuffled, graded-at-the-end sitting.
+    if (this.exam === MOCK_KEY) {
+      return { exam: this.exam, order: 'random', studyMode: 'exam' };
+    }
     return { exam: this.exam, order: this.order, studyMode: this.studyMode };
   }
 
   // ── Home ──────────────────────────────────────────────────────────────────
   private wireHome(): void {
     this.segmentedGroup('exam-group', (value) => {
-      if (isExamKey(value)) this.exam = value;
-      this.updateContinueButton();
-      this.renderHistorySummary();
+      if (isSessionKey(value)) this.exam = value;
+      this.applyExamSelection();
     });
     this.segmentedGroup('order-group', (value) => {
       this.order = value === 'random' ? 'random' : 'order';
@@ -80,7 +87,7 @@ export class QuizApp {
       this.studyMode = value === 'exam' ? 'exam' : 'study';
     });
 
-    byId('start-btn').addEventListener('click', () => {
+    this.startBtn.addEventListener('click', () => {
       hide(this.setupView);
       void this.session.start(this.config(), false);
     });
@@ -128,7 +135,48 @@ export class QuizApp {
     this.renderHistorySummary();
   }
 
+  /** Domain banks show study stats and settings; the mock exam shows scores. */
+  private applyExamSelection(): void {
+    const isMock = this.exam === MOCK_KEY;
+    toggle(byId('order-field'), !isMock);
+    toggle(byId('mode-field'), !isMock);
+    toggle(this.studyPanel, !isMock);
+    toggle(this.mockPanel, isMock);
+    this.startBtn.textContent = isMock ? '모의시험 시작 · 130분' : '새로 시작';
+    this.updateContinueButton();
+    this.renderHistorySummary();
+  }
+
+  private renderMockScores(): void {
+    const list = byId('mock-scores');
+    list.replaceChildren();
+    const results = readMockResults();
+    if (results.length === 0) {
+      list.textContent = '아직 본 모의시험이 없어요.';
+      return;
+    }
+    for (const result of [...results].reverse()) {
+      const when = document.createElement('span');
+      when.textContent = new Date(result.at).toLocaleDateString('ko-KR', {
+        month: 'numeric',
+        day: 'numeric',
+      });
+      const score = document.createElement('b');
+      const pct = Math.round((result.correct / result.total) * 100);
+      score.textContent = `${pct}% (${result.correct}/${result.total})`;
+      const row = document.createElement('div');
+      row.className = 'domain-row';
+      row.append(when, score);
+      list.appendChild(row);
+    }
+  }
+
   private renderHistorySummary(): void {
+    if (this.exam === MOCK_KEY) {
+      this.renderMockScores();
+      this.updateReviewButton();
+      return;
+    }
     const summary = summarize(readHistory(), this.exam);
     this.historyAttempts.textContent = String(summary.attempts);
     this.historyRate.textContent = summary.attempts
@@ -145,7 +193,11 @@ export class QuizApp {
   }
 
   private updateReviewButton(): void {
-    const count = wrongQuestionIds(readHistory(), this.exam).size;
+    // Mock wrong answers are credited to each domain's own 오답노트.
+    const count =
+      this.exam === MOCK_KEY
+        ? 0
+        : wrongQuestionIds(readHistory(), this.exam).size;
     toggle(this.reviewBtn, count > 0);
     if (count > 0) this.reviewBtn.textContent = `오답노트 · ${count}문제`;
   }

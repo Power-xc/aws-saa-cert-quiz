@@ -1,8 +1,19 @@
 import { byId, hide, show, toggle } from './dom';
-import { EXAM_LABELS, loadExam, shuffle } from './exam';
+import {
+  buildMockExam,
+  EXAM_KEYS,
+  EXAM_LABELS,
+  loadExam,
+  MOCK_DURATION_MS,
+  MOCK_KEY,
+  mockPool,
+  sessionLabel,
+  shuffle,
+} from './exam';
 import { grade } from './grading';
 import { recordAttempt, wrongQuestionIds } from './history';
 import {
+  appendMockResult,
   readHistory,
   readProgressMap,
   writeHistory,
@@ -12,12 +23,16 @@ import { annotateTerms } from './terms';
 import { describeError, nowIso } from './util';
 import type {
   ExamKey,
+  MockDomainScores,
   Progress,
   Question,
   QuestionOrder,
   SessionConfig,
+  SessionKey,
   StudyMode,
 } from './types';
+
+const TIMER_WARN_MS = 10 * 60 * 1000;
 
 export interface QuizSessionDeps {
   /** Return to the home screen (the shell shows the setup view). */
@@ -33,7 +48,7 @@ export interface QuizSessionDeps {
  * callbacks; it never reaches into the shell's own views.
  */
 export class QuizSession {
-  private exam: ExamKey = 'secure';
+  private exam: SessionKey = 'secure';
   private order: QuestionOrder = 'order';
   private studyMode: StudyMode = 'study';
 
@@ -46,6 +61,11 @@ export class QuizSession {
   private review = false;
   /** True while viewing a graded question read-only from the score sheet. */
   private resultView = false;
+  /** Mock exam only: epoch ms the countdown ends, null when not timed. */
+  private endsAt: number | null = null;
+  private timerHandle: number | undefined;
+  /** A finished mock exam must not be resumed or re-graded. */
+  private completed = false;
 
   private readonly cache = new Map<ExamKey, Question[]>();
 
@@ -56,6 +76,7 @@ export class QuizSession {
   private readonly quizContent = byId('quiz-content');
 
   private readonly posText = byId('pos-text');
+  private readonly timerText = byId('timer-text');
   private readonly progFill = byId('prog-fill');
   private readonly statsRow = byId('stats-row');
   private readonly badge = byId('q-type-badge');
@@ -87,13 +108,13 @@ export class QuizSession {
     this.enterLoading();
 
     try {
-      const questions = await this.load(this.exam);
+      const pool = await this.loadPool(this.exam);
       const saved = resume ? readProgressMap()[this.exam] : null;
       if (!resume) this.clearProgress(this.exam);
-      if (!this.restoreProgress(saved, questions)) {
+      if (!this.restoreProgress(saved, pool)) {
         if (resume) this.clearProgress(this.exam);
-        this.questions =
-          this.order === 'random' ? shuffle(questions) : [...questions];
+        this.questions = this.freshQuestions(pool);
+        this.endsAt = this.isMock() ? Date.now() + MOCK_DURATION_MS : null;
       }
     } catch (error) {
       this.abortToHome(error);
@@ -104,6 +125,7 @@ export class QuizSession {
     show(this.quizContent);
     this.render();
     this.saveProgress();
+    this.startTimer();
   }
 
   async startReview(config: SessionConfig): Promise<void> {
@@ -116,6 +138,27 @@ export class QuizSession {
     this.exam = config.exam;
     this.order = config.order;
     this.studyMode = config.studyMode;
+  }
+
+  private isMock(): boolean {
+    return this.exam === MOCK_KEY;
+  }
+
+  /** The questions a session draws from: one bank, or all four for a mock. */
+  private async loadPool(exam: SessionKey): Promise<Question[]> {
+    if (exam !== MOCK_KEY) return this.load(exam);
+    const banks = await Promise.all(EXAM_KEYS.map((key) => this.load(key)));
+    return mockPool({
+      secure: banks[0] ?? [],
+      resilient: banks[1] ?? [],
+      performant: banks[2] ?? [],
+      cost: banks[3] ?? [],
+    });
+  }
+
+  private freshQuestions(pool: Question[]): Question[] {
+    if (this.isMock()) return buildMockExam(pool);
+    return this.order === 'random' ? shuffle(pool) : [...pool];
   }
 
   private async load(exam: ExamKey): Promise<Question[]> {
@@ -133,12 +176,14 @@ export class QuizSession {
   }
 
   private abortToHome(error: unknown): void {
+    this.stopTimer();
     hide(this.quizView);
     this.deps.onExitToHome();
     alert(describeError(error, '문제를 불러오는 중 오류가 발생했습니다.'));
   }
 
   private async runReview(): Promise<void> {
+    if (this.exam === MOCK_KEY) return;
     this.enterLoading();
     try {
       const questions = await this.load(this.exam);
@@ -175,19 +220,26 @@ export class QuizSession {
     this.idx = 0;
     this.answers = {};
     this.results = {};
+    this.completed = false;
+    this.stopTimer();
+    this.endsAt = null;
   }
 
   private restoreProgress(
     saved: Progress | null | undefined,
     questions: Question[],
   ): boolean {
-    if (saved?.version !== 2 || saved.total !== questions.length) return false;
+    if (saved?.version !== 2 || !Array.isArray(saved.order)) return false;
+    // A mock exam is a sample of the pool, so its size is its own, not the pool's.
+    const expected = this.isMock() ? saved.order.length : questions.length;
     if (
-      !Array.isArray(saved.order) ||
-      saved.order.length !== questions.length
+      expected === 0 ||
+      saved.total !== expected ||
+      saved.order.length !== expected
     ) {
       return false;
     }
+    if (this.isMock() && !Number.isFinite(saved.endsAt)) return false;
     const byQuestionId = new Map(
       questions.map((question) => [question.id, question]),
     );
@@ -195,15 +247,16 @@ export class QuizSession {
     if (
       !Number.isInteger(saved.idx) ||
       saved.idx < 0 ||
-      saved.idx >= questions.length
+      saved.idx >= expected
     ) {
       return false;
     }
     this.questions = saved.order
       .map((id) => byQuestionId.get(id))
       .filter(isQuestion);
-    if (this.questions.length !== questions.length) return false;
+    if (this.questions.length !== expected) return false;
     this.idx = saved.idx;
+    this.endsAt = this.isMock() ? (saved.endsAt ?? null) : null;
     this.order = saved.mode === 'random' ? 'random' : 'order';
     this.studyMode = saved.studyMode === 'exam' ? 'exam' : 'study';
     this.answers = saved.answers;
@@ -228,6 +281,8 @@ export class QuizSession {
     ).length;
 
     this.posText.textContent = `${this.idx + 1} / ${total}`;
+    if (this.endsAt === null) hide(this.timerText);
+    else this.renderTimer(this.endsAt - Date.now());
     this.progFill.style.width = `${Math.round((answered / total) * 100)}%`;
     this.statsRow.innerHTML = isExam
       ? `<span>시험 모드</span><span>응답 <b>${answered}/${total}</b></span>`
@@ -435,6 +490,7 @@ export class QuizSession {
   }
 
   private exitToHome(): void {
+    this.stopTimer();
     if (this.isExamFlow()) this.captureSelection();
     this.saveProgress();
     this.review = false;
@@ -446,7 +502,7 @@ export class QuizSession {
   }
 
   private retry(): void {
-    if (this.review) {
+    if (this.review && !this.isMock()) {
       hide(this.summaryView);
       void this.runReview();
       return;
@@ -466,7 +522,7 @@ export class QuizSession {
     const result = grade(selected, question.answer);
     this.answers[this.idx] = selected;
     this.results[this.idx] = result;
-    this.persistAttempt(question.id, result);
+    this.persistAttempt(question, result);
     this.saveProgress();
     this.render();
   }
@@ -557,8 +613,9 @@ export class QuizSession {
           : false
         : null;
       this.results[i] = result;
-      if (result !== null) {
-        recordAttempt(history, this.exam, question.id, result, nowIso());
+      const target = this.historyTarget(question);
+      if (result !== null && target) {
+        recordAttempt(history, target.exam, target.id, result, nowIso());
         touched = true;
       }
     });
@@ -566,7 +623,8 @@ export class QuizSession {
   }
 
   // ── Summary & score sheet ─────────────────────────────────────────────────
-  private showSummary(): void {
+  private showSummary(timedOut = false): void {
+    this.stopTimer();
     const total = this.questions.length;
     const correct = Object.values(this.results).filter(
       (v) => v === true,
@@ -574,11 +632,13 @@ export class QuizSession {
     const wrong = Object.values(this.results).filter((v) => v === false).length;
     const suffix = this.review
       ? ' · 오답노트'
-      : this.studyMode === 'exam'
-        ? ' · 시험 모드'
-        : '';
+      : timedOut
+        ? ' · 시간 종료'
+        : this.studyMode === 'exam'
+          ? ' · 시험 모드'
+          : '';
     byId('summary-exam-label').textContent =
-      `${EXAM_LABELS[this.exam]}${suffix}`;
+      `${sessionLabel(this.exam)}${suffix}`;
     byId('sum-total').textContent = String(total);
     byId('sum-correct').textContent = String(correct);
     byId('sum-wrong').textContent = String(wrong);
@@ -587,9 +647,59 @@ export class QuizSession {
     toggle(reviewWrong, wrong > 0);
     if (wrong > 0) reviewWrong.textContent = `틀린 ${wrong}문제만 풀기`;
 
+    this.finishMock(correct);
     this.saveProgress();
     hide(this.quizView);
     show(this.summaryView);
+  }
+
+  /** Log a finished mock exam, show its per-domain scores, and retire its save. */
+  private finishMock(correct: number): void {
+    const breakdown = byId('summary-domains');
+    const isFreshMock = this.isMock() && !this.review;
+    toggle(breakdown, isFreshMock);
+    toggle(byId('summary-mock-note'), isFreshMock);
+    if (!isFreshMock) return;
+
+    const domains = this.domainScores();
+    breakdown.replaceChildren();
+    for (const key of EXAM_KEYS) {
+      const { correct: right, total } = domains[key];
+      const pct = total ? Math.round((right / total) * 100) : 0;
+      const row = document.createElement('div');
+      row.className = 'domain-row';
+      const name = document.createElement('span');
+      name.textContent = EXAM_LABELS[key];
+      const score = document.createElement('b');
+      score.textContent = `${right}/${total} · ${pct}%`;
+      row.append(name, score);
+      breakdown.appendChild(row);
+    }
+
+    this.completed = true;
+    this.clearProgress(MOCK_KEY);
+    appendMockResult({
+      at: nowIso(),
+      correct,
+      total: this.questions.length,
+      domains,
+    });
+  }
+
+  private domainScores(): MockDomainScores {
+    const scores: MockDomainScores = {
+      secure: { correct: 0, total: 0 },
+      resilient: { correct: 0, total: 0 },
+      performant: { correct: 0, total: 0 },
+      cost: { correct: 0, total: 0 },
+    };
+    this.questions.forEach((question, i) => {
+      const domain = question.source?.exam;
+      if (!domain) return;
+      scores[domain].total += 1;
+      if (this.results[i] === true) scores[domain].correct += 1;
+    });
+    return scores;
   }
 
   private showSheet(): void {
@@ -637,16 +747,25 @@ export class QuizSession {
   }
 
   // ── Persistence ───────────────────────────────────────────────────────────
-  private persistAttempt(questionId: number, result: boolean | null): void {
-    if (result === null) return;
+  private persistAttempt(question: Question, result: boolean | null): void {
+    const target = this.historyTarget(question);
+    if (result === null || !target) return;
     const history = recordAttempt(
       readHistory(),
-      this.exam,
-      questionId,
+      target.exam,
+      target.id,
       result,
       nowIso(),
     );
     this.commitHistory(history);
+  }
+
+  /** Mock questions credit the bank they came from, so 오답노트 stays per domain. */
+  private historyTarget(
+    question: Question,
+  ): { exam: ExamKey; id: number } | null {
+    if (question.source) return question.source;
+    return this.exam === MOCK_KEY ? null : { exam: this.exam, id: question.id };
   }
 
   private commitHistory(history: Parameters<typeof writeHistory>[0]): void {
@@ -659,7 +778,14 @@ export class QuizSession {
   }
 
   private saveProgress(): void {
-    if (this.review || this.resultView || this.questions.length === 0) return;
+    if (
+      this.review ||
+      this.resultView ||
+      this.completed ||
+      this.questions.length === 0
+    ) {
+      return;
+    }
     const map = readProgressMap();
     map[this.exam] = {
       version: 2,
@@ -670,14 +796,55 @@ export class QuizSession {
       idx: this.idx,
       answers: this.answers,
       results: this.results,
+      ...(this.endsAt === null ? {} : { endsAt: this.endsAt }),
     };
     writeProgressMap(map);
   }
 
-  private clearProgress(exam: ExamKey): void {
+  private clearProgress(exam: SessionKey): void {
     const map = readProgressMap();
     delete map[exam];
     writeProgressMap(map);
+  }
+
+  // ── Timer (mock exam) ─────────────────────────────────────────────────────
+  private startTimer(): void {
+    this.stopTimer();
+    if (this.endsAt === null || this.review) return;
+    this.tick();
+    if (!this.completed) {
+      this.timerHandle = window.setInterval(() => this.tick(), 1000);
+    }
+  }
+
+  private stopTimer(): void {
+    if (this.timerHandle !== undefined) window.clearInterval(this.timerHandle);
+    this.timerHandle = undefined;
+  }
+
+  private tick(): void {
+    if (this.endsAt === null) return;
+    const remaining = this.endsAt - Date.now();
+    this.renderTimer(remaining);
+    if (remaining <= 0) this.timeUp();
+  }
+
+  private renderTimer(remainingMs: number): void {
+    const seconds = Math.max(0, Math.ceil(remainingMs / 1000));
+    const hours = Math.floor(seconds / 3600);
+    const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+    const rest = String(seconds % 60).padStart(2, '0');
+    this.timerText.textContent = `${hours}:${minutes}:${rest}`;
+    this.timerText.classList.toggle('warn', remainingMs < TIMER_WARN_MS);
+    show(this.timerText);
+  }
+
+  /** The clock ran out: grade whatever is answered and finish the exam. */
+  private timeUp(): void {
+    this.stopTimer();
+    this.captureSelection();
+    this.gradeExam();
+    this.showSummary(true);
   }
 
   private isExamFlow(): boolean {

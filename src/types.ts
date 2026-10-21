@@ -1,11 +1,13 @@
 export type ExamKey = 'secure' | 'resilient' | 'performant' | 'cost';
+/** A playable session: one domain bank, or the mixed 65-question mock exam. */
+export type SessionKey = ExamKey | 'mock';
 export type QuestionOrder = 'order' | 'random';
 export type StudyMode = 'study' | 'exam';
 export type Theme = 'light' | 'dark';
 
 /** The choices made on the home screen before a session starts. */
 export interface SessionConfig {
-  exam: ExamKey;
+  exam: SessionKey;
   order: QuestionOrder;
   studyMode: StudyMode;
 }
@@ -25,6 +27,8 @@ export interface Question {
   choices: Choice[];
   answer: string[] | null;
   explanation: { ko?: string; en?: string };
+  /** Set on mock-exam questions: the bank and id they were drawn from. */
+  source?: { exam: ExamKey; id: number };
 }
 
 /** Per-question study record, aggregated across attempts. */
@@ -54,6 +58,21 @@ export interface Progress {
   idx: number;
   answers: Record<number, string[]>;
   results: Record<number, boolean | null>;
+  /** Mock exam only: epoch ms when the countdown ends. */
+  endsAt?: number;
 }
 
-export type ProgressMap = Partial<Record<ExamKey, Progress>>;
+export type ProgressMap = Partial<Record<SessionKey, Progress>>;
+
+/** Per-domain tally of one finished mock exam. */
+export type MockDomainScores = Record<
+  ExamKey,
+  { correct: number; total: number }
+>;
+
+export interface MockResult {
+  at: string;
+  correct: number;
+  total: number;
+  domains: MockDomainScores;
+}

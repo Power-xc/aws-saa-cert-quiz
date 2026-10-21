@@ -1,3 +1,4 @@
+import { isExamKey } from './exam';
 import type { ExamKey, History, ProgressMap, QuestionRecord } from './types';
 
 /** Fold one graded attempt into the cumulative history for an exam. */
@@ -34,7 +35,8 @@ export function migrateProgress(
 ): { history: History; changed: boolean } {
   let changed = false;
   for (const [key, progress] of Object.entries(progresses)) {
-    const exam = key as ExamKey;
+    if (!isExamKey(key)) continue;
+    const exam: ExamKey = key;
     if (progress?.version !== 2 || !Array.isArray(progress.order)) {
       continue;
     }

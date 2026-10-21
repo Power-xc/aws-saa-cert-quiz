@@ -51,10 +51,17 @@
                 >Design Cost-Optimized Architectures · 비용 20% · 32문제</span
               >
             </button>
+            <button class="seg-btn" type="button" data-value="mock">
+              Mock Exam
+              <span class="btn-label"
+                >65문제 · 130분 · 4개 도메인 혼합(30/26/24/20%) · 마지막에 일괄
+                채점</span
+              >
+            </button>
           </div>
         </div>
 
-        <div class="field-group">
+        <div class="field-group" id="order-field">
           <div class="field-label">문제 순서</div>
           <div class="btn-group" id="order-group">
             <button class="seg-btn active" type="button" data-value="order">
@@ -66,7 +73,7 @@
           </div>
         </div>
 
-        <div class="field-group">
+        <div class="field-group" id="mode-field">
           <div class="field-label">학습 방식</div>
           <div class="btn-group" id="mode-group">
             <button class="seg-btn active" type="button" data-value="study">
@@ -82,7 +89,14 @@
           </div>
         </div>
 
-        <div class="study-panel">
+        <div class="study-panel hidden" id="mock-panel">
+          <div class="study-panel-title">
+            최근 모의시험 점수 · 이 브라우저에 저장
+          </div>
+          <div class="domain-list" id="mock-scores"></div>
+        </div>
+
+        <div class="study-panel" id="study-panel">
           <div class="study-panel-title">
             학습 기록 · 이 브라우저에 자동 저장
           </div>
@@ -527,6 +541,11 @@
         <div id="quiz-content" class="hidden">
           <div class="quiz-topbar">
             <div class="pos-label" id="pos-text">1 / 0</div>
+            <div
+              class="timer hidden"
+              id="timer-text"
+              aria-label="남은 시간"
+            ></div>
             <div class="topbar-actions">
               <button
                 class="home-btn hidden"
@@ -601,6 +620,11 @@
             <div class="summary-lbl">오답</div>
           </div>
         </div>
+        <div class="domain-list hidden" id="summary-domains"></div>
+        <p class="mock-note hidden" id="summary-mock-note">
+          참고용 점수입니다. 실제 시험은 100–1000점 환산 점수로 채점되고
+          합격선은 720점입니다. 처음 보는 모의고사에서 80% 이상을 목표로 하세요.
+        </p>
         <div class="summary-actions">
           <button class="start-btn sync-btn" id="sheet-btn" type="button">
             채점표 보기

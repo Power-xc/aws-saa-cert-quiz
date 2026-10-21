@@ -1,4 +1,4 @@
-import type { Choice, ExamKey, Question } from './types';
+import type { Choice, ExamKey, Question, SessionKey } from './types';
 
 export const EXAM_KEYS = ['secure', 'resilient', 'performant', 'cost'] as const;
 
@@ -11,6 +11,53 @@ export const EXAM_LABELS: Record<ExamKey, string> = {
 
 export function isExamKey(value: string): value is ExamKey {
   return (EXAM_KEYS as readonly string[]).includes(value);
+}
+
+export const MOCK_KEY = 'mock';
+export const MOCK_LABEL = 'Mock Exam — 모의시험';
+export const MOCK_DURATION_MS = 130 * 60 * 1000;
+/** Questions drawn per domain, following the 30/26/24/20 exam weighting. */
+export const MOCK_QUOTA: Record<ExamKey, number> = {
+  secure: 20,
+  resilient: 17,
+  performant: 15,
+  cost: 13,
+};
+/** Domain ids overlap across banks, so a mock question's id is offset per bank. */
+const MOCK_ID_STRIDE = 100_000;
+
+export function isSessionKey(value: string): value is SessionKey {
+  return value === MOCK_KEY || isExamKey(value);
+}
+
+export function sessionLabel(key: SessionKey): string {
+  return key === MOCK_KEY ? MOCK_LABEL : EXAM_LABELS[key];
+}
+
+export function mockQuestionId(exam: ExamKey, id: number): number {
+  return (EXAM_KEYS.indexOf(exam) + 1) * MOCK_ID_STRIDE + id;
+}
+
+/** Every bank's questions re-keyed with mock ids and tagged with their source. */
+export function mockPool(banks: Record<ExamKey, Question[]>): Question[] {
+  return EXAM_KEYS.flatMap((exam) =>
+    banks[exam].map((question) => ({
+      ...question,
+      id: mockQuestionId(exam, question.id),
+      source: { exam, id: question.id },
+    })),
+  );
+}
+
+/** Draw the per-domain quotas from the pool and mix them into one exam. */
+export function buildMockExam(pool: readonly Question[]): Question[] {
+  const picked = EXAM_KEYS.flatMap((exam) =>
+    shuffle(pool.filter((question) => question.source?.exam === exam)).slice(
+      0,
+      MOCK_QUOTA[exam],
+    ),
+  );
+  return shuffle(picked);
 }
 
 export async function loadExam(key: ExamKey): Promise<Question[]> {

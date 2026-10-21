@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import indexHtml from '../index.html?raw';
 import secure from '../public/data/secure.json';
 import { QuizApp } from '../src/app';
+import { mockQuestionId } from '../src/exam';
 
 const bodyMarkup = indexHtml
   .replace(/[\s\S]*<body>/, '')
@@ -141,5 +142,93 @@ describe('QuizApp study session', () => {
       expect(isHidden('quiz-content')).toBe(false);
     });
     expect($('pos-text').textContent).toBe(`2 / ${bank.length}`);
+  });
+});
+
+describe('QuizApp mock exam', () => {
+  const selectMock = (): void => {
+    const button = document.querySelector<HTMLButtonElement>(
+      '#exam-group [data-value="mock"]',
+    );
+    if (!button) throw new Error('missing mock exam button');
+    button.click();
+  };
+
+  it('swaps the study settings for the mock panel and starts a timed exam', async () => {
+    selectMock();
+    expect(isHidden('order-field')).toBe(true);
+    expect(isHidden('mode-field')).toBe(true);
+    expect(isHidden('mock-panel')).toBe(false);
+    expect($('start-btn').textContent).toContain('모의시험');
+
+    click('start-btn');
+    await vi.waitFor(() => {
+      expect(isHidden('quiz-content')).toBe(false);
+    });
+
+    expect($('pos-text').textContent).toBe('1 / 65');
+    expect(isHidden('timer-text')).toBe(false);
+    expect($('timer-text').textContent).toMatch(/^2:(09|10):\d\d$/);
+    expect(isHidden('check-btn')).toBe(true);
+
+    click('home-btn'); // stops the countdown interval
+  });
+
+  it('grades an expired exam on resume and credits each source domain', async () => {
+    const answer = first.answer;
+    localStorage.setItem(
+      'aws-saa-cert-quiz-progress-v2',
+      JSON.stringify({
+        mock: {
+          version: 2,
+          total: 3,
+          order: [
+            mockQuestionId('secure', 1),
+            mockQuestionId('cost', 2),
+            mockQuestionId('cost', 3),
+          ],
+          mode: 'random',
+          studyMode: 'exam',
+          idx: 0,
+          answers: { 0: answer },
+          results: {},
+          endsAt: Date.now() - 1000,
+        },
+      }),
+    );
+
+    selectMock();
+    expect(isHidden('continue-btn')).toBe(false);
+    click('continue-btn');
+    await vi.waitFor(() => {
+      expect(isHidden('summary-view')).toBe(false);
+    });
+
+    expect($('summary-exam-label').textContent).toContain('시간 종료');
+    expect($('sum-total').textContent).toBe('3');
+    expect($('sum-correct').textContent).toBe('1');
+    expect($('sum-wrong').textContent).toBe('2');
+    expect(isHidden('summary-domains')).toBe(false);
+    expect($('summary-domains').textContent).toContain('Secure');
+
+    const history = JSON.parse(
+      localStorage.getItem('aws-saa-cert-quiz-history-v1') ?? '{}',
+    ) as Record<string, { questions: Record<string, unknown> }>;
+    expect(Object.keys(history.secure?.questions ?? {})).toEqual(['1']);
+    expect(Object.keys(history.cost?.questions ?? {}).sort()).toEqual([
+      '2',
+      '3',
+    ]);
+
+    const results = JSON.parse(
+      localStorage.getItem('aws-saa-cert-quiz-mock-v1') ?? '[]',
+    ) as { correct: number; total: number }[];
+    expect(results).toHaveLength(1);
+    expect(results[0]).toMatchObject({ correct: 1, total: 3 });
+
+    const progress = JSON.parse(
+      localStorage.getItem('aws-saa-cert-quiz-progress-v2') ?? '{}',
+    ) as Record<string, unknown>;
+    expect(progress.mock).toBeUndefined();
   });
 });
