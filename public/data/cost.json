@@ -2533,5 +2533,1275 @@
     "explanation": {
       "ko": "Karpenter는 파드 요구량에 맞는 인스턴스를 직접 프로비저닝하고 consolidation으로 저사용 노드를 통합하며 Spot 사용도 지원합니다(C). A은 더 큰 유휴 용량을 만들고, B는 호스트 비용이 높으며, D은 노드 사용률과 무관한 비용 증가입니다."
     }
+  },
+  {
+    "id": 81,
+    "multi": false,
+    "question": {
+      "ko": "한 회계 SaaS 회사의 EC2 인스턴스 대부분은 매월 마지막 3일(마감 처리) 동안만 CPU 사용률이 80%를 넘고 나머지 기간에는 10% 미만입니다. AWS Compute Optimizer를 기본 설정으로 켰더니 대부분의 인스턴스에 한 단계 작은 크기로 줄이라는 권장 사항이 표시되었습니다. 월말 피크를 반영한 권장 사항을 받으면서 운영 노력을 최소화하려면 어떻게 해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "CloudWatch 에이전트를 설치해 메모리 지표를 Compute Optimizer에 전송하게 하고, 지표가 충분히 쌓일 때까지 몇 주 기다린 뒤 권장 사항을 다시 확인한다"
+      },
+      {
+        "key": "B",
+        "ko": "Compute Optimizer의 enhanced infrastructure metrics 기능을 활성화해 분석 기간을 기본 14일에서 최대 93일로 확장한다"
+      },
+      {
+        "key": "C",
+        "ko": "Savings Plans 구매 권장 사항을 기준으로 인스턴스 크기를 결정하고 Compute Optimizer 권장은 무시한다"
+      },
+      {
+        "key": "D",
+        "ko": "권장 사항을 매월 마지막 날 CSV로 내보내 이전 달 결과와 비교하고 더 큰 인스턴스 크기를 수동으로 선택한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "기본 분석 기간은 14일이라 월 1회 피크가 포함되지 않을 수 있어, 유료 기능인 enhanced infrastructure metrics로 최대 93일까지 늘려야 합니다. 메모리 지표 전송은 분석 항목을 늘릴 뿐 기간을 늘리지 않습니다. Savings Plans 권장은 약정 금액 추천이지 크기 결정 도구가 아니며, 수동 내보내기 비교는 운영 부담이 큽니다.\n참고: AWS Compute Optimizer User Guide – Enhanced infrastructure metrics"
+    }
+  },
+  {
+    "id": 82,
+    "multi": false,
+    "question": {
+      "ko": "중앙 FinOps 팀이 3년 All Upfront Reserved Instances를 구매하고, 월별 비용을 12개 사업부에 배부합니다. RI를 구매한 달에는 구매 계정의 비용이 한꺼번에 크게 잡혀 사업부 간 비교가 왜곡됩니다. 약정 비용이 약정 기간에 걸쳐 고르게 반영된 사업부별 비용 보고서를 추가 개발 없이 얻으려면 어떻게 해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Cost Explorer의 Unblended 비용 보기를 사용하고 RI를 구매한 달의 선결제 금액은 보고서에서 수동으로 제외한다"
+      },
+      {
+        "key": "B",
+        "ko": "All Upfront RI를 No Upfront 옵션으로 교환해 매달 같은 금액이 청구되도록 한다"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Budgets에서 사업부별 비용 예산을 만들고 RI 구매 월의 초과 알림을 예외 처리한다"
+      },
+      {
+        "key": "D",
+        "ko": "Cost Explorer에서 상각(Amortized) 비용 보기를 선택하고 사업부 태그나 Cost Category로 그룹화한다"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "상각 비용 보기는 선결제·월 약정 요금을 사용 기간에 나누어 배분해 월별 비교가 가능합니다. Unblended 보기는 결제 시점 기준이라 구매 월이 왜곡됩니다. 지불 옵션은 구매 후 교환으로 바꿀 수 없고, Budgets 알림은 비용 배분 문제를 해결하지 못합니다.\n참고: AWS Billing and Cost Management User Guide – Exploring your data using Cost Explorer (amortized costs)"
+    }
+  },
+  {
+    "id": 83,
+    "multi": false,
+    "question": {
+      "ko": "한 회사의 공유 서비스 계정(네트워크, 로깅, 보안 도구)에서 발생하는 월 비용을 3개 사업부가 각자의 AWS 지출 비율에 따라 나누어 부담하기로 했습니다. 사업부는 여러 계정과 태그에 걸쳐 있으며, 재무팀은 Cost Explorer와 AWS Budgets에서 배부가 반영된 사업부별 금액을 보길 원합니다. 코드 개발 없이 구현하는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Cost Categories에 계정·태그 기준의 사업부 규칙을 만들고 공유 계정 비용을 비례 배분하는 split charge 규칙을 추가한다"
+      },
+      {
+        "key": "B",
+        "ko": "공유 계정의 모든 리소스에 사업부 태그를 붙이고 Cost Explorer 태그 필터로 사업부별 비용을 조회한다"
+      },
+      {
+        "key": "C",
+        "ko": "Cost and Usage Report를 Athena로 쿼리해 사업부 비율대로 비용을 나누는 SQL을 만들고 Lambda와 EventBridge로 매월 자동 실행해 결과를 저장한다"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Organizations SCP로 공유 계정 리소스의 비용이 각 사업부 계정 청구서에 포함되도록 설정한다"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Cost Categories의 split charge 규칙은 공유 비용을 비례·고정·균등 방식으로 사업부에 배분하며 Cost Explorer와 Budgets에서 필터로 쓸 수 있습니다. 공유 리소스 태깅은 단일 사업부로 귀속되지 않아 배부가 안 되고, Athena+Lambda는 개발이 필요합니다. SCP는 권한 제어 도구로 청구 귀속을 바꾸지 못합니다.\n참고: AWS Billing and Cost Management User Guide – Managing your costs with AWS Cost Categories"
+    }
+  },
+  {
+    "id": 84,
+    "multi": false,
+    "question": {
+      "ko": "60개 계정을 운영하는 회사의 FinOps 팀이 모든 계정의 유휴 로드 밸런서, 연결되지 않은 Elastic IP, 사용률이 낮은 EBS 볼륨 같은 비용 최적화 점검 결과를 한곳에서 JSON/CSV 보고서로 받으려 합니다. 보고서는 Athena로 분석할 수 있는 기계 판독 형식이어야 하고, 계정 담당자에게 별도 권한을 요청하지 않으려 합니다. 계정마다 로그인하지 않고 AWS 관리형 기능만으로 구성하려면 어떻게 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "각 멤버 계정의 Trusted Advisor 콘솔에 로그인해 점검 결과를 내보내고 스프레드시트로 합친다"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Config 집계자(aggregator)를 만들고 관리형 규칙으로 유휴 리소스를 점검해 조직 단위로 조회한다"
+      },
+      {
+        "key": "C",
+        "ko": "관리 계정에서 Trusted Advisor 조직 보기를 활성화하고 지원 플랜 요건을 충족한 뒤 비용 최적화 점검 보고서를 생성한다"
+      },
+      {
+        "key": "D",
+        "ko": "Compute Optimizer를 조직 전체에서 신뢰할 수 있는 서비스로 활성화하고, 위임된 관리자 계정에서 유휴 로드 밸런서와 미연결 Elastic IP 권장 사항을 모아 조회한다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "Trusted Advisor 조직 보기는 Organizations의 모든 계정 점검 결과를 보고서로 집계합니다. 멤버 계정별 로그인은 수작업이며, Config 규칙은 EBS 사용률 같은 점검을 대신하지 못하고 직접 정의가 필요합니다. Compute Optimizer는 EC2·EBS·Lambda 등의 크기 권장 도구라 유휴 ELB·미연결 EIP를 다루지 않습니다.\n참고: AWS Support User Guide – Organizational view for AWS Trusted Advisor"
+    }
+  },
+  {
+    "id": 85,
+    "multi": false,
+    "question": {
+      "ko": "감사팀이 지난 9개월 동안 S3 버킷과 EC2 인스턴스 개별 리소스 ID별 일별 비용을 분석하고 결과를 기존 BI 도구에 연결하려 합니다. Cost Explorer 콘솔의 리소스 수준 데이터는 제공 기간이 짧아 9개월 분석에 쓸 수 없습니다. 대상 리소스는 수천 개이고 감사 일정상 새 데이터 수집 시스템을 구축할 시간이 없습니다. 요구사항을 충족하는 가장 적절한 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Cost Explorer에서 다중 연도 데이터를 활성화한 뒤 리소스 ID로 그룹화한다"
+      },
+      {
+        "key": "B",
+        "ko": "리소스 ID를 포함하도록 Data Exports(Cost and Usage Report)를 설정해 S3에 저장하고 Athena로 쿼리한다"
+      },
+      {
+        "key": "C",
+        "ko": "Cost Explorer API를 매월 호출해 RESOURCE_ID 기준으로 그룹화한 결과를 S3에 누적 저장하고 BI 도구가 이 파일을 읽도록 연결한다"
+      },
+      {
+        "key": "D",
+        "ko": "CloudWatch 지표 스트림으로 리소스별 사용량을 수집하고 요금표를 곱해 비용을 추정한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Cost and Usage Report(Data Exports)는 리소스 ID를 포함한 상세 라인 아이템을 S3로 전달하고 Athena·BI 도구에서 장기간 분석할 수 있습니다. 다중 연도 설정은 기간만 늘릴 뿐 리소스 수준 데이터가 없고, Cost Explorer API도 같은 제한을 받습니다. 지표 기반 추정은 실제 청구 금액과 달라집니다.\n참고: AWS Billing and Cost Management User Guide – Granular data / Data Exports"
+    }
+  },
+  {
+    "id": 86,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 1년 Compute Savings Plans와 RDS Reserved Instances를 구매했습니다. 사업 축소로 컴퓨팅 사용량이 줄면 약정이 활용되지 못하고 낭비될 수 있어, 약정 사용률이 기준 이하로 떨어지면 FinOps 팀에 자동으로 알리려 합니다. 추가 인프라 없이 가장 적은 설정으로 구현하는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Budgets에서 Savings Plans 사용률 예산과 RI 사용률 예산을 만들고 임계값 미만이 되면 SNS나 이메일로 알린다"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Budgets에서 월 목표 금액의 비용 예산을 만들고 실제 지출이 초과하면 알린다"
+      },
+      {
+        "key": "C",
+        "ko": "Cost Anomaly Detection 모니터를 서비스별로 만들어 비정상 지출 알림을 받는다"
+      },
+      {
+        "key": "D",
+        "ko": "CloudWatch에서 EC2 CPUUtilization 알람을 만들고 평균 사용률이 낮아지면 FinOps 팀 주소로 SNS 알림을 보내도록 인스턴스 그룹마다 구성한다"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "AWS Budgets는 Savings Plans·RI의 사용률(utilization)과 적용 범위(coverage)를 기준으로 예산을 만들고 임계값 알림을 보낼 수 있습니다. 비용 예산은 지출 초과만 감지하므로 약정 낭비를 알지 못하고, 이상 탐지는 급증한 지출을 찾는 도구입니다. CPU 알람은 약정 활용도와 직접 관련이 없습니다.\n참고: AWS Cost Management User Guide – Managing your costs with AWS Budgets (Savings Plans and RI budgets)"
+    }
+  },
+  {
+    "id": 87,
+    "multi": false,
+    "question": {
+      "ko": "비용 보고서에 CostCenter, costcenter, Cost-Center 같은 태그 키가 뒤섞여 사업부별 집계가 맞지 않습니다. 80개 계정을 AWS Organizations로 관리하며, 앞으로 태그 키의 철자·대소문자와 허용 값을 조직 전체에서 일관되게 정의하고 비용 보고서에서 쓸 수 있게 하려 합니다. 가장 적절한 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모든 변형 태그 키를 비용 할당 태그로 활성화하면 과거 리소스 비용까지 소급 적용되어 하나로 합쳐진다"
+      },
+      {
+        "key": "B",
+        "ko": "각 계정에 AWS Config required-tags 규칙을 배포하고 변형 키를 가진 리소스는 Lambda 자동 수정 작업으로 표준 키로 바꾼다"
+      },
+      {
+        "key": "C",
+        "ko": "SCP로 Cost Explorer 접근을 제한하고 태그 관리는 각 계정 관리자에게 위임한다"
+      },
+      {
+        "key": "D",
+        "ko": "Organizations 태그 정책으로 표준 키와 허용 값을 정의하고, 결제 콘솔에서 해당 키를 사용자 정의 비용 할당 태그로 활성화한다"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "태그 정책은 조직 단위로 태그 키 표기와 허용 값을 표준화하며, 비용 할당 태그는 활성화해야 보고서에 나타납니다. 활성화는 소급 적용되지 않고 변형 키를 합치지도 않습니다. Config 규칙은 키 존재 여부 점검 중심이고 변형 정규화에 Lambda 개발이 필요합니다. Cost Explorer 접근 제한은 태그 일관성과 무관합니다.\n참고: AWS Organizations User Guide – Tag policies / AWS Billing User Guide – Using cost allocation tags"
+    }
+  },
+  {
+    "id": 88,
+    "multi": true,
+    "question": {
+      "ko": "한 회사의 월 지출 구성은 EC2 온디맨드 55%, Fargate와 Lambda 20%, RDS for PostgreSQL 15%, 기타 10%입니다. 앞으로 1년간 EC2는 Graviton 인스턴스 패밀리로 바꿀 예정이고 ECS 워크로드는 Fargate와 EC2를 혼용하며 이동 중입니다. 약정 할인을 최대화하면서 이러한 변경에 유연한 구매 조합 두 가지는 무엇입니까? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "EC2, Fargate, Lambda 사용량에 적용되는 Compute Savings Plans를 구매한다"
+      },
+      {
+        "key": "B",
+        "ko": "m5 패밀리에 대한 3년 EC2 Instance Savings Plans를 구매한다"
+      },
+      {
+        "key": "C",
+        "ko": "RDS for PostgreSQL 인스턴스에는 RDS Reserved DB Instances를 구매한다"
+      },
+      {
+        "key": "D",
+        "ko": "EC2 인스턴스에 3년 Standard Reserved Instances를 구매한다"
+      },
+      {
+        "key": "E",
+        "ko": "RDS 사용량까지 포함되도록 Compute Savings Plans의 시간당 약정을 크게 설정한다"
+      }
+    ],
+    "answer": [
+      "A",
+      "C"
+    ],
+    "explanation": {
+      "ko": "Compute Savings Plans는 인스턴스 패밀리·리전·OS와 무관하게 EC2, Fargate, Lambda에 적용되어 Graviton 전환과 혼용에 유연하고, RDS는 RDS RI로 커버합니다. EC2 Instance SP와 Standard RI는 패밀리에 고정되어 Graviton 이전 시 낭비되며, Compute SP는 RDS에 적용되지 않으므로 약정만 키우면 초과분이 낭비됩니다.\n참고: Savings Plans User Guide – Savings Plans types / Amazon RDS User Guide – Reserved DB instances"
+    }
+  },
+  {
+    "id": 89,
+    "multi": false,
+    "question": {
+      "ko": "금융 회사의 DR 리전에는 평소 인스턴스가 거의 없지만, 장애 시 특정 AZ에서 c6i 계열 인스턴스 100대를 반드시 즉시 시작할 수 있어야 합니다. 향후 인스턴스 패밀리와 크기는 바뀔 수 있습니다. 새로운 관리 도구나 사용자 지정 스크립트는 만들지 않으려 하며, 평소 유휴 용량에 대한 낭비는 최소화해야 합니다. 용량 보장과 할인을 모두 확보하면서 가장 유연한 구성은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "해당 AZ에 c6i 3년 zonal Standard Reserved Instances 100개를 구매한다"
+      },
+      {
+        "key": "B",
+        "ko": "c6i 100대 기준으로 리전(regional) Convertible Reserved Instances를 구매하고, 패밀리가 바뀌면 AWS 콘솔에서 교환해 사용한다"
+      },
+      {
+        "key": "C",
+        "ko": "해당 AZ에 On-Demand Capacity Reservation을 만들고 Compute Savings Plans를 구매해 예약 용량 사용분에 할인을 적용한다"
+      },
+      {
+        "key": "D",
+        "ko": "EC2 Instance Savings Plans만 구매하고 장애 시 온디맨드로 인스턴스를 시작한다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "Capacity Reservation은 AZ 용량을 보장하고, 약정 할인은 Compute Savings Plans가 예약 사용분에도 적용되어 패밀리 변경에 유연합니다. zonal Standard RI는 용량과 할인은 주지만 c6i에 고정되고, regional RI와 Savings Plans는 용량을 보장하지 않아 장애 시 시작 실패 위험이 남습니다.\n참고: Amazon EC2 User Guide – On-Demand Capacity Reservations (billing and Savings Plans)"
+    }
+  },
+  {
+    "id": 90,
+    "multi": false,
+    "question": {
+      "ko": "데이터레이크 버킷의 prefix별 객체 접근 패턴을 알 수 없는 상태에서 S3 Standard-IA 전환 규칙을 설계하려 합니다. 어떤 prefix의 객체가 생성 후 얼마나 지나면 접근이 줄어드는지 데이터를 근거로 결정하고 싶으며, 추가 로그 파이프라인 구축은 피하려 합니다. 버킷에는 수십 개의 prefix가 있고 프로젝트별로 접근이 줄어드는 시점이 다르다고 알려져 있습니다. 가장 적절한 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "prefix 또는 태그 필터로 S3 Storage Class Analysis를 켜고 관찰 후 나온 Standard-IA 전환 권장 기간을 수명 주기에 반영한다"
+      },
+      {
+        "key": "B",
+        "ko": "S3 Inventory 보고서의 마지막 수정 날짜를 기준으로 30일 이상 지난 객체를 prefix에 상관없이 Standard-IA로 일괄 전환하는 규칙을 만든다"
+      },
+      {
+        "key": "C",
+        "ko": "모든 데이터 이벤트를 CloudTrail에 기록해 Athena로 prefix별 GET 횟수를 집계한다"
+      },
+      {
+        "key": "D",
+        "ko": "버킷 전체를 S3 One Zone-IA로 전환하고 접근 빈도가 높은 객체만 수동으로 되돌린다"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Storage Class Analysis는 필터별 접근 빈도를 관찰해 Standard에서 Standard-IA로 옮길 시점을 권장해 줍니다. Inventory는 접근 이력이 아니라 메타데이터라 근거가 되지 못하고, CloudTrail 데이터 이벤트+Athena는 로그 파이프라인과 비용이 늘며, 일괄 One Zone-IA 전환은 가용성과 검색 요금 위험이 있습니다.\n참고: Amazon S3 User Guide – Amazon S3 analytics – Storage Class Analysis"
+    }
+  },
+  {
+    "id": 91,
+    "multi": false,
+    "question": {
+      "ko": "미디어 회사가 현장 장비에서 S3 버킷으로 수십 GB 영상을 멀티파트 업로드합니다. 네트워크 중단으로 완료되지 않은 업로드가 쌓여 객체 목록에는 보이지 않는데도 S3 스토리지 비용이 계속 늘고 있습니다. 버킷에는 수십만 개의 객체가 있어 개별 확인은 현실적이지 않고 객체 버전 관리는 꺼져 있습니다. 기존과 향후 업로드를 모두 포함해 가장 적은 운영 노력으로 비용 증가를 막으려면 어떻게 해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "버킷의 기본 스토리지 클래스를 S3 Intelligent-Tiering으로 바꿔 미완료 파트가 자동으로 더 저렴한 계층으로 이동하게 한다"
+      },
+      {
+        "key": "B",
+        "ko": "버킷에 AbortIncompleteMultipartUpload 수명 주기 규칙을 설정해 시작 후 일정 일수가 지난 미완료 업로드를 자동 삭제한다"
+      },
+      {
+        "key": "C",
+        "ko": "현재 버전 객체에 만료 규칙을 추가해 일정 기간이 지난 객체를 삭제한다"
+      },
+      {
+        "key": "D",
+        "ko": "S3 Storage Lens 대시보드에서 미완료 업로드 용량을 확인하고 매월 수동으로 삭제한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "미완료 멀티파트 업로드의 파트는 완료되거나 중단될 때까지 스토리지 요금이 발생하며, AbortIncompleteMultipartUpload 규칙으로 기존·신규 업로드를 모두 자동 정리할 수 있습니다. Intelligent-Tiering은 완료된 객체에 대한 기능이고, 객체 만료 규칙은 미완료 파트를 지우지 않으며, 수동 삭제는 지속적인 운영 부담입니다.\n참고: Amazon S3 User Guide – Configuring a bucket lifecycle configuration to delete incomplete multipart uploads"
+    }
+  },
+  {
+    "id": 92,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 보안 로그(객체당 약 5MB)를 S3 Standard에 저장하고 정확히 20일 뒤 삭제합니다. 7일 이후에는 거의 조회하지 않는 로그라 비용 절감을 위해 생성 7일 뒤 S3 Standard-IA로 전환하고 20일에 삭제하는 수명 주기가 제안되었습니다. 로그를 20일만 보관한다는 조건에서 가장 비용 효율적인 구성은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "스토리지 클래스 전환 없이 S3 Standard에 두고 생성 20일 후 만료하는 규칙만 사용한다"
+      },
+      {
+        "key": "B",
+        "ko": "7일 뒤 S3 Standard-IA로 전환하고 20일 뒤 만료한다"
+      },
+      {
+        "key": "C",
+        "ko": "7일 뒤 S3 Glacier Instant Retrieval로 전환하고 20일 뒤 객체를 만료하는 규칙을 추가한다"
+      },
+      {
+        "key": "D",
+        "ko": "처음부터 S3 Intelligent-Tiering에 저장하고 20일 뒤 만료한다"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Standard-IA와 One Zone-IA는 최소 30일, Glacier Instant Retrieval은 90일 최소 보관 기간이 있어 20일에 삭제해도 최소 기간만큼 과금되고 전환 요청 요금까지 붙어 오히려 비쌉니다. Intelligent-Tiering도 30일간 접근이 없어야 낮은 계층으로 이동하므로 20일 내에는 절감 없이 모니터링 요금만 추가됩니다.\n참고: Amazon S3 User Guide – Comparing the Amazon S3 storage classes"
+    }
+  },
+  {
+    "id": 93,
+    "multi": false,
+    "question": {
+      "ko": "의료 영상 회사가 us-east-1 S3 버킷의 객체를 규정상 다른 리전에도 보관해야 합니다. 대상 리전 사본은 복구 훈련 때만 접근하며 복구 시간 목표(RTO)는 수 시간까지 허용됩니다. 버킷에는 객체 수억 개가 있으며, 복구 훈련은 연 2회 특정 환자 데이터에 대해서만 수행됩니다. 별도 복사 코드를 만들지 않고 대상 리전 스토리지 비용을 최소화하는 구성은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Replication Time Control을 활성화하고 대상 버킷에 S3 Standard로 복제한다"
+      },
+      {
+        "key": "B",
+        "ko": "Lambda 함수가 매시간 새 객체를 대상 리전 버킷으로 복사하도록 EventBridge 스케줄을 구성한다"
+      },
+      {
+        "key": "C",
+        "ko": "복제 규칙에서 대상 스토리지 클래스를 S3 One Zone-IA로 지정해 Standard 복제보다 스토리지 비용을 낮추고 접근은 필요할 때 즉시 가능하게 한다"
+      },
+      {
+        "key": "D",
+        "ko": "두 버킷에 버전 관리를 켜고 복제 규칙에서 대상 스토리지 클래스를 S3 Glacier Flexible Retrieval로 지정한 Cross-Region Replication을 구성한다"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "복제 규칙에서 대상 스토리지 클래스를 지정할 수 있어 코드 없이 사본을 Glacier Flexible Retrieval에 두면 수 시간 RTO 요건을 맞추면서 스토리지 비용이 가장 낮습니다. RTC는 15분 SLA용 추가 요금이고, Lambda 복사는 코드 운영이 필요하며, One Zone-IA는 Glacier보다 비싸고 단일 AZ에 저장됩니다.\n참고: Amazon S3 User Guide – Replicating objects (replication configuration, storage class for replicas)"
+    }
+  },
+  {
+    "id": 94,
+    "multi": false,
+    "question": {
+      "ko": "IoT 플랫폼의 Lambda 함수가 센서 메시지(평균 2KB)마다 별도의 S3 객체로 PUT하여, 월 수십억 건의 요청 요금이 스토리지 요금보다 커졌습니다. 데이터는 Athena로 분석하며 수 분의 지연은 허용됩니다. 원본 데이터는 JSON이며 팀에는 스트림 처리 인프라를 직접 운영할 인력이 없습니다. 비용과 분석 성능을 함께 개선하는 가장 효과적인 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "객체를 S3 Standard-IA에 저장해 PUT 요청 요금을 낮춘다"
+      },
+      {
+        "key": "B",
+        "ko": "저장 위치를 S3 Express One Zone 디렉터리 버킷으로 바꾸고 객체 단위 PUT 방식은 유지한 채 요청 단가가 낮은 스토리지를 사용한다"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Data Firehose로 메시지를 버퍼링해 큰 객체로 묶고 Parquet 형식으로 변환해 S3에 전달한다"
+      },
+      {
+        "key": "D",
+        "ko": "Lambda 예약 동시성을 낮춰 초당 PUT 요청 수를 줄인다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "요청 요금은 객체 수에 비례하므로 Firehose의 버퍼링으로 객체 수를 줄이는 것이 근본 해결이며, 큰 Parquet 파일은 Athena 스캔 성능과 비용도 개선합니다. Standard-IA는 PUT 단가가 더 높고, Express One Zone은 객체 수가 그대로여서 작은 객체 문제가 남으며, 동시성 제한은 데이터를 유실하거나 지연시킵니다.\n참고: Amazon Data Firehose Developer Guide – Buffering hints and Amazon S3 delivery"
+    }
+  },
+  {
+    "id": 95,
+    "multi": true,
+    "question": {
+      "ko": "감사에서 EBS 스냅샷 18만 개가 보존 정책 없이 쌓여 있음이 드러났습니다. 규정상 분기 말 스냅샷은 7년간 보관해야 하고 이 스냅샷의 복원은 하루 이상 걸려도 됩니다. 나머지 일일 스냅샷은 90일만 보관하면 되며 앞으로 쌓이는 스냅샷 관리는 자동화하려 합니다. 스냅샷은 모두 us-east-1에 있고 팀은 변경 관리가 쉬운 관리형 기능을 우선합니다. 비용을 줄이는 두 가지 조치는 무엇입니까? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "90일 보관 스냅샷을 포함한 모든 스냅샷을 즉시 Archive 계층으로 이동한다"
+      },
+      {
+        "key": "B",
+        "ko": "7년 보관 대상 스냅샷을 EBS Snapshots Archive 계층으로 이동한다"
+      },
+      {
+        "key": "C",
+        "ko": "7년 보관 스냅샷을 재해 복구를 위해 다른 리전으로 복사해 이중으로 보관한다"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Data Lifecycle Manager 정책으로 일일 스냅샷을 90일 후 자동 삭제한다"
+      },
+      {
+        "key": "E",
+        "ko": "원본 EBS 볼륨을 sc1 유형으로 변경해 스냅샷 크기를 줄인다"
+      }
+    ],
+    "answer": [
+      "B",
+      "D"
+    ],
+    "explanation": {
+      "ko": "Archive 계층은 90일 이상 드물게 접근하는 스냅샷의 저장 비용을 최대 75%까지 줄여 주며 복원에 시간이 걸려도 되는 장기 보관에 맞습니다. DLM은 보존 일수 기준 생성·삭제를 자동화합니다. 90일짜리까지 아카이브하면 최소 보관 기간 비용이 생기고, 리전 복사는 비용을 늘리며, 볼륨 유형은 스냅샷 크기에 영향이 없습니다.\n참고: Amazon EBS User Guide – Archive Amazon EBS snapshots / Amazon Data Lifecycle Manager"
+    }
+  },
+  {
+    "id": 96,
+    "multi": false,
+    "question": {
+      "ko": "미디어 처리 회사가 EFS를 Provisioned throughput 1,000 MiB/s로 운영합니다. 실제 처리량은 하루 한두 시간의 배치 때만 높고(최대 800 MiB/s 이상 필요) 평균 사용률은 최대치의 3% 수준이며, 저장 데이터는 2TB입니다. 클라이언트 마운트 설정과 애플리케이션은 변경할 수 없습니다. 성능 요구를 유지하면서 비용을 줄이는 변경은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "처리량 모드를 Bursting으로 전환해 버스트 크레딧으로 배치를 처리한다"
+      },
+      {
+        "key": "B",
+        "ko": "처리량 모드를 Elastic throughput으로 전환해 읽기·쓰기 데이터량만큼만 과금되게 한다"
+      },
+      {
+        "key": "C",
+        "ko": "파일 시스템을 EFS One Zone으로 마이그레이션해 스토리지 단가를 낮춘다"
+      },
+      {
+        "key": "D",
+        "ko": "수명 주기 정책으로 30일 동안 접근하지 않은 파일을 EFS Infrequent Access 스토리지 클래스로 이동한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "평균 대비 피크 비율이 매우 낮은 워크로드는 사용한 만큼 과금되는 Elastic throughput이 유리합니다. Bursting은 2TB 기준 허용 처리량이 수백 MiB/s에 그쳐 800 MiB/s 요구를 못 맞춥니다. One Zone이나 IA 전환은 스토리지 비용만 줄일 뿐 프로비저닝된 처리량 비용은 그대로 남습니다.\n참고: Amazon EFS User Guide – Amazon EFS performance specifications (throughput modes)"
+    }
+  },
+  {
+    "id": 97,
+    "multi": false,
+    "question": {
+      "ko": "유전체 분석 팀이 S3의 300TB 데이터를 분석 때마다 FSx for Lustre로 불러와 며칠간 처리하고 결과를 S3에 저장한 뒤 파일 시스템을 삭제합니다. 원본은 S3에 영구 보관되며, 처리 중 파일 서버 장애가 나면 작업을 재실행해도 괜찮습니다. 분석 노드는 수백 대이며 작업 중에는 수 GB/s의 처리량이 필요합니다. 가장 비용 효율적인 배포 옵션은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Persistent 2 SSD 배포 유형으로 만들고 데이터 복제를 활용해 장애에 대비한다"
+      },
+      {
+        "key": "B",
+        "ko": "EFS Max I/O 모드 파일 시스템을 만들고 분석 노드에서 공유 마운트한다"
+      },
+      {
+        "key": "C",
+        "ko": "FSx for NetApp ONTAP을 만들고 용량 풀 계층화를 켜서 S3의 데이터를 SSD 계층에 캐시한다"
+      },
+      {
+        "key": "D",
+        "ko": "S3 버킷과 연결한 Scratch 배포 유형 FSx for Lustre 파일 시스템을 사용한다"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "Scratch 유형은 데이터를 복제하지 않는 임시 처리용으로 TB당 비용이 가장 낮고 S3와 연동해 데이터를 불러오고 내보낼 수 있어 재실행이 허용되는 작업에 맞습니다. Persistent는 장기·고가용성 데이터용이라 더 비싸고, EFS와 ONTAP은 HPC 처리량 대비 비용이 높으며 S3 직접 연동 목적에도 맞지 않습니다.\n참고: Amazon FSx for Lustre User Guide – Deployment options for FSx for Lustre file systems"
+    }
+  },
+  {
+    "id": 98,
+    "multi": false,
+    "question": {
+      "ko": "로그 분석 회사가 EC2에 60TB의 대용량 순차 읽기/쓰기 로그 데이터를 저장합니다. 부팅 볼륨이 아니며 큰 블록 단위의 스트리밍 처리량이 중요하고 랜덤 IOPS는 거의 필요 없습니다. 데이터는 하루 종일 연속 처리되고 여러 볼륨으로 나누어 붙여도 됩니다. 해당 서버는 인스턴스 스토어가 없는 유형이라 EBS 볼륨만 사용합니다. 요구를 충족하면서 비용이 가장 낮은 EBS 유형은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Throughput Optimized HDD (st1)"
+      },
+      {
+        "key": "B",
+        "ko": "Cold HDD (sc1)"
+      },
+      {
+        "key": "C",
+        "ko": "범용 SSD (gp3)에 처리량을 최대치로 프로비저닝"
+      },
+      {
+        "key": "D",
+        "ko": "Provisioned IOPS SSD (io2 Block Express)"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "st1은 큰 순차 I/O와 빈번하게 접근하는 처리량 중심 워크로드에 맞는 가장 저렴한 상시 처리용 유형입니다. sc1은 접근이 드문 콜드 데이터용이라 지속 처리량이 부족하고, gp3와 io2는 용량 단가가 훨씬 높아 IOPS가 필요 없는 60TB에는 과잉 설계입니다.\n참고: Amazon EBS User Guide – Amazon EBS volume types (HDD volumes)"
+    }
+  },
+  {
+    "id": 99,
+    "multi": true,
+    "question": {
+      "ko": "이미지 변환 웹 서비스는 평소 20대, 피크 시 최대 120대의 stateless 인스턴스가 필요하며, 인스턴스 중단은 요청 재시도로 흡수됩니다. 다만 최소 20대는 항상 안정적으로 유지해야 합니다. 비용을 줄이면서 Spot 용량 부족과 중단 위험을 낮추는 Auto Scaling 그룹 설정 두 가지는 무엇입니까? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "혼합 인스턴스 정책에서 On-Demand 기본 용량을 20대로 하고 초과분은 Spot으로 시작한다"
+      },
+      {
+        "key": "B",
+        "ko": "단일 AZ에서 단일 인스턴스 유형으로 가장 낮은 가격의 Spot만 요청한다"
+      },
+      {
+        "key": "C",
+        "ko": "On-Demand 기본 용량을 0으로 두고 모든 인스턴스를 Spot으로 시작한다"
+      },
+      {
+        "key": "D",
+        "ko": "기본 용량 20대를 Spot으로 구성하고 초과분만 On-Demand로 시작한다"
+      },
+      {
+        "key": "E",
+        "ko": "여러 인스턴스 유형과 여러 AZ를 지정하고 price-capacity-optimized 할당 전략을 사용한다"
+      }
+    ],
+    "answer": [
+      "A",
+      "E"
+    ],
+    "explanation": {
+      "ko": "On-Demand 기본 용량이 최소 20대의 안정성을 보장하고 초과분만 Spot으로 처리하며, 다양한 유형·AZ와 price-capacity-optimized 전략은 용량이 풍부한 풀을 골라 중단 가능성을 낮춥니다. 단일 유형·AZ의 최저가 요청과 전량 Spot은 중단 위험이 크고, 기본 용량을 Spot으로 두면 20대 안정 요건을 깹니다.\n참고: Amazon EC2 Auto Scaling User Guide – Auto Scaling groups with multiple instance types and purchase options"
+    }
+  },
+  {
+    "id": 100,
+    "multi": false,
+    "question": {
+      "ko": "연구소가 야간에 독립적인 시뮬레이션 작업 수천 개(각 20~40분)를 AWS Batch에서 실행합니다. 작업은 재시도가 가능하고 마감은 아침까지입니다. 작업 이미지는 컨테이너로 패키징되어 있고 팀은 클러스터를 직접 관리하지 않으려 합니다. 컴퓨팅 비용을 줄이면서 Spot 중단으로 인한 작업 재실행을 줄이려면 컴퓨트 환경을 어떻게 구성해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "On-Demand 컴퓨트 환경을 만들고 야간 사용량 기준으로 3년 Compute Savings Plans를 구매해 상시 단가를 낮추고 중단 가능성을 없앤다"
+      },
+      {
+        "key": "B",
+        "ko": "Spot 컴퓨트 환경에서 단일 인스턴스 유형과 BEST_FIT 할당 전략을 사용해 최저가 풀만 선택한다"
+      },
+      {
+        "key": "C",
+        "ko": "Spot 컴퓨트 환경에서 다양한 인스턴스 유형을 허용하고 SPOT_PRICE_CAPACITY_OPTIMIZED 전략과 작업 재시도를 설정한다"
+      },
+      {
+        "key": "D",
+        "ko": "Dedicated Hosts 위에 컴퓨트 환경을 구성해 인스턴스 중단 가능성을 없앤다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "재시도 가능한 단기 배치는 Spot에 적합하고, 유형을 다양화한 가격·용량 최적화 전략이 중단이 적은 풀을 선택해 줍니다. 야간에만 쓰는 워크로드에 3년 약정은 낭비이고, 단일 유형 BEST_FIT은 최저가를 따라가 중단이 잦으며, Dedicated Hosts는 비용이 높고 이 요구와 무관합니다.\n참고: AWS Batch User Guide – Compute environments (allocation strategies)"
+    }
+  },
+  {
+    "id": 101,
+    "multi": false,
+    "question": {
+      "ko": "ECS Fargate에서 실행하는 이메일 템플릿 렌더링 서비스는 SIGTERM을 받으면 처리 중인 작업을 마무리하도록 구현되어 있고 작업 큐 기반이라 일부 작업 중단은 허용됩니다. 다만 항상 최소 2개 작업은 중단 없이 실행되어야 합니다. 서비스는 이미 ALB 뒤에서 동작하며 작업 수는 평균 20개, 야간에는 4개입니다. 코드 변경과 운영 오버헤드 없이 비용을 줄이는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "서비스의 모든 작업을 FARGATE_SPOT 용량 공급자로만 실행한다"
+      },
+      {
+        "key": "B",
+        "ko": "용량 공급자 전략에서 FARGATE에 base 2를 지정하고 나머지 작업은 FARGATE_SPOT 가중치를 높게 설정한다"
+      },
+      {
+        "key": "C",
+        "ko": "EC2 시작 유형으로 이전해 Spot 인스턴스로 클러스터를 구성하고 AMI 교체와 OS 패치를 직접 관리하며 Spot 중단에 대비한다"
+      },
+      {
+        "key": "D",
+        "ko": "작업 정의의 vCPU와 메모리를 절반으로 줄여 Fargate 요금을 낮춘다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "용량 공급자 전략의 base로 FARGATE 2개를 고정하고 나머지를 Fargate Spot으로 돌리면 코드 변경 없이 보장과 절감을 모두 얻습니다. 전량 Spot은 최소 2개 보장이 깨질 수 있고, EC2 이전은 노드 관리 부담이 생기며, 리소스 절반 축소는 성능 요구를 검증하지 않은 위험한 변경입니다.\n참고: Amazon ECS Developer Guide – AWS Fargate capacity providers (Fargate Spot)"
+    }
+  },
+  {
+    "id": 102,
+    "multi": false,
+    "question": {
+      "ko": "사내 API 서버 50대가 t3.large(unlimited 모드 기본값)로 운영되며 24시간 평균 CPU 사용률이 55%입니다. 청구서에는 인스턴스 요금 외에 추가 CPU 크레딧 요금이 매월 붙고, 총비용이 같은 크기의 m5.large보다 높습니다. CPU 사용 패턴은 업무 시간뿐 아니라 야간 배치 때문에 하루 종일 비슷합니다. 성능 저하 없이 비용을 줄이는 가장 적절한 조치는 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "고정 성능 인스턴스(예: m6i 또는 m7g 계열)로 변경한다"
+      },
+      {
+        "key": "B",
+        "ko": "T3 인스턴스를 Standard 크레딧 모드로 전환해 추가 요금을 없앤다"
+      },
+      {
+        "key": "C",
+        "ko": "t3.xlarge로 한 단계 키워 baseline 여유를 확보한다"
+      },
+      {
+        "key": "D",
+        "ko": "Auto Scaling 대상 추적 지표를 낮춰 평균 CPU가 baseline 이하가 되도록 인스턴스 수를 늘린다"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "24시간 평균 CPU가 baseline을 넘으면 surplus 크레딧 요금이 붙고, 손익분기 사용률을 넘으면 T3가 M 계열보다 비쌉니다. Standard 모드는 baseline으로 제한되어 성능이 떨어지고, t3.xlarge는 시간당 단가가 약 두 배이며, 대수를 늘리면 총비용이 더 커집니다. 지속 부하에는 고정 성능 인스턴스가 맞습니다.\n참고: Amazon EC2 User Guide – Unlimited mode concepts for burstable instances"
+    }
+  },
+  {
+    "id": 103,
+    "multi": false,
+    "question": {
+      "ko": "순수 Python 3.12 코드와 순수 Python 패키지만 사용하는 Lambda 함수 30개가 x86_64 아키텍처에서 월 20억 번 호출됩니다. 호출당 실행 시간은 대부분 수백 ms이며 메모리 크기는 이미 최적화되어 있습니다. 함수는 컨테이너 이미지가 아닌 .zip 패키지로 배포되며 CI/CD 파이프라인으로 업데이트됩니다. 코드 변경을 최소화하면서 Lambda 요금을 줄이는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모든 함수에 프로비저닝된 동시성을 설정해 초기화 시간을 제거한다"
+      },
+      {
+        "key": "B",
+        "ko": "Lambda SnapStart를 활성화해 호출 시간을 줄인다"
+      },
+      {
+        "key": "C",
+        "ko": "함수를 EC2 Graviton 인스턴스의 컨테이너로 옮겨 상시 실행한다"
+      },
+      {
+        "key": "D",
+        "ko": "함수 아키텍처를 arm64(Graviton2)로 변경한다"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "arm64 함수는 x86_64보다 GB-초 단가가 낮고 순수 Python 코드는 재빌드 없이 동작하는 경우가 많아, 설정 변경으로 요금을 줄입니다. 프로비저닝된 동시성은 대기 비용이 추가되고, SnapStart는 콜드 스타트 개선이 목적이며 복원 요금이 붙을 수 있습니다. EC2 이전은 운영 오버헤드가 커집니다.\n참고: AWS Lambda Developer Guide – Selecting and configuring an instruction set architecture for your Lambda function"
+    }
+  },
+  {
+    "id": 104,
+    "multi": false,
+    "question": {
+      "ko": "이커머스 회사가 CloudFront 앞단의 viewer 이벤트에서 모든 요청의 URL을 /index.html로 재작성하고 응답에 보안 헤더를 추가하는 로직을 Lambda@Edge로 구현했는데, 월 수십억 건 요청에 비용이 큽니다. 로직은 네트워크 호출 없이 몇 줄의 JavaScript면 충분합니다. 지연 시간을 유지하며 비용을 줄이는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Lambda@Edge 함수의 메모리를 최소 크기로 줄인다"
+      },
+      {
+        "key": "B",
+        "ko": "로직을 origin request 이벤트로 옮겨 캐시 미스 때만 실행되게 한다"
+      },
+      {
+        "key": "C",
+        "ko": "로직을 CloudFront Functions의 viewer 이벤트 함수로 이전한다"
+      },
+      {
+        "key": "D",
+        "ko": "로직을 Lambda@Edge에서 빼고 오리진 ALB의 리스너 규칙과 Lambda 대상 그룹으로 처리하도록 변경한다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "URL 재작성과 헤더 조작처럼 짧고 가벼운 로직은 CloudFront Functions가 더 저렴하고 서브밀리초로 실행됩니다. 메모리 축소는 viewer 이벤트에서 효과가 작고, origin request로 옮기면 캐시 적중 응답에는 헤더가 붙지 않아 요구가 깨집니다. ALB 처리는 엣지 지연과 오리진 부하를 되돌립니다.\n참고: Amazon CloudFront Developer Guide – Differences between CloudFront Functions and Lambda@Edge"
+    }
+  },
+  {
+    "id": 105,
+    "multi": false,
+    "question": {
+      "ko": "주문 이벤트마다 3개의 Lambda 함수를 순차 호출하는 Step Functions Standard 워크플로가 하루 1억 번 실행되며 각 실행은 2초 안에 끝납니다. 상태 전환 요금이 Lambda 요금을 넘어섰습니다. 작업은 멱등적이어서 최소 한 번 이상 실행되어도 문제가 없습니다. 가장 효과적인 비용 절감 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Lambda 함수 3개를 arm64 아키텍처로 변경하고 메모리를 조정해 함수 실행 요금을 줄인다"
+      },
+      {
+        "key": "B",
+        "ko": "Express 워크플로 유형의 새 상태 머신으로 전환해 실행·시간·메모리 기준으로 과금되게 한다"
+      },
+      {
+        "key": "C",
+        "ko": "Standard 워크플로의 실행 기록 보존 기간을 30일로 단축한다"
+      },
+      {
+        "key": "D",
+        "ko": "CloudWatch Logs 로깅 수준을 ERROR로 낮춘다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "짧고 대량이며 멱등적인 워크로드는 상태 전환당 과금되는 Standard 대신 Express가 훨씬 저렴합니다. 워크플로 유형은 생성 후 바꿀 수 없어 새로 만들어야 합니다. arm64 변경은 Lambda 요금만 줄이고, 보존 기간과 로깅 수준은 상태 전환 요금과 무관합니다.\n참고: AWS Step Functions Developer Guide – Choosing workflow type in Step Functions"
+    }
+  },
+  {
+    "id": 106,
+    "multi": false,
+    "question": {
+      "ko": "주문 처리 워커 200대가 SQS 표준 큐를 ReceiveMessage 짧은 폴링(대기 시간 0초)으로 계속 호출해, 메시지가 거의 없는 야간에도 빈 응답 요청이 수십억 건 과금됩니다. 메시지 처리가 1초 정도 늦어져도 괜찮고 코드 구조는 바꾸지 않으려 합니다. 워커는 초당 수 건 이하의 메시지를 처리하는 시간대가 대부분입니다. 요청 비용을 줄이는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "큐의 ReceiveMessageWaitTimeSeconds를 20초로 설정해 롱 폴링을 사용한다"
+      },
+      {
+        "key": "B",
+        "ko": "큐의 가시성 제한 시간(visibility timeout)을 최대로 늘려 같은 메시지의 재수신을 줄인다"
+      },
+      {
+        "key": "C",
+        "ko": "표준 큐를 FIFO 큐로 교체해 중복 수신을 막는다"
+      },
+      {
+        "key": "D",
+        "ko": "큐의 메시지 보존 기간을 줄여 처리되지 않은 메시지를 빨리 삭제한다"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "롱 폴링은 메시지가 도착할 때까지 최대 20초 대기해 빈 응답과 요청 수를 크게 줄입니다. 큐 속성만 바꾸면 되어 코드 구조 변경이 없습니다. 가시성 제한은 재처리 시점 설정이고, FIFO는 요청 단가가 더 높으며, 보존 기간 단축은 요청 수를 줄이지 못하고 메시지 손실만 일으킵니다.\n참고: Amazon SQS Developer Guide – Amazon SQS short and long polling"
+    }
+  },
+  {
+    "id": 107,
+    "multi": false,
+    "question": {
+      "ko": "마이크로서비스 로그를 CloudWatch Logs에 수집하는 회사의 로그 수집 요금이 월 비용 1위입니다. 상당수 로그 그룹(감사·디버그용)은 CloudWatch Logs Insights로 가끔 조회만 하고 실시간 알람, 구독 필터, 지표 필터는 사용하지 않습니다. 가장 적은 변경으로 수집 비용을 줄이려면 어떻게 해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "기존 로그 그룹의 보존 기간을 1일로 단축한다"
+      },
+      {
+        "key": "B",
+        "ko": "모든 로그를 Kinesis Data Streams로 보내고 소비자 애플리케이션이 S3에 저장하게 한다"
+      },
+      {
+        "key": "C",
+        "ko": "로그 그룹마다 구독 필터를 만들어 Firehose로 S3에 전달하고 로그 그룹은 삭제한다"
+      },
+      {
+        "key": "D",
+        "ko": "해당 로그를 Infrequent Access 로그 클래스의 새 로그 그룹으로 보내도록 설정한다"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "Infrequent Access 로그 클래스는 Standard보다 수집 단가가 낮고 Logs Insights 조회를 지원하며, 지표 필터·구독 필터가 필요 없는 로그에 맞습니다. 로그 클래스는 생성 시 정해지므로 새 로그 그룹을 쓰면 됩니다. 보존 기간 단축은 저장 비용에만 영향이 있고, Kinesis·Firehose 경유는 구성과 비용이 오히려 늘어납니다.\n참고: Amazon CloudWatch Logs User Guide – Log classes"
+    }
+  },
+  {
+    "id": 108,
+    "multi": false,
+    "question": {
+      "ko": "회사가 RDS for MySQL 5.7로 운영하는 DB 인스턴스 40개에 대해, 표준 지원 종료 이후 vCPU 시간당 Extended Support 요금이 청구되고 있습니다. 애플리케이션은 MySQL 8.0 호환성 검증이 필요하며 전환 시 중단 시간은 몇 분 이내여야 합니다. 서비스 중단을 최소화하면서 이 추가 요금을 없애려면 어떻게 해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "5.7 계열의 최신 마이너 버전으로 패치한다"
+      },
+      {
+        "key": "B",
+        "ko": "Multi-AZ 구성을 Single-AZ로 변경해 대기 인스턴스의 vCPU 요금을 줄이고 표준 지원을 기다린다"
+      },
+      {
+        "key": "C",
+        "ko": "RDS Blue/Green Deployments로 MySQL 8.0 그린 환경을 만들어 검증한 뒤 전환한다"
+      },
+      {
+        "key": "D",
+        "ko": "인스턴스를 중지해 두고 필요할 때만 시작한다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "Extended Support 요금은 메이저 버전의 표준 지원이 끝난 뒤 계속 쓰는 데 붙으므로, 지원되는 메이저 버전으로 업그레이드해야 사라지며 Blue/Green Deployments는 전환 중단 시간을 짧게 해 줍니다. 마이너 패치는 메이저 버전을 바꾸지 않고, 구성 축소는 요금 일부만 줄이며, 중지는 최대 7일 후 자동 재시작됩니다.\n참고: Amazon RDS User Guide – Amazon RDS Extended Support / Using Amazon RDS Blue/Green Deployments"
+    }
+  },
+  {
+    "id": 109,
+    "multi": false,
+    "question": {
+      "ko": "개발팀이 20TB Aurora MySQL 운영 클러스터의 데이터로 주 2회 통합 테스트 환경을 만듭니다. 현재는 스냅샷 복원에 몇 시간이 걸리고 매번 20TB 스토리지 비용이 추가됩니다. 테스트 중 변경되는 데이터는 소량이며 테스트 DB는 운영 DB와 독립적이어야 합니다. 시간과 스토리지 비용을 줄이는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS DMS로 운영 DB 전체를 테스트 클러스터로 매번 복제한다"
+      },
+      {
+        "key": "B",
+        "ko": "Aurora 클로닝(copy-on-write)으로 테스트 클러스터를 만들고 끝나면 삭제한다"
+      },
+      {
+        "key": "C",
+        "ko": "스냅샷 복원 뒤 테스트가 끝나면 삭제하는 작업을 Step Functions로 자동화한다"
+      },
+      {
+        "key": "D",
+        "ko": "운영 클러스터의 Aurora 읽기 복제본에 접속해 테스트를 수행한다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "Aurora 클론은 원본과 데이터 페이지를 공유하다 변경된 페이지만 새로 저장하므로 생성이 빠르고 추가 스토리지가 변경량만큼만 듭니다. DMS 복제와 스냅샷 복원은 전체 20TB를 새로 만들고, 읽기 복제본은 쓰기가 안 되고 운영 클러스터와 독립적이지도 않아 테스트에 맞지 않습니다.\n참고: Amazon Aurora User Guide – Cloning a volume for an Amazon Aurora DB cluster"
+    }
+  },
+  {
+    "id": 110,
+    "multi": false,
+    "question": {
+      "ko": "세션·프로필 캐시로 ElastiCache for Redis OSS(r6g.4xlarge 12노드, 복제 그룹, Multi-AZ)를 쓰는 서비스가 있습니다. 전체 데이터셋 600GB 중 자주 접근하는 비율은 약 15%이고 나머지는 가끔 읽습니다. SSD 접근으로 수백 마이크로초 지연이 늘어도 되며 고가용성은 유지해야 합니다. 비용을 줄이는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "r6gd 노드 유형의 데이터 계층화(data tiering)를 사용해 노드 수를 줄인다"
+      },
+      {
+        "key": "B",
+        "ko": "노드 유형을 r6g.8xlarge로 키우고 노드 수를 절반으로 줄여 인스턴스 관리 수를 줄인다"
+      },
+      {
+        "key": "C",
+        "ko": "Memcached 엔진으로 교체해 멀티스레드 효율로 노드 수를 줄인다"
+      },
+      {
+        "key": "D",
+        "ko": "복제본 노드를 제거하고 기본 노드만 유지한다"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "일부 데이터만 자주 접근하는 큰 데이터셋은 r6gd의 데이터 계층화가 덜 쓰는 값을 SSD로 내려 메모리 비용을 줄이며 클라이언트 변경 없이 쓸 수 있습니다. 노드 확대는 메모리 단가가 같아 절감이 없고, Memcached는 복제·장애 조치가 없어 요건을 못 맞추며, 복제본 제거는 고가용성 요구를 깹니다.\n참고: Amazon ElastiCache User Guide – Data tiering"
+    }
+  },
+  {
+    "id": 111,
+    "multi": false,
+    "question": {
+      "ko": "보안 로그를 OpenSearch Service(r6g.2xlarge 데이터 노드 18대, EBS)에 90일간 보관합니다. 7일이 지난 로그는 읽기 전용이며 가끔 조사 쿼리만 실행하고 응답이 수 초 느려져도 됩니다. 인덱스는 일별로 생성되며 데이터 노드는 고가용성을 위해 3개 AZ에 걸쳐 있습니다. 인덱스 이동 자동화를 포함해 데이터 보관 비용을 줄이는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모든 인덱스의 복제본 수를 0으로 줄여 저장 용량을 절반으로 줄인다"
+      },
+      {
+        "key": "B",
+        "ko": "7일 지난 인덱스를 스냅샷으로 S3에 내보낸 뒤 삭제하고, 조사가 필요할 때마다 수동으로 복원해 쿼리한다"
+      },
+      {
+        "key": "C",
+        "ko": "UltraWarm 노드를 활성화하고 ISM 정책으로 7일 지난 인덱스를 warm 계층으로 이전한다"
+      },
+      {
+        "key": "D",
+        "ko": "EBS 볼륨 유형만 gp3로 변경하고 데이터 노드 수는 그대로 유지한다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "UltraWarm은 S3 기반의 저렴한 읽기 전용 저장소로 로그처럼 변하지 않고 가끔 조회하는 데이터에 적합하며 ISM으로 이전을 자동화합니다. 복제본 0은 노드 장애 시 데이터 손실 위험이 있고, 수동 내보내기·복원은 운영 부담이 크며, gp3 변경은 hot 저장소 용량 자체는 줄이지 못합니다.\n참고: Amazon OpenSearch Service Developer Guide – UltraWarm storage for Amazon OpenSearch Service"
+    }
+  },
+  {
+    "id": 112,
+    "multi": false,
+    "question": {
+      "ko": "상품 상세 API가 DynamoDB 프로비저닝 테이블에서 GetItem을 강력한 일관된 읽기로 초당 평균 4만 건 호출하며 읽기 용량 비용이 큽니다. 상품 데이터는 몇 초 늦게 반영되어도 사용자 경험에 영향이 없고, 항목은 모두 4KB 이하입니다. 테이블은 단일 리전에 있고 트래픽은 하루 종일 일정하게 높습니다. 코드 변경을 최소화하면서 읽기 비용을 줄이는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "DynamoDB Accelerator(DAX) 클러스터를 도입하고 애플리케이션 엔드포인트를 바꾼다"
+      },
+      {
+        "key": "B",
+        "ko": "테이블을 온디맨드 용량 모드로 전환한다"
+      },
+      {
+        "key": "C",
+        "ko": "테이블 클래스를 DynamoDB Standard-IA로 변경한다"
+      },
+      {
+        "key": "D",
+        "ko": "GetItem 요청의 ConsistentRead를 끄고 최종적 일관된 읽기를 사용한다"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "최종적 일관된 읽기는 같은 항목 크기에서 강력한 일관된 읽기의 절반 RCU만 소비해 요청 파라미터 하나로 비용을 줄입니다. DAX는 별도 클러스터 비용과 엔드포인트 변경이 필요하고, 일정한 높은 트래픽에는 온디맨드가 더 비싸며, Standard-IA는 저장 단가만 낮추고 요청 단가는 높입니다.\n참고: Amazon DynamoDB Developer Guide – Read consistency / Read/write capacity mode"
+    }
+  },
+  {
+    "id": 113,
+    "multi": true,
+    "question": {
+      "ko": "광고 회사가 S3에 쌓인 JSON 로그 200TB를 Athena로 쿼리합니다. 쿼리는 대부분 특정 날짜 범위와 소수의 컬럼만 조회하지만 매번 전체 데이터를 스캔해 스캔량 요금이 큽니다. 분석가는 쿼리 시 항상 날짜 범위를 지정하며 결과 형식은 변경되지 않아야 합니다. 쿼리 결과의 정확성은 유지하면서 Athena 요금을 줄이는 두 가지 조치는 무엇입니까? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Athena 워크그룹의 쿼리 동시 실행 수를 제한한다"
+      },
+      {
+        "key": "B",
+        "ko": "로그 버킷을 S3 Intelligent-Tiering으로 전환한다"
+      },
+      {
+        "key": "C",
+        "ko": "날짜를 기준으로 데이터를 파티셔닝하고 쿼리에서 파티션 조건을 사용한다"
+      },
+      {
+        "key": "D",
+        "ko": "JSON을 Parquet 같은 압축된 컬럼형 형식으로 변환한다"
+      },
+      {
+        "key": "E",
+        "ko": "쿼리 결과 버킷에 수명 주기 만료 규칙을 추가한다"
+      }
+    ],
+    "answer": [
+      "C",
+      "D"
+    ],
+    "explanation": {
+      "ko": "Athena는 스캔한 데이터량에 과금하므로 파티션 프루닝으로 읽는 범위를 줄이고, 컬럼형 압축 형식으로 필요한 컬럼만 읽게 하면 스캔량이 크게 줄어듭니다. 동시 실행 제한과 결과 버킷 만료는 스캔량에 영향이 없고, 스토리지 클래스 변경은 저장 비용만 바꾸며 스캔 요금과 무관합니다.\n참고: Amazon Athena User Guide – Performance tuning / Partitioning data in Athena"
+    }
+  },
+  {
+    "id": 114,
+    "multi": false,
+    "question": {
+      "ko": "회사는 RDS for PostgreSQL db.r6g.2xlarge Single-AZ에 대해 1년 Reserved DB Instance를 구매했습니다. 최적화 결과 3개월 뒤 같은 리전에서 db.r6g.xlarge Multi-AZ 구성으로 바꿀 계획입니다. 새 예약을 구매하지 않고 기존 구매 할인을 최대한 유지하려면 어떻게 해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "기존 RI를 취소하고 남은 기간의 선결제 금액을 환불받은 뒤 xlarge Multi-AZ RI를 새로 구매한다"
+      },
+      {
+        "key": "B",
+        "ko": "추가 조치 없이 인스턴스를 수정한다. RDS RI는 같은 패밀리에서 크기 유연성이 적용되어 정규화 단위가 같다"
+      },
+      {
+        "key": "C",
+        "ko": "기존 2xlarge RI를 xlarge Multi-AZ RI로 교환하도록 AWS에 요청한다"
+      },
+      {
+        "key": "D",
+        "ko": "변경 전에 xlarge Multi-AZ RI를 추가 구매하고 기존 RI는 그대로 둔다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "PostgreSQL의 RDS RI는 같은 리전·엔진·인스턴스 패밀리 안에서 크기 유연성이 있고 Single-AZ와 Multi-AZ에도 적용되며, 2xlarge Single-AZ(16단위)는 xlarge Multi-AZ(16단위)와 같습니다. RDS RI는 취소할 수 없고, 환불이나 새 RI 구매는 중복 지출이 됩니다.\n참고: Amazon RDS User Guide – Reserved DB instances for Amazon RDS (size-flexible reserved DB instances)"
+    }
+  },
+  {
+    "id": 115,
+    "multi": false,
+    "question": {
+      "ko": "3개 AZ에 브로커가 분산된 Amazon MSK 클러스터를 같은 리전의 3개 AZ에 걸친 컨슈머 애플리케이션이 읽습니다. 컨슈머와 파티션 리더가 서로 다른 AZ에 있을 때 AZ 간 데이터 전송 요금이 월 수천 달러 발생합니다. 컨슈머 그룹은 AZ마다 하나씩 있으며 토픽의 복제 계수는 3입니다. 데이터 내구성과 가용성을 유지하면서 요금을 줄이려면 어떻게 해야 합니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "follower fetching을 활성화한다(브로커 RackAwareReplicaSelector, 컨슈머 client.rack=자신의 AZ)"
+      },
+      {
+        "key": "B",
+        "ko": "토픽의 복제 계수를 1로 낮춰 브로커 간 복제 트래픽을 없앤다"
+      },
+      {
+        "key": "C",
+        "ko": "모든 컨슈머를 한 AZ에 몰아 배치한다"
+      },
+      {
+        "key": "D",
+        "ko": "컨슈머와 브로커 사이 트래픽을 Transit Gateway를 거치도록 라우팅하고 중앙 라우팅 테이블에서 AZ 간 전송 경로를 관리한다"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "follower fetching은 컨슈머가 같은 AZ의 팔로워 복제본에서 읽게 해 AZ 간 전송을 줄이며, 복제 계수와 가용성은 그대로입니다. 복제 계수 1은 내구성을 잃고, 한 AZ로 몰면 AZ 장애에 취약하며, Transit Gateway 경유는 처리 요금이 추가되어 비용이 늘어납니다.\n참고: Amazon MSK Developer Guide – Follower fetching / AWS blog on reducing MSK consumer network cost with rack awareness"
+    }
+  },
+  {
+    "id": 116,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 마이크로서비스 45개를 서비스마다 별도의 ALB 45개로 노출하고 있으며 대부분 트래픽이 매우 낮아 로드 밸런서 시간당 요금이 큰 비중을 차지합니다. 모든 서비스는 HTTPS이고 서브도메인으로 구분됩니다. 서비스 간 트래픽은 서브도메인으로만 구분되며 각 서비스의 보안 그룹 규칙은 유지해야 합니다. 다중 AZ 가용성을 유지하면서 비용을 줄이는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "각 ALB를 NLB로 교체하고 호스트 이름으로 서비스를 구분한다"
+      },
+      {
+        "key": "B",
+        "ko": "서비스마다 API Gateway REST API를 만들어 ALB를 제거하고 VPC 링크로 연결한다"
+      },
+      {
+        "key": "C",
+        "ko": "ALB 하나로 통합해 호스트 기반 규칙과 SNI 다중 인증서로 서비스별 대상 그룹에 라우팅한다"
+      },
+      {
+        "key": "D",
+        "ko": "모든 ALB 앞에 CloudFront 배포를 두어 ALB 요금을 줄인다"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "ALB는 로드 밸런서마다 시간당 요금이 붙으므로 호스트 기반 라우팅과 SNI로 하나에 통합하면 개수에 비례한 고정 비용을 줄이면서 다중 AZ 구성을 유지합니다. NLB는 L7 호스트 라우팅을 하지 못하고, API Gateway는 요청당 요금이 추가되며, CloudFront는 ALB 개수를 줄이지 못합니다.\n참고: Elastic Load Balancing User Guide – Application Load Balancer listener rules (host conditions) and SNI"
+    }
+  },
+  {
+    "id": 117,
+    "multi": true,
+    "question": {
+      "ko": "프라이빗 서브넷의 VPC 연결 Lambda와 EC2 배치 서버가 NAT Gateway를 통해 같은 리전의 S3 버킷과 DynamoDB 테이블에 월 80TB를 읽고 쓰며, NAT Gateway 데이터 처리 요금이 큽니다. 보안 요건상 트래픽은 인터넷을 거치지 않아야 합니다. 비용을 줄이는 두 가지 조치는 무엇입니까? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "S3와 DynamoDB 모두 인터페이스 엔드포인트(AWS PrivateLink)로 연결한다"
+      },
+      {
+        "key": "B",
+        "ko": "VPC에 S3용 게이트웨이 엔드포인트를 만들고 서브넷 라우팅 테이블에 연결한다"
+      },
+      {
+        "key": "C",
+        "ko": "서브넷을 퍼블릭으로 바꾸고 인스턴스에 퍼블릭 IP를 부여해 인터넷 게이트웨이를 사용한다"
+      },
+      {
+        "key": "D",
+        "ko": "NAT Gateway를 NAT 인스턴스로 교체해 시간당 요금을 낮춘다"
+      },
+      {
+        "key": "E",
+        "ko": "VPC에 DynamoDB용 게이트웨이 엔드포인트를 만들고 서브넷 라우팅 테이블에 연결한다"
+      }
+    ],
+    "answer": [
+      "B",
+      "E"
+    ],
+    "explanation": {
+      "ko": "S3와 DynamoDB 게이트웨이 엔드포인트는 추가 요금이 없고 트래픽이 AWS 네트워크 안에 머물러 NAT 처리 요금과 인터넷 경유를 모두 없앱니다. 인터페이스 엔드포인트는 시간당·GB당 요금이 붙고, 퍼블릭 IP 경유는 보안 요건을 깨며, NAT 인스턴스는 운영 부담을 키우면서 대용량 트래픽 문제를 해결하지 못합니다.\n참고: Amazon VPC User Guide – Gateway endpoints for Amazon S3 and DynamoDB"
+    }
+  },
+  {
+    "id": 118,
+    "multi": false,
+    "question": {
+      "ko": "개발 조직의 계정에서 EC2 인스턴스 800대가 퍼블릭 서브넷에서 자동 할당 퍼블릭 IPv4 주소를 받고 있습니다. 인스턴스는 인터넷의 인바운드 요청을 받지 않고 IPv4 전용 외부 저장소에서 패키지를 내려받는 아웃바운드만 필요하며 월 전송량은 인스턴스당 수 GB입니다. 퍼블릭 IPv4 시간당 요금을 줄이는 가장 적절한 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "자동 할당 퍼블릭 IP를 Elastic IP로 교체해 고정 주소로 사용한다"
+      },
+      {
+        "key": "B",
+        "ko": "서브넷의 퍼블릭 IP 자동 할당만 끄고 인스턴스는 퍼블릭 서브넷에 그대로 두어 주소 수를 줄인다"
+      },
+      {
+        "key": "C",
+        "ko": "인스턴스에 IPv6 주소만 부여하고 IPv4 연결은 제거한다"
+      },
+      {
+        "key": "D",
+        "ko": "인스턴스를 프라이빗 서브넷으로 옮기고 AZ별 NAT Gateway로 아웃바운드를 제공한다"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "AWS는 실행 중인 인스턴스에 붙은 주소와 Elastic IP를 포함한 모든 퍼블릭 IPv4 주소에 시간당 요금을 부과합니다. 800개의 주소를 AZ별 NAT Gateway 몇 개의 주소로 줄이면 전송량이 적을 때 비용이 줄어듭니다. Elastic IP도 과금되고, 주소 없이 퍼블릭 서브넷에 두면 아웃바운드가 막히며, IPv4 전용 저장소는 IPv6로 접근할 수 없습니다.\n참고: Amazon VPC User Guide – IP addressing (public IPv4 addresses)"
+    }
+  },
+  {
+    "id": 119,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 온프레미스 데이터센터에서 AWS로 월 40TB를 업로드하고 AWS에서 데이터센터로 월 120TB를 내려받습니다. 현재 Site-to-Site VPN과 인터넷 경로를 사용하며 데이터 전송 요금과 변동하는 지연이 문제입니다. 사용량은 향후 3년간 유지될 전망입니다. 비용과 지연 문제를 함께 줄이는 방법은 무엇입니까?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Transit Gateway에 VPN 연결을 여러 개 만들어 ECMP로 대역폭을 늘린다"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Direct Connect 전용 연결을 구성하고 프라이빗 가상 인터페이스로 전환한다"
+      },
+      {
+        "key": "C",
+        "ko": "S3 Transfer Acceleration을 활성화해 데이터센터와 S3 사이 전송을 가속한다"
+      },
+      {
+        "key": "D",
+        "ko": "매월 AWS Snowball Edge 디바이스를 주문해 데이터를 오프라인으로 옮긴다"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "대량·지속적인 데이터 전송에는 Direct Connect가 인터넷 경로보다 낮은 데이터 전송 요금과 일관된 지연을 제공해 3년 유지되는 사용량에서 이점이 큽니다. VPN ECMP는 TGW 처리 요금이 추가되고 인터넷 변동성이 남으며, Transfer Acceleration은 추가 요금이 있고 AWS→온프레미스 다운로드를 줄이지 못하며, 매월 Snowball은 비현실적입니다.\n참고: AWS Direct Connect User Guide – What is AWS Direct Connect (data transfer pricing and benefits)"
+    }
+  },
+  {
+    "id": 120,
+    "multi": true,
+    "question": {
+      "ko": "뉴스 사이트의 CloudFront 캐시 적중률이 40%에 불과해 오리진(ALB 뒤 EC2) 요청과 컴퓨트 비용이 큽니다. 원인은 요청마다 달라지는 추적용 쿼리 문자열(utm_*, 세션 값)과, 오리진이 응답에 보내는 Cache-Control: no-cache 헤더입니다. 콘텐츠는 정적 기사 페이지이며 최대 5분 지연되어도 됩니다. 오리진 부하를 줄이는 두 가지 조치는 무엇입니까? (2개 선택)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "캐시 정책에서 추적용 파라미터를 제외하고 필요한 쿼리 문자열만 캐시 키에 포함한다"
+      },
+      {
+        "key": "B",
+        "ko": "캐시 정책에서 모든 쿼리 문자열을 캐시 키에 포함하도록 설정한다"
+      },
+      {
+        "key": "C",
+        "ko": "CloudFront 가격 등급(price class)을 낮춰 엣지 로케이션 수를 줄인다"
+      },
+      {
+        "key": "D",
+        "ko": "캐시 정책의 최소 TTL을 300초로 설정해 오리진의 no-cache 헤더를 재정의한다"
+      },
+      {
+        "key": "E",
+        "ko": "오리진 EC2 Auto Scaling 최대 수를 늘려 요청 처리량을 높인다"
+      }
+    ],
+    "answer": [
+      "A",
+      "D"
+    ],
+    "explanation": {
+      "ko": "변하는 쿼리 문자열이 캐시 키에 들어가면 같은 페이지가 따로 캐시되므로 필요한 파라미터만 포함하면 적중률이 오르고, 최소 TTL은 오리진의 no-cache 지시와 무관하게 5분간 캐시하게 합니다. 모든 쿼리 문자열 포함은 적중률을 더 낮추고, 가격 등급은 요금 지역 범위일 뿐이며, 오리진 확장은 비용을 키웁니다.\n참고: Amazon CloudFront Developer Guide – Understanding the cache key / Control how long content stays in the cache"
+    }
   }
 ]
