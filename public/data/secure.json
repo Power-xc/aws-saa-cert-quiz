@@ -740,7 +740,7 @@
       },
       {
         "key": "B",
-        "ko": "프라이빗 서브넷의 EC2를 Elastic IP와 연결"
+        "ko": "프라이빗 서브넷의 EC2를 탄력적 IP 주소와 연결"
       },
       {
         "key": "C",
@@ -755,7 +755,7 @@
       "D"
     ],
     "explanation": {
-      "ko": "NAT Gateway/인스턴스는 프라이빗 리소스가 인터넷으로 outbound 연결을 개시할 수 있게 하면서 inbound 연결은 차단합니다. Internet Gateway(A)는 양방향 통신을 허용하므로 부적합합니다. Elastic IP(B)는 public IP 할당일 뿐 NAT 기능이 아니고, Shield(C)는 DDoS 보호 서비스입니다."
+      "ko": "NAT Gateway/인스턴스는 프라이빗 리소스가 인터넷으로 outbound 연결을 개시할 수 있게 하면서 inbound 연결은 차단합니다. Internet Gateway(A)는 양방향 통신을 허용하므로 부적합합니다. 탄력적 IP 주소(B)는 public IP 할당일 뿐 NAT 기능이 아니고, Shield(C)는 DDoS 보호 서비스입니다."
     }
   },
   {
@@ -930,7 +930,7 @@
       },
       {
         "key": "C",
-        "ko": "데이터베이스에 Elastic IP 할당하여 직접 접근 가능하게 구성"
+        "ko": "데이터베이스에 탄력적 IP 주소 할당하여 직접 접근 가능하게 구성"
       },
       {
         "key": "D",
@@ -946,7 +946,7 @@
       "B"
     ],
     "explanation": {
-      "ko": "다층 방어를 위해 security group에서 애플리케이션 서버만 허용하고(A), 서브넷 수준에서 network ACL로 인터넷 트래픽을 차단(B)해야 합니다. Elastic IP(C) 할당은 보안에 역행하고, Shield(D)는 DDoS 방어로 부적합하며, WAF(E)는 HTTP(S) 기반 서비스 보호용이지 데이터베이스 포트 제어와는 무관합니다."
+      "ko": "다층 방어를 위해 security group에서 애플리케이션 서버만 허용하고(A), 서브넷 수준에서 network ACL로 인터넷 트래픽을 차단(B)해야 합니다. 탄력적 IP 주소(C) 할당은 보안에 역행하고, Shield(D)는 DDoS 방어로 부적합하며, WAF(E)는 HTTP(S) 기반 서비스 보호용이지 데이터베이스 포트 제어와는 무관합니다."
     }
   },
   {
@@ -1175,7 +1175,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "RDS read replica를 다른 리전에 생성"
+        "ko": "RDS 읽기 전용 복제본을 다른 리전에 생성"
       },
       {
         "key": "B",
@@ -1199,7 +1199,7 @@
       "B"
     ],
     "explanation": {
-      "ko": "정답(A, B): 다른 리전에 RDS read replica를 만들고(A) AWS KMS multi-Region key로 리전별 키를 일관되게 관리하면(B) 암호화 키까지 포함한 DR 구성이 가능합니다. 리전별 독립 키를 수동 관리하면(C) 운영 부담이 크고, 수동 업로드(D)는 RPO 요건을 충족하기 어려우며, 암호화된 RDS 리소스는 해당 리전의 KMS 키를 사용해야 하므로 단일 리전 키 하나로 두 리전 리소스를 암호화하는 구성(E)은 성립하지 않습니다."
+      "ko": "정답(A, B): 다른 리전에 RDS 읽기 전용 복제본을 만들고(A) AWS KMS multi-Region key로 리전별 키를 일관되게 관리하면(B) 암호화 키까지 포함한 DR 구성이 가능합니다. 리전별 독립 키를 수동 관리하면(C) 운영 부담이 크고, 수동 업로드(D)는 RPO 요건을 충족하기 어려우며, 암호화된 RDS 리소스는 해당 리전의 KMS 키를 사용해야 하므로 단일 리전 키 하나로 두 리전 리소스를 암호화하는 구성(E)은 성립하지 않습니다."
     }
   },
   {
@@ -1281,7 +1281,7 @@
       },
       {
         "key": "C",
-        "ko": "모든 리전에서 단일 KMS 키를 사용 (크로스 리전 액세스)"
+        "ko": "모든 리전에서 단일 KMS 키를 사용 (교차 리전 액세스)"
       },
       {
         "key": "D",
@@ -2473,14 +2473,14 @@
       },
       {
         "key": "D",
-        "ko": "S3 버킷에 Elastic IP를 할당해 고정 IP로 접근한다"
+        "ko": "S3 버킷에 탄력적 IP 주소를 할당해 고정 IP로 접근한다"
       }
     ],
     "answer": [
       "B"
     ],
     "explanation": {
-      "ko": "정답(B): S3 interface endpoint는 VPC 서브넷의 ENI에 프라이빗 IP를 부여하므로 Direct Connect나 VPN을 통해 온프레미스에서도 접근할 수 있습니다. Gateway endpoint(A)는 VPC 라우팅 테이블 기반이라 온프레미스에서 쓸 수 없고, NAT Gateway(C)는 인터넷을 경유하며, 버킷에 Elastic IP를 할당할 수 없습니다(D)."
+      "ko": "정답(B): S3 interface endpoint는 VPC 서브넷의 ENI에 프라이빗 IP를 부여하므로 Direct Connect나 VPN을 통해 온프레미스에서도 접근할 수 있습니다. Gateway endpoint(A)는 VPC 라우팅 테이블 기반이라 온프레미스에서 쓸 수 없고, NAT Gateway(C)는 인터넷을 경유하며, 버킷에 탄력적 IP 주소를 할당할 수 없습니다(D)."
     }
   },
   {
@@ -5217,7 +5217,7 @@
     "id": 165,
     "multi": false,
     "question": {
-      "ko": "미디어 회사는 CloudFront, ALB, Elastic IP에 대한 DDoS 공격으로 트래픽이 급증해 발생하는 요금과 대응 지연이 걱정됩니다. 공격 중 AWS 전문 팀의 24시간 지원과 비용 보호가 필요하고 L7 요청 폭주에는 사용자 지정 완화도 필요합니다. 공격이 연중 몇 차례 예상되며 요금 급증으로 인한 예산 초과를 막아야 합니다. 어떤 구성이 적합합니까?"
+      "ko": "미디어 회사는 CloudFront, ALB, 탄력적 IP 주소에 대한 DDoS 공격으로 트래픽이 급증해 발생하는 요금과 대응 지연이 걱정됩니다. 공격 중 AWS 전문 팀의 24시간 지원과 비용 보호가 필요하고 L7 요청 폭주에는 사용자 지정 완화도 필요합니다. 공격이 연중 몇 차례 예상되며 요금 급증으로 인한 예산 초과를 막아야 합니다. 어떤 구성이 적합합니까?"
     },
     "choices": [
       {

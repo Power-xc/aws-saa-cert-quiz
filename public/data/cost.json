@@ -327,7 +327,7 @@
       },
       {
         "key": "B",
-        "ko": "On-Demand Instances"
+        "ko": "온디맨드 인스턴스"
       },
       {
         "key": "C",
@@ -342,7 +342,7 @@
       "A"
     ],
     "explanation": {
-      "ko": "중단 가능한 배치 워크로드는 Spot Instances가 최대 90% 저렴하므로 최적입니다. On-Demand(B)는 비싸고, 1년 Savings Plan(C)은 상시 예측 부하에 적합하며, Dedicated Hosts(D)는 규정/라이선스 목적의 고비용 옵션입니다."
+      "ko": "중단 가능한 배치 워크로드는 Spot Instances가 최대 90% 저렴하므로 최적입니다. 온디맨드(B)는 비싸고, 1년 Savings Plan(C)은 상시 예측 부하에 적합하며, Dedicated Hosts(D)는 규정/라이선스 목적의 고비용 옵션입니다."
     }
   },
   {
@@ -354,7 +354,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "On-Demand Instances"
+        "ko": "온디맨드 인스턴스"
       },
       {
         "key": "B",
@@ -362,18 +362,18 @@
       },
       {
         "key": "C",
-        "ko": "3년 약정 Reserved Instances"
+        "ko": "3년 약정 예약 인스턴스"
       },
       {
         "key": "D",
-        "ko": "자동으로 확장/축소하는 Spot Instances + On-Demand 조합"
+        "ko": "자동으로 확장/축소하는 Spot Instances + 온디맨드 조합"
       }
     ],
     "answer": [
       "C"
     ],
     "explanation": {
-      "ko": "24/7 예측 가능한 부하는 3년 Reserved Instances가 약 70% 할인으로 가장 비용 효율적입니다. On-Demand(A)는 비싸고, Spot(B)은 중단 위험이 있으며, 혼합(D)은 복잡하고 예측 가능한 부하에 최적이 아닙니다."
+      "ko": "24/7 예측 가능한 부하는 3년 예약 인스턴스가 약 70% 할인으로 가장 비용 효율적입니다. 온디맨드(A)는 비싸고, Spot(B)은 중단 위험이 있으며, 혼합(D)은 복잡하고 예측 가능한 부하에 최적이 아닙니다."
     }
   },
   {
@@ -393,18 +393,18 @@
       },
       {
         "key": "C",
-        "ko": "24시간 Reserved Instances로 기본 용량을 확보하고 Spot으로 버스트"
+        "ko": "24시간 예약 인스턴스로 기본 용량을 확보하고 Spot으로 버스트"
       },
       {
         "key": "D",
-        "ko": "비업무 시간에 여러 유형의 Spot, 마감이 중요한 최소 용량은 On-Demand"
+        "ko": "비업무 시간에 여러 유형의 Spot, 마감이 중요한 최소 용량은 온디맨드"
       }
     ],
     "answer": [
       "D"
     ],
     "explanation": {
-      "ko": "재시작 가능한 작업은 여러 인스턴스 유형에 걸친 Spot(D)으로 저렴하게 처리하고, 마감이 중요한 최소 용량만 On-Demand로 확보하면 비용과 안정성을 모두 잡습니다. Spot만(A)은 용량 회수 시 긴급 작업의 마감을 보장할 수 없고, Savings Plan(B)과 24시간 Reserved(C)는 야간에만 쓰는 용량에도 약정 비용이 24시간 발생해 낭비입니다."
+      "ko": "재시작 가능한 작업은 여러 인스턴스 유형에 걸친 Spot(D)으로 저렴하게 처리하고, 마감이 중요한 최소 용량만 온디맨드로 확보하면 비용과 안정성을 모두 잡습니다. Spot만(A)은 용량 회수 시 긴급 작업의 마감을 보장할 수 없고, Savings Plan(B)과 24시간 Reserved(C)는 야간에만 쓰는 용량에도 약정 비용이 24시간 발생해 낭비입니다."
     }
   },
   {
@@ -416,11 +416,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "평상시와 피크 시즌 모두 On-Demand 인스턴스 20개를 연중 상시 실행하여 가용성 확보"
+        "ko": "평상시와 피크 시즌 모두 온디맨드 인스턴스 20개를 연중 상시 실행하여 가용성 확보"
       },
       {
         "key": "B",
-        "ko": "기본 4대는 3년 Reserved Instances로, 피크 추가분은 Spot·On-Demand 혼합 Auto Scaling으로 운영"
+        "ko": "기본 4대는 3년 예약 인스턴스로, 피크 추가분은 Spot·온디맨드 혼합 Auto Scaling으로 운영"
       },
       {
         "key": "C",
@@ -435,7 +435,7 @@
       "B"
     ],
     "explanation": {
-      "ko": "상시 필요한 기본 부하 4개는 Reserved(B)로 할인받고, 선물 시즌의 일시적 추가분은 Auto Scaling이 Spot과 On-Demand를 혼합해 처리해 비용을 줄입니다. 20개 On-Demand 상시(A)는 매우 비싸고, 인스턴스 유형 변경(C)만으로는 불충분하며, 모두 Spot(D)은 선물 시즌의 안정성이 부족합니다. 시즌성 용량에 Savings Plans 약정을 걸면 비수기에 낭비됩니다."
+      "ko": "상시 필요한 기본 부하 4개는 Reserved(B)로 할인받고, 선물 시즌의 일시적 추가분은 Auto Scaling이 Spot과 온디맨드를 혼합해 처리해 비용을 줄입니다. 20개 온디맨드 상시(A)는 매우 비싸고, 인스턴스 유형 변경(C)만으로는 불충분하며, 모두 Spot(D)은 선물 시즌의 안정성이 부족합니다. 시즌성 용량에 Savings Plans 약정을 걸면 비수기에 낭비됩니다."
     }
   },
   {
@@ -533,7 +533,7 @@
       "B"
     ],
     "explanation": {
-      "ko": "Fargate Spot(A)은 중단 허용 작업에 낮은 비용을 제공하고, Auto Scaling(B)은 유휴 리소스를 제거합니다. 과도한 right-sizing(C)은 성능을 해치고, Fargate On-Demand만 사용(D)하면 비용 효율이 낮으며, Dedicated Hosts(E)는 라이선스·규정 목적의 고비용 옵션이라 비용 최소화에 맞지 않습니다."
+      "ko": "Fargate Spot(A)은 중단 허용 작업에 낮은 비용을 제공하고, Auto Scaling(B)은 유휴 리소스를 제거합니다. 과도한 right-sizing(C)은 성능을 해치고, Fargate 온디맨드만 사용(D)하면 비용 효율이 낮으며, Dedicated Hosts(E)는 라이선스·규정 목적의 고비용 옵션이라 비용 최소화에 맞지 않습니다."
     }
   },
   {
@@ -576,11 +576,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Multi-AZ RDS와 자동 장애 조치"
+        "ko": "다중 AZ RDS와 자동 장애 조치"
       },
       {
         "key": "B",
-        "ko": "Aurora with Multi-AZ"
+        "ko": "Aurora 다중 AZ 구성"
       },
       {
         "key": "C",
@@ -595,7 +595,7 @@
       "D"
     ],
     "explanation": {
-      "ko": "비프로덕션 환경은 고가용성 불필요하므로 단일 AZ 인스턴스(D)로 Multi-AZ(A) 비용을 절감합니다. Aurora(B)와 Global Tables(C)는 멀티 리전/고가용성이므로 불필요합니다."
+      "ko": "비프로덕션 환경은 고가용성 불필요하므로 단일 AZ 인스턴스(D)로 다중 AZ(A) 비용을 절감합니다. Aurora(B)와 Global Tables(C)는 멀티 리전/고가용성이므로 불필요합니다."
     }
   },
   {
@@ -611,7 +611,7 @@
       },
       {
         "key": "B",
-        "ko": "트래픽 최대치에 맞춘 고정 크기의 Reserved Instances"
+        "ko": "트래픽 최대치에 맞춘 고정 크기의 예약 인스턴스"
       },
       {
         "key": "C",
@@ -638,15 +638,15 @@
     "choices": [
       {
         "key": "A",
-        "ko": "상시 필요한 기본 용량은 Reserved Instances로 커버하고 성수기 추가분은 Spot으로 확장"
+        "ko": "상시 필요한 기본 용량은 예약 인스턴스로 커버하고 성수기 추가분은 Spot으로 확장"
       },
       {
         "key": "B",
-        "ko": "성수기 피크 트래픽 수준의 Reserved Instances 연중 보유"
+        "ko": "성수기 피크 트래픽 수준의 예약 인스턴스 연중 보유"
       },
       {
         "key": "C",
-        "ko": "약정 없이 연중 On-Demand 소량을 유지하고 성수기에는 Spot과 On-Demand를 조합"
+        "ko": "약정 없이 연중 온디맨드 소량을 유지하고 성수기에는 Spot과 온디맨드를 조합"
       },
       {
         "key": "D",
@@ -907,7 +907,7 @@
       },
       {
         "key": "E",
-        "ko": "모든 EC2 인스턴스에 Elastic IP를 할당하여 데이터 전송 비용 감소"
+        "ko": "모든 EC2 인스턴스에 탄력적 IP 주소를 할당하여 데이터 전송 비용 감소"
       }
     ],
     "answer": [
@@ -915,7 +915,7 @@
       "D"
     ],
     "explanation": {
-      "ko": "CloudFront(A)는 캐싱으로 오리진에서 인터넷으로 나가는 전송량을 줄이고 오리진→CloudFront 전송은 무료입니다. VPC Endpoint(D)는 AWS 서비스 트래픽이 NAT를 거치지 않게 해 처리 요금을 줄입니다. 단일 AZ(B)는 가용성을 잃고, 인터넷 게이트웨이(C)는 프라이빗 서브넷 구조에 맞지 않으며, Elastic IP(E)는 전송 비용을 줄이지 못하고 퍼블릭 IPv4 주소 요금만 추가됩니다."
+      "ko": "CloudFront(A)는 캐싱으로 오리진에서 인터넷으로 나가는 전송량을 줄이고 오리진→CloudFront 전송은 무료입니다. VPC Endpoint(D)는 AWS 서비스 트래픽이 NAT를 거치지 않게 해 처리 요금을 줄입니다. 단일 AZ(B)는 가용성을 잃고, 인터넷 게이트웨이(C)는 프라이빗 서브넷 구조에 맞지 않으며, 탄력적 IP 주소(E)는 전송 비용을 줄이지 못하고 퍼블릭 IPv4 주소 요금만 추가됩니다."
     }
   },
   {
@@ -1024,11 +1024,11 @@
       },
       {
         "key": "B",
-        "ko": "m5 인스턴스를 대상으로 1년 약정 Standard Reserved Instances를 구매한다"
+        "ko": "m5 인스턴스를 대상으로 1년 약정 Standard 예약 인스턴스를 구매한다"
       },
       {
         "key": "C",
-        "ko": "약정 없이 모든 워크로드를 On-Demand로 유지하고 부하는 Spot Instances로만 흡수한다"
+        "ko": "약정 없이 모든 워크로드를 온디맨드로 유지하고 부하는 Spot Instances로만 흡수한다"
       },
       {
         "key": "D",
@@ -1059,11 +1059,11 @@
       },
       {
         "key": "C",
-        "ko": "시간당 약 $10(최소 사용량)로 약정하고 초과분은 On-Demand 요금으로 처리한다"
+        "ko": "시간당 약 $10(최소 사용량)로 약정하고 초과분은 온디맨드 요금으로 처리한다"
       },
       {
         "key": "D",
-        "ko": "시간당 $10보다 낮게 약정하고 부족분은 모두 1년 약정 Reserved Instances로 보완한다"
+        "ko": "시간당 $10보다 낮게 약정하고 부족분은 모두 1년 약정 예약 인스턴스로 보완한다"
       }
     ],
     "answer": [
@@ -1077,7 +1077,7 @@
     "id": 35,
     "multi": false,
     "question": {
-      "ko": "한 회사가 us-east-1에서 3년 약정 Standard Reserved Instances 50개를 구매했지만, 1년 뒤 해당 워크로드가 종료되어 인스턴스가 더 이상 필요하지 않습니다. 같은 조직의 다른 계정에서도 이 인스턴스 유형은 사용하지 않습니다. 남은 약정 기간으로 인한 비용 손실을 최소화하는 방법은 무엇입니까?"
+      "ko": "한 회사가 us-east-1에서 3년 약정 Standard 예약 인스턴스 50개를 구매했지만, 1년 뒤 해당 워크로드가 종료되어 인스턴스가 더 이상 필요하지 않습니다. 같은 조직의 다른 계정에서도 이 인스턴스 유형은 사용하지 않습니다. 남은 약정 기간으로 인한 비용 손실을 최소화하는 방법은 무엇입니까?"
     },
     "choices": [
       {
@@ -1090,7 +1090,7 @@
       },
       {
         "key": "C",
-        "ko": "Reserved Instance Marketplace에서 남은 기간의 RI를 판매한다"
+        "ko": "예약 인스턴스 Marketplace에서 남은 기간의 RI를 판매한다"
       },
       {
         "key": "D",
@@ -1101,7 +1101,7 @@
       "C"
     ],
     "explanation": {
-      "ko": "Standard RI는 Reserved Instance Marketplace에서 판매할 수 있어 C이 맞습니다. A Standard RI를 Convertible RI로 교환할 수 없으며, B RI를 Savings Plans로 전환하는 기능은 없고, D 약정은 취소할 수 없습니다. 참고로 Convertible RI와 Savings Plans는 Marketplace에서 판매할 수 없습니다."
+      "ko": "Standard RI는 예약 인스턴스 Marketplace에서 판매할 수 있어 C이 맞습니다. A Standard RI를 Convertible RI로 교환할 수 없으며, B RI를 Savings Plans로 전환하는 기능은 없고, D 약정은 취소할 수 없습니다. 참고로 Convertible RI와 Savings Plans는 Marketplace에서 판매할 수 없습니다."
     }
   },
   {
@@ -1237,12 +1237,12 @@
     "id": 40,
     "multi": false,
     "question": {
-      "ko": "한 기업이 12개의 AWS 계정을 각각 독립적으로 운영하며 계정마다 EC2 Reserved Instances와 Savings Plans를 따로 구매했습니다. 일부 계정에서는 약정이 사용되지 않고 남습니다. 중앙 재무팀은 전체 약정 활용률을 높이고 사용량 합산에 따른 볼륨 할인도 받고 싶습니다. 가장 적절한 조치는 무엇입니까?"
+      "ko": "한 기업이 12개의 AWS 계정을 각각 독립적으로 운영하며 계정마다 EC2 예약 인스턴스와 Savings Plans를 따로 구매했습니다. 일부 계정에서는 약정이 사용되지 않고 남습니다. 중앙 재무팀은 전체 약정 활용률을 높이고 사용량 합산에 따른 볼륨 할인도 받고 싶습니다. 가장 적절한 조치는 무엇입니까?"
     },
     "choices": [
       {
         "key": "A",
-        "ko": "모든 계정의 RI를 Reserved Instance Marketplace에서 판매하고 전체를 On-Demand로 전환한다"
+        "ko": "모든 계정의 RI를 예약 인스턴스 Marketplace에서 판매하고 전체를 온디맨드로 전환한다"
       },
       {
         "key": "B",
@@ -1299,7 +1299,7 @@
     "id": 42,
     "multi": false,
     "question": {
-      "ko": "회사는 최근 다른 회사를 인수하면서 이전 운영팀의 문서가 거의 남아 있지 않습니다. 한 회사가 인수한 AWS 계정의 비용을 줄이려고 합니다. 사용률이 낮은 EC2 인스턴스, 연결되지 않은 Elastic IP, 유휴 상태의 Load Balancer 같은 낭비 리소스를 코드를 작성하지 않고 한곳에서 파악하고 싶습니다. 가장 적절한 방법은 무엇입니까?"
+      "ko": "회사는 최근 다른 회사를 인수하면서 이전 운영팀의 문서가 거의 남아 있지 않습니다. 한 회사가 인수한 AWS 계정의 비용을 줄이려고 합니다. 사용률이 낮은 EC2 인스턴스, 연결되지 않은 탄력적 IP 주소, 유휴 상태의 Load Balancer 같은 낭비 리소스를 코드를 작성하지 않고 한곳에서 파악하고 싶습니다. 가장 적절한 방법은 무엇입니까?"
     },
     "choices": [
       {
@@ -1323,7 +1323,7 @@
       "A"
     ],
     "explanation": {
-      "ko": "Trusted Advisor의 Cost optimization 검사는 저사용률 EC2, 미연결 Elastic IP, 유휴 Load Balancer 등을 자동으로 보여 줍니다(A). 전체 검사는 Business 이상 Support 플랜에서 제공됩니다. B은 구성 준수 평가, C는 수작업 분석, D은 취약점 스캔 도구로 낭비 리소스 식별에 맞지 않습니다."
+      "ko": "Trusted Advisor의 Cost optimization 검사는 저사용률 EC2, 미연결 탄력적 IP 주소, 유휴 Load Balancer 등을 자동으로 보여 줍니다(A). 전체 검사는 Business 이상 Support 플랜에서 제공됩니다. B은 구성 준수 평가, C는 수작업 분석, D은 취약점 스캔 도구로 낭비 리소스 식별에 맞지 않습니다."
     }
   },
   {
@@ -1623,7 +1623,7 @@
       },
       {
         "key": "B",
-        "ko": "배치 처리 워크로드에도 3년 Standard Reserved Instances를 구매한다"
+        "ko": "배치 처리 워크로드에도 3년 Standard 예약 인스턴스를 구매한다"
       },
       {
         "key": "C",
@@ -1690,22 +1690,22 @@
       },
       {
         "key": "B",
-        "ko": "최대 용량인 40대를 모두 3년 Standard Reserved Instances로 구매한다"
+        "ko": "최대 용량인 40대를 모두 3년 Standard 예약 인스턴스로 구매한다"
       },
       {
         "key": "C",
-        "ko": "40대 모두 On-Demand로 구성하고 scale-in 정책만 공격적으로 설정한다"
+        "ko": "40대 모두 온디맨드로 구성하고 scale-in 정책만 공격적으로 설정한다"
       },
       {
         "key": "D",
-        "ko": "On-Demand 기본 4대와 다중 유형 Spot 초과분을 혼합 인스턴스 정책으로 구성한다"
+        "ko": "온디맨드 기본 4대와 다중 유형 Spot 초과분을 혼합 인스턴스 정책으로 구성한다"
       }
     ],
     "answer": [
       "D"
     ],
     "explanation": {
-      "ko": "기본 용량은 On-Demand로 안정성을 확보하고 초과분은 여러 인스턴스 유형을 가진 Spot으로 처리하면 용량 부족 중단 위험을 줄이며 비용이 최소화됩니다(D). A은 단일 유형이라 중단 시 가용성이 위험하고, B는 피크 시에만 필요한 용량까지 약정해 낭비이며, C은 할인이 전혀 없습니다."
+      "ko": "기본 용량은 온디맨드로 안정성을 확보하고 초과분은 여러 인스턴스 유형을 가진 Spot으로 처리하면 용량 부족 중단 위험을 줄이며 비용이 최소화됩니다(D). A은 단일 유형이라 중단 시 가용성이 위험하고, B는 피크 시에만 필요한 용량까지 약정해 낭비이며, C은 할인이 전혀 없습니다."
     }
   },
   {
@@ -1717,11 +1717,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Spot 대신 On-Demand 인스턴스로 6시간 렌더링 작업 전체를 이전한다"
+        "ko": "Spot 대신 온디맨드 인스턴스로 6시간 렌더링 작업 전체를 이전한다"
       },
       {
         "key": "B",
-        "ko": "Spot 최대 가격을 On-Demand 가격의 10배로 설정해 중단을 방지한다"
+        "ko": "Spot 최대 가격을 온디맨드 가격의 10배로 설정해 중단을 방지한다"
       },
       {
         "key": "C",
@@ -1791,7 +1791,7 @@
       },
       {
         "key": "D",
-        "ko": "Reserved Instances를 구매해 야간 중지 비용을 상쇄한다"
+        "ko": "예약 인스턴스를 구매해 야간 중지 비용을 상쇄한다"
       }
     ],
     "answer": [
@@ -1810,7 +1810,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Dedicated Instances를 On-Demand로 실행한다"
+        "ko": "Dedicated Instances를 온디맨드로 실행한다"
       },
       {
         "key": "B",
@@ -1818,7 +1818,7 @@
       },
       {
         "key": "C",
-        "ko": "On-Demand Capacity Reservations로 용량을 고정한다"
+        "ko": "온디맨드 용량 예약으로 용량을 고정한다"
       },
       {
         "key": "D",
@@ -1943,7 +1943,7 @@
       },
       {
         "key": "B",
-        "ko": "피크 용량만큼 3년 Standard Reserved Instances를 구매하고 최소 용량을 고정해 둔다"
+        "ko": "피크 용량만큼 3년 Standard 예약 인스턴스를 구매하고 최소 용량을 고정해 둔다"
       },
       {
         "key": "C",
@@ -1965,7 +1965,7 @@
     "id": 63,
     "multi": false,
     "question": {
-      "ko": "SaaS 회사의 프로덕션 Amazon RDS for PostgreSQL Multi-AZ 인스턴스(db.r6g.2xlarge)는 앞으로 3년 동안 24시간 안정적으로 사용될 예정입니다. 엔진과 인스턴스 클래스를 변경할 계획은 없습니다. 데이터베이스 컴퓨트 비용을 가장 많이 줄이는 방법은 무엇입니까?"
+      "ko": "SaaS 회사의 프로덕션 Amazon RDS for PostgreSQL 다중 AZ 인스턴스(db.r6g.2xlarge)는 앞으로 3년 동안 24시간 안정적으로 사용될 예정입니다. 엔진과 인스턴스 클래스를 변경할 계획은 없습니다. 데이터베이스 컴퓨트 비용을 가장 많이 줄이는 방법은 무엇입니까?"
     },
     "choices": [
       {
@@ -2027,20 +2027,20 @@
     "id": 65,
     "multi": false,
     "question": {
-      "ko": "상품 카탈로그를 제공하는 읽기 집중형 서비스가 RDS for MySQL 기본 인스턴스와 읽기 복제본 5개로 운영됩니다. 읽기 요청의 90%는 동일한 인기 상품 조회이고, 몇 분 정도 오래된 데이터도 허용됩니다. 데이터베이스 비용을 줄이면서 성능을 유지하는 방법은 무엇입니까?"
+      "ko": "상품 카탈로그를 제공하는 읽기 집중형 서비스가 RDS for MySQL 기본 인스턴스와 읽기 전용 복제본 5개로 운영됩니다. 읽기 요청의 90%는 동일한 인기 상품 조회이고, 몇 분 정도 오래된 데이터도 허용됩니다. 데이터베이스 비용을 줄이면서 성능을 유지하는 방법은 무엇입니까?"
     },
     "choices": [
       {
         "key": "A",
-        "ko": "읽기 복제본을 10개로 늘려 읽기 부하를 더 분산한다"
+        "ko": "읽기 전용 복제본을 10개로 늘려 읽기 부하를 더 분산한다"
       },
       {
         "key": "B",
-        "ko": "Multi-AZ 배포로 전환해 대기 인스턴스가 읽기 요청을 처리하게 한다"
+        "ko": "다중 AZ 배포로 전환해 대기 인스턴스가 읽기 요청을 처리하게 한다"
       },
       {
         "key": "C",
-        "ko": "ElastiCache 캐시를 도입하고 읽기 복제본을 줄인다"
+        "ko": "ElastiCache 캐시를 도입하고 읽기 전용 복제본을 줄인다"
       },
       {
         "key": "D",
@@ -2051,7 +2051,7 @@
       "C"
     ],
     "explanation": {
-      "ko": "자주 반복되는 읽기는 인메모리 캐시가 훨씬 저렴하게 처리하므로 복제본 수를 줄일 수 있습니다(C). A은 비용만 늘리고, B는 Multi-AZ 인스턴스 배포의 대기 인스턴스가 읽기를 처리하지 않으며, D은 단일 장애점과 높은 인스턴스 비용을 만듭니다."
+      "ko": "자주 반복되는 읽기는 인메모리 캐시가 훨씬 저렴하게 처리하므로 복제본 수를 줄일 수 있습니다(C). A은 비용만 늘리고, B는 다중 AZ 인스턴스 배포의 대기 인스턴스가 읽기를 처리하지 않으며, D은 단일 장애점과 높은 인스턴스 비용을 만듭니다."
     }
   },
   {
@@ -2079,7 +2079,7 @@
       },
       {
         "key": "E",
-        "ko": "샌드박스 계정마다 3년 Reserved Instances를 구매한다"
+        "ko": "샌드박스 계정마다 3년 예약 인스턴스를 구매한다"
       }
     ],
     "answer": [
@@ -2111,7 +2111,7 @@
       },
       {
         "key": "D",
-        "ko": "읽기 복제본을 모두 제거해 읽기 I/O 요금을 없앤다"
+        "ko": "읽기 전용 복제본을 모두 제거해 읽기 I/O 요금을 없앤다"
       }
     ],
     "answer": [
@@ -2262,7 +2262,7 @@
       },
       {
         "key": "C",
-        "ko": "각 서버에 Elastic IP를 할당해 인터넷으로 직접 통신한다"
+        "ko": "각 서버에 탄력적 IP 주소를 할당해 인터넷으로 직접 통신한다"
       },
       {
         "key": "D",
@@ -2280,7 +2280,7 @@
     "id": 73,
     "multi": true,
     "question": {
-      "ko": "us-east-1의 EC2 분석 서버가 eu-west-1의 S3 버킷에서 월 200TB 이상을 읽고 있으며, 같은 AZ의 EC2 인스턴스끼리도 Elastic IP로 서로 접근하고 있어 데이터 전송 요금이 높습니다. 요금을 줄이는 조치 두 가지는 무엇입니까? (2개 선택)"
+      "ko": "us-east-1의 EC2 분석 서버가 eu-west-1의 S3 버킷에서 월 200TB 이상을 읽고 있으며, 같은 AZ의 EC2 인스턴스끼리도 탄력적 IP 주소로 서로 접근하고 있어 데이터 전송 요금이 높습니다. 요금을 줄이는 조치 두 가지는 무엇입니까? (2개 선택)"
     },
     "choices": [
       {
@@ -2309,7 +2309,7 @@
       "E"
     ],
     "explanation": {
-      "ko": "같은 리전의 S3와 EC2 간 전송은 무료이므로 리전 간 전송을 없애고(D), 같은 AZ의 프라이빗 IP 통신은 무료입니다(E). Elastic IP를 쓰면 같은 AZ라도 요금이 부과됩니다. A은 가속 전송으로 추가 요금이 있고, B는 NAT 처리 요금이 붙으며, C은 S3와 연동되지 않고 비용도 추가됩니다."
+      "ko": "같은 리전의 S3와 EC2 간 전송은 무료이므로 리전 간 전송을 없애고(D), 같은 AZ의 프라이빗 IP 통신은 무료입니다(E). 탄력적 IP 주소를 쓰면 같은 AZ라도 요금이 부과됩니다. A은 가속 전송으로 추가 요금이 있고, B는 NAT 처리 요금이 붙으며, C은 S3와 연동되지 않고 비용도 추가됩니다."
     }
   },
   {
@@ -2569,7 +2569,7 @@
     "id": 82,
     "multi": false,
     "question": {
-      "ko": "중앙 FinOps 팀이 3년 All Upfront Reserved Instances를 구매하고, 월별 비용을 12개 사업부에 배부합니다. RI를 구매한 달에는 구매 계정의 비용이 한꺼번에 크게 잡혀 사업부 간 비교가 왜곡됩니다. 약정 비용이 약정 기간에 걸쳐 고르게 반영된 사업부별 비용 보고서를 추가 개발 없이 얻으려면 어떻게 해야 합니까?"
+      "ko": "중앙 FinOps 팀이 3년 All Upfront 예약 인스턴스를 구매하고, 월별 비용을 12개 사업부에 배부합니다. RI를 구매한 달에는 구매 계정의 비용이 한꺼번에 크게 잡혀 사업부 간 비교가 왜곡됩니다. 약정 비용이 약정 기간에 걸쳐 고르게 반영된 사업부별 비용 보고서를 추가 개발 없이 얻으려면 어떻게 해야 합니까?"
     },
     "choices": [
       {
@@ -2631,7 +2631,7 @@
     "id": 84,
     "multi": false,
     "question": {
-      "ko": "60개 계정을 운영하는 회사의 FinOps 팀이 모든 계정의 유휴 로드 밸런서, 연결되지 않은 Elastic IP, 사용률이 낮은 EBS 볼륨 같은 비용 최적화 점검 결과를 한곳에서 JSON/CSV 보고서로 받으려 합니다. 보고서는 Athena로 분석할 수 있는 기계 판독 형식이어야 하고, 계정 담당자에게 별도 권한을 요청하지 않으려 합니다. 계정마다 로그인하지 않고 AWS 관리형 기능만으로 구성하려면 어떻게 합니까?"
+      "ko": "60개 계정을 운영하는 회사의 FinOps 팀이 모든 계정의 유휴 로드 밸런서, 연결되지 않은 탄력적 IP 주소, 사용률이 낮은 EBS 볼륨 같은 비용 최적화 점검 결과를 한곳에서 JSON/CSV 보고서로 받으려 합니다. 보고서는 Athena로 분석할 수 있는 기계 판독 형식이어야 하고, 계정 담당자에게 별도 권한을 요청하지 않으려 합니다. 계정마다 로그인하지 않고 AWS 관리형 기능만으로 구성하려면 어떻게 합니까?"
     },
     "choices": [
       {
@@ -2648,7 +2648,7 @@
       },
       {
         "key": "D",
-        "ko": "Compute Optimizer를 조직 전체에서 신뢰할 수 있는 서비스로 활성화하고, 위임된 관리자 계정에서 유휴 로드 밸런서와 미연결 Elastic IP 권장 사항을 모아 조회한다"
+        "ko": "Compute Optimizer를 조직 전체에서 신뢰할 수 있는 서비스로 활성화하고, 위임된 관리자 계정에서 유휴 로드 밸런서와 미연결 탄력적 IP 주소 권장 사항을 모아 조회한다"
       }
     ],
     "answer": [
@@ -2693,7 +2693,7 @@
     "id": 86,
     "multi": false,
     "question": {
-      "ko": "한 회사가 1년 Compute Savings Plans와 RDS Reserved Instances를 구매했습니다. 사업 축소로 컴퓨팅 사용량이 줄면 약정이 활용되지 못하고 낭비될 수 있어, 약정 사용률이 기준 이하로 떨어지면 FinOps 팀에 자동으로 알리려 합니다. 추가 인프라 없이 가장 적은 설정으로 구현하는 방법은 무엇입니까?"
+      "ko": "한 회사가 1년 Compute Savings Plans와 RDS 예약 인스턴스를 구매했습니다. 사업 축소로 컴퓨팅 사용량이 줄면 약정이 활용되지 못하고 낭비될 수 있어, 약정 사용률이 기준 이하로 떨어지면 FinOps 팀에 자동으로 알리려 합니다. 추가 인프라 없이 가장 적은 설정으로 구현하는 방법은 무엇입니까?"
     },
     "choices": [
       {
@@ -2772,7 +2772,7 @@
       },
       {
         "key": "D",
-        "ko": "EC2 인스턴스에 3년 Standard Reserved Instances를 구매한다"
+        "ko": "EC2 인스턴스에 3년 Standard 예약 인스턴스를 구매한다"
       },
       {
         "key": "E",
@@ -2796,15 +2796,15 @@
     "choices": [
       {
         "key": "A",
-        "ko": "해당 AZ에 c6i 3년 zonal Standard Reserved Instances 100개를 구매한다"
+        "ko": "해당 AZ에 c6i 3년 zonal Standard 예약 인스턴스 100개를 구매한다"
       },
       {
         "key": "B",
-        "ko": "c6i 100대 기준으로 리전(regional) Convertible Reserved Instances를 구매하고, 패밀리가 바뀌면 AWS 콘솔에서 교환해 사용한다"
+        "ko": "c6i 100대 기준으로 리전(regional) Convertible 예약 인스턴스를 구매하고, 패밀리가 바뀌면 AWS 콘솔에서 교환해 사용한다"
       },
       {
         "key": "C",
-        "ko": "해당 AZ에 On-Demand Capacity Reservation을 만들고 Compute Savings Plans를 구매해 예약 용량 사용분에 할인을 적용한다"
+        "ko": "해당 AZ에 온디맨드 용량 예약을 만들고 Compute Savings Plans를 구매해 예약 용량 사용분에 할인을 적용한다"
       },
       {
         "key": "D",
@@ -3111,7 +3111,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "혼합 인스턴스 정책에서 On-Demand 기본 용량을 20대로 하고 초과분은 Spot으로 시작한다"
+        "ko": "혼합 인스턴스 정책에서 온디맨드 기본 용량을 20대로 하고 초과분은 Spot으로 시작한다"
       },
       {
         "key": "B",
@@ -3119,11 +3119,11 @@
       },
       {
         "key": "C",
-        "ko": "On-Demand 기본 용량을 0으로 두고 모든 인스턴스를 Spot으로 시작한다"
+        "ko": "온디맨드 기본 용량을 0으로 두고 모든 인스턴스를 Spot으로 시작한다"
       },
       {
         "key": "D",
-        "ko": "기본 용량 20대를 Spot으로 구성하고 초과분만 On-Demand로 시작한다"
+        "ko": "기본 용량 20대를 Spot으로 구성하고 초과분만 온디맨드로 시작한다"
       },
       {
         "key": "E",
@@ -3135,7 +3135,7 @@
       "E"
     ],
     "explanation": {
-      "ko": "On-Demand 기본 용량이 최소 20대의 안정성을 보장하고 초과분만 Spot으로 처리하며, 다양한 유형·AZ와 price-capacity-optimized 전략은 용량이 풍부한 풀을 골라 중단 가능성을 낮춥니다. 단일 유형·AZ의 최저가 요청과 전량 Spot은 중단 위험이 크고, 기본 용량을 Spot으로 두면 20대 안정 요건을 깹니다.\n참고: Amazon EC2 Auto Scaling User Guide – Auto Scaling groups with multiple instance types and purchase options"
+      "ko": "온디맨드 기본 용량이 최소 20대의 안정성을 보장하고 초과분만 Spot으로 처리하며, 다양한 유형·AZ와 price-capacity-optimized 전략은 용량이 풍부한 풀을 골라 중단 가능성을 낮춥니다. 단일 유형·AZ의 최저가 요청과 전량 Spot은 중단 위험이 크고, 기본 용량을 Spot으로 두면 20대 안정 요건을 깹니다.\n참고: Amazon EC2 Auto Scaling User Guide – Auto Scaling groups with multiple instance types and purchase options"
     }
   },
   {
@@ -3147,7 +3147,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "On-Demand 컴퓨트 환경을 만들고 야간 사용량 기준으로 3년 Compute Savings Plans를 구매해 상시 단가를 낮추고 중단 가능성을 없앤다"
+        "ko": "온디맨드 컴퓨트 환경을 만들고 야간 사용량 기준으로 3년 Compute Savings Plans를 구매해 상시 단가를 낮추고 중단 가능성을 없앤다"
       },
       {
         "key": "B",
@@ -3399,7 +3399,7 @@
       },
       {
         "key": "B",
-        "ko": "Multi-AZ 구성을 Single-AZ로 변경해 대기 인스턴스의 vCPU 요금을 줄이고 표준 지원을 기다린다"
+        "ko": "다중 AZ 구성을 Single-AZ로 변경해 대기 인스턴스의 vCPU 요금을 줄이고 표준 지원을 기다린다"
       },
       {
         "key": "C",
@@ -3438,14 +3438,14 @@
       },
       {
         "key": "D",
-        "ko": "운영 클러스터의 Aurora 읽기 복제본에 접속해 테스트를 수행한다"
+        "ko": "운영 클러스터의 Aurora 읽기 전용 복제본에 접속해 테스트를 수행한다"
       }
     ],
     "answer": [
       "B"
     ],
     "explanation": {
-      "ko": "Aurora 클론은 원본과 데이터 페이지를 공유하다 변경된 페이지만 새로 저장하므로 생성이 빠르고 추가 스토리지가 변경량만큼만 듭니다. DMS 복제와 스냅샷 복원은 전체 20TB를 새로 만들고, 읽기 복제본은 쓰기가 안 되고 운영 클러스터와 독립적이지도 않아 테스트에 맞지 않습니다.\n참고: Amazon Aurora User Guide – Cloning a volume for an Amazon Aurora DB cluster"
+      "ko": "Aurora 클론은 원본과 데이터 페이지를 공유하다 변경된 페이지만 새로 저장하므로 생성이 빠르고 추가 스토리지가 변경량만큼만 듭니다. DMS 복제와 스냅샷 복원은 전체 20TB를 새로 만들고, 읽기 전용 복제본은 쓰기가 안 되고 운영 클러스터와 독립적이지도 않아 테스트에 맞지 않습니다.\n참고: Amazon Aurora User Guide – Cloning a volume for an Amazon Aurora DB cluster"
     }
   },
   {
@@ -3581,12 +3581,12 @@
     "id": 114,
     "multi": false,
     "question": {
-      "ko": "회사는 RDS for PostgreSQL db.r6g.2xlarge Single-AZ에 대해 1년 Reserved DB Instance를 구매했습니다. 최적화 결과 3개월 뒤 같은 리전에서 db.r6g.xlarge Multi-AZ 구성으로 바꿀 계획입니다. 새 예약을 구매하지 않고 기존 구매 할인을 최대한 유지하려면 어떻게 해야 합니까?"
+      "ko": "회사는 RDS for PostgreSQL db.r6g.2xlarge Single-AZ에 대해 1년 Reserved DB Instance를 구매했습니다. 최적화 결과 3개월 뒤 같은 리전에서 db.r6g.xlarge 다중 AZ 구성으로 바꿀 계획입니다. 새 예약을 구매하지 않고 기존 구매 할인을 최대한 유지하려면 어떻게 해야 합니까?"
     },
     "choices": [
       {
         "key": "A",
-        "ko": "기존 RI를 취소하고 남은 기간의 선결제 금액을 환불받은 뒤 xlarge Multi-AZ RI를 새로 구매한다"
+        "ko": "기존 RI를 취소하고 남은 기간의 선결제 금액을 환불받은 뒤 xlarge 다중 AZ RI를 새로 구매한다"
       },
       {
         "key": "B",
@@ -3594,18 +3594,18 @@
       },
       {
         "key": "C",
-        "ko": "기존 2xlarge RI를 xlarge Multi-AZ RI로 교환하도록 AWS에 요청한다"
+        "ko": "기존 2xlarge RI를 xlarge 다중 AZ RI로 교환하도록 AWS에 요청한다"
       },
       {
         "key": "D",
-        "ko": "변경 전에 xlarge Multi-AZ RI를 추가 구매하고 기존 RI는 그대로 둔다"
+        "ko": "변경 전에 xlarge 다중 AZ RI를 추가 구매하고 기존 RI는 그대로 둔다"
       }
     ],
     "answer": [
       "B"
     ],
     "explanation": {
-      "ko": "PostgreSQL의 RDS RI는 같은 리전·엔진·인스턴스 패밀리 안에서 크기 유연성이 있고 Single-AZ와 Multi-AZ에도 적용되며, 2xlarge Single-AZ(16단위)는 xlarge Multi-AZ(16단위)와 같습니다. RDS RI는 취소할 수 없고, 환불이나 새 RI 구매는 중복 지출이 됩니다.\n참고: Amazon RDS User Guide – Reserved DB instances for Amazon RDS (size-flexible reserved DB instances)"
+      "ko": "PostgreSQL의 RDS RI는 같은 리전·엔진·인스턴스 패밀리 안에서 크기 유연성이 있고 Single-AZ와 다중 AZ에도 적용되며, 2xlarge Single-AZ(16단위)는 xlarge 다중 AZ(16단위)와 같습니다. RDS RI는 취소할 수 없고, 환불이나 새 RI 구매는 중복 지출이 됩니다.\n참고: Amazon RDS User Guide – Reserved DB instances for Amazon RDS (size-flexible reserved DB instances)"
     }
   },
   {
@@ -3715,7 +3715,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "자동 할당 퍼블릭 IP를 Elastic IP로 교체해 고정 주소로 사용한다"
+        "ko": "자동 할당 퍼블릭 IP를 탄력적 IP 주소로 교체해 고정 주소로 사용한다"
       },
       {
         "key": "B",
@@ -3734,7 +3734,7 @@
       "D"
     ],
     "explanation": {
-      "ko": "AWS는 실행 중인 인스턴스에 붙은 주소와 Elastic IP를 포함한 모든 퍼블릭 IPv4 주소에 시간당 요금을 부과합니다. 800개의 주소를 AZ별 NAT Gateway 몇 개의 주소로 줄이면 전송량이 적을 때 비용이 줄어듭니다. Elastic IP도 과금되고, 주소 없이 퍼블릭 서브넷에 두면 아웃바운드가 막히며, IPv4 전용 저장소는 IPv6로 접근할 수 없습니다.\n참고: Amazon VPC User Guide – IP addressing (public IPv4 addresses)"
+      "ko": "AWS는 실행 중인 인스턴스에 붙은 주소와 탄력적 IP 주소를 포함한 모든 퍼블릭 IPv4 주소에 시간당 요금을 부과합니다. 800개의 주소를 AZ별 NAT Gateway 몇 개의 주소로 줄이면 전송량이 적을 때 비용이 줄어듭니다. 탄력적 IP 주소도 과금되고, 주소 없이 퍼블릭 서브넷에 두면 아웃바운드가 막히며, IPv4 전용 저장소는 IPv6로 접근할 수 없습니다.\n참고: Amazon VPC User Guide – IP addressing (public IPv4 addresses)"
     }
   },
   {

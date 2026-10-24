@@ -509,11 +509,11 @@
     "choices": [
       {
         "key": "A",
-        "ko": "Amazon RDS Read Replica를 여러 개 생성하고 읽기 요청을 분산한다"
+        "ko": "Amazon RDS 읽기 전용 복제본을 여러 개 생성하고 읽기 요청을 분산한다"
       },
       {
         "key": "B",
-        "ko": "Amazon RDS Multi-AZ DB 인스턴스 배포(standby 1개)의 standby 인스턴스로 읽기 요청을 분산한다"
+        "ko": "Amazon RDS 다중 AZ DB 인스턴스 배포(standby 1개)의 standby 인스턴스로 읽기 요청을 분산한다"
       },
       {
         "key": "C",
@@ -533,7 +533,7 @@
       "C"
     ],
     "explanation": {
-      "ko": "RDS Read Replica(A)는 읽기를 다른 인스턴스로 오프로드하고, ElastiCache(C)는 자주 접근하는 데이터를 메모리에 캐싱합니다. Multi-AZ DB 인스턴스 배포의 standby(B)는 장애 조치용이라 읽기 요청을 받지 않고, 수직 확장(D)은 한계가 있으며, 모든 데이터를 메모리에(E)는 비용이 높습니다."
+      "ko": "RDS 읽기 전용 복제본(A)는 읽기를 다른 인스턴스로 오프로드하고, ElastiCache(C)는 자주 접근하는 데이터를 메모리에 캐싱합니다. 다중 AZ DB 인스턴스 배포의 standby(B)는 장애 조치용이라 읽기 요청을 받지 않고, 수직 확장(D)은 한계가 있으며, 모든 데이터를 메모리에(E)는 비용이 높습니다."
     }
   },
   {
@@ -646,7 +646,7 @@
       },
       {
         "key": "C",
-        "ko": "Amazon RDS 다중 AZ와 Read Replica"
+        "ko": "Amazon RDS 다중 AZ와 읽기 전용 복제본"
       },
       {
         "key": "D",
@@ -657,7 +657,7 @@
       "B"
     ],
     "explanation": {
-      "ko": "Amazon Aurora 글로벌 데이터베이스는 관계형 트랜잭션과 높은 동시성을 지원하고, 스토리지 기반 복제로 보통 1초 미만의 리전 간 지연과 빠른 리전 장애 복구를 제공합니다. DynamoDB 글로벌 테이블(A)은 비관계형 모델이라 관계형 트랜잭션 요건과 맞지 않고, RDS Multi-AZ + Replica(C)는 리전 장애 복구 구성이 아니며, Redshift(D)는 OLTP용이 아닙니다."
+      "ko": "Amazon Aurora 글로벌 데이터베이스는 관계형 트랜잭션과 높은 동시성을 지원하고, 스토리지 기반 복제로 보통 1초 미만의 리전 간 지연과 빠른 리전 장애 복구를 제공합니다. DynamoDB 글로벌 테이블(A)은 비관계형 모델이라 관계형 트랜잭션 요건과 맞지 않고, RDS 다중 AZ + Replica(C)는 리전 장애 복구 구성이 아니며, Redshift(D)는 OLTP용이 아닙니다."
     }
   },
   {
@@ -775,7 +775,7 @@
       },
       {
         "key": "C",
-        "ko": "Amazon RDS Multi-AZ DB 인스턴스 배포(standby 1개)"
+        "ko": "Amazon RDS 다중 AZ DB 인스턴스 배포(standby 1개)"
       },
       {
         "key": "D",
@@ -786,7 +786,7 @@
       "B"
     ],
     "explanation": {
-      "ko": "Amazon Aurora 클러스터는 여러 AZ에 걸쳐 공유 스토리지를 사용하고 여러 reader가 장애 조치 대상이 되어 읽기 확장과 고가용성을 함께 제공합니다. 단일 AZ(A)는 위험하고, RDS Multi-AZ DB 인스턴스 배포(C)의 standby는 읽기를 받지 못하며 reader를 여러 개 둘 수 없고, 수동 관리(D)는 복잡합니다."
+      "ko": "Amazon Aurora 클러스터는 여러 AZ에 걸쳐 공유 스토리지를 사용하고 여러 reader가 장애 조치 대상이 되어 읽기 확장과 고가용성을 함께 제공합니다. 단일 AZ(A)는 위험하고, RDS 다중 AZ DB 인스턴스 배포(C)의 standby는 읽기를 받지 못하며 reader를 여러 개 둘 수 없고, 수동 관리(D)는 복잡합니다."
     }
   },
   {
@@ -1060,7 +1060,7 @@
       },
       {
         "key": "B",
-        "ko": "Elastic IP를 각 인스턴스에 할당하고 보안 그룹 규칙을 완화"
+        "ko": "탄력적 IP 주소를 각 인스턴스에 할당하고 보안 그룹 규칙을 완화"
       },
       {
         "key": "C",
@@ -1075,7 +1075,7 @@
       "A"
     ],
     "explanation": {
-      "ko": "EC2 Cluster Placement Group은 동일 가용 영역 내 인스턴스들을 물리적으로 가까이 배치하여 극도로 낮은 지연 시간과 높은 네트워크 처리량을 제공합니다. Elastic IP(B)는 네트워크 성능과 무관하고, Enhanced networking 비활성화(C)는 성능을 해치며, VPC peering(D)은 지연 시간을 증가시킵니다."
+      "ko": "EC2 Cluster Placement Group은 동일 가용 영역 내 인스턴스들을 물리적으로 가까이 배치하여 극도로 낮은 지연 시간과 높은 네트워크 처리량을 제공합니다. 탄력적 IP 주소(B)는 네트워크 성능과 무관하고, Enhanced networking 비활성화(C)는 성능을 해치며, VPC peering(D)은 지연 시간을 증가시킵니다."
     }
   },
   {
@@ -1095,7 +1095,7 @@
       },
       {
         "key": "C",
-        "ko": "모든 인스턴스에 Elastic IP를 할당하여 주소 공간 절약"
+        "ko": "모든 인스턴스에 탄력적 IP 주소를 할당하여 주소 공간 절약"
       },
       {
         "key": "D",
@@ -1106,7 +1106,7 @@
       "A"
     ],
     "explanation": {
-      "ko": "VPC에 보조 CIDR 블록을 추가하여 기존 리소스를 유지하면서 IP 주소 공간을 확장할 수 있습니다. VPC 삭제(B)는 기존 리소스를 손실시키고, Elastic IP(C)는 공개 IP 공간만 제공하며, NAT instance(D)는 주소 공간 부족 문제를 해결하지 못합니다."
+      "ko": "VPC에 보조 CIDR 블록을 추가하여 기존 리소스를 유지하면서 IP 주소 공간을 확장할 수 있습니다. VPC 삭제(B)는 기존 리소스를 손실시키고, 탄력적 IP 주소(C)는 공개 IP 공간만 제공하며, NAT instance(D)는 주소 공간 부족 문제를 해결하지 못합니다."
     }
   },
   {
@@ -1411,7 +1411,7 @@
       },
       {
         "key": "B",
-        "ko": "RDS for MySQL에 Read Replica를 추가하고 검색 전용 replica에서 같은 LIKE 쿼리를 실행하도록 변경한다"
+        "ko": "RDS for MySQL에 읽기 전용 복제본을 추가하고 검색 전용 replica에서 같은 LIKE 쿼리를 실행하도록 변경한다"
       },
       {
         "key": "C",
@@ -2093,7 +2093,7 @@
       },
       {
         "key": "B",
-        "ko": "각 인스턴스에 Elastic IP를 연결하고 퍼블릭 인터넷으로 노드 간 통신한다"
+        "ko": "각 인스턴스에 탄력적 IP 주소를 연결하고 퍼블릭 인터넷으로 노드 간 통신한다"
       },
       {
         "key": "C",
@@ -2244,7 +2244,7 @@
     "choices": [
       {
         "key": "A",
-        "ko": "AWS Batch의 On-Demand Fargate compute environment로 작업을 실행한다"
+        "ko": "AWS Batch의 온디맨드 Fargate compute environment로 작업을 실행한다"
       },
       {
         "key": "B",
@@ -2256,7 +2256,7 @@
       },
       {
         "key": "D",
-        "ko": "SQS와 On-Demand EC2 Auto Scaling 그룹으로 직접 큐 소비 시스템을 만든다"
+        "ko": "SQS와 온디맨드 EC2 Auto Scaling 그룹으로 직접 큐 소비 시스템을 만든다"
       }
     ],
     "answer": [
@@ -2403,7 +2403,7 @@
       },
       {
         "key": "B",
-        "ko": "Read Replica를 추가하고 모든 쿼리를 replica로 보낸다"
+        "ko": "읽기 전용 복제본을 추가하고 모든 쿼리를 replica로 보낸다"
       },
       {
         "key": "C",
@@ -2438,7 +2438,7 @@
       },
       {
         "key": "C",
-        "ko": "ElastiCache (Redis OSS) sorted set과 Multi-AZ 자동 장애 조치 복제 그룹을 사용한다"
+        "ko": "ElastiCache (Redis OSS) sorted set과 다중 AZ 자동 장애 조치 복제 그룹을 사용한다"
       },
       {
         "key": "D",
@@ -2449,7 +2449,7 @@
       "C"
     ],
     "explanation": {
-      "ko": "C: Redis의 sorted set은 순위 조회에 최적이며 복제와 Multi-AZ 자동 장애 조치로 가용성을 높입니다. A의 Memcached는 정렬 자료구조와 복제를 지원하지 않고, B는 느리고 비쌉니다. D는 키 조회 캐시일 뿐 정렬 연산이 없습니다."
+      "ko": "C: Redis의 sorted set은 순위 조회에 최적이며 복제와 다중 AZ 자동 장애 조치로 가용성을 높입니다. A의 Memcached는 정렬 자료구조와 복제를 지원하지 않고, B는 느리고 비쌉니다. D는 키 조회 캐시일 뿐 정렬 연산이 없습니다."
     }
   },
   {
@@ -2465,7 +2465,7 @@
       },
       {
         "key": "B",
-        "ko": "캐시를 사용하지 않고 Read Replica를 늘려 읽기를 분산한다"
+        "ko": "캐시를 사용하지 않고 읽기 전용 복제본을 늘려 읽기를 분산한다"
       },
       {
         "key": "C",
@@ -2620,7 +2620,7 @@
       },
       {
         "key": "B",
-        "ko": "ALB마다 Elastic IP를 직접 할당해 고객사에 알려준다"
+        "ko": "ALB마다 탄력적 IP 주소를 직접 할당해 고객사에 알려준다"
       },
       {
         "key": "C",
@@ -2635,7 +2635,7 @@
       "D"
     ],
     "explanation": {
-      "ko": "D: Global Accelerator는 고정 anycast IP 두 개를 제공하고 상태 확인으로 정상 리전에 트래픽을 즉시 전환합니다. A는 DNS 캐시에 의존하고, B는 ALB가 고정 Elastic IP를 지원하지 않으며, C는 TCP 동적 트래픽의 failover와 정적 IP 요건에 맞지 않습니다."
+      "ko": "D: Global Accelerator는 고정 anycast IP 두 개를 제공하고 상태 확인으로 정상 리전에 트래픽을 즉시 전환합니다. A는 DNS 캐시에 의존하고, B는 ALB가 고정 탄력적 IP 주소를 지원하지 않으며, C는 TCP 동적 트래픽의 failover와 정적 IP 요건에 맞지 않습니다."
     }
   },
   {
@@ -3165,18 +3165,18 @@
       },
       {
         "key": "C",
-        "ko": "VPC 호스팅 인터넷 연결 엔드포인트의 Transfer Family SFTP 서버에 Elastic IP를 연결하고 보안 그룹으로 파트너 IP 대역만 허용한다"
+        "ko": "VPC 호스팅 인터넷 연결 엔드포인트의 Transfer Family SFTP 서버에 탄력적 IP 주소를 연결하고 보안 그룹으로 파트너 IP 대역만 허용한다"
       },
       {
         "key": "D",
-        "ko": "EC2 인스턴스에 OpenSSH 서버를 설치하고 Elastic IP를 연결한 뒤 cron으로 업로드 디렉터리를 S3에 동기화한다"
+        "ko": "EC2 인스턴스에 OpenSSH 서버를 설치하고 탄력적 IP 주소를 연결한 뒤 cron으로 업로드 디렉터리를 S3에 동기화한다"
       }
     ],
     "answer": [
       "C"
     ],
     "explanation": {
-      "ko": "C: VPC 호스팅 인터넷 연결 엔드포인트는 Elastic IP를 붙여 파트너가 고정 IP를 허용 목록에 넣을 수 있고 보안 그룹으로 접근을 제한하며 서버는 관리형입니다. A의 퍼블릭 엔드포인트 IP는 고정이 아니고, B는 클라이언트 변경이 필요하며, D는 서버 운영 부담이 있습니다.\n참고: Create a server in a virtual private cloud (AWS Transfer Family)"
+      "ko": "C: VPC 호스팅 인터넷 연결 엔드포인트는 탄력적 IP 주소를 붙여 파트너가 고정 IP를 허용 목록에 넣을 수 있고 보안 그룹으로 접근을 제한하며 서버는 관리형입니다. A의 퍼블릭 엔드포인트 IP는 고정이 아니고, B는 클라이언트 변경이 필요하며, D는 서버 운영 부담이 있습니다.\n참고: Create a server in a virtual private cloud (AWS Transfer Family)"
     }
   },
   {
@@ -3192,7 +3192,7 @@
       },
       {
         "key": "B",
-        "ko": "VPC 호스팅 인터넷 연결 엔드포인트에 Elastic IP를 붙이고 FTP를 활성화한 뒤 보안 그룹으로 장비 IP만 허용한다"
+        "ko": "VPC 호스팅 인터넷 연결 엔드포인트에 탄력적 IP 주소를 붙이고 FTP를 활성화한 뒤 보안 그룹으로 장비 IP만 허용한다"
       },
       {
         "key": "C",
@@ -3613,7 +3613,7 @@
       },
       {
         "key": "D",
-        "ko": "리전의 RDS for PostgreSQL Multi-AZ를 사용하고 공장에 읽기 전용 캐시용 EC2만 설치한다"
+        "ko": "리전의 RDS for PostgreSQL 다중 AZ를 사용하고 공장에 읽기 전용 캐시용 EC2만 설치한다"
       }
     ],
     "answer": [
@@ -4111,11 +4111,11 @@
       },
       {
         "key": "B",
-        "ko": "On-Demand EC2 인스턴스 Auto Scaling 그룹에 SQS 큐 기반 작업 처리 소프트웨어를 직접 구축한다"
+        "ko": "온디맨드 EC2 인스턴스 Auto Scaling 그룹에 SQS 큐 기반 작업 처리 소프트웨어를 직접 구축한다"
       },
       {
         "key": "C",
-        "ko": "Fargate On-Demand 작업으로 ECS 서비스를 만들고 밤새 작업 수만큼 태스크를 유지한다"
+        "ko": "Fargate 온디맨드 작업으로 ECS 서비스를 만들고 밤새 작업 수만큼 태스크를 유지한다"
       },
       {
         "key": "D",
@@ -4126,7 +4126,7 @@
       "D"
     ],
     "explanation": {
-      "ko": "D: AWS Batch는 작업 큐와 컴퓨팅 프로비저닝을 관리하고 Spot 인스턴스를 사용해 중단 허용 작업의 비용을 줄입니다. A는 Lambda의 15분 실행 한도에 맞지 않고, B는 스케줄링 소프트웨어를 직접 운영해야 하며, C는 On-Demand 요금으로 비용이 높습니다.\n참고: What is AWS Batch?"
+      "ko": "D: AWS Batch는 작업 큐와 컴퓨팅 프로비저닝을 관리하고 Spot 인스턴스를 사용해 중단 허용 작업의 비용을 줄입니다. A는 Lambda의 15분 실행 한도에 맞지 않고, B는 스케줄링 소프트웨어를 직접 운영해야 하며, C는 온디맨드 요금으로 비용이 높습니다.\n참고: What is AWS Batch?"
     }
   },
   {
@@ -4288,7 +4288,7 @@
     "id": 136,
     "multi": true,
     "question": {
-      "ko": "Aurora PostgreSQL 클러스터에 writer 한 대와 reader 세 대가 있습니다. 웹 애플리케이션이 모든 쿼리를 클러스터 엔드포인트로 보내 writer가 과부하입니다. 읽기 쿼리가 80%입니다. 페일오버 시에도 애플리케이션 연결 설정을 수동으로 바꾸지 않고 읽기 부하를 분산해야 합니다. 어떻게 구성해야 합니까? (2개 선택)"
+      "ko": "Aurora PostgreSQL 클러스터에 writer 한 대와 reader 세 대가 있습니다. 웹 애플리케이션이 모든 쿼리를 클러스터 엔드포인트로 보내 writer가 과부하입니다. 읽기 쿼리가 80%입니다. 장애 조치 시에도 애플리케이션 연결 설정을 수동으로 바꾸지 않고 읽기 부하를 분산해야 합니다. 어떻게 구성해야 합니까? (2개 선택)"
     },
     "choices": [
       {
@@ -4301,7 +4301,7 @@
       },
       {
         "key": "C",
-        "ko": "쓰기와 DDL은 클러스터 엔드포인트로 유지해 페일오버 후에도 새 writer로 연결되게 한다"
+        "ko": "쓰기와 DDL은 클러스터 엔드포인트로 유지해 장애 조치 후에도 새 writer로 연결되게 한다"
       },
       {
         "key": "D",
@@ -4317,7 +4317,7 @@
       "C"
     ],
     "explanation": {
-      "ko": "A: reader 엔드포인트는 reader 사이의 연결을 자동 분산하고 장애 시 대상을 바꿉니다. C: 클러스터 엔드포인트는 페일오버 후 새 writer를 가리킵니다. 인스턴스 엔드포인트는 인스턴스 장애를 자동 처리하지 못하고, 승급 우선순위는 읽기 분산과 무관하며, Route 53 수동 등록은 운영 부담이 큽니다.\n참고: Amazon Aurora endpoint connections"
+      "ko": "A: reader 엔드포인트는 reader 사이의 연결을 자동 분산하고 장애 시 대상을 바꿉니다. C: 클러스터 엔드포인트는 장애 조치 후 새 writer를 가리킵니다. 인스턴스 엔드포인트는 인스턴스 장애를 자동 처리하지 못하고, 승급 우선순위는 읽기 분산과 무관하며, Route 53 수동 등록은 운영 부담이 큽니다.\n참고: Amazon Aurora endpoint connections"
     }
   },
   {
@@ -4399,7 +4399,7 @@
       },
       {
         "key": "C",
-        "ko": "Valkey 또는 Redis OSS 복제 그룹에 Multi-AZ 자동 장애 조치를 켜고 sorted set을 쓴다"
+        "ko": "Valkey 또는 Redis OSS 복제 그룹에 다중 AZ 자동 장애 조치를 켜고 sorted set을 쓴다"
       },
       {
         "key": "D",
@@ -4430,7 +4430,7 @@
       },
       {
         "key": "C",
-        "ko": "Amazon MemoryDB로 영속성을 갖춘 클러스터를 구성하고 Multi-AZ 복제를 켠다"
+        "ko": "Amazon MemoryDB로 영속성을 갖춘 클러스터를 구성하고 다중 AZ 복제를 켠다"
       },
       {
         "key": "D",
