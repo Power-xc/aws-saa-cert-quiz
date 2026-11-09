@@ -1,0 +1,3278 @@
+[
+  {
+    "id": 1,
+    "multi": false,
+    "question": {
+      "ko": "한 회사는 예상 수요를 충족하기 위해 운영을 최적화하는 방법을 결정하기 위해 매 분기마다 예측을 내립니다. 이 회사는 ML 모델을 사용하여 이러한 예측을 내립니다. AI 실무자는 회사 이해 관계자에게 투명성과 설명 가능성을 제공하기 위해 훈련된 ML 모델에 대한 보고서를 작성하고 있습니다. AI 실무자는 투명성과 설명 가능성 요구 사항을 충족하기 위해 보고서에 무엇을 포함해야 합니까?",
+      "en": "A company makes forecasts each quarter to decide how to optimize operations to meet expected demand. The company uses ML models to make these forecasts. An AI practitioner is writing a report about the trained ML models to provide transparency and explainability to company stakeholders. What should the AI practitioner include in the report to meet the transparency and explainability requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모델 학습을 위한 코드",
+        "en": "Code for model training"
+      },
+      {
+        "key": "B",
+        "ko": "부분 종속성 플롯(PDP)",
+        "en": "Partial dependence plots (PDPs)"
+      },
+      {
+        "key": "C",
+        "ko": "학습을 위한 샘플 데이터",
+        "en": "Sample data for training"
+      },
+      {
+        "key": "D",
+        "ko": "모델 수렴 표",
+        "en": "Model convergence tables"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "부분 종속성 플롯(PDP). PDP 는 대상 응답과 입력 피처 집합 간의 관계를 시각화하는 데 도움이 되므로 이해 관계자가 다양한 피처가 모델의 예측에 어떤 영향을 미치는지 더 쉽게 이해할 수 있습니다. 이를 통해 투명성과 설명 가능성이 향상됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150663-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 2,
+    "multi": false,
+    "question": {
+      "ko": "한 로펌이 대규모 언어 모델(LLM)을 사용하여 AI 애플리케이션을 구축하고자 합니다. 이 애플리케이션은 법률 문서를 읽고 문서에서 핵심 요점을 추출합니다. 어떤 솔루션이 이러한 요구 사항을 충족합니까?",
+      "en": "A law firm wants to build an AI application by using large language models (LLMs). The application will read legal documents and extract key points from the documents. Which solution meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "자동 명명된 엔터티 인식 시스템을 구축합니다.",
+        "en": "Build an automatic named entity recognition system."
+      },
+      {
+        "key": "B",
+        "ko": "추천 엔진을 만듭니다.",
+        "en": "Create a recommendation engine."
+      },
+      {
+        "key": "C",
+        "ko": "요약 챗봇을 개발합니다.",
+        "en": "Develop a summarization chatbot."
+      },
+      {
+        "key": "D",
+        "ko": "다국어 번역 시스템을 개발합니다.",
+        "en": "Develop a multi-language translation system."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "대규모 언어 모델(LLM)을 사용하는 요약 챗봇은 법률 문서를 읽고 핵심 요점을 추출하여 가장 중요한 정보를 강조하는 간결한 요약을 제공할 수 있습니다. 이는 복잡한 법률 텍스트를 처리하고 더 관리하기 쉬운 통찰력으로 정제해야 하는 필요성과 완벽하게 일치합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150664-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 3,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 유전자 특성을 기준으로 인간 유전자를 20 가지 범주로 분류하고자 합니다. 이 회사는 모델의 내부 메커니즘이 출력에 어떤 영향을 미치는지 문서화하기 위한 ML 알고리즘이 필요합니다. 어떤 ML 알고리즘이 이러한 요구 사항을 충족합니까?",
+      "en": "A company wants to classify human genes into 20 categories based on gene characteristics. The company needs an ML algorithm to document how the inner mechanism of the model affects the output. Which ML algorithm meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "의사결정 트리",
+        "en": "Decision trees"
+      },
+      {
+        "key": "B",
+        "ko": "선형 회귀",
+        "en": "Linear regression"
+      },
+      {
+        "key": "C",
+        "ko": "로지스틱 회귀",
+        "en": "Logistic regression"
+      },
+      {
+        "key": "D",
+        "ko": "신경망",
+        "en": "Neural networks"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "의사결정 트리는 해석 가능성이 높은 머신 러닝 모델입니다. 의사결정 트리는 입력 기능(유전자 특성)이 의사결정에 어떻게 사용되는지 명확하고 이해하기 쉬운 표현을 제공하여 모델의 내부 메커니즘을 문서화하고 출력에 어떤 영향을 미치는지 이해하는 데 도움이 됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150751-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 4,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 식물 잎 사진에서 식물 질병을 예측하는 이미지 분류 모델을 구축했습니다. 이 회사는 모델이 얼마나 많은 이미지를 올바르게 분류했는지 평가하고자 합니다. 이 회사는 모델의 성능을 측정하기 위해 어떤 평가 지표를 사용해야 합니까?",
+      "en": "A company has built an image classification model to predict plant diseases from photos of plant\n\nleaves. The company wants to evaluate how many images the model classified correctly. Which evaluation metric should the company use to measure the model's performance?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "R 제곱 점수",
+        "en": "R-squared score"
+      },
+      {
+        "key": "B",
+        "ko": "정확도",
+        "en": "Accuracy"
+      },
+      {
+        "key": "C",
+        "ko": "평균 제곱근 오차(RMSE)",
+        "en": "Root mean squared error (RMSE)"
+      },
+      {
+        "key": "D",
+        "ko": "학습률",
+        "en": "Learning rate"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "정확도는 전체 이미지 수에서 올바르게 분류된 이미지의 비율을 측정합니다. 이는 분류 모델의 성능을 평가하는 데 간단하고 일반적으로 사용되는 지표이며, 특히 클래스가 균형을 이룰 때 유용합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150625-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 5,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 사전 훈련된 대규모 언어 모델(LLM)을 사용하여 제품 추천을 위한 챗봇을 구축하고 있습니다. 이 회사에서는 LLM 출력이 짧고 특정 언어로 작성되어야 합니다. 어떤 솔루션이 LLM 응답 품질을 회사의 기대치에 맞출까요?",
+      "en": "A company is using a pre-trained large language model (LLM) to build a chatbot for product recommendations. The company needs the LLM outputs to be short and written in a specific language. Which solution will align the LLM response quality with the company's expectations?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "프롬프트를 조정합니다.",
+        "en": "Adjust the prompt."
+      },
+      {
+        "key": "B",
+        "ko": "다른 크기의 LLM 을 선택합니다.",
+        "en": "Choose an LLM of a different size."
+      },
+      {
+        "key": "C",
+        "ko": "온도를 높입니다.",
+        "en": "Increase the temperature."
+      },
+      {
+        "key": "D",
+        "ko": "상위 K 값을 높입니다.",
+        "en": "Increase the Top K value."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "프롬프트를 신중하게 제작함으로써 회사는 LLM 이 원하는 길이와 언어 요구 사항을 충족하는 응답을 생성하도록 안내할 수 있습니다. 이 접근 방식을 사용하면 모델 크기나 다른 매개변수를 변경할 필요 없이 출력을 정확하게 제어할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150691-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 6,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 프로덕션 환경에서 ML 파이프라인에 Amazon SageMaker 를 사용합니다. 이 회사는 최대 1GB 의 대용량 입력 데이터와 최대 1 시간의 처리 시간을 갖고 있습니다. 이 회사는 거의 실시간 지연 시간이 필요합니다. 어떤 SageMaker 추론 옵션이 이러한 요구 사항을 충족합니까?",
+      "en": "A company uses Amazon SageMaker for its ML pipeline in a production environment. The company has large input data sizes up to 1 GB and processing times up to 1 hour. The company\n\nneeds near real-time latency. Which SageMaker inference option meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "실시간 추론",
+        "en": "Real-time inference"
+      },
+      {
+        "key": "B",
+        "ko": "서버리스 추론",
+        "en": "Serverless inference"
+      },
+      {
+        "key": "C",
+        "ko": "비동기 추론",
+        "en": "Asynchronous inference"
+      },
+      {
+        "key": "D",
+        "ko": "일괄 변환",
+        "en": "Batch transform"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "Amazon SageMaker 비동기 추론이 적절한 옵션입니다. 그 이유는 다음과 같습니다. • 대용량 페이로드 처리: 비동기 추론은 일반적으로 실시간, 저지연 처리에 적합하지 않은 대용량 입력 페이로드(최대 수 GB)를 처리하도록 설계되었습니다. • 긴 처리 시간: 완료하는 데 몇 분에서 몇 시간이 걸릴 수 있는 추론 요청을 지원하므로 상당한 처리 시간이 필요한 모델에 이상적입니다. • 거의 실시간 대응: 실시간 엔드포인트와 같이 밀리초 수준의 지연 시간은 제공하지 않지만, 대응 시간이 몇 초에서 몇 분까지 다양할 수 있는 거의 실시간 사용 사례에 대해 보다 확장 가능하고 효율적인 솔루션을 제공합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150626-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 7,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 도메인별 모델을 사용하고 있습니다. 이 회사는 처음부터 새 모델을 만드는 것을 피하고 싶어합니다. 대신 이 회사는 사전 학습된 모델을 조정하여 새롭고 관련된 작업을 위한 모델을 만들고 싶어합니다. 어떤 ML 전략이 이러한 요구 사항을 충족합니까?",
+      "en": "A company is using domain-specific models. The company wants to avoid creating new models from the beginning. The company instead wants to adapt pre-trained models to create models for new, related tasks. Which ML strategy meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "에포크 수를 늘립니다.",
+        "en": "Increase the number of epochs."
+      },
+      {
+        "key": "B",
+        "ko": "전이 학습을 사용합니다.",
+        "en": "Use transfer learning."
+      },
+      {
+        "key": "C",
+        "ko": "에포크 수를 줄입니다.",
+        "en": "Decrease the number of epochs."
+      },
+      {
+        "key": "D",
+        "ko": "비지도 학습을 사용합니다.",
+        "en": "Use unsupervised learning."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "전이 학습을 통해 회사는 사전 학습된 모델을 가져와 새로운 관련 작업에 적용할 수 있습니다. 이 접근 방식은 사전 학습된 모델에서 이미 학습한 지식을 활용하여 새 모델을 처음부터 학습할 필요성을 줄이고 더 적은 데이터와 계산 리소스로 더 나은 성능을 얻는 경우가 많습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150727-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 8,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 보호 안경용 이미지를 생성하는 솔루션을 구축하고 있습니다. 솔루션은 정확도가 높아야 하며 잘못된 주석의 위험을 최소화해야 합니다. 어떤 솔루션이 이러한 요구 사항을 충족할까요?",
+      "en": "A company is building a solution to generate images for protective eyewear. The solution must have high accuracy and must minimize the risk of incorrect annotations. Which solution will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon SageMaker Ground Truth Plus 를 사용한 인간 참여 검증",
+        "en": "Human-in-the-loop validation by using Amazon SageMaker Ground Truth Plus"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Bedrock 지식 기반을 사용한 데이터 증강",
+        "en": "Data augmentation by using an Amazon Bedrock knowledge base"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Rekognition 을 사용한 이미지 인식",
+        "en": "Image recognition by using Amazon Rekognition"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon QuickSight 를 사용한 데이터 요약 Q",
+        "en": "Data summarization by using Amazon QuickSight Q"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "높은 정확도로 보호 안경 이미지를 생성하고 잘못된 주석의 위험을 최소화하는 가장 좋은 솔루션은 Amazon SageMaker Ground Truth Plus 를 사용한 인간 참여 검증 입니다. 이 접근 방식은 자동화된 프로세스의 효율성과 인간 감독의 정확성을 결합하여 주석이 정확하고 생성된 이미지가 필요한 표준을 충족하도록 합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150728-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 9,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 Amazon Bedrock 에서 Foundation Model(FM)을 사용하여 챗봇을 만들고자 합니다. FM 은 Amazon S3 버킷에 저장된 암호화된 데이터에 액세스해야 합니다. 데이터는 Amazon S3 관리 키(SSE-S3)로 암호화됩니다. FM 은 S3 버킷 데이터에 액세스하려고 할 때 오류가 발생합니다. 어떤 솔루션이 이러한 요구 사항을 충족할까요?",
+      "en": "A company wants to create a chatbot by using a foundation model (FM) on Amazon Bedrock. The FM needs to access encrypted data that is stored in an Amazon S3 bucket. The data is encrypted with Amazon S3 managed keys (SSE-S3). The FM encounters a failure when attempting to access the S3 bucket data. Which solution will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Bedrock 이 가정하는 역할에 올바른 암호화 키로 데이터를 해독할 수 있는 권한이 있는지 확인합니다.",
+        "en": "Ensure that the role that Amazon Bedrock assumes has permission to decrypt data with the correct encryption key."
+      },
+      {
+        "key": "B",
+        "ko": "S3 버킷에 대한 액세스 권한을 설정하여 인터넷을 통한 액세스를 활성화하기 위해 공개 액세스를 허용합니다.",
+        "en": "Set the access permissions for the S3 buckets to allow public access to enable access over the internet."
+      },
+      {
+        "key": "C",
+        "ko": "신속한 엔지니어링 기술을 사용하여 모델에 Amazon S3 에서 정보를 찾도록 지시합니다.",
+        "en": "Use prompt engineering techniques to tell the model to look for information in Amazon S3."
+      },
+      {
+        "key": "D",
+        "ko": "S3 데이터에 민감한 정보가 포함되지 않았는지 확인합니다.",
+        "en": "Ensure that the S3 data does not contain sensitive information."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "이 시나리오에 대한 최상의 솔루션은 **A. Amazon Bedrock 이 가정하는 역할에 올바른 암호화 키로 데이터를 복호화할 수 있는 권한이 있는지 확인하는 것입니다.**\n\n이렇게 하면 Foundation Model(FM)이 Amazon S3 버킷에 저장된 데이터에 액세스하고 복호화하는 데 필요한 권한이 있는지 확인할 수 있으며, 이 데이터는 Amazon S3 관리 키(SSE-S3)로 암호화됩니다. 암호화된 데이터에 안전하게 액세스하려면 적절한 권한이 필수적입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150687-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 10,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 언어 모델을 사용하여 에지 디바이스에서 추론을 위한 애플리케이션을 만들고자 합니다. 추론은 가능한 한 가장 낮은 지연 시간을 가져야 합니다. 어떤 솔루션이 이러한 요구 사항을 충족할까요?",
+      "en": "A company wants to use language models to create an application for inference on edge devices. The inference must have the lowest latency possible. Which solution will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "에지 디바이스에 최적화된 소규모 언어 모델(SLM)을 배포합니다.",
+        "en": "Deploy optimized small language models (SLMs) on edge devices."
+      },
+      {
+        "key": "B",
+        "ko": "에지 디바이스에 최적화된 대규모 언어 모델(LLM)을 배포합니다.",
+        "en": "Deploy optimized large language models (LLMs) on edge devices."
+      },
+      {
+        "key": "C",
+        "ko": "에지 디바이스와 비동기 통신을 위한 중앙 집중식 소규모 언어 모델(SLM) API 를 통합합니다.",
+        "en": "Incorporate a centralized small language model (SLM) API for asynchronous communication with edge devices."
+      },
+      {
+        "key": "D",
+        "ko": "에지 디바이스와 비동기 통신을 위한 중앙 집중식 대규모 언어 모델(LLM) API 를 통합합니다.",
+        "en": "Incorporate a centralized large language model (LLM) API for asynchronous communication with edge devices."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "최적화된 소규모 언어 모델(SLM)은 에지 디바이스에서 효율적으로 실행되도록 설계되어 최소한의 지연 시간으로 빠른 응답을 제공합니다. 이 접근 방식은 추론이 디바이스에서 로컬로 수행되도록 하여 네트워크 통신과 관련된 지연을 방지합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150627-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 11,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 Amazon SageMaker 를 사용하여 ML 모델을 구축하려고 합니다. 이 회사는 여러 팀에서 모델 개발을 위한 변수를 공유하고 관리해야 합니다. 어떤 SageMaker 기능이 이러한 요구 사항을 충족합니까?",
+      "en": "A company wants to build an ML model by using Amazon SageMaker. The company needs to share and manage variables for model development across multiple teams. Which SageMaker feature meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon SageMaker Feature Store",
+        "en": "Amazon SageMaker Feature Store"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon SageMaker Data Wrangler",
+        "en": "Amazon SageMaker Data Wrangler"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon SageMaker Clarify",
+        "en": "Amazon SageMaker Clarify"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon SageMaker Model Cards",
+        "en": "Amazon SageMaker Model Cards"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Amazon SageMaker Feature Store 는 머신 러닝 모델의 기능을 저장, 공유 및 관리하는 데 도움이 되는 완벽하게 관리되는 리포지토리입니다. 여러 팀이 동일한 기능에 액세스하고 사용할 수 있으므로 모델 개발에서 일관성과 협업이 보장됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150628-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 12,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 생성 AI 를 사용하여 개발자 생산성과 소프트웨어 개발을 높이고자 합니다. 이 회사는 Amazon Q Developer 를 사용하고자 합니다. Amazon Q Developer 는 회사가 이러한 요구 사항을 충족하도록 돕기 위해 무엇을 할 수 있습니까?",
+      "en": "A company wants to use generative AI to increase developer productivity and software development. The company wants to use Amazon Q Developer. What can Amazon Q Developer do to help the company meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "소프트웨어 스니펫, 참조 추적 및 오픈 소스 라이선스 추적을 만듭니다.",
+        "en": "Create software snippets, reference tracking, and open source license tracking."
+      },
+      {
+        "key": "B",
+        "ko": "서버를 프로비저닝하거나 관리하지 않고 애플리케이션을 실행합니다.",
+        "en": "Run an application without provisioning or managing servers."
+      },
+      {
+        "key": "C",
+        "ko": "코딩 및 자연어 검색을 위한 음성 명령을 활성화합니다.",
+        "en": "Enable voice commands for coding and providing natural language search."
+      },
+      {
+        "key": "D",
+        "ko": "ML 모델을 사용하여 오디오 파일을 텍스트 문서로 변환합니다.",
+        "en": "Convert audio files to text documents by using ML models."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Amazon Q Developer 는 코드 스니펫을 생성하고, 참조를 추적하고, 오픈 소스 라이선스를 관리하여 개발자를 지원하도록 설계되어 개발 프로세스를 간소화하고 생산성을 개선하는 데 도움이 됩니다"
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150688-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 13,
+    "multi": false,
+    "question": {
+      "ko": "한 금융 기관이 Amazon Bedrock 을 사용하여 AI 애플리케이션을 개발하고 있습니다. 이 애플리케이션은 VPC 에 호스팅됩니다. 규정 준수 표준을 충족하기 위해 VPC 는 인터넷 트래픽에 액세스할 수 없습니다. 어떤 AWS 서비스 또는 기능이 이러한 요구 사항을 충족할까요?",
+      "en": "A financial institution is using Amazon Bedrock to develop an AI application. The application is hosted in a VPC. To meet regulatory compliance standards, the VPC is not allowed access to any internet traffic. Which AWS service or feature will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS PrivateLink",
+        "en": "AWS PrivateLink"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Macie",
+        "en": "Amazon Macie"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon CloudFront",
+        "en": "Amazon CloudFront"
+      },
+      {
+        "key": "D",
+        "ko": "Internet gateway",
+        "en": "Internet gateway"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "AWS PrivateLink 는 트래픽을 인터넷에 노출시키지 않고도 VPC 와 AWS 서비스 간에 안전하고 비공개적인 연결을 제공합니다. 이를 통해 인터넷 액세스를 금지하는 규제 표준을 준수할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150689-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 14,
+    "multi": false,
+    "question": {
+      "ko": "어떤 회사에서 사용자가 다음과 같은 질문에 답하는 교육용 게임을 개발하고자 합니다. \"항아리에 빨간색 구슬 6 개, 초록색 구슬 4 개, 노란색 구슬 3 개가 들어 있습니다. 항아리에서 초록색 구슬을 꺼낼 확률은 얼마입니까?\" 어떤 솔루션이 이러한 요구 사항을 가장 적은 운영 오버헤드로 충족합니까?",
+      "en": "A company wants to develop an educational game where users answer questions such as the following: \"A jar contains six red, four green, and three yellow marbles. What is the probability of choosing a green marble from the jar?\" Which solution meets these requirements with the LEAST operational overhead?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "지도 학습을 사용하여 확률을 예측하는 회귀 모델을 만듭니다.",
+        "en": "Use supervised learning to create a regression model that will predict probability."
+      },
+      {
+        "key": "B",
+        "ko": "강화 학습을 사용하여 모델을 학습시켜 확률을 반환합니다.",
+        "en": "Use reinforcement learning to train a model to return the probability."
+      },
+      {
+        "key": "C",
+        "ko": "간단한 규칙과 계산을 사용하여 확률을 계산하는 코드를 사용합니다.",
+        "en": "Use code that will calculate probability by using simple rules and computations."
+      },
+      {
+        "key": "D",
+        "ko": "비지도 학습을 사용하여 확률 밀도를 추정하는 모델을 만듭니다.",
+        "en": "Use unsupervised learning to create a model that will estimate probability density."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "운영 오버헤드가 가장 적은 최상의 솔루션은 **C. 간단한 규칙과 계산을 사용하여 확률을 계산하는 코드를 사용합니다**.\n\n이와 같은 간단한 확률 문제의 경우 간단한 규칙과 계산으로 충분하고 효율적입니다. 이 접근 방식은 머신 러닝 모델을 훈련하고 유지하는 데 따른 복잡성과 오버헤드를 피합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150690-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 15,
+    "multi": false,
+    "question": {
+      "ko": "어떤 지표가 AI 모델 운영의 런타임 효율성을 측정합니까?",
+      "en": "Which metric measures the runtime efficiency of operating AI models?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "고객 만족도 점수(CSAT)",
+        "en": "Customer satisfaction score (CSAT)"
+      },
+      {
+        "key": "B",
+        "ko": "각 에포크의 훈련 시간",
+        "en": "Training time for each epoch"
+      },
+      {
+        "key": "C",
+        "ko": "평균 응답 시간",
+        "en": "Average response time"
+      },
+      {
+        "key": "D",
+        "ko": "훈련 인스턴스 수",
+        "en": "Number of training instances"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "AI 모델 운영의 런타임 효율성을 측정하는 가장 좋은 지표는 **C. 평균 응답 시간**입니다.\n\n평균 응답 시간은 모델이 얼마나 빨리 처리하고 결과를 반환하는지를 나타내며, 이는 실시간 애플리케이션에서 AI 모델의 효율성을 평가하는 데 중요한 요소입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150732-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 16,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 컨택센터 애플리케이션을 구축하고 고객 대화에서 통찰력을 얻고자 합니다. 이 회사는 고객 통화 오디오에서 주요 정보를 분석하고 추출하고자 합니다. 어떤 솔루션이 이러한 요구 사항을 충족합니까?",
+      "en": "A company is building a contact center application and wants to gain insights from customer conversations. The company wants to analyze and extract key information from the audio of the customer calls. Which solution meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Lex 를 사용하여 대화형 챗봇을 구축합니다.",
+        "en": "Build a conversational chatbot by using Amazon Lex."
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Transcribe 를 사용하여 통화 녹음을 필사합니다.",
+        "en": "Transcribe call recordings by using Amazon Transcribe."
+      },
+      {
+        "key": "C",
+        "ko": "Amazon SageMaker Model Monitor 를 사용하여 통화 녹음에서 정보를 추출합니다.",
+        "en": "Extract information from call recordings by using Amazon SageMaker Model Monitor."
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Comprehend 를 사용하여 분류 레이블을 만듭니다.",
+        "en": "Create classification labels by using Amazon Comprehend."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "고객 통화 오디오에서 핵심 정보를 분석하고 추출하는 가장 좋은 솔루션은 **B. Amazon Transcribe 를 사용하여 통화 녹음을 필사**하는 것입니다.\n\nAmazon Transcribe 는 음성을 텍스트로 변환하여 필사된 텍스트를 분석하여 통찰력을 얻을 수 있도록 합니다. 고객 대화에서 자세한 통찰력을 얻는 데 필수적인 화자 식별, 감정 분석 및 사용자 지정 어휘와 같은 기능을 제공합니다"
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150734-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 17,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 광고 캠페인에 사용할 수 있는 페타바이트 규모의 레이블이 없는 고객 데이터를\n\n보유하고 있습니다. 이 회사는 고객을 계층으로 분류하여 회사의 제품을 광고하고 홍보하고자 합니다. 이 회사는 이러한 요구 사항을 충족하기 위해 어떤 방법론을 사용해야 합니까?",
+      "en": "A company has petabytes of unlabeled customer data to use for an advertisement campaign. The company wants to classify its customers into tiers to advertise and promote the company's products. Which methodology should the company use to meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "지도 학습",
+        "en": "Supervised learning"
+      },
+      {
+        "key": "B",
+        "ko": "비지도 학습",
+        "en": "Unsupervised learning"
+      },
+      {
+        "key": "C",
+        "ko": "강화 학습",
+        "en": "Reinforcement learning"
+      },
+      {
+        "key": "D",
+        "ko": "인간 피드백을 통한 강화 학습(RLHF)",
+        "en": "Reinforcement learning from human feedback (RLHF)"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "레이블이 지정되지 않은 데이터를 사용하여 고객을 계층으로 분류하는 가장 좋은 방법은 **B. 비지도 학습**입니다.\n\n클러스터링과 같은 비지도 학습 기술은 레이블이 지정되지 않은 데이터를 분석하여 패턴을 식별하고 고객을 특성에 따라 다른 계층으로 그룹화할 수 있습니다. 이 접근 방식은 데이터에 미리 정의된 레이블이 없는 경우에 이상적입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150630-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 18,
+    "multi": false,
+    "question": {
+      "ko": "AI 실무자가 검색 애플리케이션을 설계하기 위해 기반 모델(FM)을 사용하고자 합니다. 검색 애플리케이션은 텍스트와 이미지가 있는 쿼리를 처리해야 합니다. AI 실무자는 검색 애플리케이션을 구동하기 위해 어떤 유형의 FM 을 사용해야 합니까?",
+      "en": "An AI practitioner wants to use a foundation model (FM) to design a search application. The search application must handle queries that have text and images. Which type of FM should the AI practitioner use to power the search application?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "다중 모달 임베딩 모델",
+        "en": "Multi-modal embedding model"
+      },
+      {
+        "key": "B",
+        "ko": "텍스트 임베딩 모델",
+        "en": "Text embedding model"
+      },
+      {
+        "key": "C",
+        "ko": "다중 모달 생성 모델",
+        "en": "Multi-modal generation model"
+      },
+      {
+        "key": "D",
+        "ko": "이미지 생성 모델",
+        "en": "Image generation model"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "텍스트와 이미지가 모두 포함된 쿼리를 처리하는 검색 애플리케이션에 가장 적합한 기초 모델(FM) 유형은 **A. 멀티모달 임베딩 모델**입니다.\n\n멀티모달 임베딩 모델은 텍스트와 이미지와 같은 여러 유형의 데이터를 공유 벡터 공간에\n\n임베딩하여 처리하고 이해하도록 설계되었습니다. 이를 통해 모델은 텍스트와 이미지가 모두 포함된 쿼리를 효과적으로 처리하고 비교할 수 있습니다"
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150631-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 19,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 AI 검색 도구에 Amazon Bedrock 의 기초 모델(FM)을 사용합니다. 이 회사는 회사의 데이터를 사용하여 모델을 더 정확하게 미세 조정하려고 합니다. 어떤 전략이 모델을 성공적으로 미세 조정할까요?",
+      "en": "A company uses a foundation model (FM) from Amazon Bedrock for an AI search tool. The company wants to fine-tune the model to be more accurate by using the company's data. Which strategy will successfully fine-tune the model?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "프롬프트 필드와 완성 필드가 있는 레이블이 지정된 데이터를 제공합니다.",
+        "en": "Provide labeled data with the prompt field and the completion field."
+      },
+      {
+        "key": "B",
+        "ko": ".csv 형식으로 여러 줄이 포함된 .txt 파일을 만들어서 학습 데이터 세트를 준비합니다.",
+        "en": "Prepare the training dataset by creating a .txt file that contains multiple lines in .csv format."
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Bedrock 에 대한 프로비저닝된 처리량을 구매합니다.",
+        "en": "Purchase Provisioned Throughput for Amazon Bedrock."
+      },
+      {
+        "key": "D",
+        "ko": "저널과 교과서에서 모델을 학습합니다.",
+        "en": "Train the model on journals and textbooks."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Amazon Bedrock 의 기초 모델(FM)을 미세 조정하는 가장 좋은 전략은 **A. 프롬프트 필드와 완료 필드가 있는 레이블이 지정된 데이터 제공**입니다.\n\n미세 조정에는 각 항목에 프롬프트와 해당 완료가 포함된 레이블이 지정된 데이터 세트를 사용하는 것이 포함됩니다. 이를 통해 모델은 특정 사례에서 학습하고 회사의 요구 사항과 관련된 작업에서 정확도를 개선할 수 있습니다"
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150800-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 20,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 AI 를 사용하여 애플리케이션을 위협으로부터 보호하고자 합니다. AI 솔루션은 IP 주소가 의심스러운 출처에서 온 것인지 확인해야 합니다. 어떤 솔루션이 이러한 요구 사항을 충족합니까?",
+      "en": "A company wants to use AI to protect its application from threats. The AI solution needs to check if an IP address is from a suspicious source. Which solution meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "음성 인식 시스템을 구축합니다.",
+        "en": "Build a speech recognition system."
+      },
+      {
+        "key": "B",
+        "ko": "자연어 처리(NLP) 명명된 엔터티 인식 시스템을 만듭니다.",
+        "en": "Create a natural language processing (NLP) named entity recognition system."
+      },
+      {
+        "key": "C",
+        "ko": "이상 탐지 시스템을 개발합니다.",
+        "en": "Develop an anomaly detection system."
+      },
+      {
+        "key": "D",
+        "ko": "사기 예측 시스템을 만듭니다.",
+        "en": "Create a fraud forecasting system."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "IP 주소가 의심스러운 출처에서 온 것인지 확인하는 가장 좋은 해결책은 **C. 이상 탐지 시스템 개발**입니다.\n\n이상 탐지 시스템은 의심스러운 IP 주소와 같은 비정상적인 패턴이나 동작을 정상적인 활동과 비교하여 식별하도록 설계되었습니다. 이 접근 방식은 잠재적 위협을 탐지하고 악의적인 활동으로부터 애플리케이션을 보호하는 데 도움이 됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150632-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 21,
+    "multi": false,
+    "question": {
+      "ko": "Amazon OpenSearch Service 의 어떤 기능이 회사에 벡터 데이터베이스 애플리케이션을 구축할 수 있는 기능을 제공합니까?",
+      "en": "Which feature of Amazon OpenSearch Service gives companies the ability to build vector database applications?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "개체 스토리지를 위한 Amazon S3 와의 통합",
+        "en": "Integration with Amazon S3 for object storage"
+      },
+      {
+        "key": "B",
+        "ko": "지리공간 인덱싱 및 쿼리 지원",
+        "en": "Support for geospatial indexing and queries"
+      },
+      {
+        "key": "C",
+        "ko": "확장 가능한 인덱스 관리 및 최근접 이웃 검색 기능",
+        "en": "Scalable index management and nearest neighbor search capability"
+      },
+      {
+        "key": "D",
+        "ko": "스트리밍 데이터에 대한 실시간 분석을 수행하는 기능",
+        "en": "Ability to perform real-time analysis on streaming data"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "Amazon OpenSearch Service 에서 회사에 벡터 데이터베이스 애플리케이션을 구축할 수 있는 기능을 제공하는 기능은 **C. 확장 가능한 인덱스 관리 및 최근접 이웃 검색 기능**입니다.\n\n이 기능은 벡터 데이터베이스 애플리케이션의 핵심 구성 요소인 벡터 데이터를 처리하고 효율적인 유사성 검색을 수행하는 데 필수적입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150801-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 22,
+    "multi": false,
+    "question": {
+      "ko": "생성 AI 모델의 사용 사례는 무엇입니까?",
+      "en": "Which option is a use case for generative AI models?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "침입 탐지 시스템을 사용하여 네트워크 보안 개선",
+        "en": "Improving network security by using intrusion detection systems"
+      },
+      {
+        "key": "B",
+        "ko": "디지털 마케팅을 위해 텍스트 설명에서 사실적인 이미지 생성",
+        "en": "Creating photorealistic images from text descriptions for digital marketing"
+      },
+      {
+        "key": "C",
+        "ko": "최적화된 인덱싱을 사용하여 데이터베이스 성능 향상",
+        "en": "Enhancing database performance by using optimized indexing"
+      },
+      {
+        "key": "D",
+        "ko": "주식 시장 추세를 예측하기 위한 재무 데이터 분석",
+        "en": "Analyzing financial data to forecast stock market trends"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "생성 AI 모델의 사용 사례는 **B. 디지털 마케팅을 위한 텍스트 설명에서 사실적인 이미지 만들기**입니다.\n\n생성 AI 모델은 주어진 입력을 기반으로 이미지, 텍스트 또는 음악과 같은 새로운 콘텐츠를 만드는 데 뛰어납니다. 텍스트 설명에서 사실적인 이미지를 만드는 것은 그 역량의 대표적인 예입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150802-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 23,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 Amazon Bedrock 을 사용하여 생성 AI 애플리케이션을 구축하고 기반 모델(FM)을 선택해야 합니다. 이 회사는 하나의 프롬프트에 얼마나 많은 정보를 넣을 수 있는지 알고 싶어합니다. 어떤 고려 사항이 회사의 결정에 영향을 미칠까요?",
+      "en": "A company wants to build a generative AI application by using Amazon Bedrock and needs to choose a foundation model (FM). The company wants to know how much information can fit into one prompt. Which consideration will inform the company's decision?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "온도",
+        "en": "Temperature"
+      },
+      {
+        "key": "B",
+        "ko": "컨텍스트 창",
+        "en": "Context window"
+      },
+      {
+        "key": "C",
+        "ko": "배치 크기",
+        "en": "Batch size"
+      },
+      {
+        "key": "D",
+        "ko": "모델 크기",
+        "en": "Model size"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "하나의 프롬프트에 얼마나 많은 정보를 담을 수 있는지 판단하기 위한 올바른 고려 사항은 **B. 컨텍스트 창**입니다. 컨텍스트 창은 모델이 단일 프롬프트에서 처리할 수 있는 최대 텍스트 양(토큰으로 측정)을 정의합니다. 예를 들어, Anthropic 의 Claude 와 같은 Amazon Bedrock 에서 사용할 수 있는 일부 모델은 최대 200,000 개 토큰의 컨텍스트 창을 지원합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150803-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 24,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 고객을 도울 수 있는 챗봇을 만들고자 합니다. 챗봇은 인간의 개입 없이 기술적 문제를 해결하는 데 도움이 될 것입니다. 이 회사는 챗봇에 대한 기초 모델(FM)을 선택했습니다. 챗봇은 회사 톤에 맞는 응답을 생성해야 합니다. 어떤 솔루션이 이러한 요구 사항을 충족합니까?",
+      "en": "A company wants to make a chatbot to help customers. The chatbot will help solve technical problems without human intervention. The company chose a foundation model (FM) for the chatbot. The chatbot needs to produce responses that adhere to company tone. Which solution meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "FM 이 생성할 수 있는 토큰 수에 대한 하한을 설정합니다.",
+        "en": "Set a low limit on the number of tokens the FM can produce."
+      },
+      {
+        "key": "B",
+        "ko": "일괄 추론을 사용하여 자세한 응답을 처리합니다.",
+        "en": "Use batch inferencing to process detailed responses."
+      },
+      {
+        "key": "C",
+        "ko": "FM 이 원하는 응답을 생성할 때까지 프롬프트를 실험하고 개선합니다.",
+        "en": "Experiment and refine the prompt until the FM produces the desired responses."
+      },
+      {
+        "key": "D",
+        "ko": "온도 매개변수에 대해 더 높은 숫자를 정의합니다.",
+        "en": "Define a higher number for the temperature parameter."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "정답은 **C. FM 이 원하는 응답을 생성할 때까지 프롬프트를 실험하고 개선합니다**. 프롬프트를 반복적으로 개선함으로써 회사는 기초 모델을 안내하여 원하는 톤과 스타일에 맞는 응답을 생성하고 회사의 브랜드 음성과 일관성을 유지할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150804-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 25,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 Amazon Bedrock 에서 대규모 언어 모델(LLM)을 사용하여 감정 분석을 하려고 합니다. 이 회사는 텍스트 구절의 감정을 긍정적 또는 부정적으로 분류하려고 합니다. 어떤 프롬프트 엔지니어링 전략이 이러한 요구 사항을 충족합니까?",
+      "en": "A company wants to use a large language model (LLM) on Amazon Bedrock for sentiment analysis. The company wants to classify the sentiment of text passages as positive or negative. Which prompt engineering strategy meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "프롬프트에 해당 긍정적 또는 부정적 레이블이 있는 텍스트 구절의 예를 제공한 다음 분류할 새 텍스트 구절을 제공합니다.",
+        "en": "Provide examples of text passages with corresponding positive or negative labels in the prompt followed by the new text passage to be classified."
+      },
+      {
+        "key": "B",
+        "ko": "감정 분석에 대한 자세한 설명과 프롬프트에서 LLM 이 작동하는 방식을 제공합니다.",
+        "en": "Provide a detailed explanation of sentiment analysis and how LLMs work in the prompt."
+      },
+      {
+        "key": "C",
+        "ko": "추가 맥락이나 예 없이 분류할 새 텍스트 구절을 제공합니다.",
+        "en": "Provide the new text passage to be classified without any additional context or examples."
+      },
+      {
+        "key": "D",
+        "ko": "텍스트 요약이나 질의 응답과 같이 관련 없는 작업의 몇 가지 예를 새 텍스트 구절에 제공합니다.",
+        "en": "Provide the new text passage with a few examples of unrelated tasks, such as text\n\nsummarization or question answering."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "이러한 요구 사항을 충족하는 프롬프트 엔지니어링 전략은 **A. 프롬프트에 해당 긍정적 또는 부정적 레이블이 있는 텍스트 구절의 예를 제공한 다음 분류할 새 텍스트 구절을 제공합니다.**\n\nfew-shot learning 이라고 알려진 이 접근 방식은 맥락과 예를 제공하여 모델이 작업을 이해하도록 돕고, 이를 통해 더 정확한 감정 분류로 이어집니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150805-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 26,
+    "multi": false,
+    "question": {
+      "ko": "보안 회사가 Amazon Bedrock 을 사용하여 기반 모델(FM)을 실행하고 있습니다. 이 회사는 권한이 있는 사용자만 모델을 호출하도록 하려고 합니다. 이 회사는 FM 의 향후 반복을 위해 적절한 AWS Identity and Access Management(IAM) 정책과 역할을 설정하기 위해 권한이 없는 액세스 시도를 식별해야 합니다. 이 회사는 Amazon Bedrock 에 액세스하려는 권한이 없는 사용자를 식별하기 위해 어떤 AWS 서비스를 사용해야 합니까?",
+      "en": "A security company is using Amazon Bedrock to run foundation models (FMs). The company wants to ensure that only authorized users invoke the models. The company needs to identify any unauthorized access attempts to set appropriate AWS Identity and Access Management (IAM) policies and roles for future iterations of the FMs. Which AWS service should the company use to identify unauthorized users that are trying to access Amazon Bedrock?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Audit Manager",
+        "en": "AWS Audit Manager"
+      },
+      {
+        "key": "B",
+        "ko": "AWS CloudTrail",
+        "en": "AWS CloudTrail"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Fraud Detector",
+        "en": "Amazon Fraud Detector"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Trusted Advisor",
+        "en": "AWS Trusted Advisor"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "회사는 **B. AWS CloudTrail**을 사용하여 Amazon Bedrock 에 액세스하려는 무단 사용자를 식별해야 합니다.\n\nAWS CloudTrail 은 AWS 계정 내에서 수행된 모든 API 호출에 대한 자세한 로그를 제공하며, 이를 사용하여 무단 액세스 시도를 모니터링하고 식별할 수 있습니다. 이 정보는 적절한 IAM 정책 및 역할을 설정하는 데 중요합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150806-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 27,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 이미지 분류를 위한 ML 모델을 개발했습니다. 이 회사는 웹 애플리케이션에서 모델을 사용할 수 있도록 프로덕션에 모델을 배포하려고 합니다. 이 회사는 기본 인프라를 관리하지 않고도 모델을 호스팅하고 예측을 제공하는 솔루션을 구현해야 합니다. 어떤 솔루션이 이러한 요구 사항을 충족할까요?",
+      "en": "A company has developed an ML model for image classification. The company wants to deploy the model to production so that a web application can use the model.\n\nThe company needs to implement a solution to host the model and serve predictions without managing any of the underlying infrastructure. Which solution will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon SageMaker Serverless Inference 를 사용하여 모델을 배포합니다.",
+        "en": "Use Amazon SageMaker Serverless Inference to deploy the model."
+      },
+      {
+        "key": "B",
+        "ko": "Amazon CloudFront 를 사용하여 모델을 배포합니다.",
+        "en": "Use Amazon CloudFront to deploy the model."
+      },
+      {
+        "key": "C",
+        "ko": "Amazon API Gateway 를 사용하여 모델을 호스팅하고 예측을 제공합니다.",
+        "en": "Use Amazon API Gateway to host the model and serve predictions."
+      },
+      {
+        "key": "D",
+        "ko": "AWS Batch 를 사용하여 모델을 호스팅하고 예측을 제공합니다.",
+        "en": "Use AWS Batch to host the model and serve predictions."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "이러한 요구 사항을 충족하는 Amazon SageMaker 추론 옵션은 **A. 일괄 변환**입니다.\n\n일괄 변환은 대규모 데이터 세트를 처리하도록 설계되었으며 모델 예측에 즉시 액세스할 필요가 없는 경우에 이상적입니다. 대량의 데이터 배치에서 효율적으로 추론을 실행할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151095-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 28,
+    "multi": false,
+    "question": {
+      "ko": "AI 회사는 독립 소프트웨어 공급업체(ISV)의 도움을 받아 주기적으로 시스템과 프로세스를 평가합니다. 회사는 ISV 의 규정 준수 보고서가 제공될 때 이메일 메시지 알림을 받아야 합니다. 이 요구 사항을 충족하기 위해 회사는 어떤 AWS 서비스를 사용할 수 있습니까?",
+      "en": "An AI company periodically evaluates its systems and processes with the help of independent software vendors (ISVs). The company needs to receive email message notifications when an ISV's compliance reports become available. Which AWS service can the company use to meet this requirement?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS Audit Manager",
+        "en": "AWS Audit Manager"
+      },
+      {
+        "key": "B",
+        "ko": "AWS Artifact",
+        "en": "AWS Artifact"
+      },
+      {
+        "key": "C",
+        "ko": "AWS Trusted Advisor",
+        "en": "AWS Trusted Advisor"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Data Exchange",
+        "en": "AWS Data Exchange"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "ISV 의 규정 준수 보고서가 제공될 때 이메일 메시지 알림을 수신하는 데 회사에서 사용할 수 있는 AWS 서비스는 다음과 같습니다. **B. AWS Artifact** AWS Artifact 는 AWS 의 보안 및 규정 준수 보고서와 일부 온라인 계약에 대한 주문형 액세스를 제공합니다. 새로운 규정 준수 보고서가 제공될 때 사용자에게 알림을 제공할 수 있으므로 회사의 요구 사항에 적합합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150807-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 29,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 대화형 에이전트를 개발하기 위해 대규모 언어 모델(LLM)을 사용하려고 합니다. 이 회사는 일반적인 프롬프트 엔지니어링 기술로 LLM 을 조작하여 바람직하지 않은 작업을 수행하거나 민감한 정보를 노출하는 것을 방지해야 합니다. 어떤 작업을 수행하면 이러한 위험을 줄일 수 있습니까?",
+      "en": "A company wants to use a large language model (LLM) to develop a conversational agent. The company needs to prevent the LLM from being manipulated with common prompt engineering techniques to perform undesirable actions or expose sensitive information. Which action will reduce these risks?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "LLM 이 공격 패턴을 감지하도록 가르치는 프롬프트 템플릿을 만듭니다.",
+        "en": "Create a prompt template that teaches the LLM to detect attack patterns."
+      },
+      {
+        "key": "B",
+        "ko": "LLM 에 대한 호출 요청 시 온도 매개변수를 늘립니다.",
+        "en": "Increase the temperature parameter on invocation requests to the LLM."
+      },
+      {
+        "key": "C",
+        "ko": "Amazon SageMaker 에 나열되지 않은 LLM 을 사용하지 않습니다.",
+        "en": "Avoid using LLMs that are not listed in Amazon SageMaker."
+      },
+      {
+        "key": "D",
+        "ko": "LLM 호출 시 입력 토큰 수를 줄입니다.",
+        "en": "Decrease the number of input tokens on invocations of the LLM."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "LLM 이 일반적인 프롬프트 엔지니어링 기술로 조작되는 위험을 줄일 수 있는 조치는 **A. LLM 이 공격 패턴을 감지하도록 가르치는 프롬프트 템플릿을 만듭니다**.\n\n이 접근 방식은 LLM 이 잠재적인 조작 시도를 인식하고 적절하게 대응할 수 있도록 프롬프트를 설계하여 보안과 안정성을 강화하는 것을 포함합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150808-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 30,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 Generative AI Security Scoping Matrix 를 사용하여 솔루션에 대한 보안 책임을 평가하고 있습니다. 이 회사는 매트릭스를 기반으로 4 가지 솔루션 범위를 식별했습니다. 어떤 솔루션 범위가 회사에 보안 책임에 대한 가장 큰 소유권을 제공합니까?",
+      "en": "A company is using the Generative AI Security Scoping Matrix to assess security responsibilities for its solutions. The company has identified four different solution scopes based on the matrix. Which solution scope gives the company the MOST ownership of security responsibilities?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "내장된 Generative AI 기능이 있는 타사 엔터프라이즈 애플리케이션을 사용합니다.",
+        "en": "Using a third-party enterprise application that has embedded generative AI features."
+      },
+      {
+        "key": "B",
+        "ko": "기존 타사 Generative AI Foundation Model(FM)을 사용하여 애플리케이션을 빌드합니다.",
+        "en": "Building an application by using an existing third-party generative AI foundation model (FM)."
+      },
+      {
+        "key": "C",
+        "ko": "비즈니스에 특화된 데이터를 사용하여 모델을 미세 조정하여 기존 타사 Generative AI Foundation Model(FM)을 개선합니다.",
+        "en": "Refining an existing third-party generative AI foundation model (FM) by fine-tuning the model by using data specific to the business."
+      },
+      {
+        "key": "D",
+        "ko": "고객이 소유한 특정 데이터를 사용하여 처음부터 Generative AI 모델을 빌드하고 학습합니다.",
+        "en": "Building and training a generative AI model from scratch by using specific data that a customer owns."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "회사에 보안 책임에 대한 가장 큰 소유권을 부여하는 솔루션 범위는 **D. 고객이 소유한 특정 데이터를 사용하여 처음부터 생성 AI 모델을 구축하고 교육합니다**.\n\n이 접근 방식은 회사가 모델의 개발, 배포 및 보안의 모든 측면을 관리하여 전체 프로세스에 대한 최고 수준의 제어 및 책임을 제공해야 합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150809-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 31,
+    "multi": false,
+    "question": {
+      "ko": "AI 실무자는 동물 사진 데이터베이스를 가지고 있습니다. AI 실무자는 수동적인 인간의 노력 없이 사진 속 동물을 자동으로 식별하고 분류하려고 합니다. 어떤 전략이 이러한 요구 사항을 충족합니까?",
+      "en": "An AI practitioner has a database of animal photos. The AI practitioner wants to automatically identify and categorize the animals in the photos without manual human effort. Which strategy meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "객체 감지",
+        "en": "Object detection"
+      },
+      {
+        "key": "B",
+        "ko": "이상 감지",
+        "en": "Anomaly detection"
+      },
+      {
+        "key": "C",
+        "ko": "명명된 엔터티 인식",
+        "en": "Named entity recognition"
+      },
+      {
+        "key": "D",
+        "ko": "인페인팅",
+        "en": "Inpainting"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "이러한 요구 사항을 충족하는 전략은 **A. 객체 감지**입니다.\n\n객체 감지는 이미지 내의 객체를 식별하고 분류하는 것을 포함하므로 사진 속 동물을 자동으로\n\n인식하고 분류하는 데 적합한 기술입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150810-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 32,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 Amazon Bedrock 을 사용하여 애플리케이션을 만들고자 합니다. 이 회사는 예산이 제한되어 있고 장기적 약속 없이 유연성을 선호합니다. 어떤 Amazon Bedrock 가격 책정 모델이 이러한 요구 사항을 충족합니까?",
+      "en": "A company wants to create an application by using Amazon Bedrock. The company has a limited budget and prefers flexibility without long-term commitment. Which Amazon Bedrock pricing model meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "주문형",
+        "en": "On-Demand"
+      },
+      {
+        "key": "B",
+        "ko": "모델 사용자 지정",
+        "en": "Model customization"
+      },
+      {
+        "key": "C",
+        "ko": "프로비저닝된 처리량",
+        "en": "Provisioned Throughput"
+      },
+      {
+        "key": "D",
+        "ko": "스팟 인스턴스",
+        "en": "Spot Instance"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "제한된 예산과 장기적 약속 없이 유연성을 선호하는 요구 사항을 충족하는 Amazon Bedrock 가격 모델은 다음과 같습니다. **A. 주문형** 주문형 가격 모델을 사용하면 시간 기반 약속 없이 사용한 만큼만 지불할 수 있어 비용 효율적이고 유연합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150811-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 33,
+    "multi": false,
+    "question": {
+      "ko": "어떤 AWS 서비스나 기능이 AI 개발 팀이 팀의 VPC 내에서 기반 모델(FM)을 신속하게 배포하고 사용하는 데 도움이 될 수 있습니까?",
+      "en": "Which AWS service or feature can help an AI development team quickly deploy and consume a foundation model (FM) within the team's VPC?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Personalize",
+        "en": "Amazon Personalize"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon SageMaker JumpStart",
+        "en": "Amazon SageMaker JumpStart"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Bedrock Playground 인 PartyRock",
+        "en": "PartyRock, an Amazon Bedrock Playground"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon SageMaker 엔드포인트",
+        "en": "Amazon SageMaker endpoints"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "AI 개발 팀이 팀의 VPC 내에서 기반 모델(FM)을 빠르게 배포하고 사용할 수 있도록 돕는 AWS 서비스는 **D. Amazon SageMaker 엔드포인트**입니다.\n\nAmazon SageMaker 엔드포인트를 사용하면 머신 러닝 모델을 배포하고 VPC 내에서 실시간\n\n추론에 사용할 수 있으므로 안전하고 확장 가능한 액세스를 보장할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150812-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 34,
+    "multi": false,
+    "question": {
+      "ko": "기업은 Amazon Bedrock 에서 대규모 언어 모델(LLM)을 안전하게 사용하려면 어떻게 해야 합니까?",
+      "en": "How can companies use large language models (LLMs) securely on Amazon Bedrock?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "명확하고 구체적인 프롬프트를 설계합니다. 최소 권한 액세스를 사용하여 AWS Identity and Access Management(IAM) 역할과 정책을 구성합니다.",
+        "en": "Design clear and specific prompts. Configure AWS Identity and Access Management (IAM) roles and policies by using least privilege access."
+      },
+      {
+        "key": "B",
+        "ko": "자동 모델 평가 작업에 AWS Audit Manager 를 활성화합니다.",
+        "en": "Enable AWS Audit Manager for automatic model evaluation jobs."
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Bedrock 자동 모델 평가 작업을 활성화합니다.",
+        "en": "Enable Amazon Bedrock automatic model evaluation jobs."
+      },
+      {
+        "key": "D",
+        "ko": "Amazon CloudWatch Logs 를 사용하여 모델을 설명 가능하게 만들고 편향을 모니터링합니다.",
+        "en": "Use Amazon CloudWatch Logs to make models explainable and to monitor for bias."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "정답은 **A. 명확하고 구체적인 프롬프트를 설계합니다. 최소 권한 액세스를 사용하여 AWS Identity and Access Management(IAM) 역할과 정책을 구성합니다.** 이 접근 방식은 모델에 대한 액세스가 엄격하게 제어되고 필요한 사람에게만 부여되도록 보장하는데, 이는 안전한 운영의 기본 원칙입니다. Amazon Bedrock 또는 LLM 을 안전하게 사용하는 것에 대해 알고 싶은 다른 사항이 있습니까?"
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150813-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 35,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에는 비즈니스 분석에 사용할 수 있는 테라바이트 규모의 데이터가 데이터베이스에 있습니다. 이 회사는 직원이 제공하는 입력 텍스트에서 SQL 쿼리를 빌드할 수 있는 AI 기반 애플리케이션을 빌드하려고 합니다. 직원들은 기술에 대한 경험이 거의 없습니다. 어떤 솔루션이 이러한 요구 사항을 충족합니까?",
+      "en": "A company has terabytes of data in a database that the company can use for business analysis. The company wants to build an AI-based application that can build a SQL query from input text that employees provide. The employees have minimal experience with technology. Which solution meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "생성적 사전 학습된 변환기(GPT)",
+        "en": "Generative pre-trained transformers (GPT)"
+      },
+      {
+        "key": "B",
+        "ko": "잔차 신경망",
+        "en": "Residual neural network"
+      },
+      {
+        "key": "C",
+        "ko": "지원 벡터 머신",
+        "en": "Support vector machine"
+      },
+      {
+        "key": "D",
+        "ko": "WaveNet",
+        "en": "WaveNet"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "입력 텍스트에서 SQL 쿼리를 생성하는 AI 기반 애플리케이션을 구축하기 위한 요구 사항을 충족하는 솔루션은 다음과 같습니다.\n\n**A. 생성적 사전 훈련된 변환기(GPT)** GPT 모델은 텍스트 입력을 SQL 과 같은 구조화된 쿼리로 변환하는 것을 포함한 자연어 처리 작업에 적합합니다. 인간과 유사한 텍스트를 이해하고 생성할 수 있으므로 이 애플리케이션에 이상적이며, 특히 기술 경험이 거의 없는 직원에게 적합합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150814-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 36,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 객체 감지를 위한 딥 러닝 모델을 구축하고 프로덕션에 배포했습니다. 모델이 새 이미지를 분석하여 객체를 식별할 때 어떤 AI 프로세스가 발생합니까?",
+      "en": "A company built a deep learning model for object detection and deployed the model to production. Which AI process occurs when the model analyzes a new image to identify objects?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "훈련",
+        "en": "Training"
+      },
+      {
+        "key": "B",
+        "ko": "추론",
+        "en": "Inference"
+      },
+      {
+        "key": "C",
+        "ko": "모델 배포",
+        "en": "Model deployment"
+      },
+      {
+        "key": "D",
+        "ko": "편향 수정",
+        "en": "Bias correction"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "모델이 새 이미지를 분석하여 객체를 식별할 때 발생하는 AI 프로세스는 **B. 추론**입니다.\n\n추론은 배포된 모델이 이미지에서 객체를 식별하는 것과 같이 새 입력 데이터를 기반으로 예측이나 결정을 내리는 단계입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151041-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 37,
+    "multi": false,
+    "question": {
+      "ko": "한 AI 실무자가 다양한 직업의 인간 이미지를 생성하는 모델을 구축하고 있습니다. AI 실무자는 입력 데이터가 편향되어 있고 특정 속성이 이미지 생성에 영향을 미쳐 모델에 편향을 일으킨다는 사실을 발견했습니다. 어떤 기술이 문제를 해결할까요?",
+      "en": "An AI practitioner is building a model to generate images of humans in various professions. The AI practitioner discovered that the input data is biased and that specific attributes affect the image generation and create bias in the model. Which technique will solve the problem?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "불균형 클래스에 대한 데이터 증강",
+        "en": "Data augmentation for imbalanced classes"
+      },
+      {
+        "key": "B",
+        "ko": "클래스 분포에 대한 모델 모니터링",
+        "en": "Model monitoring for class distribution"
+      },
+      {
+        "key": "C",
+        "ko": "검색 증강 생성(RAG)",
+        "en": "Retrieval Augmented Generation (RAG)"
+      },
+      {
+        "key": "D",
+        "ko": "이미지에 대한 워터마크 감지",
+        "en": "Watermark detection for images"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "답은 **A. 불균형 클래스에 대한 데이터 증강**입니다.\n\n데이터 증강은 훈련 데이터의 다양성을 인위적으로 증가시켜 편향을 해결하는 데 도움이 될 수 있습니다. 이 기술은 기존 데이터의 변형을 만드는 것을 포함하며, 이는 다양한 속성의 표현을 균형 있게 조정하고 모델 출력의 편향을 줄이는 데 도움이 될 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150816-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 38,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 Amazon Bedrock 을 사용하여 Amazon Titan Foundation 모델(FM)을 구현하고 있습니다. 이 회사는 회사의 개인 데이터 소스에서 관련 데이터를 사용하여 모델을 보완해야 합니다. 어떤 솔루션이 이 요구 사항을 충족할까요?",
+      "en": "A company is implementing the Amazon Titan foundation model (FM) by using Amazon Bedrock. The company needs to supplement the model by using relevant data from the company's private data sources. Which solution will meet this requirement?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "다른 FM 을 사용합니다.",
+        "en": "Use a different FM"
+      },
+      {
+        "key": "B",
+        "ko": "더 낮은 온도 값을 선택합니다.",
+        "en": "Choose a lower temperature value"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Bedrock 지식 기반을 만듭니다.",
+        "en": "Create an Amazon Bedrock knowledge base"
+      },
+      {
+        "key": "D",
+        "ko": "모델 호출 로깅을 활성화합니다.",
+        "en": "Enable model invocation logging"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "정답은 **C. Amazon Bedrock 지식 기반 만들기**입니다. Amazon Bedrock 에서 지식 기반을 만들면 회사에서 개인 데이터 소스를 기초 모델과 통합할 수 있습니다. 이 설정은 모델이 관련 데이터에 액세스하고 이를 활용하여 보다 정확하고 상황에 맞는 응답을 생성할 수 있도록 합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151094-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 39,
+    "multi": false,
+    "question": {
+      "ko": "의료 회사가 진단 목적으로 기초 모델(FM)을 사용자 지정하고 있습니다. 이 회사는 규제 요구 사항을 충족하기 위해 모델이 투명하고 설명 가능해야 합니다. 어떤 솔루션이 이러한 요구 사항을 충족할까요?",
+      "en": "A medical company is customizing a foundation model (FM) for diagnostic purposes. The company needs the model to be transparent and explainable to meet regulatory requirements. Which solution will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Inspector 를 사용하여 보안 및 규정 준수를 구성합니다.",
+        "en": "Configure the security and compliance by using Amazon Inspector."
+      },
+      {
+        "key": "B",
+        "ko": "Amazon SageMaker Clarify 를 사용하여 간단한 지표, 보고서 및 예를 생성합니다.",
+        "en": "Generate simple metrics, reports, and examples by using Amazon SageMaker Clarify."
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Macie 를 사용하여 훈련 데이터를 암호화하고 보안합니다.",
+        "en": "Encrypt and secure training data by using Amazon Macie."
+      },
+      {
+        "key": "D",
+        "ko": "더 많은 데이터를 수집합니다. Amazon Rekognition 을 사용하여 데이터에 사용자 지정 레이블을 추가합니다.",
+        "en": "Gather more data. Use Amazon Rekognition to add custom labels to the data."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "정답은 **B. Amazon SageMaker Clarify 를 사용하여 간단한 지표, 보고서 및 예제 생성**입니다. Amazon SageMaker Clarify 는 편향을 감지하고 모델 예측을 설명하는 도구를 제공하여 모델을 투명하고 설명 가능하게 만들어 규제 요구 사항을 충족하는 데 도움이 됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150820-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 40,
+    "multi": true,
+    "question": {
+      "ko": "한 회사에서 고객 질문에 답하기 위해 대화형 챗봇을 배포하려고 합니다. 챗봇은 미세 조정된 Amazon SageMaker JumpStart 모델을 기반으로 합니다. 애플리케이션은 여러 규제 프레임워크를 준수해야 합니다. 회사는 어떤 기능에 대한 준수를 보여줄 수 있습니까? (2 개 선택)",
+      "en": "A company wants to deploy a conversational chatbot to answer customer questions. The chatbot is based on a fine-tuned Amazon SageMaker JumpStart model. The application must comply with multiple regulatory frameworks. Which capabilities can the company show compliance for? (Select TWO)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "자동 스케일링 추론 엔드포인트",
+        "en": "Auto scaling inference endpoints"
+      },
+      {
+        "key": "B",
+        "ko": "위협 탐지",
+        "en": "Threat detection"
+      },
+      {
+        "key": "C",
+        "ko": "데이터 보호",
+        "en": "Data protection"
+      },
+      {
+        "key": "D",
+        "ko": "비용 최적화",
+        "en": "Cost optimization"
+      },
+      {
+        "key": "E",
+        "ko": "느슨하게 결합된 마이크로서비스",
+        "en": "Loosely coupled microservices"
+      }
+    ],
+    "answer": [
+      "B",
+      "C"
+    ],
+    "explanation": {
+      "ko": "회사가 준수를 보여줄 수 있는 기능은 **B. 위협 탐지**와 **C. 데이터 보호**입니다.\n\n이러한 기능은 보안 및 개인 정보 보호와 관련된 규제 요구 사항을 충족하고 챗봇이 필요한 법적 프레임워크 내에서 작동하도록 하는 데 필수적입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150821-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 41,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 기초 모델(FM)을 훈련하고 있습니다. 이 회사는 모델의 정확도를 특정 허용 수준까지 높이고자 합니다. 어떤 솔루션이 이러한 요구 사항을 충족할까요?",
+      "en": "A company is training a foundation model (FM). The company wants to increase the accuracy of the model up to a specific acceptance level. Which solution will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "배치 크기를 줄입니다.",
+        "en": "Decrease the batch size."
+      },
+      {
+        "key": "B",
+        "ko": "에포크를 늘립니다.",
+        "en": "Increase the epochs."
+      },
+      {
+        "key": "C",
+        "ko": "에포크를 줄입니다.",
+        "en": "Decrease the epochs."
+      },
+      {
+        "key": "D",
+        "ko": "온도 매개변수를 늘립니다.",
+        "en": "Increase the temperature parameter."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "정답은 **B. 에포크를 늘리세요**입니다. 에포크 수를 늘리면 모델이 더 많은 반복을 통해 훈련 데이터에서 학습할 수 있으며, 이를 통해 모델의 가중치를 개선하고 오류를 줄여 정확도를 향상시킬 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151042-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 42,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 대규모 언어 모델(LLM) 질의응답 챗봇을 구축하고 있습니다. 이 회사는 콜센터 직원이 고객 질문에 응답하기 위해 취해야 하는 조치 수를 줄이고자 합니다. 이 회사는 LLM 챗봇의 효과를 평가하기 위해 어떤 사업 목표를 사용해야 합니까?",
+      "en": "A company is building a large language model (LLM) question answering chatbot. The company wants to decrease the number of actions call center employees need to take to respond to customer questions. Which business objective should the company use to evaluate the effect of the LLM chatbot?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "웹사이트 참여율",
+        "en": "Website engagement rate"
+      },
+      {
+        "key": "B",
+        "ko": "평균 통화 시간",
+        "en": "Average call duration"
+      },
+      {
+        "key": "C",
+        "ko": "기업의 사회적 책임",
+        "en": "Corporate social responsibility"
+      },
+      {
+        "key": "D",
+        "ko": "규정 준수",
+        "en": "Regulatory compliance"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "회사가 LLM 챗봇의 효과를 평가하는 데 사용해야 하는 사업 목표는 다음과 같습니다. **B. 평균 통화 시간** 평균 통화 시간을 측정함으로써 회사는 챗봇이 콜센터 직원이 각 고객 상호 작용에 사용하는 시간을 얼마나 효과적으로 줄이는지 평가할 수 있습니다. 평균 통화 시간이 감소하면 챗봇이 더 많은 질문을 성공적으로 처리하여 직원의 업무 부담을 줄인다는 것을 나타냅니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151043-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 43,
+    "multi": false,
+    "question": {
+      "ko": "Amazon SageMaker Clarify 는 어떤 기능을 제공합니까?",
+      "en": "Which functionality does Amazon SageMaker Clarify provide?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Retrieval Augmented Generation(RAG) 워크플로를 통합합니다.",
+        "en": "Integrates a Retrieval Augmented Generation (RAG) workflow"
+      },
+      {
+        "key": "B",
+        "ko": "프로덕션에서 ML 모델의 품질을 모니터링합니다.",
+        "en": "Monitors the quality of ML models in production"
+      },
+      {
+        "key": "C",
+        "ko": "ML 모델에 대한 중요한 세부 정보를 문서화합니다.",
+        "en": "Documents critical details about ML models"
+      },
+      {
+        "key": "D",
+        "ko": "데이터 준비 중에 잠재적인 편향을 식별합니다.",
+        "en": "Identifies potential bias during data preparation"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "정답은 **D. 데이터 준비 중 잠재적 편향을 식별합니다.** Amazon SageMaker Clarify 는 데이터 세트와 모델에서 잠재적 편향을 감지하여 머신 러닝 라이프사이클 전반에 걸쳐 공정성과 설명 가능성에 대한 통찰력을 제공합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150822-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 44,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 특정 품목의 가격을 예측하는 새로운 모델을 개발하고 있습니다. 이 모델은 학습 데이터 세트에서 좋은 성능을 보였습니다. 회사에서 모델을 프로덕션에 배포했을 때 모델의 성능이 크게 떨어졌습니다. 이 문제를 완화하기 위해 회사는 무엇을 해야 합니까?",
+      "en": "A company is developing a new model to predict the prices of specific items. The model performed well on the training dataset. When the company deployed the model to production, the model's performance decreased significantly. What should the company do to mitigate this problem?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "학습에 사용되는 데이터 볼륨을 줄입니다.",
+        "en": "Reduce the volume of data that is used in training."
+      },
+      {
+        "key": "B",
+        "ko": "모델에 하이퍼파라미터를 추가합니다.",
+        "en": "Add hyperparameters to the model."
+      },
+      {
+        "key": "C",
+        "ko": "학습에 사용되는 데이터 볼륨을 늘립니다.",
+        "en": "Increase the volume of data that is used in training."
+      },
+      {
+        "key": "D",
+        "ko": "모델 학습 시간을 늘립니다.",
+        "en": "Increase the model training time."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "프로덕션에서 모델 성능 저하 문제를 완화하기 위해 회사는 다음을 수행해야 합니다. **C. 훈련에 사용되는 데이터 볼륨을 늘립니다.** 훈련 데이터 볼륨을 늘리면 모델이 새롭고 보이지 않는 데이터로 더 잘 일반화하는 데 도움이 될 수 있으며, 이는 종종 훈련 환경에서 프로덕션 환경으로 옮길 때 성능 저하의 원인입니다. 이 접근 방식은 실제 시나리오에서 모델의 견고성과 정확성을 개선할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151044-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 45,
+    "multi": true,
+    "question": {
+      "ko": "전자상거래 회사가 제품에 대한 서면 고객 리뷰를 기반으로 고객 감정을 파악하는 솔루션을 구축하고자 합니다. 어떤 AWS 서비스가 이러한 요구 사항을 충족합니까? (2 개 선택)",
+      "en": "An ecommerce company wants to build a solution to determine customer sentiments based on written customer reviews of products.\n\nWhich AWS services meet these requirements? (Select TWO)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Lex",
+        "en": "Amazon Lex"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Comprehend",
+        "en": "Amazon Comprehend"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Polly",
+        "en": "Amazon Polly"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Bedrock",
+        "en": "Amazon Bedrock"
+      },
+      {
+        "key": "E",
+        "ko": "Amazon Rekognition",
+        "en": "Amazon Rekognition"
+      }
+    ],
+    "answer": [
+      "B",
+      "D"
+    ],
+    "explanation": {
+      "ko": "서면 고객 리뷰를 기반으로 고객 감정을 파악하기 위한 요구 사항을 충족하는 AWS 서비스는 다음과 같습니다. **B. Amazon Comprehend**\n\n- Amazon Comprehend 는 텍스트를 분석하여 감정, 핵심 문구, 엔터티 등을 파악할 수 있는 자연어 처리(NLP) 서비스입니다. **D. Amazon Bedrock** - Amazon Bedrock 은 감정 분석을 포함한 다양한 NLP 작업에 사용할 수 있는 기본 모델을 제공합니다. 이러한 서비스는 서면 리뷰에서 고객 감정을 분석하고 이해하는 데 적합합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150924-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 46,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 Amazon Bedrock 과 함께 대규모 언어 모델(LLM)을 사용하여 회사 제품 매뉴얼의 채팅 인터페이스를 개발하려고 합니다. 매뉴얼은 PDF 파일로 저장됩니다. 어떤 솔루션이 이러한 요구 사항을 가장 비용 효율적으로 충족합니까?",
+      "en": "A company wants to use large language models (LLMs) with Amazon Bedrock to develop a chat interface for the company's product manuals. The manuals are stored as PDF files. Which solution meets these requirements MOST cost-effectively?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "프롬프트 엔지니어링을 사용하여 프롬프트가 Amazon Bedrock 에 제출될 때 사용자 프롬프트에 컨텍스트로 PDF 파일 하나를 추가합니다.",
+        "en": "Use prompt engineering to add one PDF file as context to the user prompt when the prompt is submitted to Amazon Bedrock."
+      },
+      {
+        "key": "B",
+        "ko": "프롬프트 엔지니어링을 사용하여 프롬프트가 Amazon Bedrock 에 제출될 때 모든 PDF 파일을 사용자 프롬프트에 컨텍스트로 추가합니다.",
+        "en": "Use prompt engineering to add all the PDF files as context to the user prompt when the prompt is submitted to Amazon Bedrock."
+      },
+      {
+        "key": "C",
+        "ko": "모든 PDF 문서를 사용하여 Amazon Bedrock 으로 모델을 미세 조정합니다. 미세 조정된 모델을 사용하여 사용자 프롬프트를 처리합니다.",
+        "en": "Use all the PDF documents to fine-tune a model with Amazon Bedrock. Use the fine-tuned model to process user prompts."
+      },
+      {
+        "key": "D",
+        "ko": "PDF 문서를 Amazon Bedrock 지식 기반에 업로드합니다. 지식 기반을 사용하여 사용자가 Amazon Bedrock 에 프롬프트를 제출할 때 컨텍스트를 제공합니다.",
+        "en": "Upload PDF documents to an Amazon Bedrock knowledge base. Use the knowledge base to provide context when users submit prompts to Amazon Bedrock."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "이 접근 방식을 사용하면 시스템이 모델을 미세 조정하거나 모든 PDF 를 모든 프롬프트의 컨텍스트로 추가할 필요 없이 필요한 정보를 효율적으로 참조할 수 있습니다. 이는 리소스 집약적이고 비용이 많이 들 수 있습니다. 지식 기반을 사용하면 사용자 쿼리에 따라 관련 컨텍스트를 동적으로 제공하여 성능과 비용을 모두 최적화할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151045-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 47,
+    "multi": false,
+    "question": {
+      "ko": "소셜 미디어 회사가 콘텐츠 조정을 위해 대규모 언어 모델(LLM)을 사용하려고 합니다. 이 회사는 특정 그룹이나 개인에 대한 편견과 잠재적 차별에 대한 LLM 출력을 평가하려고 합니다. 이 회사는 최소한의 관리 노력으로 LLM 출력을 평가하기 위해 어떤 데이터 소스를 사용해야 합니까?",
+      "en": "A social media company wants to use a large language model (LLM) for content moderation. The company wants to evaluate the LLM outputs for bias and potential discrimination against specific groups or individuals. Which data source should the company use to evaluate the LLM outputs with the LEAST administrative effort?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "사용자가 생성한 콘텐츠",
+        "en": "User-generated content"
+      },
+      {
+        "key": "B",
+        "ko": "조정 로그",
+        "en": "Moderation logs"
+      },
+      {
+        "key": "C",
+        "ko": "콘텐츠 조정 지침",
+        "en": "Content moderation guidelines"
+      },
+      {
+        "key": "D",
+        "ko": "벤치마크 데이터 세트",
+        "en": "Benchmark datasets"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "최소한의 행정적 노력으로 편향 및 잠재적 차별에 대한 LLM 출력을 평가하려면 회사에서 다음을 사용해야 합니다. **D. 벤치마크 데이터 세트** 벤치마크 데이터 세트는 모델을 평가하기 위해 특별히 설계되었으며 종종 다양하고 대표적인 샘플을 포함합니다. 광범위한 수동 작업 없이도 편향 및 차별을 포함하여 모델 성능을 평가하는 표준화된 방법을 제공합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150827-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 48,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 마케팅 캠페인을 위한 콘텐츠를 생성하기 위해 사전 훈련된 생성 AI 모델을 사용하고자 합니다. 이 회사는 생성된 콘텐츠가 회사의 브랜드 음성 및 메시징 요구 사항과 일치하는지 확인해야 합니다. 어떤 솔루션이 이러한 요구 사항을 충족합니까?",
+      "en": "A company wants to use a pre-trained generative AI model to generate content for its marketing campaigns. The company needs to ensure that the generated content aligns with the company's brand voice and messaging requirements. Which solution meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모델의 아키텍처와 하이퍼파라미터를 최적화하여 모델의 전반적인 성능을 개선합니다.",
+        "en": "Optimize the model's architecture and hyperparameters to improve the model's overall performance."
+      },
+      {
+        "key": "B",
+        "ko": "모델의 아키텍처에 더 많은 레이어를 추가하여 모델의 복잡성을 높입니다.",
+        "en": "Increase the model's complexity by adding more layers to the model's architecture."
+      },
+      {
+        "key": "C",
+        "ko": "모델 생성을 안내하는 명확한 지침과 컨텍스트를 제공하는 효과적인 프롬프트를 만듭니다.",
+        "en": "Create effective prompts that provide clear instructions and context to guide the model's generation."
+      },
+      {
+        "key": "D",
+        "ko": "새로운 생성 모델을 사전 훈련하기 위해 크고 다양한 데이터 세트를 선택합니다.",
+        "en": "Select a large, diverse dataset to pre-train a new generative model."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "정답은 **C. 모델 생성을 안내하는 명확한 지침과 맥락을 제공하는 효과적인 프롬프트를 만드세요**입니다. 원하는 톤, 스타일, 콘텐츠를 명확하게 설명하는 프롬프트를 작성함으로써 회사는 생성된 콘텐츠가 브랜드 음성 및 메시징 요구 사항과 일치하는지 확인할 수 있습니다. 이 접근 방식은 사전 훈련된 모델의 강점을 활용하면서 출력에 대한 제어를 유지합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151346-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 49,
+    "multi": true,
+    "question": {
+      "ko": "대출 회사가 특정 비즈니스 기준에 따라 신규 신청자에게 할인을 제공하기 위해 생성형 AI 기반\n\n솔루션을 구축하고 있습니다. a. 이 회사는 일부 고객에게 부정적인 영향을 미칠 수 있는 편견을 최소화하기 위해 AI 모델을 책임감 있게 구축하고 사용하려고 합니다. 이 회사는 이러한 요구 사항을 충족하기 위해 어떤 조치를 취해야 합니까? (2 개 선택)",
+      "en": "A loan company is building a generative AI-based solution to offer new applicants discounts based on specific business criteri a. The company wants to build and use an AI model responsibly to minimize bias that could negatively affect some customers. Which actions should the company take to meet these requirements? (Select TWO)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "데이터의 불균형이나 차이를 감지합니다.",
+        "en": "Detect imbalances or disparities in the data."
+      },
+      {
+        "key": "B",
+        "ko": "모델이 자주 실행되도록 합니다.",
+        "en": "Ensure that the model runs frequently."
+      },
+      {
+        "key": "C",
+        "ko": "회사가 이해 관계자에게 투명성을 제공할 수 있도록 모델의 동작을 평가합니다.",
+        "en": "Evaluate the model's behavior so that the company can provide transparency to stakeholders."
+      },
+      {
+        "key": "D",
+        "ko": "모델이 100% 정확한지 확인하기 위해 Recall-Oriented Understudy for Gisting Evaluation(ROUGE) 기법을 사용합니다.",
+        "en": "Use the Recall-Oriented Understudy for Gisting Evaluation (ROUGE) technique to ensure that the model is 100% accurate."
+      },
+      {
+        "key": "E",
+        "ko": "모델의 추론 시간이 허용 한계 내에 있는지 확인합니다.",
+        "en": "Ensure that the model's inference time is within the accepted limits."
+      }
+    ],
+    "answer": [
+      "A",
+      "C"
+    ],
+    "explanation": {
+      "ko": "편견을 최소화하면서 AI 모델을 책임감 있게 구축하고 사용하려면 회사는 다음 조치를 취해야 합니다.\n\n**A. 데이터의 불균형이나 차이를 감지합니다.** - 이는 공정하고 편견 없는 모델을 개발하는 데 중요한 훈련 데이터에 존재하는 편견을 식별하고 해결하는 데 도움이 됩니다.\n\n**C. 회사가 이해 관계자에게 투명성을 제공할 수 있도록 모델의 동작을 평가합니다.** - 모델의 동작을 정기적으로 평가하면 의도한 대로 작동하는지 확인하고 회사가 이해 관계자에게 의사 결정 방식에 대한 투명성을 유지할 수 있습니다.\n\n이러한 조치는 책임감 있는 AI 사용에 중요한 공정성, 투명성 및 책임성에 중점을 둡니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150828-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 50,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 내부 사용 사례에 대한 문서를 요약하기 위해 Amazon Bedrock 기본 모델을 사용하고 있습니다. 이 회사는 요약 품질을 개선하기 위해 사용자 지정 모델을 학습했습니다. 이 회사는 Amazon Bedrock 을 통해 사용자 지정 모델을 사용하기 위해 어떤 조치를 취해야 합니까?",
+      "en": "A company is using an Amazon Bedrock base model to summarize documents for an internal use case. The company trained a custom model to improve the summarization quality. Which action must the company take to use the custom model through Amazon Bedrock?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "사용자 지정 모델에 대한 Provisioned Throughput 을 구매합니다.",
+        "en": "Purchase Provisioned Throughput for the custom model."
+      },
+      {
+        "key": "B",
+        "ko": "실시간 추론을 위해 Amazon SageMaker 엔드포인트에 사용자 지정 모델을 배포합니다.",
+        "en": "Deploy the custom model in an Amazon SageMaker endpoint for real-time inference."
+      },
+      {
+        "key": "C",
+        "ko": "Amazon SageMaker Model Registry 에 모델을 등록합니다.",
+        "en": "Register the model with the Amazon SageMaker Model Registry."
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Bedrock 에서 사용자 지정 모델에 대한 액세스 권한을 부여합니다.",
+        "en": "Grant access to the custom model in Amazon Bedrock."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "정답은 **B. 긍정적인 고객 피드백에 대한 보상이 있는 강화 학습**입니다. 강화 학습을 통해 챗봇은 상호작용에서 피드백을 받아 시간이 지남에 따라 응답을 학습하고 개선할 수 있습니다. 긍정적인 피드백은 보상 역할을 하며, 모델이 향후 상호작용에서 더 효과적이고 정확한 응답을 생성하도록 안내합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150829-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 51,
+    "multi": false,
+    "question": {
+      "ko": "회사는 내부적으로 사용할 Amazon Bedrock 에서 모델을 선택해야 합니다. 회사는 회사 직원이 선호하는 스타일로 응답을 생성하는 모델을 식별해야 합니다. 회사는 이러한 요구 사항을 충족하기 위해 무엇을 해야 합니까?",
+      "en": "A company needs to choose a model from Amazon Bedrock to use internally. The company must identify a model that generates responses in a style that the company's employees prefer. What should the company do to meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "기본 제공 프롬프트 데이터 세트를 사용하여 모델을 평가합니다.",
+        "en": "Evaluate the models by using built-in prompt datasets."
+      },
+      {
+        "key": "B",
+        "ko": "인력과 사용자 지정 프롬프트 데이터 세트를 사용하여 모델을 평가합니다.",
+        "en": "Evaluate the models by using a human workforce and custom prompt datasets."
+      },
+      {
+        "key": "C",
+        "ko": "공개 모델 리더보드를 사용하여 모델을 식별합니다.",
+        "en": "Use public model leaderboards to identify the model."
+      },
+      {
+        "key": "D",
+        "ko": "모델을 시도할 때 Amazon CloudWatch 에서 모델 InvocationLatency 런타임 메트릭을 사용합니다.",
+        "en": "Use the model InvocationLatency runtime metrics in Amazon CloudWatch when trying models."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "회사 직원이 선호하는 스타일로 응답을 생성하는 모델을 식별하는 요구 사항을 충족하기 위해 회사는 **B. 인간 인력과 사용자 지정 프롬프트 데이터 세트를 사용하여 모델을 평가**해야 합니다.\n\n이 접근 방식을 통해 회사는 평가 프로세스를 특정 요구 사항과 선호도에 맞게 조정하여 선택한 모델이 원하는 응답 스타일과 잘 일치하도록 할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151350-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 52,
+    "multi": false,
+    "question": {
+      "ko": "한 대학의 학생이 생성 AI 의 콘텐츠를 복사하여 에세이를 쓰고 있습니다. 이 시나리오는 책임 있는 생성 AI 의 어떤 과제를 나타냅니까?",
+      "en": "A student at a university is copying content from generative AI to write essays. Which challenge of responsible generative AI does this scenario represent?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "독성",
+        "en": "Toxicity"
+      },
+      {
+        "key": "B",
+        "ko": "환각",
+        "en": "Hallucinations"
+      },
+      {
+        "key": "C",
+        "ko": "표절",
+        "en": "Plagiarism"
+      },
+      {
+        "key": "D",
+        "ko": "개인정보 보호",
+        "en": "Privacy"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "이 시나리오에서 책임 있는 생성 AI 의 과제는 **C. 표절**입니다.\n\n적절한 출처나 독창적인 입력 없이 에세이를 쓰기 위해 생성 AI 의 콘텐츠를 복사하는 것은 표절에 해당하며, 이는 학술 및 창작 분야에서 중대한 윤리적 문제입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151742-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 53,
+    "multi": false,
+    "question": {
+      "ko": "어떤 회사는 회사의 개인 데이터만을 기반으로 자체 대규모 언어 모델(LLM)을 구축해야 합니다. a. 회사는 학습 프로세스의 환경적 영향에 대해 우려하고 있습니다. LLM 을 학습할 때 환경적 영향이 가장 적은 Amazon EC2 인스턴스 유형은 무엇입니까?",
+      "en": "A company needs to build its own large language model (LLM) based on only the company's private dat a. The company is concerned about the environmental effect of the training process. Which Amazon EC2 instance type has the LEAST environmental effect when training LLMs?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon EC2 C 시리즈",
+        "en": "Amazon EC2 C series"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon EC2 G 시리즈",
+        "en": "Amazon EC2 G series"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon EC2 P 시리즈",
+        "en": "Amazon EC2 P series"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon EC2 Trn 시리즈",
+        "en": "Amazon EC2 Trn series"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "정답은 **D. Amazon EC2 Trn 시리즈**입니다. AWS Trainium 에서 구동되는 인스턴스를 포함하는 Amazon EC2 Trn 시리즈는 머신 러닝 트레이닝을 위해 특별히 설계되었으며 상당한 에너지 효율성 개선을 제공합니다. 이러한 인스턴스는 다른 인스턴스 유형에 비해 와트당 더 나은 성능을 제공하여 대규모 언어 모델을 트레이닝하는 데 가장 환경 친화적인 옵션입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150830-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 54,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 고전 스토리를 기반으로 새로운 스토리를 생성하는 어린이용 대화형 애플리케이션을 구축하고자 합니다. 이 회사는 Amazon Bedrock 을 사용하고자 하며 결과와 주제가 어린이에게 적합한지 확인해야 합니다. 어떤 AWS 서비스 또는 기능이 이러한 요구 사항을 충족할까요?",
+      "en": "A company wants to build an interactive application for children that generates new stories based on classic stories. The company wants to use Amazon Bedrock and needs to ensure that the results and topics are appropriate for children. Which AWS service or feature will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Rekognition",
+        "en": "Amazon Rekognition"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Bedrock 놀이터",
+        "en": "Amazon Bedrock playgrounds"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Bedrock 용 가드레일",
+        "en": "Guardrails for Amazon Bedrock"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Bedrock 용 에이전트",
+        "en": "Agents for Amazon Bedrock"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "정답은 **C. Amazon Bedrock 용 가드레일**입니다. Amazon Bedrock 용 가드레일은 잠재적으로 부적절하거나 불쾌한 자료를 필터링하고 제거하여 생성된 콘텐츠가 어린이에게 적합한지 확인하는 데 도움이 됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151080-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 55,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 기존 데이터를 기반으로 합성 데이터를 생성해야 하는 애플리케이션을 구축하고 있습니다. 이 요구 사항을 충족하기 위해 회사에서 사용할 수 있는 모델 유형은 무엇입니까?",
+      "en": "A company is building an application that needs to generate synthetic data that is based on existing data. Which type of model can the company use to meet this requirement?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "생성적 적대 신경망(GAN)",
+        "en": "Generative adversarial network (GAN)"
+      },
+      {
+        "key": "B",
+        "ko": "XGBoost",
+        "en": "XGBoost"
+      },
+      {
+        "key": "C",
+        "ko": "잔차 신경망(Residual neural network)",
+        "en": "Residual neural network"
+      },
+      {
+        "key": "D",
+        "ko": "WaveNet",
+        "en": "WaveNet"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "해설\n\n정답은 **A. 생성적 적대 신경망(GAN)**입니다. GAN 은 두 개의 신경망을 서로 훈련하여 합성 데이터를 생성하도록 특별히 설계되었습니다. 데이터를 생성하는 생성기와 진위성을 평가하는 판별기입니다. 이 프로세스를 통해 GAN 은 기존 데이터 세트를 기반으로 매우 사실적인 합성 데이터를 생성할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150876-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 56,
+    "multi": false,
+    "question": {
+      "ko": "디지털 기기 회사가 메모리 하드웨어에 대한 고객 수요를 예측하고자 합니다. 이 회사는 코딩 경험이나 ML 알고리즘에 대한 지식이 없으며 데이터 기반 예측 모델을 개발해야 합니다. 이 회사는 내부 데이터와 외부 데이터에 대한 분석을 수행해야 합니다. 어떤 솔루션이 이러한 요구 사항을 충족할까요?",
+      "en": "A digital devices company wants to predict customer demand for memory hardware. The company does not have coding experience or knowledge of ML algorithms and needs to develop\n\na data-driven predictive model. The company needs to perform analysis on internal data and external data. Which solution will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon S3 에 데이터를 저장합니다. Amazon S3 의 데이터를 사용하는 Amazon SageMaker 기본 제공 알고리즘을 사용하여 ML 모델과 수요 예측 예측을 만듭니다.",
+        "en": "Store the data in Amazon S3. Create ML models and demand forecast predictions by using Amazon SageMaker built-in algorithms that use the data from Amazon S3."
+      },
+      {
+        "key": "B",
+        "ko": "Amazon SageMaker Data Wrangler 로 데이터를 가져옵니다. SageMaker 기본 제공 알고리즘을 사용하여 ML 모델과 수요 예측 예측을 만듭니다.",
+        "en": "Import the data into Amazon SageMaker Data Wrangler. Create ML models and demand forecast predictions by using SageMaker built-in algorithms."
+      },
+      {
+        "key": "C",
+        "ko": "Amazon SageMaker Data Wrangler 로 데이터를 가져옵니다. Amazon Personalize Trending-Now 레시피를 사용하여 ML 모델과 수요 예측 예측을 빌드합니다.",
+        "en": "Import the data into Amazon SageMaker Data Wrangler. Build ML models and demand forecast predictions by using an Amazon Personalize Trending-Now recipe."
+      },
+      {
+        "key": "D",
+        "ko": "Amazon SageMaker Canvas 로 데이터를 가져옵니다. SageMaker Canvas 에서 데이터에서\n\n값을 선택하여 ML 모델과 수요 예측 예측을 빌드합니다.",
+        "en": "Import the data into Amazon SageMaker Canvas. Build ML models and demand forecast predictions by selecting the values in the data from SageMaker Canvas."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "회사의 요구 사항을 충족하는 솔루션은 **D. Amazon SageMaker Canvas 로 데이터를 가져옵니다. SageMaker Canvas 에서 데이터의 값을 선택하여 ML 모델과 수요 예측을 빌드합니다.**\n\nAmazon SageMaker Canvas 는 코딩 경험이 없는 사용자를 위해 설계되어 시각적 인터페이스를 사용하여 머신 러닝 모델을 빌드하고 배포할 수 있습니다. 따라서 내부 및 외부 데이터를 모두 분석하고 예측 모델을 개발하려는 회사의 요구 사항에 이상적입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151047-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 57,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 보안 카메라를 설치했습니다. 이 회사는 ML 모델을 사용하여 보안 카메라 영상을 평가하여 잠재적인 도난 가능성을 파악합니다. 이 회사는 이 모델이 특정 인종 집단에 속한 사람들을 불균형적으로 표시한다는 것을 발견했습니다. 어떤 유형의 편향이 모델 출력에 영향을 미치고 있습니까?",
+      "en": "A company has installed a security camera. The company uses an ML model to evaluate the security camera footage for potential thefts. The company has discovered that the model disproportionately flags people who are members of a specific ethnic group. Which type of bias is affecting the model output?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "측정 편향",
+        "en": "Measurement bias"
+      },
+      {
+        "key": "B",
+        "ko": "샘플링 편향",
+        "en": "Sampling bias"
+      },
+      {
+        "key": "C",
+        "ko": "관찰자 편향",
+        "en": "Observer bias"
+      },
+      {
+        "key": "D",
+        "ko": "확인 편향",
+        "en": "Confirmation bias"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "모델 출력에 영향을 미치는 편향 유형은 **B. 샘플링 편향**입니다.\n\n샘플링 편향은 모델을 학습하는 데 사용된 데이터가 전체 인구를 대표하지 못해 왜곡된 결과가 발생할 때 발생합니다. 이 경우 학습 데이터가 특정 인종 집단을 불균형하게 대표하면 모델은 해당 집단의 구성원을 더 자주 부당하게 표시할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151142-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 58,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 고객 서비스 챗봇을 구축하고 있습니다. 이 회사는 챗봇이 과거 상호작용과 온라인 리소스에서 학습하여 응답을 개선하기를 원합니다. 어떤 AI 학습 전략이 이러한 자기 개선 기능을 제공합니까?",
+      "en": "A company is building a customer service chatbot. The company wants the chatbot to improve its responses by learning from past interactions and online resources. Which AI learning strategy provides this self-improvement capability?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "수동으로 큐레이팅한 좋은 응답과 나쁜 응답의 데이터 세트를 사용한 지도 학습",
+        "en": "Supervised learning with a manually curated dataset of good responses and bad responses"
+      },
+      {
+        "key": "B",
+        "ko": "긍정적인 고객 피드백에 대한 보상이 있는 강화 학습",
+        "en": "Reinforcement learning with rewards for positive customer feedback"
+      },
+      {
+        "key": "C",
+        "ko": "유사한 고객 문의 클러스터를 찾기 위한 비지도 학습",
+        "en": "Unsupervised learning to find clusters of similar customer inquiries"
+      },
+      {
+        "key": "D",
+        "ko": "지속적으로 업데이트되는 FAQ 데이터베이스를 사용한 지도 학습",
+        "en": "Supervised learning with a continuously updated FAQ database"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "정답은 **B. 긍정적인 고객 피드백에 대한 보상이 있는 강화 학습**입니다. 강화 학습을 통해 챗봇은 상호작용에서 피드백을 받아 시간이 지남에 따라 응답을 학습하고 개선할 수 있습니다. 긍정적인 피드백은 보상 역할을 하며, 모델이 향후 상호작용에서 더 효과적이고 정확한 응답을 생성하도록 안내합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/152501-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 59,
+    "multi": false,
+    "question": {
+      "ko": "AI 실무자가 이미지의 재료 유형을 분류하기 위한 딥 러닝 모델을 구축했습니다. AI 실무자는 이제 모델 성능을 측정하고자 합니다. AI 실무자가 모델의 성능을 평가하는 데 도움이 되는 지표는 무엇입니까?",
+      "en": "An AI practitioner has built a deep learning model to classify the types of materials in images. The AI practitioner now wants to measure the model performance. Which metric will help the AI practitioner evaluate the performance of the model?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "혼동 행렬",
+        "en": "Confusion matrix"
+      },
+      {
+        "key": "B",
+        "ko": "상관 행렬",
+        "en": "Correlation matrix"
+      },
+      {
+        "key": "C",
+        "ko": "R2 점수",
+        "en": "R2 score"
+      },
+      {
+        "key": "D",
+        "ko": "평균 제곱 오차(MSE)",
+        "en": "Mean squared error (MSE)"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "이미지에서 재료 유형을 분류하는 딥 러닝 모델의 성능을 평가하는 데 가장 적합한 지표는 다음과 같습니다. **A. 혼동 행렬** 혼동 행렬은 참 양성, 참 음성, 거짓 양성, 거짓 음성을 표시하여 모델 성능에 대한 자세한 분석을 제공합니다. 이는 모델이 다양한 클래스에서 얼마나 잘 수행되는지 이해하는 데 도움이 됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150995-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 60,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 자연어 질문에 이미지로 응답할 수 있는 챗봇을 만들었습니다. 이 회사는 챗봇이 부적절하거나 원치 않는 이미지를 반환하지 않도록 하려고 합니다.\n\n어떤 솔루션이 이러한 요구 사항을 충족할까요?",
+      "en": "A company has built a chatbot that can respond to natural language questions with images. The company wants to ensure that the chatbot does not return inappropriate or unwanted images. Which solution will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "조정 API 를 구현합니다.",
+        "en": "Implement moderation APIs."
+      },
+      {
+        "key": "B",
+        "ko": "일반 공개 데이터 세트로 모델을 다시 학습합니다.",
+        "en": "Retrain the model with a general public dataset."
+      },
+      {
+        "key": "C",
+        "ko": "모델 검증을 수행합니다.",
+        "en": "Perform model validation."
+      },
+      {
+        "key": "D",
+        "ko": "사용자 피드백 통합을 자동화합니다.",
+        "en": "Automate user feedback integration."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "정답은 **A. 조정 API 구현**입니다. 조정 API 는 챗봇이 반환하기 전에 부적절하거나 원치 않는 이미지를 자동으로 필터링하고 차단하여 콘텐츠가 사용자에게 적절하고 안전한 상태로 유지되도록 할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150996-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 61,
+    "multi": false,
+    "question": {
+      "ko": "AI 실무자가 Amazon Bedrock 기본 모델을 사용하여 고객 서비스 부서의 세션 채팅을 요약하고 있습니다. AI 실무자는 모델 입력 및 출력 데이터를 모니터링하기 위해 호출 로그를 저장하려고 합니다. AI 실무자는 어떤 전략을 사용해야 합니까?",
+      "en": "An AI practitioner is using an Amazon Bedrock base model to summarize session chats from the customer service department. The AI practitioner wants to store invocation logs to monitor model input and output data. Which strategy should the AI practitioner use?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "AWS CloudTrail 을 모델의 로그 대상으로 구성합니다.",
+        "en": "Configure AWS CloudTrail as the logs destination for the model."
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Bedrock 에서 호출 로깅을 활성화합니다.",
+        "en": "Enable invocation logging in Amazon Bedrock."
+      },
+      {
+        "key": "C",
+        "ko": "AWS Audit Manager 를 모델의 로그 대상으로 구성합니다.",
+        "en": "Configure AWS Audit Manager as the logs destination for the model."
+      },
+      {
+        "key": "D",
+        "ko": "Amazon EventBridge 에서 모델 호출 로깅을 구성합니다.",
+        "en": "Configure model invocation logging in Amazon EventBridge."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "정답은 **B. Amazon Bedrock 에서 호출 로깅 활성화**입니다. Amazon Bedrock 에서 직접 호출 로깅을 활성화하면 AI 실무자가 모델 입력 및 출력의 로그를 모니터링하고 저장할 수 있어 모델 성능에 대한 포괄적인 추적 및 분석을 보장할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151144-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 62,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 보관된 데이터를 분석하기 위한 ML 모델을 구축하고 있습니다. 이 회사는 여러 GB 크기의 대용량 데이터 세트에 대한 추론을 수행해야 합니다. 이 회사는 모델 예측에 즉시 액세스할 필요가 없습니다. 이러한 요구 사항을 충족하는 Amazon SageMaker 추론 옵션은 무엇입니까?",
+      "en": "A company is building an ML model to analyze archived data. The company must perform inference on large datasets that are multiple GBs in size. The company does not need to access the model predictions immediately. Which Amazon SageMaker inference option will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "일괄 변환",
+        "en": "Batch transform"
+      },
+      {
+        "key": "B",
+        "ko": "실시간 추론",
+        "en": "Real-time inference"
+      },
+      {
+        "key": "C",
+        "ko": "서버리스 추론",
+        "en": "Serverless inference"
+      },
+      {
+        "key": "D",
+        "ko": "비동기 추론",
+        "en": "Asynchronous inference"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "이러한 요구 사항을 충족하는 Amazon SageMaker 추론 옵션은 **A. 일괄 변환**입니다.\n\n일괄 변환은 대규모 데이터 세트를 처리하도록 설계되었으며 모델 예측에 즉시 액세스할 필요가 없는 경우에 이상적입니다. 대량의 데이터 배치에서 효율적으로 추론을 실행할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151124-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 63,
+    "multi": false,
+    "question": {
+      "ko": "AI 와 자연어 처리(NLP) 모델이 텍스트 정보에 대한 이해를 개선하기 위해 사용하는 실제 세계 객체와 개념의 수치적 표현을 설명하는 용어는 무엇입니까?",
+      "en": "Which term describes the numerical representations of real-world objects and concepts that AI and natural language processing (NLP) models use to improve understanding of textual information?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "임베딩",
+        "en": "Embeddings"
+      },
+      {
+        "key": "B",
+        "ko": "토큰",
+        "en": "Tokens"
+      },
+      {
+        "key": "C",
+        "ko": "모델",
+        "en": "Models"
+      },
+      {
+        "key": "D",
+        "ko": "바이너리",
+        "en": "Binaries"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "AI 와 자연어 처리(NLP) 모델이 텍스트 정보에 대한 이해를 개선하는 데 사용하는 실제 세계 객체와 개념의 수치적 표현을 설명하는 용어는 **A. 임베딩**입니다.\n\n임베딩은 단어나 구문의 의미, 관계, 맥락을 포착하는 고밀도 벡터 표현으로, 모델이 텍스트를 보다 효과적으로 처리하고 이해할 수 있도록 합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151750-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 64,
+    "multi": false,
+    "question": {
+      "ko": "한 연구 회사가 Amazon Bedrock 의 Foundation Model(FM)을 사용하여 챗봇을 구현했습니다. 챗봇은 방대한 연구 논문 데이터베이스에서 질문에 대한 답을 검색합니다. 여러 번의 신속한 엔지니어링 시도 끝에 회사는 연구 논문에 복잡한 과학 용어가 포함되어 FM 의 성능이 좋지 않다는 것을 알게 되었습니다.\n\n회사는 챗봇의 성능을 어떻게 개선할 수 있을까요?",
+      "en": "A research company implemented a chatbot by using a foundation model (FM) from Amazon Bedrock. The chatbot searches for answers to questions from a large database of research papers. After multiple prompt engineering attempts, the company notices that the FM is performing poorly because of the complex scientific terms in the research papers. How can the company improve the performance of the chatbot?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Few-Shot Prompting 을 사용하여 FM 이 질문에 어떻게 답할 수 있는지 정의합니다.",
+        "en": "Use few-shot prompting to define how the FM can answer the questions."
+      },
+      {
+        "key": "B",
+        "ko": "도메인 적응 미세 조정을 사용하여 FM 을 복잡한 과학 용어에 적응시킵니다.",
+        "en": "Use domain adaptation fine-tuning to adapt the FM to complex scientific terms."
+      },
+      {
+        "key": "C",
+        "ko": "FM 추론 매개변수를 변경합니다.",
+        "en": "Change the FM inference parameters."
+      },
+      {
+        "key": "D",
+        "ko": "연구 논문 데이터를 정리하여 복잡한 과학 용어를 제거합니다.",
+        "en": "Clean the research paper data to remove complex scientific terms."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "정답은 **B. 도메인 적응 미세 조정을 사용하여 FM 을 복잡한 과학 용어에 적응시킵니다**. 도메인 적응 미세 조정은 연구 논문과 관련된 특정 과학 용어와 맥락을 포함하는 데이터 세트에서 기초 모델을 훈련하는 것을 포함합니다. 이 프로세스는 모델이 도메인별 언어에 대해 정확하고 맥락적으로 적절한 응답을 더 잘 이해하고 생성하는 데 도움이 됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151048-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 65,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 Amazon Bedrock 에서 감정 분석을 위해 대규모 언어 모델(LLM)을 사용하고자 합니다. 이 회사는 동일한 입력 프롬프트에 대해 보다 일관된 응답을 생성하기 위해 LLM 이 필요합니다. 이 회사는 이러한 요구 사항을 충족하기 위해 추론 매개변수에 어떤 조정을 해야 합니까?",
+      "en": "A company wants to use a large language model (LLM) on Amazon Bedrock for sentiment analysis. The company needs the LLM to produce more consistent responses to the same input prompt. Which adjustment to an inference parameter should the company make to meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "온도 값을 줄입니다.",
+        "en": "Decrease the temperature value"
+      },
+      {
+        "key": "B",
+        "ko": "온도 값을 늘립니다.",
+        "en": "Increase the temperature value"
+      },
+      {
+        "key": "C",
+        "ko": "출력 토큰의 길이를 줄입니다.",
+        "en": "Decrease the length of output tokens"
+      },
+      {
+        "key": "D",
+        "ko": "최대 생성 길이를 늘립니다.",
+        "en": "Increase the maximum generation length"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "동일한 입력 프롬프트에 대해 보다 일관된 응답을 생성하려면 회사에서 **A. 온도 값을 낮춰야 합니다.**\n\n온도 값을 낮추면 모델 출력의 무작위성이 줄어들어 보다 결정적이고 일관된 응답이 가능합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150997-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 66,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 Amazon Bedrock 과 Amazon S3 에 업로드된 고객 데이터를 사용하여 대규모 언어\n\n모델(LLM) 애플리케이션을 개발하고자 합니다. 회사의 보안 정책에 따르면 각 팀은 팀 자체 고객의 데이터에만 액세스할 수 있습니다. 어떤 솔루션이 이러한 요구 사항을 충족할까요?",
+      "en": "A company wants to develop a large language model (LLM) application by using Amazon Bedrock and customer data that is uploaded to Amazon S3. The company's security policy states that each team can access data for only the team's own customers. Which solution will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "각 팀에 대해 팀의 고객 데이터에만 액세스할 수 있는 Amazon Bedrock 사용자 지정 서비스 역할을 만듭니다.",
+        "en": "Create an Amazon Bedrock custom service role for each team that has access to only the team's customer data."
+      },
+      {
+        "key": "B",
+        "ko": "Amazon S3 액세스 권한이 있는 사용자 지정 서비스 역할을 만듭니다. 팀에 각 Amazon Bedrock 요청에서 고객 이름을 지정하도록 요청합니다.",
+        "en": "Create a custom service role that has Amazon S3 access. Ask teams to specify the customer name on each Amazon Bedrock request."
+      },
+      {
+        "key": "C",
+        "ko": "Amazon S3 에서 개인 데이터를 삭제합니다. S3 버킷 정책을 업데이트하여 팀이 고객 데이터에 액세스할 수 있도록 합니다.",
+        "en": "Redact personal data in Amazon S3. Update the S3 bucket policy to allow team access to customer data."
+      },
+      {
+        "key": "D",
+        "ko": "전체 Amazon S3 액세스 권한이 있는 Amazon Bedrock 역할 하나를 만듭니다. 각 팀에 대해 각 팀의 고객 폴더에만 액세스할 수 있는 IAM 역할을 만듭니다.",
+        "en": "Create one Amazon Bedrock role that has full Amazon S3 access. Create IAM roles for each team that have access to only each team's customer folders."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "회사의 요구 사항을 충족하는 솔루션은 **A. 각 팀에 대해 팀의 고객 데이터에만 액세스할 수 있는 Amazon Bedrock 사용자 지정 서비스 역할을 만듭니다**.\n\n이 접근 방식은 각 팀이 회사의 보안 정책을 준수하여 자체 고객의 데이터에만 액세스할 수 있도록 합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151076-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 67,
+    "multi": false,
+    "question": {
+      "ko": "의료 회사가 Amazon Bedrock 에 질병 탐지 모델을 배포했습니다. 이 회사는 개인정보 보호정책을 준수하기 위해 모델이 응답에 개인 환자 정보를 포함하지 못하도록 하려고 합니다. 또한 이 회사는 정책 위반이 발생할 때 알림을 받고 싶어합니다. 어떤 솔루션이 이러한 요구 사항을 충족합니까?",
+      "en": "A medical company deployed a disease detection model on Amazon Bedrock. To comply with privacy policies, the company wants to prevent the model from including personal patient information in its responses. The company also wants to receive notification when policy violations occur. Which solution meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Macie 를 사용하여 모델의 출력에서 민감한 데이터를 스캔하고 잠재적인 위반에 대한 알림을 설정합니다.",
+        "en": "Use Amazon Macie to scan the model's output for sensitive data and set up alerts for potential\n\nviolations."
+      },
+      {
+        "key": "B",
+        "ko": "AWS CloudTrail 을 구성하여 모델의 응답을 모니터링하고 탐지된 개인 정보에 대한 알림을 생성합니다.",
+        "en": "Configure AWS CloudTrail to monitor the model's responses and create alerts for any detected personal information."
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Bedrock 용 Guardrails 를 사용하여 콘텐츠를 필터링합니다. 정책 위반에 대한 알림을 위해 Amazon CloudWatch 알람을 설정합니다.",
+        "en": "Use Guardrails for Amazon Bedrock to filter content. Set up Amazon CloudWatch alarms for notification of policy violations."
+      },
+      {
+        "key": "D",
+        "ko": "Amazon SageMaker Model Monitor 를 구현하여 데이터 드리프트를 탐지하고 모델 품질이 저하될 때 알림을 받습니다.",
+        "en": "Implement Amazon SageMaker Model Monitor to detect data drift and receive alerts when model quality degrades."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "회사의 요구 사항을 충족하는 가장 좋은 솔루션은 **C. Amazon Bedrock 용 Guardrails 를 사용하여 콘텐츠를 필터링합니다. 정책 위반에 대한 알림을 위한 Amazon CloudWatch 알람을 설정합니다.**\n\n이 옵션은 모델의 응답에서 개인 환자 정보를 필터링해야 하는 필요성을 직접 해결하고 정책 위반이 발생할 때 알림을 수신하는 메커니즘을 제공합니다. Amazon Bedrock 용 Guardrails 는 콘텐츠 정책을 시행하도록 특별히 설계되었으며, Amazon CloudWatch 를 사용하여 감지된 모든 위반에 대한 알람을 설정할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151077-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 68,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 PDF 형식으로 제출된 모든 이력서를 수동으로 검토합니다. 회사가 성장함에 따라 이력서 양이 회사의 검토 용량을 초과할 것으로 예상합니다. 이 회사는 추가 처리를 위해 PDF 이력서를 일반 텍스트 형식으로 변환하는 자동화된 시스템이 필요합니다. 이 요구 사항을 충족하는 AWS 서비스는 무엇입니까?",
+      "en": "A company manually reviews all submitted resumes in PDF format. As the company grows, the company expects the volume of resumes to exceed the company's review capacity. The company needs an automated system to convert the PDF resumes into plain text format for additional processing. Which AWS service meets this requirement?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Textract",
+        "en": "Amazon Textract"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Personalize",
+        "en": "Amazon Personalize"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Lex",
+        "en": "Amazon Lex"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Transcribe",
+        "en": "Amazon Transcribe"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "PDF 이력서를 추가 처리를 위해 일반 텍스트 형식으로 변환하는 요구 사항을 충족하는 AWS 서비스는 다음과 같습니다. **A. Amazon Textract** Amazon Textract 는 PDF 를 포함한 스캔된 문서에서 텍스트와 데이터를 자동으로 추출하도록 설계되어 이력서를 일반 텍스트로 변환하는 데 이상적입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151354-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 69,
+    "multi": false,
+    "question": {
+      "ko": "교육 제공자는 생성 AI 모델을 사용하여 복잡한 개념을 설명하는 질문과 답변 애플리케이션을 구축하고 있습니다. 교육 제공자는 질문을 하는 사람에 따라 모델 응답의 스타일을 자동으로 변경하려고 합니다. 교육 제공자는 질문을 한 사용자의 연령대를 모델에 제공합니다.\n\n어떤 솔루션이 가장 적은 구현 노력으로 이러한 요구 사항을 충족합니까?",
+      "en": "An education provider is building a question and answer application that uses a generative AI model to explain complex concepts. The education provider wants to automatically change the style of the model response depending on who is asking the question. The education provider will give the model the age range of the user who has asked the question. Which solution meets these requirements with the LEAST implementation effort?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "애플리케이션이 지원할 다양한 연령대를 대표하는 추가 교육 데이터를 사용하여 모델을 미세 조정합니다.",
+        "en": "Fine-tune the model by using additional training data that is representative of the various age ranges that the application will support."
+      },
+      {
+        "key": "B",
+        "ko": "모델에 응답이 타겟팅해야 하는 연령대를 지시하는 역할 설명을 프롬프트 컨텍스트에 추가합니다.",
+        "en": "Add a role description to the prompt context that instructs the model of the age range that the response should target."
+      },
+      {
+        "key": "C",
+        "ko": "사고의 사슬 추론을 사용하여 해당 사용자에게 적합한 응답의 올바른 스타일과 복잡성을 추론합니다.",
+        "en": "Use chain-of-thought reasoning to deduce the correct style and complexity for a response suitable for that user."
+      },
+      {
+        "key": "D",
+        "ko": "사용자의 연령에 따라 응답 텍스트를 요약하여 어린 사용자가 더 짧은 응답을 받도록 합니다.",
+        "en": "Summarize the response text depending on the age of the user so that younger users receive shorter responses."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "이러한 요구 사항을 가장 적은 구현 노력으로 충족하는 솔루션은 **B. 모델에 응답이 타겟팅해야 하는 연령대를 지시하는 프롬프트 컨텍스트에 역할 설명을 추가합니다.**\n\n이 접근 방식을 사용하면 모델은 광범위한 미세 조정이나 추가 교육 데이터가 필요 없이 제공된 연령대에 따라 응답 스타일을 조정할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151078-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 70,
+    "multi": false,
+    "question": {
+      "ko": "이미지 분류 작업에 사용되는 기초 모델(FM)의 정확도를 평가하는 전략은 무엇입니까?",
+      "en": "Which strategy evaluates the accuracy of a foundation model (FM) that is used in image classification tasks?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모델에서 사용하는 리소스의 총 비용을 계산합니다.",
+        "en": "Calculate the total cost of resources used by the model."
+      },
+      {
+        "key": "B",
+        "ko": "사전 정의된 벤치마크 데이터 세트에 대해 모델의 정확도를 측정합니다.",
+        "en": "Measure the model's accuracy against a predefined benchmark dataset."
+      },
+      {
+        "key": "C",
+        "ko": "신경망의 레이어 수를 센다.",
+        "en": "Count the number of layers in the neural network."
+      },
+      {
+        "key": "D",
+        "ko": "모델에서 처리한 이미지의 색상 정확도를 평가합니다.",
+        "en": "Assess the color accuracy of images processed by the model."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "이미지 분류 작업에 사용되는 기초 모델(FM)의 정확도를 평가하는 전략은 다음과 같습니다. **B. 사전 정의된 벤치마크 데이터 세트에 대해 모델의 정확도를 측정합니다.** 이 접근 방식을 사용하면 모델의 성능을 표준 데이터 세트와 비교하여 정확도에 대한 명확하고 객관적인 측정값을 제공할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151147-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 71,
+    "multi": true,
+    "question": {
+      "ko": "회계법인에서 문서 처리를 자동화하기 위해 대규모 언어 모델(LLM)을 구현하고자 합니다. 회사는 잠재적 피해를 피하기 위해 책임감 있게 진행해야 합니다. 회사는 LLM 을 개발하고 배포할 때 무엇을 해야 합니까? (2 개 선택)",
+      "en": "An accounting firm wants to implement a large language model (LLM) to automate document processing. The firm must proceed responsibly to avoid potential harms. What should the firm do when developing and deploying the LLM? (Select TWO)"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모델 평가를 위한 공정성 지표를 포함합니다.",
+        "en": "Include fairness metrics for model evaluation."
+      },
+      {
+        "key": "B",
+        "ko": "모델의 온도 매개변수를 조정합니다.",
+        "en": "Adjust the temperature parameter of the model."
+      },
+      {
+        "key": "C",
+        "ko": "편향을 완화하기 위해 훈련 데이터를 수정합니다.",
+        "en": "Modify the training data to mitigate bias."
+      },
+      {
+        "key": "D",
+        "ko": "훈련 데이터에 대한 과적합을 피합니다.",
+        "en": "Avoid overfitting on the training data."
+      },
+      {
+        "key": "E",
+        "ko": "신속한 엔지니어링 기술을 적용합니다.",
+        "en": "Apply prompt engineering techniques."
+      }
+    ],
+    "answer": [
+      "A",
+      "C"
+    ],
+    "explanation": {
+      "ko": "회사는 LLM 을 개발하고 배포할 때 책임감 있게 진행하기 위해 다음 조치를 취해야 합니다.\n\n**A. 모델 평가를 위한 공정성 지표 포함.** **C. 편향을 완화하기 위해 훈련 데이터 수정.**\n\n공정성 지표를 포함하면 모델의 출력이 공평하고 어떤 그룹에도 불균형하게 영향을 미치지 않도록 하는 데 도움이 됩니다. 편향을 완화하기 위해 훈련 데이터를 수정하는 것은 잠재적 피해를 줄이고 모델의 결정이 공정하고 편향되지 않도록 하는 데 중요합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151079-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 72,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 ML 모델을 구축하고 있습니다. 이 회사는 새로운 데이터를 수집하고 상관 행렬을 만들고, 통계를 계산하고, 데이터를 시각화하여 데이터를 분석했습니다. 이 회사는 현재 ML 파이프라인의 어느 단계에 있습니까?",
+      "en": "A company is building an ML model. The company collected new data and analyzed the data by creating a correlation matrix, calculating statistics, and visualizing the data. Which stage of the ML pipeline is the company currently in?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "데이터 전처리",
+        "en": "Data pre-processing"
+      },
+      {
+        "key": "B",
+        "ko": "기능 엔지니어링",
+        "en": "Feature engineering"
+      },
+      {
+        "key": "C",
+        "ko": "탐색적 데이터 분석",
+        "en": "Exploratory data analysis"
+      },
+      {
+        "key": "D",
+        "ko": "하이퍼파라미터 튜닝",
+        "en": "Hyperparameter tuning"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "이 회사는 현재 ML 파이프라인의 **C. 탐색적 데이터 분석** 단계에 있습니다.\n\n이 단계에는 시각화를 만들고, 통계를 계산하고, 상관 행렬을 통해 데이터 내의 패턴이나 관계를\n\n식별하여 데이터를 이해하는 것이 포함됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150982-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 73,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에 데이터베이스 오류로 인해 일부 단어가 누락된 문서가 있습니다. 이 회사는 누락된 텍스트를 채울 잠재적 단어를 제안할 수 있는 ML 모델을 구축하고자 합니다. 어떤 유형의 모델이 이 요구 사항을 충족합니까?",
+      "en": "A company has documents that are missing some words because of a database error. The company wants to build an ML model that can suggest potential words to fill in the missing text. Which type of model meets this requirement?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "주제 모델링",
+        "en": "Topic modeling"
+      },
+      {
+        "key": "B",
+        "ko": "클러스터링 모델",
+        "en": "Clustering models"
+      },
+      {
+        "key": "C",
+        "ko": "처방적 ML 모델",
+        "en": "Prescriptive ML models"
+      },
+      {
+        "key": "D",
+        "ko": "BERT 기반 모델",
+        "en": "BERT-based models"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "누락된 텍스트를 채우기 위해 잠재적 단어를 제안하는 요구 사항을 충족하는 모델 유형은 다음과 같습니다. **D. BERT 기반 모델** BERT(Bidirectional Encoder Representations from Transformers)는 텍스트에서 누락된 단어를 채우는 것을 포함하여 자연어 이해 작업을 위해 설계되었습니다. 주변 텍스트의 맥락을 기반으로 효과적으로 단어를 예측하고 제안할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/150983-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 74,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 지난 12 개월 동안 다양한 리테일 매장에서 가장 많이 팔린 상품의 총 매출을 표시하려고 합니다. 이 회사에서 그래프 생성을 자동화하기 위해 어떤 AWS 솔루션을 사용해야 합니까?",
+      "en": "A company wants to display the total sales for its top-selling products across various retail locations in the past 12 months. Which AWS solution should the company use to automate the generation of graphs?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon EC2 의 Amazon Q",
+        "en": "Amazon Q in Amazon EC2"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Q Developer",
+        "en": "Amazon Q Developer"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon QuickSight 의 Amazon Q",
+        "en": "Amazon Q in Amazon QuickSight"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Chatbot 의 Amazon Q",
+        "en": "Amazon Q in AWS Chatbot"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "이 회사는 **C. Amazon QuickSight 의 Amazon Q**를 사용하여 다양한 리테일 매장에서 가장 많이 팔리는 제품에 대한 총 매출을 표시하는 그래프 생성을 자동화해야 합니다.\n\nAmazon QuickSight 는 대화형 대시보드와 시각화를 쉽게 만들 수 있는 비즈니스 인텔리전스 서비스로, 이 작업에 적합합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151150-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 75,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 사용자 경험을 개선하기 위해 챗봇을 구축하고 있습니다. 이 회사는 의도 감지를 위해 Amazon Bedrock 의 대규모 언어 모델(LLM)을 사용하고 있습니다. 이 회사는 fewshot 학습을 사용하여 의도 감지 정확도를 개선하고자 합니다. 이 요구 사항을 충족하기 위해 회사에 필요한 추가 데이터는 무엇입니까?",
+      "en": "A company is building a chatbot to improve user experience. The company is using a large language model (LLM) from Amazon Bedrock for intent detection. The company wants to use fewshot learning to improve intent detection accuracy. Which additional data does the company need to meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "챗봇 응답과 올바른 사용자 의도 쌍",
+        "en": "Pairs of chatbot responses and correct user intents"
+      },
+      {
+        "key": "B",
+        "ko": "사용자 메시지와 올바른 챗봇 응답 쌍",
+        "en": "Pairs of user messages and correct chatbot responses"
+      },
+      {
+        "key": "C",
+        "ko": "사용자 메시지와 올바른 사용자 의도 쌍",
+        "en": "Pairs of user messages and correct user intents"
+      },
+      {
+        "key": "D",
+        "ko": "사용자 의도와 올바른 챗봇 응답 쌍",
+        "en": "Pairs of user intents and correct chatbot responses"
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "정답은 **C. 사용자 메시지 쌍과 올바른 사용자 의도**입니다. Few-shot learning 은 모델에 소수의 예를 제공하여 작업을 수행하는 방법을 이해하는 데 도움이 됩니다. 이 경우 사용자 메시지 쌍과 올바른 사용자 의도는 모델이 사용자 메시지 뒤에 있는 의도를 정확하게 감지하는 방법을 학습하는 데 도움이 됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151658-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 76,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 Amazon Bedrock 에 호스팅된 기본 모델에 few-shot prompting 을 사용하고 있습니다. 모델은 현재 프롬프트에서 10 개의 예를 사용합니다. 모델은 하루에 한 번 호출되고 잘 수행됩니다. 회사는 월별 비용을 낮추고자 합니다. 어떤 솔루션이 이러한 요구 사항을 충족할까요?",
+      "en": "A company is using few-shot prompting on a base model that is hosted on Amazon Bedrock. The model currently uses 10 examples in the prompt. The model is invoked once daily and is performing well. The company wants to lower the monthly cost. Which solution will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "미세 조정을 사용하여 모델을 사용자 지정합니다.",
+        "en": "Customize the model by using fine-tuning."
+      },
+      {
+        "key": "B",
+        "ko": "프롬프트에서 토큰 수를 줄입니다.",
+        "en": "Decrease the number of tokens in the prompt."
+      },
+      {
+        "key": "C",
+        "ko": "프롬프트에서 토큰 수를 늘립니다.",
+        "en": "Increase the number of tokens in the prompt."
+      },
+      {
+        "key": "D",
+        "ko": "프로비저닝된 처리량을 사용합니다.",
+        "en": "Use Provisioned Throughput."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "이러한 요구 사항을 충족하는 솔루션은 **B. 프롬프트의 토큰 수를 줄입니다**.\n\n프롬프트의 토큰 수를 줄이면 각 호출과 관련된 비용을 낮출 수 있습니다. 비용은 종종 모델에서 처리한 토큰 수와 관련이 있기 때문입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151151-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 77,
+    "multi": false,
+    "question": {
+      "ko": "AI 실무자가 대규모 언어 모델(LLM)을 사용하여 마케팅 캠페인을 위한 콘텐츠를 만들고 있습니다. 생성된 콘텐츠는 그럴듯하고 사실처럼 들리지만 틀렸습니다. LLM 은 어떤 문제가 있습니까?",
+      "en": "An AI practitioner is using a large language model (LLM) to create content for marketing campaigns. The generated content sounds plausible and factual but is incorrect. Which problem is the LLM having?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "데이터 누출",
+        "en": "Data leakage"
+      },
+      {
+        "key": "B",
+        "ko": "환각",
+        "en": "Hallucination"
+      },
+      {
+        "key": "C",
+        "ko": "과적합",
+        "en": "Overfitting"
+      },
+      {
+        "key": "D",
+        "ko": "과소적합",
+        "en": "Underfitting"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "LLM 이 겪고 있는 문제는 **B. 환각**입니다.\n\n대규모 언어 모델의 맥락에서 환각은 그럴듯하고 사실처럼 보이지만 실제로는 부정확하거나 조작된 콘텐츠 생성을 말합니다. 이는 모델이 사실을 제대로 이해하지 못한 채 훈련 데이터의 패턴에 따라 응답을 생성할 때 발생할 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151856-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 78,
+    "multi": false,
+    "question": {
+      "ko": "AI 실무자가 기밀 데이터가 포함된 교육 데이터 세트를 사용하여 Amazon Bedrock 에서 사용자 지정 모델을 교육했습니다. AI 실무자는 사용자 지정 모델이 기밀 데이터를 기반으로 추론 응답을 생성하지 않도록 하려고 합니다. AI 실무자는 기밀 데이터를 기반으로 응답을 방지하려면 어떻게 해야 합니까?",
+      "en": "An AI practitioner trained a custom model on Amazon Bedrock by using a training dataset that contains confidential data. The AI practitioner wants to ensure that the custom model does not generate inference responses based on confidential data. How should the AI practitioner prevent responses based on confidential data?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "사용자 지정 모델을 삭제합니다. 교육 데이터 세트에서 기밀 데이터를 제거합니다. 사용자 지정 모델을 다시 교육합니다.",
+        "en": "Delete the custom model. Remove the confidential data from the training dataset. Retrain the custom model."
+      },
+      {
+        "key": "B",
+        "ko": "동적 데이터 마스킹을 사용하여 추론 응답의 기밀 데이터를 마스크합니다.",
+        "en": "Mask the confidential data in the inference responses by using dynamic data masking."
+      },
+      {
+        "key": "C",
+        "ko": "Amazon SageMaker 를 사용하여 추론 응답의 기밀 데이터를 암호화합니다.",
+        "en": "Encrypt the confidential data in the inference responses by using Amazon SageMaker."
+      },
+      {
+        "key": "D",
+        "ko": "AWS Key Management Service(AWS KMS)를 사용하여 사용자 지정 모델의 기밀 데이터를 암호화합니다.",
+        "en": "Encrypt the confidential data in the custom model by using AWS Key Management Service (AWS KMS)."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "정답은 **A. 사용자 지정 모델을 삭제합니다. 훈련 데이터 세트에서 기밀 데이터를 제거합니다. 사용자 지정 모델을 다시 훈련합니다.** 이 접근 방식은 모델이 기밀이 아닌 데이터에 대해서만 훈련되도록 하여 민감한 정보에 기반한 응답을 생성하지 못하도록 합니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/152544-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 79,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 생성 AI 를 사용하여 솔루션을 구축했습니다. 이 솔루션은 대규모 언어 모델(LLM)을 사용하여 영어 교육 매뉴얼을 다른 언어로 번역합니다. 이 회사는 매뉴얼에 대해 생성된 텍스트를 검토하여 솔루션의 정확성을 평가하고자 합니다. 어떤 모델 평가 전략이 이러한 요구 사항을 충족합니까?",
+      "en": "A company has built a solution by using generative AI. The solution uses large language models (LLMs) to translate training manuals from English into other languages. The company wants to evaluate the accuracy of the solution by examining the text generated for the manuals. Which model evaluation strategy meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "이중 언어 평가 예비 학습자(BLEU)",
+        "en": "Bilingual Evaluation Understudy (BLEU)"
+      },
+      {
+        "key": "B",
+        "ko": "평균 제곱근 오차(RMSE)",
+        "en": "Root mean squared error (RMSE)"
+      },
+      {
+        "key": "C",
+        "ko": "기억 중심 예비 학습자(ROUGE)",
+        "en": "Recall-Oriented Understudy for Gisting Evaluation (ROUGE)"
+      },
+      {
+        "key": "D",
+        "ko": "F1 점수",
+        "en": "F1 score"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "이러한 요구 사항을 충족하는 모델 평가 전략은 **A. Bilingual Evaluation Understudy(BLEU)**입니다.\n\nBLEU 는 한 언어에서 다른 언어로 기계 번역된 텍스트의 품질을 하나 이상의 참조 번역과 비교하여 평가하도록 특별히 설계된 지표입니다. 번역 모델의 정확성을 평가하는 데 널리 사용됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/152546-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 80,
+    "multi": false,
+    "question": {
+      "ko": "대형 리테일러는 매일 제품에 대한 수천 건의 고객 지원 문의를 받습니다. 고객 지원 문의는 신속하게 처리하고 대응해야 합니다. 이 회사는 Amazon Bedrock 용 에이전트를 구현하고자 합니다. 이 리테일러에 도움이 될 수 있는 Amazon Bedrock 에이전트를 사용하는 주요 이점은 무엇입니까?",
+      "en": "A large retailer receives thousands of customer support inquiries about products every day. The customer support inquiries need to be processed and responded to quickly. The company\n\nwants to implement Agents for Amazon Bedrock. What are the key benefits of using Amazon Bedrock agents that could help this retailer?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "고객 요구 사항을 예측하기 위한 맞춤형 기초 모델(FM) 생성.",
+        "en": "Generation of custom foundation models (FMs) to predict customer needs."
+      },
+      {
+        "key": "B",
+        "ko": "반복적인 작업 자동화 및 복잡한 워크플로 오케스트레이션.",
+        "en": "Automation of repetitive tasks and orchestration of complex workflows."
+      },
+      {
+        "key": "C",
+        "ko": "여러 기초 모델(FM)을 자동으로 호출하고 결과를 통합.",
+        "en": "Automatically calling multiple foundation models (FMs) and consolidating the results."
+      },
+      {
+        "key": "D",
+        "ko": "미리 정의된 기준 및 메트릭에 따라 기초 모델(FM) 선택.",
+        "en": "Selecting the foundation model (FM) based on predefined criteria and metrics."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "리테일러를 도울 수 있는 Amazon Bedrock 에이전트를 사용하는 주요 이점은 다음과 같습니다. **B. 반복적인 작업 자동화 및 복잡한 워크플로 오케스트레이션**.\n\n이 옵션은 Amazon Bedrock 에이전트가 일상적인 작업을 자동화하고 복잡한 워크플로를 관리하여 고객 지원 프로세스를 간소화할 수 있는 능력을 강조하는데, 이는 대량의 문의를 효율적으로 처리하는 데 필수적입니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151660-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 81,
+    "multi": false,
+    "question": {
+      "ko": "기초 모델(FM)을 미세 조정할 때 지속적인 사전 학습의 이점은 무엇입니까?",
+      "en": "Which option is a benefit of ongoing pre-training when fine-tuning a foundation model (FM)?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "모델의 복잡성을 줄이는 데 도움이 됩니다.",
+        "en": "Helps decrease the model's complexity"
+      },
+      {
+        "key": "B",
+        "ko": "시간이 지남에 따라 모델 성능을 개선합니다.",
+        "en": "Improves model performance over time"
+      },
+      {
+        "key": "C",
+        "ko": "학습 시간 요구 사항을 줄입니다.",
+        "en": "Decreases the training time requirement"
+      },
+      {
+        "key": "D",
+        "ko": "모델 추론 시간을 최적화합니다.",
+        "en": "Optimizes model inference time"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "정답은 **B. 시간이 지남에 따라 모델 성능을 개선합니다**. 지속적인 사전 학습을 통해 모델은 지속적으로 학습하고 적응하여 새로운 데이터를 통합하고 작업에 대한 이해를 개선하여 성능을 향상시킵니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/152545-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 82,
+    "multi": false,
+    "question": {
+      "ko": "생성 AI 모델의 맥락에서 토큰이란 무엇입니까?",
+      "en": "What are tokens in the context of generative AI models?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "토큰은 생성 AI 모델이 작동하는 입력 및 출력의 기본 단위로, 단어, 하위 단어 또는 기타 언어 단위를 나타냅니다.",
+        "en": "Tokens are the basic units of input and output that a generative AI model operates on, representing words, subwords, or other linguistic units."
+      },
+      {
+        "key": "B",
+        "ko": "토큰은 생성 AI 모델에서 사용되는 단어 또는 개념의 수학적 표현입니다.",
+        "en": "Tokens are the mathematical representations of words or concepts used in generative AI\n\nmodels."
+      },
+      {
+        "key": "C",
+        "ko": "토큰은 특정 작업에 맞게 미세 조정된 생성 AI 모델의 사전 훈련된 가중치입니다.",
+        "en": "Tokens are the pre-trained weights of a generative AI model that are fine-tuned for specific tasks."
+      },
+      {
+        "key": "D",
+        "ko": "토큰은 생성 AI 모델에 출력을 생성하기 위해 제공되는 특정 프롬프트 또는 지침입니다.",
+        "en": "Tokens are the specific prompts or instructions given to a generative AI model to generate output."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "정답은 **A. 토큰은 생성 AI 모델이 작동하는 입력 및 출력의 기본 단위로, 단어, 하위 단어 또는 기타 언어 단위를 나타냅니다.** 토큰은 본질적으로 AI 모델이 처리하기 위해 텍스트 데이터를 분해할 수 있는 가장 작은 단위입니다. 모델과 구성에 따라 전체 단어, 단어의 일부 또는 문자일 수 있습니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151661-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 83,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서는 추론을 생성하기 위해 대규모 언어 모델(LLM)을 사용하는 데 드는 비용을 평가하고자 합니다. 이 회사는 Amazon Bedrock 을 사용하여 생성 AI 애플리케이션을 구축하고자 합니다. 어떤 요인이 추론 비용을 좌우할까요?",
+      "en": "A company wants to assess the costs that are associated with using a large language model (LLM) to generate inferences. The company wants to use Amazon Bedrock to build generative AI applications. Which factor will drive the inference costs?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "소비된 토큰 수",
+        "en": "Number of tokens consumed"
+      },
+      {
+        "key": "B",
+        "ko": "온도 값",
+        "en": "Temperature value"
+      },
+      {
+        "key": "C",
+        "ko": "LLM 을 학습하는 데 사용된 데이터 양",
+        "en": "Amount of data used to train the LLM"
+      },
+      {
+        "key": "D",
+        "ko": "총 학습 시간",
+        "en": "Total training time"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Amazon Bedrock 에서 대규모 언어 모델(LLM)을 사용할 때 추론 비용을 결정하는 요인은 다음과 같습니다. **A. 소비된 토큰 수** 추론 비용은 일반적으로 응답 생성 중에 처리된 토큰 수를 기반으로 합니다. 소비된 토큰이 많을수록 비용이 높아집니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151662-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 84,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에 내부 소스에서 나온 페타바이트 규모의 비정형 데이터 데이터베이스가 있습니다. 이 회사는 데이터 과학자가 머신 러닝(ML) 작업을 수행할 수 있도록 이 데이터를 구조화된 형식으로 변환하려고 합니다. 어떤 서비스가 이러한 요구 사항을 충족할까요?",
+      "en": "A company has a database of petabytes of unstructured data from internal sources. The company wants to transform this data into a structured format so that its data scientists can\n\nperform machine learning (ML) tasks. Which service will meet these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Lex",
+        "en": "Amazon Lex"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Rekognition",
+        "en": "Amazon Rekognition"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Kinesis Data Streams",
+        "en": "Amazon Kinesis Data Streams"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Glue",
+        "en": "AWS Glue"
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "ko": "이러한 요구 사항을 충족하는 서비스는 **D. AWS Glue**입니다.\n\nAWS Glue 는 완전 관리형 ETL(추출, 변환, 로드) 서비스로, 구조화되지 않은 데이터를 머신 러닝 작업에 적합한 구조화된 형식으로 쉽게 준비하고 변환할 수 있습니다."
+    }
+  },
+  {
+    "id": 85,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에는 Amazon Bedrock 을 사용하여 제품에 대한 고객 질의에 답하기 위해 사용자 정의된 기초 모델(FM)이 있습니다. 이 회사는 새로운 유형의 질의에 대한 모델의 응답을 검증하고자 합니다. 이 회사는 Amazon Bedrock 이 검증에 사용할 수 있는 새로운 데이터 세트를 업로드해야 합니다. 어떤 AWS 서비스가 이러한 요구 사항을 충족합니까?",
+      "en": "A company has a foundation model (FM) that was customized by using Amazon Bedrock to answer customer queries about products. The company wants to validate the model's responses to new types of queries. The company needs to upload a new dataset that Amazon Bedrock can use for validation. Which AWS service meets these requirements?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon S3",
+        "en": "Amazon S3"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Elastic Block Store(Amazon EBS)",
+        "en": "Amazon Elastic Block Store (Amazon EBS)"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Elastic File System(Amazon EFS)",
+        "en": "Amazon Elastic File System (Amazon EFS)"
+      },
+      {
+        "key": "D",
+        "ko": "AWS Snowcone",
+        "en": "AWS Snowcone"
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "ko": "Amazon Bedrock 에서 검증을 위해 새 데이터 세트를 업로드하는 요구 사항을 충족하는 AWS 서비스는 다음과 같습니다. **A. Amazon S3** Amazon S3 는 일반적으로 Amazon Bedrock 에서 모델 검증을 포함한 다양한 작업을 위해 액세스할 수 있는 데이터 세트를 저장하는 데 사용됩니다."
+    },
+    "sourceUrl": "https://www.examtopics.com/discussions/amazon/view/151663-exam-aws-certified-ai-practitioner-aif-c01-topic-1-question/"
+  },
+  {
+    "id": 86,
+    "multi": false,
+    "question": {
+      "ko": "한 회사가 Amazon Bedrock 에서 감정 분석을 위해 대규모 언어 모델(LLM)을 사용하고자 합니다. 이 회사는 하나의 프롬프트에 얼마나 많은 정보를 넣을 수 있는지 알고 싶어합니다. 어떤 고려 사항이 회사의 결정에 영향을 미칠까요?",
+      "en": "A company wants to use a large language model (LLM) on Amazon Bedrock for sentiment analysis. The company wants to know how much information can fit into one prompt.\n\nWhich consideration will inform the company's decision?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "온도",
+        "en": "Temperature"
+      },
+      {
+        "key": "B",
+        "ko": "컨텍스트 창",
+        "en": "Context window"
+      },
+      {
+        "key": "C",
+        "ko": "배치 크기",
+        "en": "Batch size"
+      },
+      {
+        "key": "D",
+        "ko": "모델 크기",
+        "en": "Model size"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "회사가 하나의 프롬프트에 얼마나 많은 정보를 넣을 수 있는지에 대한 결정을 내릴 때 고려하는 사항은 **B. 컨텍스트 창**입니다.\n\n컨텍스트 창은 모델이 단일 프롬프트에서 처리할 수 있는 최대 토큰(단어 또는 문자) 수를 결정합니다. 이는 LLM 에 대한 각 요청에 얼마나 많은 정보를 포함할 수 있는지 이해하는 데 중요합니다."
+    }
+  },
+  {
+    "id": 87,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서 Amazon SageMaker Studio 노트북을 사용하여 ML 모델을 빌드하고 학습시키고 있습니다. 이 회사는 Amazon S3 버킷에 데이터를 저장합니다. 이 회사는 Amazon S3 에서 SageMaker Studio 노트북으로의 데이터 흐름을 관리해야 합니다. 어떤 솔루션이 이 요구 사항을 충족할까요?",
+      "en": "A company is using Amazon SageMaker Studio notebooks to build and train ML models. The company stores the data in an Amazon S3 bucket. The company needs to manage the flow of data from Amazon S3 to SageMaker Studio notebooks. Which solution will meet this requirement?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Inspector 를 사용하여 SageMaker Studio 를 모니터링합니다.",
+        "en": "Use Amazon Inspector to monitor SageMaker Studio."
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Macie 를 사용하여 SageMaker Studio 를 모니터링합니다.",
+        "en": "Use Amazon Macie to monitor SageMaker Studio."
+      },
+      {
+        "key": "C",
+        "ko": "S3 엔드포인트가 있는 VPC 를 사용하도록 SageMaker 를 구성합니다.",
+        "en": "Configure SageMaker to use a VPC with an S3 endpoint."
+      },
+      {
+        "key": "D",
+        "ko": "S3 Glacier Deep Archive 를 사용하도록 SageMaker 를 구성합니다.",
+        "en": "Configure SageMaker to use S3 Glacier Deep Archive."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "ko": "Amazon S3 에서 SageMaker Studio 노트북으로의 데이터 흐름을 관리하기 위한 요구 사항을 충족하는 솔루션은 다음과 같습니다. **C. S3 엔드포인트가 있는 VPC 를 사용하도록 SageMaker 구성.** 이 구성을 사용하면 공용 인터넷을 거치지 않고도 Amazon S3 와 SageMaker Studio 노트북 간에 안전하고 효율적인 데이터 전송이 가능하여 더 나은 성능과 보안을 보장합니다."
+    }
+  },
+  {
+    "id": 88,
+    "multi": false,
+    "question": {
+      "ko": "한 회사에서는 하루에 수천 건의 고객 지원 상호작용을 하며, 이러한 상호작용을 분석하여 자주 묻는 질문을 파악하고 통찰력을 개발하고자 합니다. 이 요구 사항을 충족하기 위해 회사에서 사용할 수 있는 AWS 서비스는 무엇입니까?",
+      "en": "A company has thousands of customer support interactions per day and wants to analyze these interactions to identify frequently asked questions and develop insights. Which AWS service can the company use to meet this requirement?"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "ko": "Amazon Lex",
+        "en": "Amazon Lex"
+      },
+      {
+        "key": "B",
+        "ko": "Amazon Comprehend",
+        "en": "Amazon Comprehend"
+      },
+      {
+        "key": "C",
+        "ko": "Amazon Transcribe",
+        "en": "Amazon Transcribe"
+      },
+      {
+        "key": "D",
+        "ko": "Amazon Translate",
+        "en": "Amazon Translate"
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "ko": "정답은 **B. Amazon Comprehend**입니다. Amazon Comprehend 는 자주 묻는 질문을 식별하고 고객 감정을 이해하는 것과 같이 텍스트를 분석하여 통찰력을 추출할 수 있는 자연어 처리(NLP) 서비스입니다. 따라서 대량의 고객 지원 상호 작용을 분석하는 데 적합합니다."
+    }
+  }
+]

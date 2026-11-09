@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
   buildMockExam,
-  EXAM_KEYS,
+  MOCK_EXAM_KEYS,
   MOCK_QUOTA,
   mockPool,
   mockQuestionId,
 } from '../src/exam';
-import type { ExamKey, Question } from '../src/types';
+import type { Question, SaaExamKey } from '../src/types';
 
 const makeBank = (count: number): Question[] =>
   Array.from({ length: count }, (_, i) => ({
@@ -21,7 +21,7 @@ const makeBank = (count: number): Question[] =>
     explanation: { ko: 'e' },
   }));
 
-const makeBanks = (count: number): Record<ExamKey, Question[]> => ({
+const makeBanks = (count: number): Record<SaaExamKey, Question[]> => ({
   secure: makeBank(count),
   resilient: makeBank(count),
   performant: makeBank(count),
@@ -30,7 +30,7 @@ const makeBanks = (count: number): Record<ExamKey, Question[]> => ({
 
 describe('mock exam', () => {
   it('quotas add up to the 65 questions of the real exam', () => {
-    const total = EXAM_KEYS.reduce((sum, key) => sum + MOCK_QUOTA[key], 0);
+    const total = MOCK_EXAM_KEYS.reduce((sum, key) => sum + MOCK_QUOTA[key], 0);
     expect(total).toBe(65);
   });
 
@@ -39,7 +39,7 @@ describe('mock exam', () => {
 
     expect(exam).toHaveLength(65);
     expect(new Set(exam.map((question) => question.id)).size).toBe(65);
-    for (const key of EXAM_KEYS) {
+    for (const key of MOCK_EXAM_KEYS) {
       const drawn = exam.filter((question) => question.source?.exam === key);
       expect(drawn).toHaveLength(MOCK_QUOTA[key]);
     }

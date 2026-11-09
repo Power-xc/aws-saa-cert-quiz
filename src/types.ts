@@ -1,4 +1,5 @@
-export type ExamKey = 'secure' | 'resilient' | 'performant' | 'cost';
+export type ExamKey = 'aif' | 'secure' | 'resilient' | 'performant' | 'cost';
+export type SaaExamKey = Exclude<ExamKey, 'aif'>;
 /** A playable session: one domain bank, or the mixed 65-question mock exam. */
 export type SessionKey = ExamKey | 'mock';
 export type QuestionOrder = 'order' | 'random';
@@ -27,6 +28,7 @@ export interface Question {
   choices: Choice[];
   answer: string[] | null;
   explanation: { ko?: string; en?: string };
+  sourceUrl?: string;
   /** Set on mock-exam questions: the bank and id they were drawn from. */
   source?: { exam: ExamKey; id: number };
 }
@@ -66,7 +68,7 @@ export type ProgressMap = Partial<Record<SessionKey, Progress>>;
 
 /** Per-domain tally of one finished mock exam. */
 export type MockDomainScores = Record<
-  ExamKey,
+  SaaExamKey,
   { correct: number; total: number }
 >;
 

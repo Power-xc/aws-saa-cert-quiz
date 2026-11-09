@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AWS SAA Cert Quiz</title>
+    <title>AWS Certification Quiz</title>
     <meta
       name="description"
-      content="AWS Certified Solutions Architect – Associate(SAA-C03) 대비 문제은행 웹앱"
+      content="AWS AIF-C01과 SAA-C03을 공부하는 문제은행 웹앱"
     />
   </head>
   <body>
@@ -17,16 +17,22 @@
 
       <!-- 설정 -->
       <section class="card" id="setup-view">
-        <h1 class="setup-title">AWS SAA Cert Quiz</h1>
+        <h1 class="setup-title">AWS Certification Quiz</h1>
         <p class="setup-sub">
-          Solutions Architect – Associate(SAA-C03) 4개 도메인을 학습·시험 모드로
-          풀어 보세요.
+          AIF-C01 PDF 원문 88문제와 SAA-C03 문제은행을 학습·시험 모드로 풀어
+          보세요.
         </p>
 
         <div class="field-group">
-          <div class="field-label">도메인 선택</div>
+          <div class="field-label">문제집 선택</div>
           <div class="btn-group btn-group-col" id="exam-group">
-            <button class="seg-btn active" type="button" data-value="secure">
+            <button class="seg-btn active" type="button" data-value="aif">
+              AIF-C01 · AI Practitioner
+              <span class="btn-label"
+                >다운로드 PDF 영문·한글 원문 · 88문제</span
+              >
+            </button>
+            <button class="seg-btn" type="button" data-value="secure">
               Secure
               <span class="btn-label"
                 >Design Secure Architectures · 보안 30% · 180문제</span
@@ -52,7 +58,7 @@
               >
             </button>
             <button class="seg-btn" type="button" data-value="mock">
-              Mock Exam
+              SAA-C03 Mock Exam
               <span class="btn-label"
                 >65문제 · 130분 · 4개 도메인 혼합(30/26/24/20%) · 마지막에 일괄
                 채점</span

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import indexHtml from '../index.html?raw';
 import { parseQuestion } from '../src/exam';
 import type { ExamKey } from '../src/types';
+import aif from '../public/data/aif.json';
 import secure from '../public/data/secure.json';
 import resilient from '../public/data/resilient.json';
 import performant from '../public/data/performant.json';
@@ -9,6 +10,7 @@ import cost from '../public/data/cost.json';
 
 // Exact per-bank counts, kept in sync with the shipped data files.
 const BANKS: Record<ExamKey, { count: number; rows: unknown[] }> = {
+  aif: { count: 88, rows: aif },
   secure: { count: 180, rows: secure },
   resilient: { count: 156, rows: resilient },
   performant: { count: 144, rows: performant },
@@ -46,6 +48,7 @@ describe.each(Object.entries(BANKS))('%s question bank', (_key, bank) => {
   });
 
   it('uses the official Korean AWS wording for common concepts', () => {
+    if (_key === 'aif') return;
     const offenders: string[] = [];
     bank.rows.forEach((row, index) => {
       const question = parseQuestion(row, index);
@@ -87,6 +90,13 @@ describe.each(Object.entries(BANKS))('%s question bank', (_key, bank) => {
       }
 
       expect(question.explanation.ko?.length ?? 0).toBeGreaterThan(0);
+
+      if (_key === 'aif') {
+        expect(question.question.en?.length ?? 0).toBeGreaterThan(0);
+        expect(question.choices.every((choice) => Boolean(choice.en))).toBe(
+          true,
+        );
+      }
 
       expect(ids.has(question.id)).toBe(false);
       ids.add(question.id);

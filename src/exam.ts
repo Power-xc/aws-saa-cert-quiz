@@ -1,8 +1,27 @@
-import type { Choice, ExamKey, Question, SessionKey } from './types';
+import type {
+  Choice,
+  ExamKey,
+  Question,
+  SaaExamKey,
+  SessionKey,
+} from './types';
 
-export const EXAM_KEYS = ['secure', 'resilient', 'performant', 'cost'] as const;
+export const EXAM_KEYS = [
+  'aif',
+  'secure',
+  'resilient',
+  'performant',
+  'cost',
+] as const;
+export const MOCK_EXAM_KEYS = [
+  'secure',
+  'resilient',
+  'performant',
+  'cost',
+] as const satisfies readonly SaaExamKey[];
 
 export const EXAM_LABELS: Record<ExamKey, string> = {
+  aif: 'AIF-C01 — AI Practitioner 덤프 88문제',
   secure: 'Secure — 보안 아키텍처 설계',
   resilient: 'Resilient — 복원력 있는 아키텍처 설계',
   performant: 'Performant — 고성능 아키텍처 설계',
@@ -17,7 +36,7 @@ export const MOCK_KEY = 'mock';
 export const MOCK_LABEL = 'Mock Exam — 모의시험';
 export const MOCK_DURATION_MS = 130 * 60 * 1000;
 /** Questions drawn per domain, following the 30/26/24/20 exam weighting. */
-export const MOCK_QUOTA: Record<ExamKey, number> = {
+export const MOCK_QUOTA: Record<SaaExamKey, number> = {
   secure: 20,
   resilient: 17,
   performant: 15,
@@ -34,13 +53,13 @@ export function sessionLabel(key: SessionKey): string {
   return key === MOCK_KEY ? MOCK_LABEL : EXAM_LABELS[key];
 }
 
-export function mockQuestionId(exam: ExamKey, id: number): number {
-  return (EXAM_KEYS.indexOf(exam) + 1) * MOCK_ID_STRIDE + id;
+export function mockQuestionId(exam: SaaExamKey, id: number): number {
+  return (MOCK_EXAM_KEYS.indexOf(exam) + 1) * MOCK_ID_STRIDE + id;
 }
 
 /** Every bank's questions re-keyed with mock ids and tagged with their source. */
-export function mockPool(banks: Record<ExamKey, Question[]>): Question[] {
-  return EXAM_KEYS.flatMap((exam) =>
+export function mockPool(banks: Record<SaaExamKey, Question[]>): Question[] {
+  return MOCK_EXAM_KEYS.flatMap((exam) =>
     banks[exam].map((question) => ({
       ...question,
       id: mockQuestionId(exam, question.id),
@@ -51,7 +70,7 @@ export function mockPool(banks: Record<ExamKey, Question[]>): Question[] {
 
 /** Draw the per-domain quotas from the pool and mix them into one exam. */
 export function buildMockExam(pool: readonly Question[]): Question[] {
-  const picked = EXAM_KEYS.flatMap((exam) =>
+  const picked = MOCK_EXAM_KEYS.flatMap((exam) =>
     shuffle(pool.filter((question) => question.source?.exam === exam)).slice(
       0,
       MOCK_QUOTA[exam],
@@ -103,7 +122,7 @@ export function parseQuestion(raw: unknown, index: number): Question {
       )
     : null;
 
-  return {
+  const parsed: Question = {
     id: typeof raw.id === 'number' ? raw.id : index + 1,
     multi: raw.multi === true,
     question,
@@ -111,6 +130,9 @@ export function parseQuestion(raw: unknown, index: number): Question {
     answer,
     explanation,
   };
+  const sourceUrl = parseSourceUrl(raw.sourceUrl);
+  if (sourceUrl) parsed.sourceUrl = sourceUrl;
+  return parsed;
 }
 
 export function shuffle<T>(items: readonly T[]): T[] {
@@ -132,4 +154,14 @@ function asString(value: unknown): string {
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function parseSourceUrl(value: unknown): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' ? url.toString() : undefined;
+  } catch {
+    return undefined;
+  }
 }

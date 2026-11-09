@@ -855,6 +855,13 @@ body {
   white-space: normal;
 }
 
+.question-source {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--accent);
+  font-weight: 650;
+}
+
 /* Memory notes */
 .notes-card {
   max-width: 1020px;

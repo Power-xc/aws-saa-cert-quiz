@@ -31,7 +31,7 @@ import type {
  * {@link QuizSession}. It owns no quiz-playing state itself.
  */
 export class QuizApp {
-  private exam: SessionKey = 'secure';
+  private exam: SessionKey = 'aif';
   private order: QuestionOrder = 'order';
   private studyMode: StudyMode = 'study';
 

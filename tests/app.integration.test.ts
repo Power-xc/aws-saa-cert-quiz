@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import indexHtml from '../index.html?raw';
-import secure from '../public/data/secure.json';
+import aif from '../public/data/aif.json';
 import { QuizApp } from '../src/app';
 import { mockQuestionId } from '../src/exam';
 
@@ -10,12 +10,12 @@ const bodyMarkup = indexHtml
   .replace(/<\/body>[\s\S]*/, '')
   .replace(/<script[\s\S]*?<\/script>/g, '');
 
-const bank = secure as {
+const bank = aif as {
   multi: boolean;
   answer: string[];
 }[];
 const first = bank[0];
-if (!first) throw new Error('secure bank is empty');
+if (!first) throw new Error('AIF-C01 bank is empty');
 
 const $ = (id: string): HTMLElement => {
   const el = document.getElementById(id);
@@ -54,7 +54,7 @@ beforeEach(() => {
       Promise.resolve({
         ok: true,
         status: 200,
-        json: () => Promise.resolve(secure),
+        json: () => Promise.resolve(aif),
       } as Response),
     ),
   );
@@ -121,9 +121,9 @@ describe('QuizApp study session', () => {
     const raw = localStorage.getItem('aws-saa-cert-quiz-history-v1');
     expect(raw).not.toBeNull();
     const history = JSON.parse(raw ?? '{}') as {
-      secure?: { questions: Record<string, unknown> };
+      aif?: { questions: Record<string, unknown> };
     };
-    expect(Object.keys(history.secure?.questions ?? {})).toHaveLength(1);
+    expect(Object.keys(history.aif?.questions ?? {})).toHaveLength(1);
   });
 
   it('resumes an interrupted session via 이어 풀기', async () => {

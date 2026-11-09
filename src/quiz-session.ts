@@ -1,10 +1,10 @@
 import { byId, hide, show, toggle } from './dom';
 import {
   buildMockExam,
-  EXAM_KEYS,
   EXAM_LABELS,
   loadExam,
   MOCK_DURATION_MS,
+  MOCK_EXAM_KEYS,
   MOCK_KEY,
   mockPool,
   sessionLabel,
@@ -48,7 +48,7 @@ export interface QuizSessionDeps {
  * callbacks; it never reaches into the shell's own views.
  */
 export class QuizSession {
-  private exam: SessionKey = 'secure';
+  private exam: SessionKey = 'aif';
   private order: QuestionOrder = 'order';
   private studyMode: StudyMode = 'study';
 
@@ -147,7 +147,9 @@ export class QuizSession {
   /** The questions a session draws from: one bank, or all four for a mock. */
   private async loadPool(exam: SessionKey): Promise<Question[]> {
     if (exam !== MOCK_KEY) return this.load(exam);
-    const banks = await Promise.all(EXAM_KEYS.map((key) => this.load(key)));
+    const banks = await Promise.all(
+      MOCK_EXAM_KEYS.map((key) => this.load(key)),
+    );
     return mockPool({
       secure: banks[0] ?? [],
       resilient: banks[1] ?? [],
@@ -436,6 +438,15 @@ export class QuizSession {
       details.append(summary, content);
       this.explainText.appendChild(details);
     }
+    if (question.sourceUrl) {
+      const source = document.createElement('a');
+      source.className = 'question-source';
+      source.href = question.sourceUrl;
+      source.target = '_blank';
+      source.rel = 'noopener noreferrer';
+      source.textContent = '원문 토론 링크 열기';
+      this.explainText.appendChild(source);
+    }
     show(this.explainBox);
   }
 
@@ -663,7 +674,7 @@ export class QuizSession {
 
     const domains = this.domainScores();
     breakdown.replaceChildren();
-    for (const key of EXAM_KEYS) {
+    for (const key of MOCK_EXAM_KEYS) {
       const { correct: right, total } = domains[key];
       const pct = total ? Math.round((right / total) * 100) : 0;
       const row = document.createElement('div');
@@ -695,7 +706,7 @@ export class QuizSession {
     };
     this.questions.forEach((question, i) => {
       const domain = question.source?.exam;
-      if (!domain) return;
+      if (!domain || domain === 'aif') return;
       scores[domain].total += 1;
       if (this.results[i] === true) scores[domain].correct += 1;
     });
