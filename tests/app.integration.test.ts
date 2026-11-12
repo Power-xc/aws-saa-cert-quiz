@@ -70,7 +70,7 @@ describe('QuizApp study session', () => {
     expect(isHidden('continue-btn')).toBe(true);
   });
 
-  it('grades a correct answer as soon as it is picked, shows the explanation, and advances', async () => {
+  it('grades a correct answer as soon as it is picked, then moves on by itself', async () => {
     click('start-btn');
     await vi.waitFor(() => {
       expect(isHidden('quiz-content')).toBe(false);
@@ -90,8 +90,9 @@ describe('QuizApp study session', () => {
     const firstKey = first.answer[0] ?? 'A';
     expect(($(`ch-${firstKey}`) as HTMLInputElement).disabled).toBe(true);
 
-    click('next-btn');
-    expect($('pos-text').textContent).toBe(`2 / ${bank.length}`);
+    await vi.waitFor(() => {
+      expect($('pos-text').textContent).toBe(`2 / ${bank.length}`);
+    });
   });
 
   it('grades a multiple-response question only once enough choices are picked', async () => {
@@ -120,9 +121,13 @@ describe('QuizApp study session', () => {
     for (const key of rest) pick(key);
     expect($('result-msg').textContent).toBe('정답입니다.');
     expect(isHidden('explain-box')).toBe(false);
+
+    await vi.waitFor(() => {
+      expect($('pos-text').textContent).toBe(`${index + 2} / ${bank.length}`);
+    });
   });
 
-  it('keeps picks ungraded until the end in exam mode', async () => {
+  it('moves on after a pick but keeps it ungraded until the end in exam mode', async () => {
     const examMode = document.querySelector<HTMLButtonElement>(
       '#mode-group [data-value="exam"]',
     );
@@ -137,6 +142,10 @@ describe('QuizApp study session', () => {
 
     expect(resultShown()).toBe(false);
     expect(isHidden('explain-box')).toBe(true);
+    await vi.waitFor(() => {
+      expect($('pos-text').textContent).toBe(`2 / ${bank.length}`);
+    });
+    expect(resultShown()).toBe(false);
   });
 
   it('marks a wrong answer and opens the review pool afterwards', async () => {
@@ -156,6 +165,9 @@ describe('QuizApp study session', () => {
     expect($('result-msg').textContent?.startsWith('오답입니다. 정답:')).toBe(
       true,
     );
+    // A wrong answer stays up with its explanation instead of moving on.
+    await new Promise((resolve) => setTimeout(resolve, 700));
+    expect($('pos-text').textContent).toBe(`1 / ${bank.length}`);
 
     click('home-btn');
     expect(isHidden('setup-view')).toBe(false);

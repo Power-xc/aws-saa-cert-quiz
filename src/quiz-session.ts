@@ -33,6 +33,8 @@ import type {
 } from './types';
 
 const TIMER_WARN_MS = 10 * 60 * 1000;
+/** Pause after a pick before moving on, so the marked choice registers. */
+const AUTO_ADVANCE_MS = 500;
 
 export interface QuizSessionDeps {
   /** Return to the home screen (the shell shows the setup view). */
@@ -64,6 +66,7 @@ export class QuizSession {
   /** Mock exam only: epoch ms the countdown ends, null when not timed. */
   private endsAt: number | null = null;
   private timerHandle: number | undefined;
+  private advanceHandle: number | undefined;
   /** A finished mock exam must not be resumed or re-graded. */
   private completed = false;
 
@@ -223,6 +226,7 @@ export class QuizSession {
     this.results = {};
     this.completed = false;
     this.stopTimer();
+    this.cancelAdvance();
     this.endsAt = null;
   }
 
@@ -496,6 +500,7 @@ export class QuizSession {
 
   private exitToHome(): void {
     this.stopTimer();
+    this.cancelAdvance();
     if (this.isExamFlow()) this.captureSelection();
     this.saveProgress();
     this.review = false;
@@ -517,18 +522,24 @@ export class QuizSession {
   }
 
   /**
-   * Study flow grades as soon as an answer is picked: a single-answer question
-   * on the first pick, a multiple-response one once the required number of
-   * choices is ticked. The exam flow keeps picks until it is graded at the end.
+   * A pick is complete on the first choice of a single-answer question, or once
+   * a multiple-response one has the required number ticked. The study flow then
+   * grades it and moves on only when it is right, so a wrong answer stays up
+   * with its explanation; the exam flow just moves on and grades at the end.
    */
   private onPick(): void {
-    if (this.isExamFlow() || this.resultView || this.idx in this.results) {
-      return;
-    }
+    if (this.resultView) return;
     const question = this.questions[this.idx];
     if (!question) return;
     const needed = pickCount(question);
     const count = this.selectedLetters().length;
+
+    if (this.isExamFlow()) {
+      if (count >= needed) this.scheduleAdvance();
+      else this.cancelAdvance();
+      return;
+    }
+    if (this.idx in this.results) return;
     if (question.multi && count < needed) {
       this.setResult(
         `${needed}개를 고르면 바로 채점돼요. (${count}/${needed})`,
@@ -537,6 +548,26 @@ export class QuizSession {
       return;
     }
     this.checkAnswer();
+    if (this.results[this.idx] === true) this.scheduleAdvance();
+  }
+
+  /** Move to the next question shortly, unless the learner moves first. */
+  private scheduleAdvance(): void {
+    this.cancelAdvance();
+    const from = this.idx;
+    // The last question waits for 결과 보기, so a pick never ends the session.
+    if (from >= this.questions.length - 1) return;
+    this.advanceHandle = window.setTimeout(() => {
+      this.advanceHandle = undefined;
+      if (this.idx === from && !this.resultView) this.goNext();
+    }, AUTO_ADVANCE_MS);
+  }
+
+  private cancelAdvance(): void {
+    if (this.advanceHandle !== undefined) {
+      window.clearTimeout(this.advanceHandle);
+    }
+    this.advanceHandle = undefined;
   }
 
   private checkAnswer(): void {
