@@ -1,5 +1,6 @@
-export type ExamKey = 'aif' | 'secure' | 'resilient' | 'performant' | 'cost';
-export type SaaExamKey = Exclude<ExamKey, 'aif'>;
+export type ExamKey =
+  'aif' | 'saa' | 'secure' | 'resilient' | 'performant' | 'cost';
+export type SaaExamKey = 'secure' | 'resilient' | 'performant' | 'cost';
 /** A playable session: one domain bank, or the mixed 65-question mock exam. */
 export type SessionKey = ExamKey | 'mock';
 export type QuestionOrder = 'order' | 'random';

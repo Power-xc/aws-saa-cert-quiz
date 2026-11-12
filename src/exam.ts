@@ -8,6 +8,7 @@ import type {
 
 export const EXAM_KEYS = [
   'aif',
+  'saa',
   'secure',
   'resilient',
   'performant',
@@ -22,6 +23,7 @@ export const MOCK_EXAM_KEYS = [
 
 export const EXAM_LABELS: Record<ExamKey, string> = {
   aif: 'AIF-C01 — AI Practitioner 덤프 88문제',
+  saa: 'SAA-C03 — Solutions Architect Associate 덤프 725문제',
   secure: 'Secure — 보안 아키텍처 설계',
   resilient: 'Resilient — 복원력 있는 아키텍처 설계',
   performant: 'Performant — 고성능 아키텍처 설계',

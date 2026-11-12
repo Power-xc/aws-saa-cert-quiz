@@ -758,7 +758,7 @@ export class QuizSession {
     };
     this.questions.forEach((question, i) => {
       const domain = question.source?.exam;
-      if (!domain || domain === 'aif') return;
+      if (!domain || domain === 'aif' || domain === 'saa') return;
       scores[domain].total += 1;
       if (this.results[i] === true) scores[domain].correct += 1;
     });
