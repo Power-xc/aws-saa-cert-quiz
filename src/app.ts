@@ -67,9 +67,10 @@ export class QuizApp {
   }
 
   private config(): SessionConfig {
-    // The mock exam is always a shuffled, graded-at-the-end sitting.
+    // The mock exam is always shuffled; grading on pick or at the end is up to
+    // the chosen study mode.
     if (this.exam === MOCK_KEY) {
-      return { exam: this.exam, order: 'random', studyMode: 'exam' };
+      return { exam: this.exam, order: 'random', studyMode: this.studyMode };
     }
     return { exam: this.exam, order: this.order, studyMode: this.studyMode };
   }
@@ -139,7 +140,6 @@ export class QuizApp {
   private applyExamSelection(): void {
     const isMock = this.exam === MOCK_KEY;
     toggle(byId('order-field'), !isMock);
-    toggle(byId('mode-field'), !isMock);
     toggle(this.studyPanel, !isMock);
     toggle(this.mockPanel, isMock);
     this.startBtn.textContent = isMock ? '모의시험 시작 · 130분' : '새로 시작';

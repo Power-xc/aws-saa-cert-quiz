@@ -86,7 +86,6 @@ export class QuizSession {
   private readonly englishQuestion = byId('english-question');
   private readonly englishChoices = byId('english-choices');
   private readonly choicesContainer = byId('choices-container');
-  private readonly checkBtn = byId<HTMLButtonElement>('check-btn');
   private readonly resultMsg = byId('result-msg');
   private readonly explainBox = byId('explain-box');
   private readonly explainText = byId('explain-text');
@@ -292,7 +291,9 @@ export class QuizSession {
         `<span class="stat-correct">정답 <b>${correct}</b></span>` +
         `<span class="stat-wrong">오답 <b>${answered - correct}</b></span>`;
 
-    this.badge.textContent = question.multi ? '복수 정답' : '단일 정답';
+    this.badge.textContent = question.multi
+      ? `복수 정답 · ${pickCount(question)}개 고르기`
+      : '단일 정답';
     this.badge.className = question.multi
       ? 'q-type-badge multi'
       : 'q-type-badge';
@@ -361,6 +362,7 @@ export class QuizSession {
       input.id = `ch-${choice.key}`;
       input.checked = selected.includes(choice.key);
       input.disabled = graded;
+      input.addEventListener('change', () => this.onPick());
 
       const label = document.createElement('label');
       label.className = 'choice-label';
@@ -391,8 +393,6 @@ export class QuizSession {
     const graded = this.idx in this.results;
     if (!graded) {
       this.resultMsg.className = 'result-msg';
-      this.checkBtn.textContent = '정답 확인';
-      this.checkBtn.disabled = false;
       hide(this.explainBox);
       return;
     }
@@ -409,8 +409,6 @@ export class QuizSession {
       });
       this.setResult(`오답입니다. 정답: ${answers.join(', ')}`, 'ng');
     }
-    this.checkBtn.textContent = '확인됨';
-    this.checkBtn.disabled = true;
     this.renderExplanation(question);
   }
 
@@ -452,11 +450,8 @@ export class QuizSession {
 
   private renderControls(total: number): void {
     if (this.isExamFlow()) {
-      hide(this.checkBtn);
       this.resultMsg.className = 'result-msg';
       hide(this.explainBox);
-    } else {
-      toggle(this.checkBtn, !this.resultView);
     }
     toggle(this.backToSheetBtn, this.resultView);
 
@@ -474,7 +469,6 @@ export class QuizSession {
 
   // ── Interaction ───────────────────────────────────────────────────────────
   private wire(): void {
-    this.checkBtn.addEventListener('click', () => this.checkAnswer());
     this.prevBtn.addEventListener('click', () => this.goPrev());
     this.nextBtn.addEventListener('click', () => this.goNext());
     this.backToSheetBtn.addEventListener('click', () => this.showSheet());
@@ -522,6 +516,29 @@ export class QuizSession {
     this.exitToHome();
   }
 
+  /**
+   * Study flow grades as soon as an answer is picked: a single-answer question
+   * on the first pick, a multiple-response one once the required number of
+   * choices is ticked. The exam flow keeps picks until it is graded at the end.
+   */
+  private onPick(): void {
+    if (this.isExamFlow() || this.resultView || this.idx in this.results) {
+      return;
+    }
+    const question = this.questions[this.idx];
+    if (!question) return;
+    const needed = pickCount(question);
+    const count = this.selectedLetters().length;
+    if (question.multi && count < needed) {
+      this.setResult(
+        `${needed}개를 고르면 바로 채점돼요. (${count}/${needed})`,
+        'info',
+      );
+      return;
+    }
+    this.checkAnswer();
+  }
+
   private checkAnswer(): void {
     const question = this.questions[this.idx];
     if (!question) return;
@@ -557,7 +574,10 @@ export class QuizSession {
     } else if (this.resultView) {
       this.showSheet();
     } else {
-      if (this.isExamFlow()) this.gradeExam();
+      // A mock exam counts skipped questions as wrong in either flow.
+      if (this.isExamFlow() || (this.isMock() && !this.review)) {
+        this.gradeExam();
+      }
       this.showSummary();
     }
   }
@@ -580,11 +600,7 @@ export class QuizSession {
 
     if (event.key === 'ArrowLeft') this.prevBtn.click();
     if (event.key === 'ArrowRight') this.nextBtn.click();
-    if (event.key === 'Enter') {
-      if (this.isExamFlow()) this.nextBtn.click();
-      else if (!this.checkBtn.disabled) this.checkAnswer();
-      else this.nextBtn.click();
-    }
+    if (event.key === 'Enter') this.nextBtn.click();
     if (/^[a-e]$/i.test(event.key)) {
       const input = document.getElementById(
         `ch-${event.key.toUpperCase()}`,
@@ -596,6 +612,7 @@ export class QuizSession {
           }
         }
         input.checked = !input.checked;
+        this.onPick();
       }
     }
   }
@@ -612,11 +629,15 @@ export class QuizSession {
     this.answers[this.idx] = this.selectedLetters();
   }
 
-  /** Grade an exam-mode session in one pass: unanswered counts as wrong. */
+  /**
+   * Grade every question not graded yet in one pass: unanswered counts as
+   * wrong. Questions already graded on pick keep their single recorded attempt.
+   */
   private gradeExam(): void {
     const history = readHistory();
     let touched = false;
     this.questions.forEach((question, i) => {
+      if (i in this.results) return;
       const selected = this.answers[i] ?? [];
       const result = question.answer
         ? selected.length > 0
@@ -865,4 +886,9 @@ export class QuizSession {
 
 function isQuestion(question: Question | undefined): question is Question {
   return question !== undefined;
+}
+
+/** How many choices a pick needs before it is graded (at least one). */
+function pickCount(question: Question): number {
+  return Math.max(1, question.answer?.length ?? 1);
 }
